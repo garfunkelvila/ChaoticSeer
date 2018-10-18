@@ -1,0 +1,6 @@
+D:\Users\Garfunkel Vila\source\repos\Dark Seer\Neural Network\bin\Release\Neural Network.dll
+D:\Users\Garfunkel Vila\source\repos\Dark Seer\Neural Network\bin\Release\Neural Network.pdb
+D:\Users\Garfunkel Vila\source\repos\Dark Seer\Neural Network\obj\Release\Neural Network.csprojAssemblyReference.cache
+D:\Users\Garfunkel Vila\source\repos\Dark Seer\Neural Network\obj\Release\Neural Network.csproj.CoreCompileInputs.cache
+D:\Users\Garfunkel Vila\source\repos\Dark Seer\Neural Network\obj\Release\Neural Network.dll
+D:\Users\Garfunkel Vila\source\repos\Dark Seer\Neural Network\obj\Release\Neural Network.pdb

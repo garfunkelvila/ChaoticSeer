@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.28010.2016
+VisualStudioVersion = 15.0.28010.2041
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dark Seer", "Dark Seer\Dark Seer.csproj", "{EC8D1A5D-509F-4B73-833D-05B6F3FB4CCB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dark Seer", "Dark Seer\Dark Seer.csproj", "{106035BC-ECE8-4583-82B2-1B108119956A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Neural Network", "Neural Network\Neural Network.csproj", "{82015B03-4AF0-4B67-BF11-C8F9BFE5E1B9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +13,19 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{EC8D1A5D-509F-4B73-833D-05B6F3FB4CCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EC8D1A5D-509F-4B73-833D-05B6F3FB4CCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EC8D1A5D-509F-4B73-833D-05B6F3FB4CCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EC8D1A5D-509F-4B73-833D-05B6F3FB4CCB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{106035BC-ECE8-4583-82B2-1B108119956A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{106035BC-ECE8-4583-82B2-1B108119956A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{106035BC-ECE8-4583-82B2-1B108119956A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{106035BC-ECE8-4583-82B2-1B108119956A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82015B03-4AF0-4B67-BF11-C8F9BFE5E1B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82015B03-4AF0-4B67-BF11-C8F9BFE5E1B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82015B03-4AF0-4B67-BF11-C8F9BFE5E1B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82015B03-4AF0-4B67-BF11-C8F9BFE5E1B9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {216E8675-3A7D-4717-A807-F1F496BEC66C}
+		SolutionGuid = {4C33BCF0-86AF-44C9-B3AE-A115B2A73A44}
 	EndGlobalSection
 EndGlobal

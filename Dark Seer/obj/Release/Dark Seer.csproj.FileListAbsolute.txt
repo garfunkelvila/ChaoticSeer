@@ -1,0 +1,13 @@
+D:\Users\Garfunkel Vila\source\repos\Dark Seer\Dark Seer\bin\Release\Dark Seer.exe.config
+D:\Users\Garfunkel Vila\source\repos\Dark Seer\Dark Seer\bin\Release\Dark Seer.exe
+D:\Users\Garfunkel Vila\source\repos\Dark Seer\Dark Seer\bin\Release\Dark Seer.pdb
+D:\Users\Garfunkel Vila\source\repos\Dark Seer\Dark Seer\bin\Release\Neural Network.dll
+D:\Users\Garfunkel Vila\source\repos\Dark Seer\Dark Seer\bin\Release\Neural Network.pdb
+D:\Users\Garfunkel Vila\source\repos\Dark Seer\Dark Seer\obj\Release\Dark Seer.csprojAssemblyReference.cache
+D:\Users\Garfunkel Vila\source\repos\Dark Seer\Dark Seer\obj\Release\Dark_Seer.frmMain.resources
+D:\Users\Garfunkel Vila\source\repos\Dark Seer\Dark Seer\obj\Release\Dark_Seer.Properties.Resources.resources
+D:\Users\Garfunkel Vila\source\repos\Dark Seer\Dark Seer\obj\Release\Dark Seer.csproj.GenerateResource.cache
+D:\Users\Garfunkel Vila\source\repos\Dark Seer\Dark Seer\obj\Release\Dark Seer.csproj.CoreCompileInputs.cache
+D:\Users\Garfunkel Vila\source\repos\Dark Seer\Dark Seer\obj\Release\Dark Seer.csproj.CopyComplete
+D:\Users\Garfunkel Vila\source\repos\Dark Seer\Dark Seer\obj\Release\Dark Seer.exe
+D:\Users\Garfunkel Vila\source\repos\Dark Seer\Dark Seer\obj\Release\Dark Seer.pdb
