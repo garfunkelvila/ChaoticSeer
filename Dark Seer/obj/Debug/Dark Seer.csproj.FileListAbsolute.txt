@@ -1,0 +1,10 @@
+D:\Users\Garfunkel Vila\source\repos\Dark Seer\Dark Seer\obj\Debug\Dark Seer.csprojAssemblyReference.cache
+D:\Users\Garfunkel Vila\source\repos\Dark Seer\Dark Seer\obj\Debug\Dark_Seer.frmMain.resources
+D:\Users\Garfunkel Vila\source\repos\Dark Seer\Dark Seer\obj\Debug\Dark_Seer.Properties.Resources.resources
+D:\Users\Garfunkel Vila\source\repos\Dark Seer\Dark Seer\obj\Debug\Dark Seer.csproj.GenerateResource.cache
+D:\Users\Garfunkel Vila\source\repos\Dark Seer\Dark Seer\obj\Debug\Dark Seer.csproj.CoreCompileInputs.cache
+D:\Users\Garfunkel Vila\source\repos\Dark Seer\Dark Seer\bin\Debug\Dark Seer.exe.config
+D:\Users\Garfunkel Vila\source\repos\Dark Seer\Dark Seer\bin\Debug\Dark Seer.exe
+D:\Users\Garfunkel Vila\source\repos\Dark Seer\Dark Seer\bin\Debug\Dark Seer.pdb
+D:\Users\Garfunkel Vila\source\repos\Dark Seer\Dark Seer\obj\Debug\Dark Seer.exe
+D:\Users\Garfunkel Vila\source\repos\Dark Seer\Dark Seer\obj\Debug\Dark Seer.pdb
