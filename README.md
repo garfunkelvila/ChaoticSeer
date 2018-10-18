@@ -1,2 +1,2 @@
 # DarkSeer
-Dont mind this thing, it does nothing
+Don't mind this thing, it does nothing
