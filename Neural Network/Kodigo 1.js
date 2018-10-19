@@ -4,7 +4,7 @@
 //     z = (weight_1 * input_1) + (weight_2 * input_2) + (weight_3 * input_3) .......... 
 
 //THIS THING IS FROM A YOUTUBE CHANNEL I JUST BASE HERE THEN MODIFY IT BASED ON WHAT I WANT xD
-
+//https://www.youtube.com/playlist?list=PLxt59R_fWVzT9bDxA76AHm3ig0Gg9S3So
 //training set. [length, width, color(0=blue and 1=red)]
 var dataB1 = [1, 1, 0];
 var dataB2 = [2, 1, 0];
