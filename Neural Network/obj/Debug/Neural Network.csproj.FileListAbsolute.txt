@@ -4,3 +4,7 @@ D:\Users\Garfunkel Vila\source\repos\Dark Seer\Neural Network\obj\Debug\Neural N
 D:\Users\Garfunkel Vila\source\repos\Dark Seer\Neural Network\obj\Debug\Neural Network.dll
 D:\Users\Garfunkel Vila\source\repos\Dark Seer\Neural Network\obj\Debug\Neural Network.pdb
 D:\Users\Garfunkel Vila\source\repos\Dark Seer\Neural Network\obj\Debug\Neural Network.csprojAssemblyReference.cache
+D:\Users\Garfunkel Vila\Documents\Repos\DarkSeer\Neural Network\obj\Debug\Neural Network.csprojAssemblyReference.cache
+D:\Users\Garfunkel Vila\Documents\Repos\DarkSeer\Neural Network\obj\Debug\Neural Network.csproj.CoreCompileInputs.cache
+D:\Users\Garfunkel Vila\Documents\Repos\DarkSeer\Neural Network\obj\Debug\Neural Network.dll
+D:\Users\Garfunkel Vila\Documents\Repos\DarkSeer\Neural Network\obj\Debug\Neural Network.pdb

@@ -16,15 +16,7 @@ namespace Neural_Network {
             Bias = r.Next(0, Dendrites.Length);
             ActivationFunction = af;
         }
-        /// <summary>
-        /// This thing is the pred part
-        /// pred = sigmoid(z)
-        /// z = (weight_1 * input_1) + (weight_2 * input_2) + (weight_3 * input_3) .......... and so on
-        /// </summary>
-        /// <returns>Returns the prediction</returns>
         public double Axon () {
-#if DEBUG
-#endif
             double buffer = 0;
             for (int i = 0; i < Dendrites.Length; i++) {
                 buffer += Dendrites[i] * Weights[i];
