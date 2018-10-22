@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 namespace Neural_Network {
     enum ActivationFunctions {
         Any = 0,
-        Sigmoid = 1,
-        ReLu = 2,
-        Step = 3
+        Logistic = 1,
+        TanH = 2,
+        ReLu = 3,
+        Step = 4
     }
     abstract class Activations {
         public Random r = new Random();
@@ -23,6 +24,9 @@ namespace Neural_Network {
             if (midPoint < 0.5f) throw new Exception("midPoint just dont");
 #endif
             return (maxValue / (1 + Math.Exp(-steepnes * (x - midPoint))));
+        }
+        public double TanH (double x) {
+            return ((Math.Exp(x))-(Math.Exp(-x)))/((Math.Exp(x))+(Math.Exp(-x)))
         }
         /// <summary>
         /// This ReLU starts at 0.5
@@ -52,15 +56,18 @@ namespace Neural_Network {
                     int af = r.Next(1, 3);
                     switch (af) {
                         case 1: return Sigmoid(x);
-                        case 2: return ReLU(x);
-                        case 3: return Step(x);
+                        case 2: return TanH(x);
+                        case 3: return ReLU(x);
+                        case 4: return Step(x);
 #if DEBUG 
                         default: throw new Exception("Please add the new AF here");
 #endif
 
                     }
-                case ActivationFunctions.Sigmoid: return Sigmoid(x);
+                case ActivationFunctions.Logistic: return Sigmoid(x);
+                case ActivationFunctions.TanH: return TanH(x);
                 case ActivationFunctions.ReLu: return ReLU(x);
+                case ActivationFunctions.Step: return Step(x);
 #if DEBUG
                 default: throw new Exception("Activation function selection error occured");
 #endif
