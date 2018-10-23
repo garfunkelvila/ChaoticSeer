@@ -17,16 +17,24 @@ namespace Neural_Network {
         public double Sigmoid (double x) {
             return (1 / (1 + Math.Exp(-x)));
         }
-        public virtual double Sigmoid (double x, double steepnes = 0.5, double maxValue = 1, double midPoint = 0.5f) {
+        /// <summary>
+        /// Based on https://en.wikipedia.org/wiki/Logistic_function
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="k">the steepness of the curve</param>
+        /// <param name="L">the curve's maximum value</param>
+        /// <param name="X0">the x-value of the sigmoid's midpoint</param>
+        /// <returns></returns>
+        public virtual double Sigmoid (double x, double k = 1, double L = 1, double X0 = 0.0f) {
 #if DEBUG
-            if (steepnes < 0) throw new Exception("Steepness cant be negative");
-            if (maxValue < midPoint) throw new Exception("maxValue is lower than midPoint");
-            if (midPoint < 0.5f) throw new Exception("midPoint just dont");
+            if (k < 0) throw new Exception("Steepness cant be negative");
+            //if (L < X0) throw new Exception("maxValue is lower than midPoint");
+            //if (X0 < 0.5f) throw new Exception("midPoint just dont");
 #endif
-            return (maxValue / (1 + Math.Exp(-steepnes * (x - midPoint))));
+            return (L / (1 + Math.Exp(-k * (x - X0))));
         }
         public double TanH (double x) {
-            return ((Math.Exp(x))-(Math.Exp(-x)))/((Math.Exp(x))+(Math.Exp(-x)))
+            return ((Math.Exp(x)) - (Math.Exp(-x))) / ((Math.Exp(x)) + (Math.Exp(-x)));
         }
         /// <summary>
         /// This ReLU starts at 0.5
