@@ -6,14 +6,18 @@ using System.Threading.Tasks;
 
 namespace Neural_Network {
     class Neuron : Activations {
+        public double[] Dendrites;
+        public double[] Weights;
+        public double Bias;
+        public ActivationFunctions ActivationFunction;
         public Neuron (
                 int dendritesCount,
-                ActivationFunctions af = ActivationFunctions.Sigmoid) {
+                ActivationFunctions af = ActivationFunctions.Logistic) {
             Dendrites = new double[dendritesCount];
             Weights = new double[dendritesCount];
             for (int i = 0; i < dendritesCount; i++)
                 Weights[i] = r.NextDouble();
-            Bias = r.Next(0, Dendrites.Length);
+            Bias = r.Next(-Dendrites.Length, Dendrites.Length);
             ActivationFunction = af;
         }
         public double Axon () {
@@ -22,13 +26,7 @@ namespace Neural_Network {
                 buffer += Dendrites[i] * Weights[i];
             }
             buffer += Bias;
-            return calcAxon(buffer, ActivationFunction);
+            return Sigmoid(buffer);
         }
-#region Properties
-        public double[] Dendrites {get; set; }
-        public double[] Weights { get; set; }
-        public double Bias { get; set; }
-        public ActivationFunctions ActivationFunction { get; }
-#endregion
     }
 }

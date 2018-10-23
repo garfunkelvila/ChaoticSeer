@@ -25,9 +25,10 @@ namespace Neural_Network {
     }
     /// <summary>
     /// Neuron layer or Layer group (non-existing yet) should accept one or many double and poop one or many double
-    /// 
     /// </summary>
     class NeuronLayer {
+        public Neuron[] neurons;
+        public NeuronTypes neuronType;
         /// <summary>
         /// Creates a layer filled with neurons
         /// </summary>
@@ -45,8 +46,8 @@ namespace Neural_Network {
                 neurons[i] = new Neuron(iCount);
             }
         }
-        Neuron[] neurons { get; set; }
-        public NeuronTypes neuronType { get; set; }
+        //public Neuron[] neurons { get; set; }
+        //public NeuronTypes neuronType { get; set; }
         //Add input
         //Add output
     }
