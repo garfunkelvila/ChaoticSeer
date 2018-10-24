@@ -12,12 +12,12 @@ namespace Neural_Network {
         public ActivationFunctions ActivationFunction;
         public Neuron (
                 int dendritesCount,
-                ActivationFunctions af = ActivationFunctions.Logistic) {
+                ActivationFunctions af = ActivationFunctions.TanH) {
             Dendrites = new double[dendritesCount];
             Weights = new double[dendritesCount];
             for (int i = 0; i < dendritesCount; i++)
-                Weights[i] = r.NextDouble();
-            Bias = r.Next(-Dendrites.Length, Dendrites.Length);
+                Weights[i] = r.NextDouble() * 2 - 1;
+            Bias = r.NextDouble() * 2 - 1;
             ActivationFunction = af;
         }
         public double Axon () {
