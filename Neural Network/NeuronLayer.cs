@@ -18,7 +18,7 @@ using System.Threading.Tasks;
 // *-*-*-*-*-*-*-*-*-*-*
 // *-*-*-*-*-*-*-*-*-*
 namespace Neural_Network {
-    enum NeuronTypes {
+    public enum NeuronTypes {
         Sensory = 1,
         Inter = 2,
         Motor = 3
@@ -26,7 +26,7 @@ namespace Neural_Network {
     /// <summary>
     /// Neuron layer or Layer group (non-existing yet) should accept one or many double and poop one or many double
     /// </summary>
-    class NeuronLayer {
+    public class NeuronLayer {
         public Neuron[] neurons;
         public NeuronTypes neuronType;
         /// <summary>

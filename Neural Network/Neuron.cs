@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Neural_Network {
-    class Neuron : Activations {
+    public class Neuron : Activations {
         public double[] Dendrites;
         public double[] Weights;
         public double Bias;

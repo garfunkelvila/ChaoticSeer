@@ -7,6 +7,6 @@ using System.Threading.Tasks;
 namespace Neural_Network {
     
     public class neuralNetwork{
-        
+        //Try single layer
     }
 }

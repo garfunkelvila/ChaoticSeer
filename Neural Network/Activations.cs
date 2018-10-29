@@ -5,14 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Neural_Network {
-    enum ActivationFunctions {
+    public enum ActivationFunctions {
         Any = 0,
         Logistic = 1,
         TanH = 2,
         ReLu = 3,
         Step = 4
     }
-    abstract class Activations {
+    public abstract class Activations {
         public Random r = new Random();
         public double Sigmoid (double x) {
             return (1 / (1 + Math.Exp(-x)));

@@ -8,7 +8,7 @@ namespace Neural_Network {
     class LayerGroup {
         public delegate void OutputHandler (double[] motors);
         public event OutputHandler Decision;
-        bool isSingleNl; //Might remove this and just use array
+        readonly bool isSingleNl; //Might remove this and just use array
 
         public NeuronLayer[] NeuronLayers;
         public NeuronLayer NeuronLayer;
