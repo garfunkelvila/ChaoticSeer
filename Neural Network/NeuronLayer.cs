@@ -34,7 +34,7 @@ namespace Neural_Network {
         /// </summary>
         /// <param name="nCount">Neuron count</param>
         /// <param name="iCount">Input count</param>
-        public NeuronLayer (int nCount, int iCount) {
+        public NeuronLayer (int iCount, int nCount) {
             this.neurons = new Neuron[nCount];
             for (int i = 0; i < nCount; i++) {
                 neurons[i] = new Neuron(iCount);
@@ -44,6 +44,12 @@ namespace Neural_Network {
             this.neurons = new Neuron[nCount];
             for (int i = 0; i < nCount; i++) {
                 neurons[i] = new Neuron(iCount);
+            }
+        }
+        public NeuronLayer (int nCount, int iCount, ActivationFunctions aF = ActivationFunctions.Logistic) {
+            this.neurons = new Neuron[nCount];
+            for (int i = 0; i < nCount; i++) {
+                neurons[i] = new Neuron(iCount, aF);
             }
         }
         //public Neuron[] neurons { get; set; }
