@@ -42,7 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Activations.cs" />
-    <Compile Include="Genome.cs" />
+    <Compile Include="Genetics.cs" />
     <Compile Include="LayerGroup.cs" />
     <Compile Include="Neural_Network.cs" />
     <Compile Include="Neuron.cs" />
