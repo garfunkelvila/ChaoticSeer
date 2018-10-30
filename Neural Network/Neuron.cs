@@ -26,7 +26,7 @@ namespace Neural_Network {
                 buffer += Dendrites[i] * Weights[i];
             }
             buffer += Bias;
-            return Sigmoid(buffer);
+            return calcAxon(buffer, ActivationFunction);
         }
     }
 }
