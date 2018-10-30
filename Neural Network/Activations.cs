@@ -13,7 +13,7 @@ namespace Neural_Network {
         Step = 4
     }
     public abstract class Activations {
-        public Random r = new Random();
+        public static Random r = new Random();
         public double Sigmoid (double x) {
             return (1 / (1 + Math.Exp(-x)));
         }
@@ -50,7 +50,7 @@ namespace Neural_Network {
         /// <param name="x"></param>
         /// <returns></returns>
         public double Step (double x) {
-            return x > 0.5d ? 1 : 0;
+            return x > 0 ? 1 : 0;
         }
         /// <summary>
         /// This one adds randomness.
