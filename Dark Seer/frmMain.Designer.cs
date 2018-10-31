@@ -38,9 +38,13 @@
             this.textBox12 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnGo = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.btnInit = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.txbLogs = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -137,9 +141,9 @@
             // textBox9
             // 
             this.textBox9.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox9.Location = new System.Drawing.Point(136, 106);
+            this.textBox9.Location = new System.Drawing.Point(136, 64);
             this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(98, 20);
+            this.textBox9.Size = new System.Drawing.Size(20, 20);
             this.textBox9.TabIndex = 12;
             this.textBox9.Text = "0";
             this.textBox9.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -147,9 +151,9 @@
             // textBox10
             // 
             this.textBox10.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox10.Location = new System.Drawing.Point(136, 132);
+            this.textBox10.Location = new System.Drawing.Point(162, 64);
             this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(98, 20);
+            this.textBox10.Size = new System.Drawing.Size(20, 20);
             this.textBox10.TabIndex = 11;
             this.textBox10.Text = "1";
             this.textBox10.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -157,9 +161,9 @@
             // textBox11
             // 
             this.textBox11.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox11.Location = new System.Drawing.Point(136, 158);
+            this.textBox11.Location = new System.Drawing.Point(188, 64);
             this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(98, 20);
+            this.textBox11.Size = new System.Drawing.Size(20, 20);
             this.textBox11.TabIndex = 10;
             this.textBox11.Text = "1";
             this.textBox11.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -167,9 +171,9 @@
             // textBox12
             // 
             this.textBox12.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox12.Location = new System.Drawing.Point(136, 184);
+            this.textBox12.Location = new System.Drawing.Point(214, 64);
             this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(98, 20);
+            this.textBox12.Size = new System.Drawing.Size(20, 20);
             this.textBox12.TabIndex = 9;
             this.textBox12.Text = "0";
             this.textBox12.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -186,50 +190,82 @@
             // 
             // btnGo
             // 
-            this.btnGo.Location = new System.Drawing.Point(6, 19);
+            this.btnGo.Location = new System.Drawing.Point(6, 115);
             this.btnGo.Name = "btnGo";
-            this.btnGo.Size = new System.Drawing.Size(31, 20);
+            this.btnGo.Size = new System.Drawing.Size(148, 22);
             this.btnGo.TabIndex = 14;
-            this.btnGo.Text = "Go";
+            this.btnGo.Text = "Calculate";
             this.btnGo.UseVisualStyleBackColor = true;
             this.btnGo.Click += new System.EventHandler(this.btnGo_Click);
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(0, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(35, 13);
-            this.label3.TabIndex = 15;
-            this.label3.Text = "label3";
-            // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.btnInit);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.btnGo);
             this.groupBox1.Location = new System.Drawing.Point(277, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(160, 72);
+            this.groupBox1.Size = new System.Drawing.Size(160, 175);
             this.groupBox1.TabIndex = 16;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "AI";
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 45);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(35, 13);
+            this.label3.TabIndex = 17;
+            this.label3.Text = "label3";
+            // 
+            // btnInit
+            // 
+            this.btnInit.Location = new System.Drawing.Point(6, 19);
+            this.btnInit.Name = "btnInit";
+            this.btnInit.Size = new System.Drawing.Size(148, 23);
+            this.btnInit.TabIndex = 16;
+            this.btnInit.Text = "Initialize Seers";
+            this.btnInit.UseVisualStyleBackColor = true;
+            this.btnInit.Click += new System.EventHandler(this.btnInit_Click);
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(7, 46);
+            this.label4.Location = new System.Drawing.Point(6, 140);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(46, 13);
             this.label4.TabIndex = 15;
             this.label4.Text = "0 of 100";
+            // 
+            // txbLogs
+            // 
+            this.txbLogs.Location = new System.Drawing.Point(444, 11);
+            this.txbLogs.Multiline = true;
+            this.txbLogs.Name = "txbLogs";
+            this.txbLogs.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txbLogs.Size = new System.Drawing.Size(262, 379);
+            this.txbLogs.TabIndex = 17;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(6, 73);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(148, 23);
+            this.button1.TabIndex = 18;
+            this.button1.Text = "Single Calc";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.txbLogs);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBox9);
             this.Controls.Add(this.textBox10);
@@ -270,9 +306,13 @@
         private System.Windows.Forms.TextBox textBox12;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnGo;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button btnInit;
+        private System.Windows.Forms.Label label3;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.TextBox txbLogs;
+        private System.Windows.Forms.Button button1;
     }
 }
 
