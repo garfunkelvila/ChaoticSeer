@@ -53,7 +53,7 @@ namespace Neural_Network {
             Parallel.For(0, neuronLayer.Length, nL => {
                 for (int n = 0; n < neuronLayer[nL].neurons.Length; n++) {
                     if (r.NextDouble() < mutationRate) {
-                        neuronLayer[0].neurons[n].Dendrites = neuronLayer[nL].neurons[n].Dendrites;
+                        neuronLayer[0].neurons[n].Weights = neuronLayer[nL].neurons[n].Weights;
                         neuronLayer[0].neurons[n].Bias = neuronLayer[nL].neurons[n].Bias;
                     }
                 }
@@ -78,7 +78,7 @@ namespace Neural_Network {
             #endregion
             Parallel.For(0, neuronLayerX.neurons.Length, n => {
                 if (r.NextDouble() < mutationRate) {
-                    neuronLayerX.neurons[n].Dendrites = neuronLayerY.neurons[n].Dendrites;
+                    neuronLayerX.neurons[n].Weights = neuronLayerY.neurons[n].Weights;
                     neuronLayerX.neurons[n].Bias = neuronLayerY.neurons[n].Bias;
                 }
             });
@@ -96,7 +96,7 @@ namespace Neural_Network {
             Parallel.For(0, neuronLayerGroup.Length, nlG => {
                 for (int nL = 0; nL < neuronLayerGroup[nlG].NeuronLayers.Length; nL++) {
                     for (int n = 0; n < neuronLayerGroup[nlG].NeuronLayers[nL].neurons.Length; n++) {
-                        neuronLayerGroup[0].NeuronLayers[nL].neurons[n].Dendrites = neuronLayerGroup[nlG].NeuronLayers[nL].neurons[n].Dendrites;
+                        neuronLayerGroup[0].NeuronLayers[nL].neurons[n].Weights = neuronLayerGroup[nlG].NeuronLayers[nL].neurons[n].Weights;
                         neuronLayerGroup[0].NeuronLayers[nL].neurons[n].Bias = neuronLayerGroup[nlG].NeuronLayers[nL].neurons[n].Bias;
                     }
                 }
@@ -111,7 +111,7 @@ namespace Neural_Network {
             Parallel.For(0, neuronLayerGroupX.NeuronLayers.Length, nL => {
                 for (int n = 0; n < neuronLayerGroupX.NeuronLayers[nL].neurons.Length; n++) {
                     if (r.NextDouble() < mutationRate) {
-                        neuronLayerGroupX.NeuronLayers[nL].neurons[n].Dendrites = neuronLayerGroupY.NeuronLayers[nL].neurons[n].Dendrites;
+                        neuronLayerGroupX.NeuronLayers[nL].neurons[n].Weights = neuronLayerGroupY.NeuronLayers[nL].neurons[n].Weights;
                         neuronLayerGroupX.NeuronLayers[nL].neurons[n].Bias = neuronLayerGroupY.NeuronLayers[nL].neurons[n].Bias;
                     }
                 }
