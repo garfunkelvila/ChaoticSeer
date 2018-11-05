@@ -1,4 +1,18 @@
-﻿using System;
+﻿//  Copyright (C) 2018  Garfunkel Vila
+//
+//  This program is free software: you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License as published by
+//  the Free Software Foundation, either version 3 of the License, or
+//  any later version.
+//
+//  This program is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+//  GNU General Public License for more details.
+//  
+//  You should have received a copy of the GNU General Public License
+//  along with this program.If not, see<https://www.gnu.org/licenses/>.
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,8 +27,8 @@ namespace Neural_Network {
         Step = 4
     }
     public abstract class Activations {
-        public static Random r = new Random();
-        public double Sigmoid (double x) {
+        readonly public static Random r = new Random();
+        public double Logistics (double x) {
             return (1 / (1 + Math.Exp(-x)));
         }
         /// <summary>
@@ -25,7 +39,7 @@ namespace Neural_Network {
         /// <param name="L">the curve's maximum value</param>
         /// <param name="X0">the x-value of the sigmoid's midpoint</param>
         /// <returns></returns>
-        public virtual double Sigmoid (double x, double k = 1, double L = 1, double X0 = 0.0f) {
+        public virtual double Logistics (double x, double k = 1, double L = 1, double X0 = 0.0f) {
 #if DEBUG
             if (k < 0) throw new Exception("Steepness cant be negative");
             //if (L < X0) throw new Exception("maxValue is lower than midPoint");
@@ -63,7 +77,7 @@ namespace Neural_Network {
                 case ActivationFunctions.Any:
                     int af = r.Next(1, 3);
                     switch (af) {
-                        case 1: return Sigmoid(x);
+                        case 1: return Logistics(x);
                         case 2: return TanH(x);
                         case 3: return ReLU(x);
                         case 4: return Step(x);
@@ -72,7 +86,7 @@ namespace Neural_Network {
 #endif
 
                     }
-                case ActivationFunctions.Logistic: return Sigmoid(x);
+                case ActivationFunctions.Logistic: return Logistics(x);
                 case ActivationFunctions.TanH: return TanH(x);
                 case ActivationFunctions.ReLu: return ReLU(x);
                 case ActivationFunctions.Step: return Step(x);
