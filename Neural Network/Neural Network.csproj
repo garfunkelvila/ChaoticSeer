@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Activations.cs" />
+    <Compile Include="BackPropagation.cs" />
+    <Compile Include="TrainingData.cs" />
     <Compile Include="Genetics.cs" />
     <Compile Include="NeuronLayerGroup.cs" />
     <Compile Include="Neural_Network.cs" />
