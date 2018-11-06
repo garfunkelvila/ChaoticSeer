@@ -21,6 +21,7 @@ using System.Threading.Tasks;
 namespace Neural_Network {
     public class NeuronLayerGroup {
         readonly public NeuronLayer[] NeuronLayers;
+        public double[] cDecision;
         #region Constructors
         /// <summary>
         /// Holds an array of Neuron layers.
@@ -57,6 +58,7 @@ namespace Neural_Network {
                     outputBuffer[oB] = NeuronLayers[nL].neurons[oB].Axon();
                 });
             }
+            cDecision = outputBuffer;
             return outputBuffer;
         }
         /*public override int GetHashCode () {
