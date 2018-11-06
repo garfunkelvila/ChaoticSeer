@@ -47,6 +47,11 @@ namespace Neural_Network {
 #endif
             return (L / (1 + Math.Exp(-k * (x - X0))));
         }
+        double d_Logistic (double x) {
+            //Transfer theese things on Activations soon
+            return Logistics(x) * (1 - Logistics(x));
+        }
+
         public double TanH (double x) {
             return ((Math.Exp(x)) - (Math.Exp(-x))) / ((Math.Exp(x)) + (Math.Exp(-x)));
         }
@@ -63,8 +68,8 @@ namespace Neural_Network {
         /// </summary>
         /// <param name="x"></param>
         /// <returns></returns>
-        public double Step (double x) {
-            return x > 0 ? 1 : 0;
+        public double Step (double x, double trigger = 0.5) {
+            return x > trigger ? 1 : 0;
         }
         /// <summary>
         /// This one adds randomness.
@@ -95,6 +100,8 @@ namespace Neural_Network {
 #endif
             }
         }
+
+        
     }
 
 }
