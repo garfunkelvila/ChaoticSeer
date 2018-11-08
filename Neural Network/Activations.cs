@@ -47,21 +47,28 @@ namespace Neural_Network {
 #endif
             return (L / (1 + Math.Exp(-k * (x - X0))));
         }
-        double d_Logistic (double x) {
-            //Transfer theese things on Activations soon
+        public double LogisticPrime (double x) {
             return Logistics(x) * (1 - Logistics(x));
         }
 
         public double TanH (double x) {
-            return ((Math.Exp(x)) - (Math.Exp(-x))) / ((Math.Exp(x)) + (Math.Exp(-x)));
+            return Math.Tanh(x);
+            //return ((Math.Exp(x)) - (Math.Exp(-x))) / ((Math.Exp(x)) + (Math.Exp(-x)));
         }
+
+        double TanHPrime (double x) {
+            //I know it is different, but just for now xD
+            return 1/Math.Cosh(x);//Math.Tanh(x) * (1 - Math.Tanh(x));
+        }
+
         /// <summary>
-        /// This ReLU starts at 0.5
+        /// Specify starting point at trigger
         /// </summary>
         /// <param name="x"></param>
+        /// <param name="trigger">The starting point</param>
         /// <returns></returns>
-        public double ReLU (double x) {
-            return x > 0.5d ? x : 0;
+        public double ReLU (double x, double trigger = 0.5) {
+            return x > trigger ? x : 0;
         }
         /// <summary>
         /// 
