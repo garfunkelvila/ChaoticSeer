@@ -12,151 +12,82 @@ namespace Dark_Seer {
     public partial class frmMain : Form {
         System.Diagnostics.Stopwatch watch;
         Random r;
-        neuralNetwork nn;
+        List<Seer> Seers;
+        //Seer[] Seers;
+        SeerVisualizer[] sv;
+        
 
-        static LayerGroup[] Seers;
+        double[] _in = new double[8];
+        double[] correctAns = new double[4];
+        int correctSeers = 0;
 
         public frmMain () {
             InitializeComponent();
             watch = new System.Diagnostics.Stopwatch();
-            r = new Random();           
-        }
+            r = new Random();
+            Seers = new List<Seer>();
 
-        private void btnGo_Click (object sender, EventArgs e) {
-            string logB = "";
-
-            double[] _in = new double[8];
-            _in[0] = double.Parse(textBox1.Text);
-            _in[1] = double.Parse(textBox2.Text);
-            _in[2] = double.Parse(textBox3.Text);
-            _in[3] = double.Parse(textBox4.Text);
-            _in[4] = double.Parse(textBox5.Text);
-            _in[5] = double.Parse(textBox6.Text);
-            _in[6] = double.Parse(textBox7.Text);
-            _in[7] = double.Parse(textBox8.Text);
-
-
-
-
-
-            txbLogs.AppendText("Started calculating" + Environment.NewLine);
-            Parallel.For(0, Seers.Length, seer => {
-                double[] ins = new double[8];
-                ins[0] = _in[0];
-                ins[1] = _in[1];
-                ins[2] = _in[2];
-                ins[3] = _in[3];
-                ins[4] = _in[4];
-                ins[5] = _in[5];
-                ins[6] = _in[6];
-                ins[7] = _in[7];
-                double[] outs = Seers[seer].Decide(ins);
-
-                logB += "" + outs[0] + outs[1] + outs[2] + outs[3] + Environment.NewLine;
-            });
-            txbLogs.AppendText(logB + Environment.NewLine);
-            txbLogs.AppendText("Done calculating" + Environment.NewLine);
         }
 
         private void btnInit_Click (object sender, EventArgs e) {
-            Seers = new LayerGroup[4096]; //Number of seers
-            txbLogs.AppendText("Initializing..." + Environment.NewLine);
-            /*Parallel.For(0, Seers.Length, seer => {
-                NeuronLayer[] nL = new NeuronLayer[8];
-                nL[0] = new NeuronLayer(8, 16);
-                nL[1] = new NeuronLayer(16, 32);
-                nL[2] = new NeuronLayer(32, 64);
-                nL[3] = new NeuronLayer(64, 128);
-                nL[4] = new NeuronLayer(128, 128);
-                nL[5] = new NeuronLayer(128, 64);
-                nL[6] = new NeuronLayer(64, 16);
-                nL[7] = new NeuronLayer(16, 4, ActivationFunctions.Step);
-
-                Seers[seer] = new LayerGroup(nL);
-
-            });*/
-
-            for (int i = 0; i < Seers.Length; i++) {
-                NeuronLayer[] nL = new NeuronLayer[8];
-                nL[0] = new NeuronLayer(8, 16);
-                nL[1] = new NeuronLayer(16, 32);
-                nL[2] = new NeuronLayer(32, 64);
-                nL[3] = new NeuronLayer(64, 128);
-                nL[4] = new NeuronLayer(128, 128);
-                nL[5] = new NeuronLayer(128, 64);
-                nL[6] = new NeuronLayer(64, 16);
-                nL[7] = new NeuronLayer(16, 4, ActivationFunctions.Step);
-
-                Seers[i] = new LayerGroup(nL);
+            for (int i = 0; i < 4096; i++) {
+                Seers.Add(new Seer());  //This thing cause massive memory, maybe because of many not simmilar number within its class
             }
+        }
+
+        private void btnGo_Click (object sender, EventArgs e) {
+            //This will be transfered to a kind of planet class, mini batched by countries
+            //Generation reset or something
+            /*Parallel.For(0,
+                Seers.Count,
+                seer => {
+                    Seers[seer].isCorrect = false;
+                }
+            );*/
+        }
 
 
+        private void DecideAll () {
+            //This will be transfered to a kind of planet class, mini batched by countries
+            /*
+            Parallel.For(0,
+                Seers.Count,
+                new ParallelOptions {
+                    MaxDegreeOfParallelism = 128
+                },
+                seer => {
+                    //https://stackoverflow.com/questions/15931346/how-to-configure-a-maximum-number-of-threads-in-a-parallel-for
+                    double[] ins = new double[8];
+                    ins = _in;
+                    double[] outs = Seers[seer].nlg.Decide(ins);
 
+                    if (Enumerable.SequenceEqual(outs, correctAns)) {
+                        Seers[seer].Fitness++;
+                        correctSeers++;
+                    }
+                    logB += "" + outs[0] + outs[1] + outs[2] + outs[3] + Environment.NewLine;
+                }
+            );*/
+        }
 
-            txbLogs.AppendText("Initalize done" + Environment.NewLine);
+        private void btnMutate_Click (object sender, EventArgs e) {
+            //This thing will be transfered to genetics
+            //Will be adding fitness
+            //Will be creating a class or function to hold selection
+            //Genetics will only be focusing on mutation/mariage
+            /*Seer BabySeer = new Seer();
+            List<Seer> BabySeers = new List<Seer>();
+            Genetics GA = new Genetics();
+            for (int i = 0; i < numMutate.Value; i++) {
+                BabySeer = new Seer(GA.Mutate(Seers[r.Next(0, Seers.Count)].nlg, Seers[r.Next(0, Seers.Count)].nlg));
+                BabySeers.Add(BabySeer);
+            }
+            Seers.AddRange(BabySeers);*/
+
         }
 
         private void button1_Click (object sender, EventArgs e) {
-            NeuronLayer[] nL = new NeuronLayer[8];
-            nL[0] = new NeuronLayer(8, 16);
-            nL[1] = new NeuronLayer(16, 32);
-            nL[2] = new NeuronLayer(32, 64);
-            nL[3] = new NeuronLayer(64, 128);
-            nL[4] = new NeuronLayer(128, 128);
-            nL[5] = new NeuronLayer(128, 64);
-            nL[6] = new NeuronLayer(64, 16);
-            nL[7] = new NeuronLayer(16, 4, ActivationFunctions.Step);
 
-            LayerGroup lG = new LayerGroup(nL);
-
-            double[] ins = new double[8];
-            ins[0] = double.Parse(textBox1.Text);
-            ins[1] = double.Parse(textBox2.Text);
-            ins[2] = double.Parse(textBox3.Text);
-            ins[3] = double.Parse(textBox4.Text);
-            ins[4] = double.Parse(textBox5.Text);
-            ins[5] = double.Parse(textBox6.Text);
-            ins[6] = double.Parse(textBox7.Text);
-            ins[7] = double.Parse(textBox8.Text);
-
-            double[] outs = lG.Decide(ins);
-
-            textBox9.Text = outs[0].ToString();
-            textBox10.Text = outs[1].ToString();
-            textBox11.Text = outs[2].ToString();
-            textBox12.Text = outs[3].ToString();
         }
-        //Create a seer with 8 input neurons with 4 output neurons with 16x8 hidden layers
-        //After this, try the mutation explained by CodeBullet
-
-        //Single seer first before 1000 seers
-        /*NeuronLayer[] nL = new NeuronLayer[8];
-        nL[0] = new NeuronLayer(8, 16);
-        nL[1] = new NeuronLayer(16, 32);
-        nL[2] = new NeuronLayer(32, 64);
-        nL[3] = new NeuronLayer(64, 128);
-        nL[4] = new NeuronLayer(128, 128);
-        nL[5] = new NeuronLayer(128, 64);
-        nL[6] = new NeuronLayer(64, 16);
-        nL[7] = new NeuronLayer(16, 4, ActivationFunctions.Step);
-
-        LayerGroup lG = new LayerGroup(nL);
-
-        double[] ins = new double[8];
-        ins[0] = double.Parse(textBox1.Text);
-        ins[1] = double.Parse(textBox2.Text);
-        ins[2] = double.Parse(textBox3.Text);
-        ins[3] = double.Parse(textBox4.Text);
-        ins[4] = double.Parse(textBox5.Text);
-        ins[5] = double.Parse(textBox6.Text);
-        ins[6] = double.Parse(textBox7.Text);
-        ins[7] = double.Parse(textBox8.Text);
-
-        double[] outs = lG.Decide(ins);
-
-        textBox9.Text = outs[0].ToString();
-        textBox10.Text = outs[1].ToString();
-        textBox11.Text = outs[2].ToString();
-        textBox12.Text = outs[3].ToString();*/
     }
 }

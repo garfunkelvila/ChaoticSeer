@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Neural Network")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("My attemp to create a neural network class library for .net.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Neural Network")]

@@ -158,5 +158,8 @@ namespace Neural_Network {
             
         }
         #endregion
+        public void Epoch () {
+            //TODO
+        }
     }
 }

@@ -55,6 +55,7 @@
     <Content Include="Kodigo 1.js" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="bp.py" />
     <None Include="LICENSE" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

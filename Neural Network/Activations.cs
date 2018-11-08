@@ -28,21 +28,21 @@ namespace Neural_Network {
     }
     public abstract class Activations {
         readonly public static Random r = new Random();
+        //--------------------------------------------------------------
         public double Logistic (double x) {
             return (1 / (1 + Math.Exp(-x)));
         }
         public double LogisticPrime (double x) {
             return Logistic(x) * (1 - Logistic(x));
         }
-
+        //--------------------------------------------------------------
         public double TanH (double x) {
             return Math.Tanh(x);
         }
-
         double TanHPrime (double x) {
             return 1 / (Math.Cosh(x) * Math.Cosh(x));
         }
-
+        //--------------------------------------------------------------
         /// <summary>
         /// Specify starting point at trigger
         /// </summary>
@@ -89,8 +89,6 @@ namespace Neural_Network {
 #endif
             }
         }
-
-        
     }
 
 }

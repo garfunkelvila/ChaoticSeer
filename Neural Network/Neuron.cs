@@ -24,24 +24,25 @@ namespace Neural_Network {
         public double[] Weights;
         public double Bias;
         public double cAxon; //Used by BackPropagation
-        readonly public ActivationFunctions ActivationFunction;
-        public Neuron (
-                int dendritesCount,
+        public double z; //Used by BackPropagation. They always call it z, I currently don't know why xD
+        readonly public ActivationFunctions ActivationFunction; //I assume that when this thing is readonly, affected scripts will skip jump instructions except the one with random
+        public Neuron (int dendritesCount,
                 ActivationFunctions af = ActivationFunctions.Logistic) {
             Dendrites = new double[dendritesCount];
             Weights = new double[dendritesCount];
             for (int i = 0; i < dendritesCount; i++)
-                Weights[i] = r.NextDouble() * -1;
+                Weights[i] = r.NextDouble() * 2 - 1; //Will change range dependent into AF
             Bias = r.NextDouble();// * 2 - 1;
             ActivationFunction = af;
         }
         public double Axon () {
-            double buffer = 0;
+            z = 0;
             for (int i = 0; i < Dendrites.Length; i++) {
-                buffer += Dendrites[i] * Weights[i];
+                z += Dendrites[i] * Weights[i];
+                Weights[i] = 0; //Might save memory? by saving thesame values to the array
             }
-            buffer += Bias;
-            return calcAxon(buffer, ActivationFunction);
+            z += Bias;
+            return calcAxon(z, ActivationFunction);
         }
     }
 }
