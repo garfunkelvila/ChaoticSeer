@@ -58,7 +58,7 @@ namespace Neural_Network {
 
         double TanHPrime (double x) {
             //I know it is different, but just for now xD
-            return 1/Math.Cosh(x);//Math.Tanh(x) * (1 - Math.Tanh(x));
+            return Math.Tanh(x) * (1 - Math.Tanh(x));
         }
 
         /// <summary>
