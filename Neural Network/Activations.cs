@@ -28,37 +28,19 @@ namespace Neural_Network {
     }
     public abstract class Activations {
         readonly public static Random r = new Random();
-        public double Logistics (double x) {
+        public double Logistic (double x) {
             return (1 / (1 + Math.Exp(-x)));
         }
-        /// <summary>
-        /// Based on https://en.wikipedia.org/wiki/Logistic_function
-        /// </summary>
-        /// <param name="x"></param>
-        /// <param name="k">the steepness of the curve</param>
-        /// <param name="L">the curve's maximum value</param>
-        /// <param name="X0">the x-value of the sigmoid's midpoint</param>
-        /// <returns></returns>
-        public virtual double Logistics (double x, double k = 1, double L = 1, double X0 = 0.0f) {
-#if DEBUG
-            if (k < 0) throw new Exception("Steepness cant be negative");
-            //if (L < X0) throw new Exception("maxValue is lower than midPoint");
-            //if (X0 < 0.5f) throw new Exception("midPoint just dont");
-#endif
-            return (L / (1 + Math.Exp(-k * (x - X0))));
-        }
         public double LogisticPrime (double x) {
-            return Logistics(x) * (1 - Logistics(x));
+            return Logistic(x) * (1 - Logistic(x));
         }
 
         public double TanH (double x) {
             return Math.Tanh(x);
-            //return ((Math.Exp(x)) - (Math.Exp(-x))) / ((Math.Exp(x)) + (Math.Exp(-x)));
         }
 
         double TanHPrime (double x) {
-            //I know it is different, but just for now xD
-            return Math.Tanh(x) * (1 - Math.Tanh(x));
+            return 1 / (Math.Cosh(x) * Math.Cosh(x));
         }
 
         /// <summary>
@@ -89,7 +71,7 @@ namespace Neural_Network {
                 case ActivationFunctions.Any:
                     int af = r.Next(1, 3);
                     switch (af) {
-                        case 1: return Logistics(x);
+                        case 1: return Logistic(x);
                         case 2: return TanH(x);
                         case 3: return ReLU(x);
                         case 4: return Step(x);
@@ -98,7 +80,7 @@ namespace Neural_Network {
 #endif
 
                     }
-                case ActivationFunctions.Logistic: return Logistics(x);
+                case ActivationFunctions.Logistic: return Logistic(x);
                 case ActivationFunctions.TanH: return TanH(x);
                 case ActivationFunctions.ReLu: return ReLU(x);
                 case ActivationFunctions.Step: return Step(x);
