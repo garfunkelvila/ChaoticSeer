@@ -36,23 +36,23 @@ namespace Neural_Network {
         double sTarget;
         //-----------
 
-        double learning_rate = 0.2;
+        double learning_rate = 0.1;
         int TrainIteration = 50000;
 
         //Cost for 1 target for now (multiple neurons)
         //C[0] = Preditions[i] - Target.Targets[i] ^ 2
-        double Cost (TrainingData trainingData) {
+        double OutputCost (TrainingData trainingData) {
             double _rBuffer = 0;
-            for (int i = 0; i < trainingData.Output.Length; i++) {
-                _rBuffer += Math.Pow(nlg.Prediction[i] - trainingData.Output[i], 2);
+            for (int i = 0; i < trainingData.Target.Length; i++) {
+                _rBuffer += Math.Pow(trainingData.Target[i] - nlg.Prediction[i], 2);
             }
             return _rBuffer;
         }
         double avCost (TrainingData[] trainingData) {
             double _rBuffer = 0;
             for (int td = 0; td < trainingData.Length; td++) {
-                for (int i = 0; i < trainingData[td].Output.Length; i++) {
-                    _rBuffer += Math.Pow(nlg.Prediction[i] - trainingData[td].Output[i], 2);
+                for (int i = 0; i < trainingData[td].Target.Length; i++) {
+                    _rBuffer += Math.Pow(trainingData[td].Target[i] - nlg.Prediction[i], 2);
                 }
             }
             return _rBuffer / trainingData.Count();
@@ -64,7 +64,7 @@ namespace Neural_Network {
             //The thing is this is being called per layer? for that I don't know what will be in the target
             double[] _rBuffer = new double[nlg.Prediction.Length];
             for (int i = 0; i < nlg.Prediction.Length; i++) {
-                _rBuffer[i] = 2 * (nlg.Prediction[i] - Target.Output[i]);
+                _rBuffer[i] = 2 * (Target.Target[i] - nlg.Prediction[i]);
             }
             return _rBuffer;
         }
@@ -85,6 +85,22 @@ namespace Neural_Network {
             return _rBuffer;
         }
 
+        void outputLayerBP () {
+            double[] dCP = d_CostPred();
+            double d_Cost;
+            int nl = nlg.NeuronLayers.Length;
+
+            for (int n = 0; n < nlg.NeuronLayers[nl].neurons.Length; n++) { //Neuron loop
+                d_Cost = dCP[n] * LogisticPrime(nlg.NeuronLayers[nl].neurons[n].z) * nlg.NeuronLayers[nl].neurons[n].Bias;
+                nlg.NeuronLayers[nl].neurons[n].Bias -= learning_rate * d_Cost;   //Bias -= learningRate * (dcost_dpred * dpred_dz * Input)
+
+                for (int w = 0; w < nlg.NeuronLayers[nl].neurons[n].Weights.Length; w++) { //Weight loop
+                    d_Cost = dCP[n] * LogisticPrime(nlg.NeuronLayers[nl].neurons[n].z) * nlg.NeuronLayers[nl].neurons[n].Dendrites[w];
+                    nlg.NeuronLayers[nl].neurons[n].Weights[w] -= learning_rate * d_Cost;
+                }
+            }
+        }
+
         void updateLayerWeights () {
             double something = 0; //TEMP
 
@@ -93,8 +109,8 @@ namespace Neural_Network {
 
             //Loop through each neuron on layer
             //Update its weigts based on something output
-            for (int nl = nlg.NeuronLayers.Length; nl >= 0; nl--) {
-                //From last to first layer
+            for (int nl = nlg.NeuronLayers.Length; nl >= 0; nl--) {//From last to first layer
+
                 double[] sp = new double[nlg.NeuronLayers[nl].neurons.Length];
 
                 for (int n = 0; n < nlg.NeuronLayers[nl].neurons.Length; n++) {
