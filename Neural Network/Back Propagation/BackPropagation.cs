@@ -30,6 +30,7 @@ namespace Neural_Network {
         //Output: Update NLG it directly
 
         NeuronLayerGroup nlg;
+        NeuronLayerGroup nlgBuffer;
         //Temporaries
         TrainingData[] Targets;
         TrainingData Target;
@@ -69,60 +70,23 @@ namespace Neural_Network {
             return _rBuffer;
         }
 
-        //I don't know what to call this function
-        //Assumes 3 layers
-        //Z[n](L4) = L3.weights[i] * L2.Axons[i] + L3.Biases[i]
-        //I might name it LayerChain
-        double[] d_Layer (int LayerIndex) {
-            double[] _rBuffer = new double[nlg.NeuronLayers[LayerIndex].InputCount];
-            //Single neuron for now
-            for (int i = 0; i < _rBuffer.Length; i++) {
-                _rBuffer[i] = 
-                    nlg.NeuronLayers[LayerIndex].neurons[0].Weights[i] * 
-                    nlg.NeuronLayers[LayerIndex - 1].neurons[0].Prediction +
-                    nlg.NeuronLayers[LayerIndex].neurons[0].Bias;
-            }
-            return _rBuffer;
-        }
-
         void outputLayerBP () {
             double[] dCP = d_CostPred();
             double d_Cost;
-            int nl = nlg.NeuronLayers.Length;
+            int nl = nlg.NeuronLayers.Length; //Maybe -1
 
             for (int n = 0; n < nlg.NeuronLayers[nl].neurons.Length; n++) { //Neuron loop
                 d_Cost = dCP[n] * LogisticPrime(nlg.NeuronLayers[nl].neurons[n].z) * nlg.NeuronLayers[nl].neurons[n].Bias;
-                nlg.NeuronLayers[nl].neurons[n].Bias -= learning_rate * d_Cost;   //Bias -= learningRate * (dcost_dpred * dpred_dz * Input)
+                nlgBuffer.NeuronLayers[nl].neurons[n].Bias -= learning_rate * d_Cost;   //Bias -= learningRate * (dcost_dpred * dpred_dz * Input)
 
                 for (int w = 0; w < nlg.NeuronLayers[nl].neurons[n].Weights.Length; w++) { //Weight loop
                     d_Cost = dCP[n] * LogisticPrime(nlg.NeuronLayers[nl].neurons[n].z) * nlg.NeuronLayers[nl].neurons[n].Dendrites[w];
-                    nlg.NeuronLayers[nl].neurons[n].Weights[w] -= learning_rate * d_Cost;
+                    nlgBuffer.NeuronLayers[nl].neurons[n].Weights[w] -= learning_rate * d_Cost;
                 }
             }
         }
+        void huddenLayerBP () {
 
-        void updateLayerWeights () {
-            double something = 0; //TEMP
-
-            //Attemp for direct update
-            //maybe will be thesame as d_Layer but with update?
-
-            //Loop through each neuron on layer
-            //Update its weigts based on something output
-            for (int nl = nlg.NeuronLayers.Length; nl >= 0; nl--) {//From last to first layer
-
-                double[] sp = new double[nlg.NeuronLayers[nl].neurons.Length];
-
-                for (int n = 0; n < nlg.NeuronLayers[nl].neurons.Length; n++) {
-                    sp[n] = LogisticPrime(nlg.NeuronLayers[nl].neurons[n].z);
-
-                    nlg.NeuronLayers[nl].neurons[n].Bias = 0;   //Bias = learningRate * (dcost_dpred * dpred_dz * Input)
-                    for (int w = 0; w < nlg.NeuronLayers[nl].neurons[n].Weights.Length; w++) {
-                        nlg.NeuronLayers[nl].neurons[n].Weights[n] = something;  //Weights = learningRate * (dcost_dpred * dpred_dz * Input)
-                    }
-                }
-            }
-            
         }
     }
 }
