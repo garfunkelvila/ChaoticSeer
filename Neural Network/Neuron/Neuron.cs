@@ -39,7 +39,6 @@ namespace Neural_Network {
             z = 0;
             for (int i = 0; i < Dendrites.Length; i++) {
                 z += Dendrites[i] * Weights[i];
-                Weights[i] = 0; //Might save memory? by saving thesame values to the array
             }
             z += Bias;
             return calcAxon(z, ActivationFunction);
