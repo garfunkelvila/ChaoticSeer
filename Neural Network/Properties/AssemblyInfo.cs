@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Neural Network")]
+[assembly: AssemblyTitle("Khiel ANN Library")]
 [assembly: AssemblyDescription("My attemp to create a neural network class library for .net.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Neural Network")]
+[assembly: AssemblyProduct("Khiel ANN Library")]
 [assembly: AssemblyCopyright("Copyright © 2018  Garfunkel Vila")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

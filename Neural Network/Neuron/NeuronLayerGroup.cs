@@ -19,9 +19,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Neural_Network {
-    public class NeuronLayerGroup {
+    public class NeuronLayerGroup{
         readonly public NeuronLayer[] NeuronLayers;
-        public double[] cDecision;
+        public double[] Prediction;
         #region Constructors
         /// <summary>
         /// Holds an array of Neuron layers.
@@ -31,7 +31,7 @@ namespace Neural_Network {
             NeuronLayers = nLayers;
         }
         #endregion
-        public double[] Decide (double[] Inputs) {
+        public double[] Predict (double[] Inputs) {
             double[] outputBuffer;
             for (int n = 0; n < NeuronLayers[0].neurons.Length; n++) {
                 for (int d = 0; d < NeuronLayers[0].neurons[n].Dendrites.Length; d++) {
@@ -58,7 +58,8 @@ namespace Neural_Network {
                     outputBuffer[oB] = NeuronLayers[nL].neurons[oB].Axon();
                 });
             }
-            cDecision = outputBuffer;
+            Prediction = outputBuffer;
+            //Add event soon
             return outputBuffer;
         }
         /*public override int GetHashCode () {

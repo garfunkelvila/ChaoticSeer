@@ -23,7 +23,7 @@ namespace Neural_Network {
         public double[] Dendrites;
         public double[] Weights;
         public double Bias;
-        public double cAxon; //Used by BackPropagation
+        public double Prediction; //Used by BackPropagation
         public double z; //Used by BackPropagation. They always call it z, I currently don't know why xD
         readonly public ActivationFunctions ActivationFunction; //I assume that when this thing is readonly, affected scripts will skip jump instructions except the one with random
         public Neuron (int dendritesCount,

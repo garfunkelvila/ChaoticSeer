@@ -17,6 +17,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+//Will come back here soon
 //THIS THING IS FROM A YOUTUBE CHANNEL
 //I don't know Calculus that well xD
 //https://www.youtube.com/watch?v=tIeHLnjs5U8&t
@@ -24,7 +25,8 @@ using System.Threading.Tasks;
 //https://www.youtube.com/watch?v=gQLKufQ35VE&list=PLxt59R_fWVzT9bDxA76AHm3ig0Gg9S3So&index=11
 namespace Neural_Network {
     class BackPropagation : Activations {
-        //Inputs: NeuronLayerGroup
+        //Objective
+        //Inputs: NeuronLayerGroup. If CNS is done, train with motor neuron, exclude internal/connecting output neuron
         //Output: Update NLG it directly
 
         NeuronLayerGroup nlg;
@@ -41,16 +43,16 @@ namespace Neural_Network {
         //C[0] = Preditions[i] - Target.Targets[i] ^ 2
         double Cost (TrainingData trainingData) {
             double _rBuffer = 0;
-            for (int i = 0; i < trainingData.Targets.Length; i++) {
-                _rBuffer += Math.Pow(nlg.cDecision[i] - trainingData.Targets[i], 2);
+            for (int i = 0; i < trainingData.Output.Length; i++) {
+                _rBuffer += Math.Pow(nlg.Prediction[i] - trainingData.Output[i], 2);
             }
             return _rBuffer;
         }
         double avCost (TrainingData[] trainingData) {
             double _rBuffer = 0;
             for (int td = 0; td < trainingData.Length; td++) {
-                for (int i = 0; i < trainingData[td].Targets.Length; i++) {
-                    _rBuffer += Math.Pow(nlg.cDecision[i] - trainingData[td].Targets[i], 2);
+                for (int i = 0; i < trainingData[td].Output.Length; i++) {
+                    _rBuffer += Math.Pow(nlg.Prediction[i] - trainingData[td].Output[i], 2);
                 }
             }
             return _rBuffer / trainingData.Count();
@@ -60,9 +62,9 @@ namespace Neural_Network {
         // 2 * (pred - target)
         double[] d_CostPred () {
             //The thing is this is being called per layer? for that I don't know what will be in the target
-            double[] _rBuffer = new double[nlg.cDecision.Length];
-            for (int i = 0; i < nlg.cDecision.Length; i++) {
-                _rBuffer[i] = 2 * (nlg.cDecision[i] - Target.Targets[i]);
+            double[] _rBuffer = new double[nlg.Prediction.Length];
+            for (int i = 0; i < nlg.Prediction.Length; i++) {
+                _rBuffer[i] = 2 * (nlg.Prediction[i] - Target.Output[i]);
             }
             return _rBuffer;
         }
@@ -77,7 +79,7 @@ namespace Neural_Network {
             for (int i = 0; i < _rBuffer.Length; i++) {
                 _rBuffer[i] = 
                     nlg.NeuronLayers[LayerIndex].neurons[0].Weights[i] * 
-                    nlg.NeuronLayers[LayerIndex - 1].neurons[0].cAxon +
+                    nlg.NeuronLayers[LayerIndex - 1].neurons[0].Prediction +
                     nlg.NeuronLayers[LayerIndex].neurons[0].Bias;
             }
             return _rBuffer;

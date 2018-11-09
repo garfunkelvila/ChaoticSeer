@@ -19,12 +19,6 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Neural_Network {
-    public class TrainingData {
-        public double[] Input;
-        public double[] Output;
-        public TrainingData (double[] I, double[] O) {
-            Input = I;
-            Output = O;
-        }
+    class Selection {
     }
 }

@@ -29,7 +29,7 @@ namespace Neural_Network {
     /// <summary>
     /// Neuron layer or Layer group (non-existing yet) should accept one or many double and poop one or many double
     /// </summary>
-    public class NeuronLayer {
+    public class NeuronLayer{
         readonly public Neuron[] neurons;
         readonly public NeuronTypes neuronType;
         readonly public int InputCount; //Used by BackPropagation
