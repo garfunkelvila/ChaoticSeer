@@ -1,6 +1,5 @@
 # DarkSeer
-My attemp on ANN Library. My objective for this one is to learn more in C#
-This is an ongoing project and most of functions don't work yet or don't exist
+My attemp on ANN Library. My objective for this one is to learn more in C#. This is an ongoing project and most of functions don't work yet or don't exist
 
 ## Current classes
   * **Neuron** - Contains Weights and Bias
@@ -9,7 +8,7 @@ This is an ongoing project and most of functions don't work yet or don't exist
   * **Activations** - Contains Activation functions
   * **BackPropagation** - Contains Back Propagation functions
   * **Genetics** - Contains Mutation functions
-## What is known to be working
+## Known working classes
   * Neuron
     - [x] Axon/Output
   * NeuronLayer
