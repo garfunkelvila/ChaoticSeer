@@ -33,6 +33,8 @@ namespace Neural_Network {
         readonly public Neuron[] neurons;
         readonly public NeuronTypes neuronType;
         readonly public int InputCount; //Used by BackPropagation
+        public double[] Axons;
+
         /// <summary>
         /// Creates a layer filled with neurons
         /// </summary>
@@ -58,6 +60,17 @@ namespace Neural_Network {
             for (int i = 0; i < nCount; i++) {
                 neurons[i] = new Neuron(iCount, aF);
             }
+        }
+        /// <summary>
+        /// This is to prevent recalculating of prediction
+        /// </summary>
+        /// <returns>Returns the prediction of the neurons</returns>
+        public void CopyAxon() {
+            double[] rBuffer = new double[neurons.Length];
+            for (int i = 0; i < neurons.Length; i++) {
+                rBuffer[i] = neurons[i].Prediction;
+            }
+            Axons = rBuffer;
         }
     }
 }
