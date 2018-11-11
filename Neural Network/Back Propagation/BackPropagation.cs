@@ -69,9 +69,18 @@ namespace Neural_Network {
             }
             return _rBuffer;
         }
+        double[] d_CostPred (int layerIndex) {
+            //https://mattmazur.com/2015/03/17/a-step-by-step-backpropagation-example/
+            double[] _rBuffer = new double[nlg.NeuronLayers[layerIndex].Axons.Length];
+            for (int i = 0; i < _rBuffer.Length; i++) {
+                _rBuffer[i] = 2 * (Target.Target[i] - nlg.NeuronLayers[layerIndex].Axons[i]);
+            }
+            return _rBuffer;
+        }
 
         void outputLayerBP () {
-            double[] dCP = d_CostPred();
+            //https://mattmazur.com/2015/03/17/a-step-by-step-backpropagation-example/
+            double[] dCP = d_CostPred(nlg.NeuronLayers.Length); //Select the output index
             double d_Cost;
             int nl = nlg.NeuronLayers.Length; //Maybe -1
 
@@ -85,7 +94,11 @@ namespace Neural_Network {
                 }
             }
         }
-        void huddenLayerBP () {
+        void hiddenLayerBP () {
+            //https://mattmazur.com/2015/03/17/a-step-by-step-backpropagation-example/
+        }
+
+        void UpdateLayerGroup () {
 
         }
     }
