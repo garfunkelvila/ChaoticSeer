@@ -13,13 +13,9 @@ namespace Dark_Seer {
         System.Diagnostics.Stopwatch watch;
         Random r;
         List<Seer> Seers;
-        //Seer[] Seers;
-        SeerVisualizer[] sv;
-        
+        //Seer[] Seers;        
 
-        double[] _in = new double[8];
-        double[] correctAns = new double[4];
-        int correctSeers = 0;
+        TrainingData[] td;
 
         public frmMain () {
             InitializeComponent();
@@ -86,8 +82,49 @@ namespace Dark_Seer {
 
         }
 
-        private void button1_Click (object sender, EventArgs e) {
+        private void btnNext_Click (object sender, EventArgs e) {
+            initSeer(1024);
+        }
+        void initSeer (int i) {
+            for (int s = 0; s < i; s++) {
+                Seers.Add(new Seer());
+            }
+        }
+        void initTestData () {
+            td = new TrainingData[7];
 
+            td[0].Input[0] = 0;
+            td[0].Input[1] = 0;
+            td[0].Input[2] = 0;
+            td[0].Output[0] = 0;
+            td[0].Output[1] = 0;
+            td[0].Output[2] = 1;
+            td[1].Input = td[0].Output;
+            td[1].Output[0] = 0;
+            td[1].Output[1] = 1;
+            td[1].Output[2] = 0;
+            td[2].Input = td[1].Output;
+            td[2].Output[0] = 0;
+            td[2].Output[1] = 1;
+            td[2].Output[2] = 1;
+            td[3].Input = td[2].Output;
+            td[3].Output[0] = 1;
+            td[3].Output[1] = 0;
+            td[3].Output[2] = 0;
+            td[4].Input = td[3].Output;
+            td[4].Output[0] = 1;
+            td[4].Output[1] = 0;
+            td[4].Output[2] = 1;
+            td[5].Input = td[4].Output;
+            td[5].Output[0] = 1;
+            td[5].Output[1] = 1;
+            td[5].Output[2] = 0;
+            td[6].Input = td[5].Output;
+            td[6].Output[0] = 1;
+            td[6].Output[1] = 1;
+            td[6].Output[2] = 1;
+            td[7].Input = td[6].Output;
+            td[7].Output[0] = td[7].Input[0];
         }
     }
 }

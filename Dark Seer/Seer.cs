@@ -26,23 +26,25 @@ namespace Dark_Seer {
         public bool isCorrect = false;
         public UInt16 Fitness = 0;  //Each every correct answer, this thing increases
         public readonly NeuronLayerGroup nlg;
+        Genetics GA;
+
         public Seer () {
             NeuronLayer[] nL = new NeuronLayer[8];
-            nL[0] = new NeuronLayer(8, 64);
+            nL[0] = new NeuronLayer(3, 64);
             nL[1] = new NeuronLayer(64, 64);
             nL[2] = new NeuronLayer(64, 64);
             nL[3] = new NeuronLayer(64, 128);
             nL[4] = new NeuronLayer(128, 128);
             nL[5] = new NeuronLayer(128, 128);
             nL[6] = new NeuronLayer(128, 16);
-            nL[7] = new NeuronLayer(16, 4, ActivationFunctions.Step);
+            nL[7] = new NeuronLayer(16, 3, ActivationFunctions.Step);
             nlg = new NeuronLayerGroup(nL);
         }
         public Seer (NeuronLayerGroup nL) {
             nlg = nL;
         }
         public void Decide (double[] Sensories) {
-            nlg.Decide(Sensories);
+            nlg.Predict(Sensories);
             //This thing is supposed to raise an event when finished. But instead, I just directly accesed its field xD
             //Will add event feature soon
         }
