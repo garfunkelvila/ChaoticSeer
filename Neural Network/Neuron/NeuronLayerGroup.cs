@@ -59,6 +59,10 @@ namespace Neural_Network {
                 });
             }
             Prediction = outputBuffer;
+            Parallel.ForEach(NeuronLayers, nl => {
+                nl.CopyAxon();  //This one puts the axons into field
+            });
+
             //Add event soon
             return outputBuffer;
         }
