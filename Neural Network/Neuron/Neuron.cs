@@ -41,7 +41,8 @@ namespace Neural_Network {
                 z += Dendrites[i] * Weights[i];
             }
             z += Bias;
-            return calcAxon(z, ActivationFunction);
+            Prediction = calcAxon(z, ActivationFunction);
+            return Prediction;
         }
     }
 }
