@@ -85,10 +85,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Kodigo 1.js" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="bp.py" />
     <None Include="LICENSE" />
     <None Include="Neuron\README.md" />
   </ItemGroup>
