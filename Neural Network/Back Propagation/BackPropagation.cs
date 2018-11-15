@@ -42,7 +42,7 @@ namespace Neural_Network {
 
         //Cost for 1 target for now (multiple neurons)
         //C[0] = Preditions[i] - Target.Targets[i] ^ 2
-        double OutputCost (TrainingData trainingData) {
+        double OutputCost (TrainingData trainingData) { //TOTAL ERROR
             double _rBuffer = 0;
             for (int i = 0; i < trainingData.Target.Length; i++) {
                 _rBuffer += Math.Pow(trainingData.Target[i] - nlg.Prediction[i], 2);
@@ -59,30 +59,32 @@ namespace Neural_Network {
             return _rBuffer / trainingData.Count();
         }
         
-        //Dericative of Cost with respect to LayerOutput        C0 -> a(L)
+        //Derivative of Cost with respect to LayerOutput        C0 -> a(L)
         // 2 * (pred - target)
         double[] d_CostPred () {
-            //The thing is this is being called per layer? for that I don't know what will be in the target
             double[] _rBuffer = new double[nlg.Prediction.Length];
             for (int i = 0; i < nlg.Prediction.Length; i++) {
-                _rBuffer[i] = 2 * (Target.Target[i] - nlg.Prediction[i]);
+                _rBuffer[i] = Target.Target[i] - nlg.Prediction[i];
             }
             return _rBuffer;
         }
         double[] d_CostPred (int layerIndex) {
-            //https://mattmazur.com/2015/03/17/a-step-by-step-backpropagation-example/
             double[] _rBuffer = new double[nlg.NeuronLayers[layerIndex].Axons.Length];
+
             for (int i = 0; i < _rBuffer.Length; i++) {
-                _rBuffer[i] = 2 * (Target.Target[i] - nlg.NeuronLayers[layerIndex].Axons[i]);
+                //_rBuffer[i] = 2 * (Target.Target[i] - nlg.NeuronLayers[layerIndex].Axons[i]);
+                _rBuffer[i] = nlg.NeuronLayers[layerIndex].Axons[i] - Target.Target[i];
             }
             return _rBuffer;
         }
-
         void outputLayerBP () {
-            //https://mattmazur.com/2015/03/17/a-step-by-step-backpropagation-example/
-            double[] dCP = d_CostPred(nlg.NeuronLayers.Length); //Select the output index
+            double[] dCP = d_CostPred(nlg.NeuronLayers.Length); //Select the output layer
+            double dCPSum = dCP.Sum();
+
             double d_Cost;
-            int nl = nlg.NeuronLayers.Length; //Maybe -1
+            int nl = nlg.NeuronLayers.Length; //Select the output layer
+
+            nlg.NeuronLayers[nl].NeuronCosts = dCP;
 
             for (int n = 0; n < nlg.NeuronLayers[nl].neurons.Length; n++) { //Neuron loop
                 d_Cost = dCP[n] * LogisticPrime(nlg.NeuronLayers[nl].neurons[n].z) * nlg.NeuronLayers[nl].neurons[n].Bias;
@@ -94,8 +96,39 @@ namespace Neural_Network {
                 }
             }
         }
-        void hiddenLayerBP () {
-            //https://mattmazur.com/2015/03/17/a-step-by-step-backpropagation-example/
+        void hiddenLauerBP() {
+            double[] dCP;
+            double d_Cost;
+
+            for (int nl = nlg.NeuronLayers.Length - 1; nl > 0; nl--) {
+                dCP = d_CostPred(nl); //I think that this is the only one I need to update for multilayerBP to work
+                //I think d_CostPred needs to be updated to peek next value?
+                nlg.NeuronLayers[nl].NeuronCosts = dCP;
+
+                for (int n = 0; n < nlg.NeuronLayers[nl].neurons.Length; n++) { //Neuron loop
+                                                                                //Multiply error from current layer to output? I am not sue if that is how chain rule works
+                    double cErr;
+                    for (int i = nl + 1; i < nlg.NeuronLayers.Length; i++) {
+                        cErr = nlg.NeuronLayers[nl].NeuronCosts[n];
+                    }
+
+
+
+                    d_Cost = dCP[n] * LogisticPrime(nlg.NeuronLayers[nl].neurons[n].z) * nlg.NeuronLayers[nl].neurons[n].Bias;
+
+                    nlgBuffer.NeuronLayers[nl].neurons[n].Bias -= learning_rate * d_Cost;   //Bias -= learningRate * (dcost_dpred * dpred_dz * Input)
+
+                    for (int w = 0; w < nlg.NeuronLayers[nl].neurons[n].Weights.Length; w++) { //Weight loop
+
+                        d_Cost = dCP[n] * LogisticPrime(nlg.NeuronLayers[nl].neurons[n].z) * nlg.NeuronLayers[nl].neurons[n].Dendrites[w];
+
+                        nlgBuffer.NeuronLayers[nl].neurons[n].Weights[w] -= learning_rate * d_Cost;
+
+                    }
+                }
+            }
+            nlg = nlgBuffer;
+            nlgBuffer = null;
         }
 
         void UpdateLayerGroup () {
