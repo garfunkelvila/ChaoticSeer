@@ -20,6 +20,7 @@ using System.Threading.Tasks;
 
 namespace Neural_Network {
     public enum ActivationFunctions {
+        Any = 0,
         Logistic = 1,
         TanH = 2,
         ReLu = 3,
@@ -67,6 +68,18 @@ namespace Neural_Network {
         /// <returns></returns>
         public double calcAxon (double x, ActivationFunctions ActivationFunction) {
             switch (ActivationFunction) {
+                case ActivationFunctions.Any:
+                    int af = r.Next(1, 3);
+                    switch (af) {
+                        case 1: return Logistic(x);
+                        case 2: return TanH(x);
+                        case 3: return ReLU(x);
+                        case 4: return Step(x);
+#if DEBUG 
+                        default: throw new Exception("Please add the new AF here");
+#endif
+
+                    }
                 case ActivationFunctions.Logistic: return Logistic(x);
                 case ActivationFunctions.TanH: return TanH(x);
                 case ActivationFunctions.ReLu: return ReLU(x);
