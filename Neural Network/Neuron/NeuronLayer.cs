@@ -35,6 +35,8 @@ namespace Neural_Network {
         readonly public int InputCount; //Used by BackPropagation
         public double[] Axons;
 
+        public double[] NeuronCosts;
+
         /// <summary>
         /// Creates a layer filled with neurons
         /// </summary>
