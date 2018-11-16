@@ -23,9 +23,11 @@ namespace Neural_Network {
         public double[] Dendrites;
         public double[] Weights;
         public double Bias;
-        public double Prediction; //Used by BackPropagation
-        public double z; //Used by BackPropagation. They always call it z, I currently don't know why xD
+        public double Prediction;               //Used by BackPropagation
+        public double netPrediction;            //Used by BackPropagation. They always call it z, I currently don't know why xD
+        public double Error;                    //I think sooner i need to shadow copy most of these variables, instead of keepeng them here in neuron
         readonly public ActivationFunctions ActivationFunction; //I assume that when this thing is readonly, affected scripts will skip jump instructions except the one with random
+        readonly public double LearningRate;    // This is for mutation too
         public Neuron (int dendritesCount,
                 ActivationFunctions af = ActivationFunctions.Logistic) {
             Dendrites = new double[dendritesCount];
@@ -34,15 +36,15 @@ namespace Neural_Network {
                 Weights[i] = r.NextDouble() * 2 - 1; //Will change range dependent into AF
             Bias = r.NextDouble();// * 2 - 1;
             ActivationFunction = af;
+            LearningRate = r.NextDouble();
         }
         public double Axon () {
-            z = 0;
+            netPrediction = 0;
             for (int i = 0; i < Dendrites.Length; i++) {
-                z += Dendrites[i] * Weights[i];
+                netPrediction += Dendrites[i] * Weights[i];
             }
-            z += Bias;
-            Prediction = calcAxon(z, ActivationFunction);
-            return Prediction;
+            netPrediction += Bias;
+            return calcAxon(netPrediction, ActivationFunction);
         }
     }
 }

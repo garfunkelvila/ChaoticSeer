@@ -22,9 +22,9 @@ namespace Neural_Network {
     //ISSUE when constructed in a Threading.Parallel.For it keeps giving -1 for weight or +1, not sure if its this fault or Nueron,
     //or it is because of activation not using static methods
     public enum NeuronTypes {
-        Sensory = 1,
-        Inter = 2,
-        Motor = 3
+        Sensory = 1,    //Will soon add normalization feature
+        Inter = 2,      //BP Related Logistic, or TanH
+        Motor = 3       //BP Related Logistic, TanH, or Step
     }
     /// <summary>
     /// Neuron layer or Layer group (non-existing yet) should accept one or many double and poop one or many double
@@ -34,8 +34,6 @@ namespace Neural_Network {
         readonly public NeuronTypes neuronType;
         readonly public int InputCount; //Used by BackPropagation
         public double[] Axons;
-
-        public double[] NeuronCosts;
 
         /// <summary>
         /// Creates a layer filled with neurons
