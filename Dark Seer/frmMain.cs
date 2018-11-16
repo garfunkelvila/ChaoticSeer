@@ -93,36 +93,21 @@ namespace Dark_Seer {
         void initTestData () {
             td = new TrainingData[7];
 
-            td[0].Input[0] = 0;
-            td[0].Input[1] = 0;
-            td[0].Input[2] = 0;
-            td[0].Target[0] = 0;
-            td[0].Target[1] = 0;
-            td[0].Target[2] = 1;
+
+            td[0].Input = new double[] { 0, 0, 0};
+            td[0].Target = new double[] { 0, 0, 1 };
             td[1].Input = td[0].Target;
-            td[1].Target[0] = 0;
-            td[1].Target[1] = 1;
-            td[1].Target[2] = 0;
+            td[1].Target = new double[] { 0, 1, 0 };
             td[2].Input = td[1].Target;
-            td[2].Target[0] = 0;
-            td[2].Target[1] = 1;
-            td[2].Target[2] = 1;
+            td[2].Target = new double[] { 0, 1, 1 };
             td[3].Input = td[2].Target;
-            td[3].Target[0] = 1;
-            td[3].Target[1] = 0;
-            td[3].Target[2] = 0;
+            td[3].Target = new double[] { 1, 0, 0 };
             td[4].Input = td[3].Target;
-            td[4].Target[0] = 1;
-            td[4].Target[1] = 0;
-            td[4].Target[2] = 1;
+            td[4].Target = new double[] { 1, 0, 1 };
             td[5].Input = td[4].Target;
-            td[5].Target[0] = 1;
-            td[5].Target[1] = 1;
-            td[5].Target[2] = 0;
+            td[5].Target = new double[] { 1, 1, 0 };
             td[6].Input = td[5].Target;
-            td[6].Target[0] = 1;
-            td[6].Target[1] = 1;
-            td[6].Target[2] = 1;
+            td[6].Target = new double[] { 1, 1, 1 };
             td[7].Input = td[6].Target;
             td[7].Target[0] = td[7].Input[0];
         }
