@@ -19,6 +19,8 @@ using System.Text;
 using System.Threading.Tasks;
 namespace Neural_Network {
     class BackPropagation : Activations {
+        //Output layer will soon changed into Motor layer, Because of CNS
+
         NeuronLayerGroup nlgBuffer; //This one is the thing being returned
         public double outputError (TrainingData trainingData, NeuronLayerGroup nlg) {
             double _rBuffer = 0;
@@ -46,10 +48,14 @@ namespace Neural_Network {
             NeuronLayer bufferNeuronLayer = nlg.NeuronLayers[nlg.NeuronLayers.Length];
             //ERROR CALCULATION FOR OUTPUT LAYER
             for (int n = 0; n < neuronLayer.neurons.Length; n++) {
-                //Some square it, some don't, I don't get it. Maybe cost is being squared? I'll check some more forumlas and derivatives
-                neuronLayer.neurons[n].Error = Math.Pow(neuronLayer.neurons[n].Prediction - tD[0].Target[n], 2);    //TODO: Average 
+                double tdTotal = 0;
+                for (int t = 0; t < tD.Length; t++) {
+                    //Some square it, some don't, I don't get it. Maybe cost is being squared? I'll check some more forumlas and derivatives
+                    tdTotal = Math.Pow(neuronLayer.neurons[n].Prediction - tD[t].Target[n], 2);
+                }
+                neuronLayer.neurons[n].Error = tdTotal / tD.Length;    //Maybe precalculating all average is better
             }
-            //-----------------------------------
+            //WEIGHT UPDATE FOR OUTPUT LAYER
             for (int n = 0; n < neuronLayer.neurons.Length; n++) { //Neuron loop
                 double nLearningRate = neuronLayer.neurons[n].LearningRate;
                 double d_Cost = neuronLayer.neurons[n].Error * LogisticPrime(neuronLayer.neurons[n].netPrediction) * neuronLayer.neurons[n].Bias;
