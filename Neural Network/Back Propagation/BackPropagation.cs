@@ -48,17 +48,17 @@ namespace Neural_Network {
             NeuronLayer bufferNeuronLayer = nlg.NeuronLayers[nlg.NeuronLayers.Length];
             //ERROR CALCULATION FOR OUTPUT LAYER
             for (int n = 0; n < neuronLayer.neurons.Length; n++) {
-                double tdTotal = 0;
+                float tdTotal = 0;
                 for (int t = 0; t < tD.Length; t++) {
                     //Some square it, some don't, I don't get it. Maybe cost is being squared? I'll check some more forumlas and derivatives
-                    tdTotal = Math.Pow(neuronLayer.neurons[n].Prediction - tD[t].Target[n], 2);
+                    tdTotal = (float) Math.Pow(neuronLayer.neurons[n].Prediction - tD[t].Target[n], 2);
                 }
                 neuronLayer.neurons[n].Error = tdTotal / tD.Length;    //Maybe precalculating all average is better
             }
             //WEIGHT UPDATE FOR OUTPUT LAYER
             for (int n = 0; n < neuronLayer.neurons.Length; n++) { //Neuron loop
-                double nLearningRate = neuronLayer.neurons[n].LearningRate;
-                double d_Cost = neuronLayer.neurons[n].Error * LogisticPrime(neuronLayer.neurons[n].netPrediction) * neuronLayer.neurons[n].Bias;
+                float nLearningRate = neuronLayer.neurons[n].LearningRate;
+                float d_Cost = neuronLayer.neurons[n].Error * LogisticPrime(neuronLayer.neurons[n].netPrediction) * neuronLayer.neurons[n].Bias;
                 bufferNeuronLayer.neurons[n].Bias -= nLearningRate * d_Cost;
 
                 for (int w = 0; w < neuronLayer.neurons[n].Weights.Length; w++) { //Weight loop
@@ -72,7 +72,7 @@ namespace Neural_Network {
             for (int nl = nlg.NeuronLayers.Length - 1; nl > 0; nl--) {  //Start from second to last
                 //ERROR CALCULATION FOR CURRENT LAYER
                 for (int n = 0; n < nlg.NeuronLayers[nl].neurons.Length; n++) { //Current Layer Neuron loop
-                    double sumBuffer = 0;
+                    float sumBuffer = 0;
                     int el = nl + 1;
 
                     for (int en = 0; en < nlg.NeuronLayers[el].neurons.Length; en++) {  //Error Neurons. this thing gives the error value
@@ -83,9 +83,9 @@ namespace Neural_Network {
 
                 //WEIGHT UPDATE
                 Parallel.For(0, nlg.NeuronLayers[nl].neurons.Length, n => { //Neuron loop
-                    double nLearningRate = nlgBuffer.NeuronLayers[nl].neurons[n].LearningRate;
-                    double nCost;
-                    double d_Cost;
+                    float nLearningRate = nlgBuffer.NeuronLayers[nl].neurons[n].LearningRate;
+                    float nCost;
+                    float d_Cost;
 
                     //Multiply error from current layer to output? I am not sue if that is how chain rule works
                     for (int i = nl + 1; i < nlg.NeuronLayers.Length; i++) {

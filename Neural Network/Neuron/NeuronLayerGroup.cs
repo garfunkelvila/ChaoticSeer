@@ -21,7 +21,7 @@ using System.Threading.Tasks;
 namespace Neural_Network {
     public class NeuronLayerGroup{
         readonly public NeuronLayer[] NeuronLayers;
-        public double[] Prediction;
+        public float[] Prediction;
         #region Constructors
         /// <summary>
         /// Holds an array of Neuron layers.
@@ -31,14 +31,14 @@ namespace Neural_Network {
             NeuronLayers = nLayers;
         }
         #endregion
-        public double[] Predict (double[] Inputs) {
-            double[] outputBuffer;
+        public float[] Predict (float[] Inputs) {
+            float[] outputBuffer;
             for (int n = 0; n < NeuronLayers[0].neurons.Length; n++) {
                 for (int d = 0; d < NeuronLayers[0].neurons[n].Dendrites.Length; d++) {
                     NeuronLayers[0].neurons[n].Dendrites[d] = Inputs[d];
                 }
             }
-            outputBuffer = new double[NeuronLayers[0].neurons.Length];
+            outputBuffer = new float[NeuronLayers[0].neurons.Length];
             for (int oB = 0; oB < outputBuffer.Length; oB++) {
                 outputBuffer[oB] = NeuronLayers[0].neurons[oB].Axon();
             }
@@ -52,7 +52,7 @@ namespace Neural_Network {
                         NeuronLayers[nL].neurons[n].Dendrites[d] = outputBuffer[d];
                     }
                 });
-                outputBuffer = new double[NeuronLayers[nL].neurons.Length];
+                outputBuffer = new float[NeuronLayers[nL].neurons.Length];
                 //--------------------------------------------------------------------------
                 Parallel.For(0, outputBuffer.Length, oB => {
                     outputBuffer[oB] = NeuronLayers[nL].neurons[oB].Axon();

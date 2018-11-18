@@ -29,18 +29,18 @@ namespace Neural_Network {
     public abstract class Activations {
         readonly public static Random r = new Random();
         //--------------------------------------------------------------
-        public double Logistic (double x) {
-            return (1 / (1 + Math.Exp(-x)));
+        public float Logistic (float x) {
+            return (float) (1 / (1 + Math.Exp(-x)));
         }
-        public double LogisticPrime (double x) {
+        public float LogisticPrime (float x) {
             return Logistic(x) * (1 - Logistic(x));
         }
         //--------------------------------------------------------------
-        public double TanH (double x) {
-            return Math.Tanh(x);
+        public float TanH (float x) {
+            return (float) Math.Tanh(x);
         }
-        double TanHPrime (double x) {
-            return 1 / (Math.Cosh(x) * Math.Cosh(x));
+        float TanHPrime (float x) {
+            return  (float) (1 / (Math.Cosh(x) * Math.Cosh(x)));
         }
         //--------------------------------------------------------------
         /// <summary>
@@ -49,7 +49,7 @@ namespace Neural_Network {
         /// <param name="x"></param>
         /// <param name="trigger">The starting point</param>
         /// <returns></returns>
-        public double ReLU (double x, double trigger = 0.5) {
+        public float ReLU (float x, float trigger = 0.5f) {
             return x > trigger ? x : 0;
         }
         /// <summary>
@@ -57,7 +57,7 @@ namespace Neural_Network {
         /// </summary>
         /// <param name="x"></param>
         /// <returns></returns>
-        public double Step (double x, double trigger = 0.5) {
+        public float Step (float x, float trigger = 0.5f) {
             return x > trigger ? 1 : 0;
         }
         /// <summary>
@@ -66,7 +66,7 @@ namespace Neural_Network {
         /// <param name="x"></param>
         /// <param name="ActivationFunction"></param>
         /// <returns></returns>
-        public double calcAxon (double x, ActivationFunctions ActivationFunction) {
+        public float calcAxon (float x, ActivationFunctions ActivationFunction) {
             switch (ActivationFunction) {
                 case ActivationFunctions.Any:
                     int af = r.Next(1, 3);

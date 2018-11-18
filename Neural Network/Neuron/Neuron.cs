@@ -20,25 +20,25 @@ using System.Threading.Tasks;
 
 namespace Neural_Network {
     public class Neuron : Activations{
-        public double[] Dendrites;
-        public double[] Weights;
-        public double Bias;
-        public double Prediction;               //Used by BackPropagation
-        public double netPrediction;            //Used by BackPropagation. They always call it z, I currently don't know why xD
-        public double Error;                    //I think sooner i need to shadow copy most of these variables, instead of keepeng them here in neuron
+        public float[] Dendrites;
+        public float[] Weights;
+        public float Bias;
+        public float Prediction;               //Used by BackPropagation
+        public float netPrediction;            //Used by BackPropagation. They always call it z, I currently don't know why xD
+        public float Error;                    //I think sooner i need to shadow copy most of these variables, instead of keepeng them here in neuron
         readonly public ActivationFunctions ActivationFunction; //I assume that when this thing is readonly, affected scripts will skip jump instructions except the one with random
-        readonly public double LearningRate;    // This is for mutation too
+        readonly public float LearningRate;    // This is for mutation too
         public Neuron (int dendritesCount,
                 ActivationFunctions af = ActivationFunctions.Logistic) {
-            Dendrites = new double[dendritesCount];
-            Weights = new double[dendritesCount];
+            Dendrites = new float[dendritesCount];
+            Weights = new float[dendritesCount];
             for (int i = 0; i < dendritesCount; i++)
-                Weights[i] = r.NextDouble() * 2 - 1; //Will change range dependent into AF
-            Bias = r.NextDouble();// * 2 - 1;
+                Weights[i] = (float) r.NextDouble() * 2 - 1; //Will change range dependent into AF
+            Bias = 1; //(float) r.NextDouble();
             ActivationFunction = af;
-            LearningRate = r.NextDouble();
+            LearningRate = (float) r.NextDouble();
         }
-        public double Axon () {
+        public float Axon () {
             netPrediction = 0;
             for (int i = 0; i < Dendrites.Length; i++) {
                 netPrediction += Dendrites[i] * Weights[i];
