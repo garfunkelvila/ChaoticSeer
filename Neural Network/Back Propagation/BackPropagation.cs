@@ -45,7 +45,7 @@ namespace Neural_Network {
 
             // Calculation of the cost (error term)
             for (int n = 0; n < neuronLayer.neurons.Length; n++) {
-                neuronLayer.neurons[n].Error = (float) Math.Pow( neuronLayer.neurons[n].Prediction - tD.Target[n], 2 );
+                neuronLayer.neurons[n].Error = neuronLayer.neurons[n].Prediction - tD.Target[n];
             }
             //WEIGHT UPDATE FOR OUTPUT LAYER
 
@@ -54,11 +54,11 @@ namespace Neural_Network {
                 float d_Cost;
 
                 d_Cost = neuronLayer.neurons[n].Error * LogisticPrime(neuronLayer.neurons[n].netPrediction);
-                bufferNeuronLayer.neurons[n].Bias -= lr * d_Cost;
+                bufferNeuronLayer.neurons[n].Bias += lr * d_Cost;
 
                 for (int w = 0; w < neuronLayer.neurons[n].Weights.Length; w++) { //Weight loop
                     d_Cost = neuronLayer.neurons[n].Error * LogisticPrime(neuronLayer.neurons[n].netPrediction) * neuronLayer.neurons[n].Dendrites[w];
-                    bufferNeuronLayer.neurons[n].Weights[w] -= lr * d_Cost;
+                    bufferNeuronLayer.neurons[n].Weights[w] += lr * d_Cost;
                 }
             });
             nlgBuffer.NeuronLayers[nlg.NeuronLayers.Length- 1] = bufferNeuronLayer;
