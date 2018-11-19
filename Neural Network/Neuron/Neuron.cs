@@ -20,23 +20,26 @@ using System.Threading.Tasks;
 
 namespace Neural_Network {
     public class Neuron : Activations{
-        public float[] Dendrites;
-        public float[] Weights;
-        public float Bias;
-        public float Prediction;               //Used by BackPropagation
-        public float netPrediction;            //Used by BackPropagation. They always call it z, I currently don't know why xD
-        public float Error;                    //I think sooner i need to shadow copy most of these variables, instead of keepeng them here in neuron
         readonly public ActivationFunctions ActivationFunction; //I assume that when this thing is readonly, affected scripts will skip jump instructions except the one with random
         readonly public float LearningRate;    // This is for mutation too
+
+        public float[] Dendrites { get; set; }
+        public float[] Weights { get; set; }
+        public float Bias { get; set; }
+        public float Prediction { get; set; }               //Used by BackPropagation
+        public float netPrediction { get; set; }            //Used by BackPropagation.
+        public float Error { get; set; }                    //I think sooner i need to shadow copy most of these variables, instead of keepeng them here in neuron
+
+
         public Neuron (int dendritesCount,
                 ActivationFunctions af = ActivationFunctions.Logistic) {
             Dendrites = new float[dendritesCount];
             Weights = new float[dendritesCount];
             for (int i = 0; i < dendritesCount; i++)
-                Weights[i] = (float) r.NextDouble() * 2 - 1; //Will change range dependent into AF
+                Weights[i] = (float) r.NextDouble() * 0.2f - 0.1f; //Will change range dependent into AF
             Bias = 1; //(float) r.NextDouble();
             ActivationFunction = af;
-            LearningRate = (float) r.NextDouble();
+            LearningRate = (float) r.NextDouble() * 0.2f - 0.1f;
         }
         public float Axon () {
             netPrediction = 0;
@@ -44,7 +47,9 @@ namespace Neural_Network {
                 netPrediction += Dendrites[i] * Weights[i];
             }
             netPrediction += Bias;
-            return calcAxon(netPrediction, ActivationFunction);
+            Prediction = calcAxon(netPrediction, ActivationFunction);
+            return Prediction;
         }
+        
     }
 }
