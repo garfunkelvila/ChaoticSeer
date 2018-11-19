@@ -20,9 +20,10 @@ using System.Threading.Tasks;
 
 namespace Neural_Network {
     public class TrainingData {
-        public double[] Input;
-        public double[] Target;
-        public TrainingData (double[] I, double[] O) {
+        //Just create a new set if you want to create more
+        readonly public float[] Input;
+        readonly public float[] Target;
+        public TrainingData (float[] I, float[] O) {
             Input = I;
             Target = O;
         }
