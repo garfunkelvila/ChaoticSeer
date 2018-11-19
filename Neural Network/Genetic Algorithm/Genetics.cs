@@ -94,7 +94,7 @@ namespace Neural_Network {
             //TODO: Allow mutation for unequal neuron
 #endif
             #endregion
-            Parallel.For(0, neuronLayerX.neurons.Length, n => {
+            Parallel.For(0, neuronLayerX.neurons.Length, new ParallelOptions { MaxDegreeOfParallelism = 16 }, n => {
                 //Mutate bias
                 if (r.NextDouble() < mutationRate)
                     neuronLayerX.neurons[n].Bias = neuronLayerY.neurons[n].Bias;
@@ -117,7 +117,7 @@ namespace Neural_Network {
             if (neuronLayerGroup.Length == 1) throw new Exception("Cant be solo, use clone instead");
 #endif
             #endregion
-            Parallel.For(0, neuronLayerGroup.Length, nlG => {
+            Parallel.For(0, neuronLayerGroup.Length, new ParallelOptions { MaxDegreeOfParallelism = 2 }, nlG => {
                 for (int nL = 0; nL < neuronLayerGroup[nlG].NeuronLayers.Length; nL++) {
                     for (int n = 0; n < neuronLayerGroup[nlG].NeuronLayers[nL].neurons.Length; n++) {
                         if (r.NextDouble() < mutationRate)
@@ -135,7 +135,7 @@ namespace Neural_Network {
             //if (neuronLayerGroupX.NeuronLayers.neurons.Length != neuronLayerY.neurons.Length) throw new Exception("X and Y Should have thesame number of neurons.");
             //TODO: Allow mutation for unequal neuron
 #endif
-            Parallel.For(0, neuronLayerGroupX.NeuronLayers.Length, nL => {
+            Parallel.For(0, neuronLayerGroupX.NeuronLayers.Length, new ParallelOptions { MaxDegreeOfParallelism = 2 }, nL => {
                 for (int n = 0; n < neuronLayerGroupX.NeuronLayers[nL].neurons.Length; n++) {
                     if (r.NextDouble() < mutationRate) {
                         if (r.NextDouble() < mutationRate)
