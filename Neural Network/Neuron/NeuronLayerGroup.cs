@@ -21,7 +21,7 @@ using System.Threading.Tasks;
 namespace Neural_Network {
     public class NeuronLayerGroup{
         readonly public NeuronLayer[] NeuronLayers;
-        public float[] Prediction;
+        public float[] Prediction { get; set; }
         #region Constructors
         /// <summary>
         /// Holds an array of Neuron layers.
@@ -43,10 +43,13 @@ namespace Neural_Network {
                 outputBuffer[oB] = NeuronLayers[0].neurons[oB].Axon();
             }
 
+            if (NeuronLayers.Length == 1) { //Return if there are no hidden lat
+                Prediction = outputBuffer;
+                return outputBuffer;
+            }
+
             //Get outputs then feed into next layer
             for (int nL = 1; nL < NeuronLayers.Length; nL++) {
-                //My first time xD this thing is slow for low count
-                //https://docs.microsoft.com/en-us/dotnet/api/system.threading.tasks.parallel.for?view=netframework-4.7.2#System_Threading_Tasks_Parallel_For_System_Int32_System_Int32_System_Action_System_Int32__
                 Parallel.For(0, NeuronLayers[nL].neurons.Length, n => {
                     for (int d = 0; d < NeuronLayers[nL].neurons[n].Dendrites.Length; d++) {
                         NeuronLayers[nL].neurons[n].Dendrites[d] = outputBuffer[d];
@@ -54,20 +57,13 @@ namespace Neural_Network {
                 });
                 outputBuffer = new float[NeuronLayers[nL].neurons.Length];
                 //--------------------------------------------------------------------------
-                Parallel.For(0, outputBuffer.Length, oB => {
+                for (int oB = 0; oB < outputBuffer.Length; oB++) {
                     outputBuffer[oB] = NeuronLayers[nL].neurons[oB].Axon();
-                });
+                }
             }
             Prediction = outputBuffer;
-            Parallel.ForEach(NeuronLayers, nl => {
-                nl.CopyAxon();  //This one puts the axons into field
-            });
-
             //Add event soon
             return outputBuffer;
-        }
-        /*public override int GetHashCode () {
-            //Will be used to check if nlg have the same with other
-        }*/
+        }        
     }
 }
