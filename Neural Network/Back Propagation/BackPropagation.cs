@@ -20,7 +20,7 @@ using System.Threading.Tasks;
 namespace Neural_Network {
     public class BackPropagation : Activations {
         //Output layer will soon changed into Motor layer, Because of CNS
-        NeuronLayerGroup nlgBuffer; //This one is the thing being returned
+        NeuronLayerGroup nlgBuffer; //This one is the thing being returned. SHould only consist of updated weights and biases
 
         /// <summary>
         /// Learning thingy
@@ -29,85 +29,81 @@ namespace Neural_Network {
         /// <param name="trainingData"></param>
         /// <returns>Returned the back propagated NeuronLayerGroup</returns>
         public NeuronLayerGroup BackPropagate (NeuronLayerGroup neuronLayerGroup, TrainingData[] trainingData) {
-            //TODO: Test all training data once
             nlgBuffer = neuronLayerGroup;
             int tDr = r.Next(0, trainingData.Length);
             outputLayerBP(neuronLayerGroup, trainingData[tDr]);
-            //hiddenLayerBP(neuronLayerGroup);
-
+            hiddenLayerBP(neuronLayerGroup);
             return this.nlgBuffer;
         }
         void outputLayerBP (NeuronLayerGroup nlg, TrainingData tD) {
-            NeuronLayer neuronLayer = nlg.NeuronLayers[nlg.NeuronLayers.Length - 1];        //Singe this is one thing, just cache the layer. I think neurons will be faster
-            NeuronLayer bufferNeuronLayer = nlg.NeuronLayers[nlg.NeuronLayers.Length - 1];
+            int nLengh = nlg.NeuronLayers[nlg.NeuronLayers.Length - 1].neurons.Length;
+            Neuron[] _cNeurons = nlg.NeuronLayers[nlg.NeuronLayers.Length - 1].neurons;        //Singe this is one thing, just cache the layer. I think neurons will be faster
+            Neuron[] _bNeurons = nlg.NeuronLayers[nlg.NeuronLayers.Length - 1].neurons;
 
             nlg.Predict(tD.Input);  // Propagation forward through the network to generate the output value(s)
 
-            // Calculation of the cost (error term)
-            for (int n = 0; n < neuronLayer.neurons.Length; n++) {
-                neuronLayer.neurons[n].Error = neuronLayer.neurons[n].Prediction - tD.Target[n];
+            // Calculation of the cost (error term). Output cost for each output
+            for (int n = 0; n < nLengh; n++) {
+                _cNeurons[n].Error = _cNeurons[n].Prediction - tD.Target[n];
             }
-            //WEIGHT UPDATE FOR OUTPUT LAYER
 
-            Parallel.For(0, neuronLayer.neurons.Length, n => {
-                float lr = neuronLayer.neurons[n].LearningRate;
-                float d_Cost;
+            //WEIGHT UPDATE FOR OUTPUT BUFFER LAYER
+            for (int n = 0; n < _cNeurons.Length; n++) {
+                float lr = _cNeurons[n].LearningRate;
+                float d_Cost = 0;
 
-                d_Cost = neuronLayer.neurons[n].Error * LogisticPrime(neuronLayer.neurons[n].netPrediction);
-                bufferNeuronLayer.neurons[n].Bias += lr * d_Cost;
+                d_Cost = _cNeurons[n].Error * LogisticPrime(_cNeurons[n].netPrediction);
+                _bNeurons[n].Bias += lr * d_Cost;
 
-                for (int w = 0; w < neuronLayer.neurons[n].Weights.Length; w++) { //Weight loop
-                    d_Cost = neuronLayer.neurons[n].Error * LogisticPrime(neuronLayer.neurons[n].netPrediction) * neuronLayer.neurons[n].Dendrites[w];
-                    bufferNeuronLayer.neurons[n].Weights[w] += lr * d_Cost;
+                for (int w = 0; w < _cNeurons[n].Weights.Length; w++) { //Weight loop
+                    d_Cost = _cNeurons[n].Error * LogisticPrime(_cNeurons[n].netPrediction);
+                    _bNeurons[n].Weights[w] += lr * d_Cost * _cNeurons[n].Dendrites[w];
                 }
-            });
-            nlgBuffer.NeuronLayers[nlg.NeuronLayers.Length- 1] = bufferNeuronLayer;
+            }
+
+            // COPY TO BUFFER
+            for (int n = 0; n < _cNeurons.Length; n++) {
+                nlgBuffer.NeuronLayers[nlg.NeuronLayers.Length - 1].neurons[n].Bias = _bNeurons[n].Bias;
+                nlgBuffer.NeuronLayers[nlg.NeuronLayers.Length - 1].neurons[n].Weights = _bNeurons[n].Weights;
+            }            
         }
         void hiddenLayerBP(NeuronLayerGroup nlg) {
-            // nl   Neuron Layer Index
-            // el   Last Layer Error
-            // en   Last Layer Neuron Error
-            for (int nl = nlg.NeuronLayers.Length - 2; nl > 0; nl--) {  //Start from second to last
-                // Calculation of the cost (error term)
-                for (int n = 0; n < nlg.NeuronLayers[nl].neurons.Length; n++) { //Current Layer Neuron loop
+            for (int nl = nlg.NeuronLayers.Length - 2; nl >= 0; nl--) {  //Start from second to last
+                int nLengh = nlg.NeuronLayers[nl].neurons.Length;
+                Neuron[] _cNeurons = nlg.NeuronLayers[nl].neurons;
+                Neuron[] _bNeurons = nlg.NeuronLayers[nl].neurons;
+
+
+                // Calculation of the cost (error term). Hidden cost.
+                for (int n = 0; n < nLengh; n++) { //Current Layer Neuron loop
                     float sumBuffer = 0;
-                    int el = nl + 1;
+                    Neuron[] _oNeurons = nlg.NeuronLayers[nl + 1].neurons;
 
-                    // (w1 / (w1 + w2)) + e
-                    for (int en = 0; en < nlg.NeuronLayers[el].neurons.Length; en++) {  //Error Neurons. this thing gives the error value
-                        //Error of output layer * connected weight
-                        sumBuffer += nlg.NeuronLayers[el].neurons[en].Weights[n] * nlg.NeuronLayers[el].neurons[en].Error;
+
+                    for (int en = 0; en < _oNeurons.Length; en++) {  // Last layer error loop
+                        sumBuffer += _oNeurons[en].Weights[n] * _oNeurons[en].Error;    //Error of output layer * connected weight
                     }
-                    nlg.NeuronLayers[nl].neurons[n].Error = sumBuffer;
+                    _cNeurons[n].Error = sumBuffer;  //Give the error to current layer
                 }
 
-                //WEIGHT UPDATE - There is somethign wrong in here
-                for (int n = 0; n < nlg.NeuronLayers[nl].neurons.Length; n++) {
-                    float nLearningRate = nlgBuffer.NeuronLayers[nl].neurons[n].LearningRate;
-                    //float nCost;
-                    float d_Cost;
+                // WEIGHT UPDATE
+                for (int n = 0; n < nLengh; n++) {
+                    float nLearningRate = _cNeurons[n].LearningRate;
+                    float d_Cost = 0;
 
-                    //Multiply error from current layer to output? I am not sue if that is how chain rule works
-                    /*for (int i = nl + 1; i < nlg.NeuronLayers.Length; i++) {
-                        nCost = nlg.NeuronLayers[nl].neurons[n].Error;
-                    }*/
+                    d_Cost = _cNeurons[n].Error * LogisticPrime(_cNeurons[n].netPrediction);
+                    _cNeurons[n].Bias += nLearningRate * d_Cost;
 
-                    //d_Cost = nlg.NeuronLayers[nl].neurons[n].Error * LogisticPrime(nlg.NeuronLayers[nl].neurons[n].netPrediction) * nlg.NeuronLayers[nl].neurons[n].Bias;
-                    d_Cost = nlg.NeuronLayers[nl].neurons[n].Error * nlg.NeuronLayers[nl].neurons[n].Bias;
-                    nlgBuffer.NeuronLayers[nl].neurons[n].Bias -= nlg.NeuronLayers[nl].neurons[n].LearningRate * d_Cost;
-
-                    for (int w = 0; w < nlg.NeuronLayers[nl].neurons[n].Weights.Length; w++) { //Weight loop
-
-                        //d_Cost = nlg.NeuronLayers[nl].neurons[n].Error * LogisticPrime(nlg.NeuronLayers[nl].neurons[n].netPrediction) * nlg.NeuronLayers[nl].neurons[n].Dendrites[w];
-                        d_Cost = nlg.NeuronLayers[nl].neurons[n].Error * nlg.NeuronLayers[nl].neurons[n].Dendrites[w];
-
-                        nlgBuffer.NeuronLayers[nl].neurons[n].Weights[w] -= nlg.NeuronLayers[nl].neurons[n].LearningRate * d_Cost;
-
+                    for (int w = 0; w < _cNeurons[n].Weights.Length; w++) { //Weight loop
+                        d_Cost = _cNeurons[n].Error * LogisticPrime(_cNeurons[n].netPrediction);
+                        _bNeurons[n].Weights[w] += nLearningRate * d_Cost * _cNeurons[n].Dendrites[w];
                     }
                 }
-                //Parallel.For(0, nlg.NeuronLayers[nl].neurons.Length, n => { //Neuron loop
-                    
-                //});
+                // COPY TO BUFFER
+                for (int n = 0; n < _cNeurons.Length; n++) {
+                    nlgBuffer.NeuronLayers[nl].neurons[n].Bias = _bNeurons[n].Bias;
+                    nlgBuffer.NeuronLayers[nl].neurons[n].Weights = _bNeurons[n].Weights;
+                }
             }
         }
     }
