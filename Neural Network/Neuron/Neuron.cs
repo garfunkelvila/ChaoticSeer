@@ -26,20 +26,19 @@ namespace Neural_Network {
         public float[] Dendrites { get; set; }
         public float[] Weights { get; set; }
         public float Bias { get; set; }
-        public float Prediction { get; set; }               //Used by BackPropagation
-        public float netPrediction { get; set; }            //Used by BackPropagation.
-        public float Error { get; set; }                    //I think sooner i need to shadow copy most of these variables, instead of keepeng them here in neuron
-
+        public float Prediction { get; set; }
+        public float netPrediction { get; set; }
+        public float Error { get; set; }
 
         public Neuron (int dendritesCount,
                 ActivationFunctions af = ActivationFunctions.Logistic) {
             Dendrites = new float[dendritesCount];
             Weights = new float[dendritesCount];
             for (int i = 0; i < dendritesCount; i++)
-                Weights[i] = (float) r.NextDouble() * 0.2f - 0.1f; //Will change range dependent into AF
+                Weights[i] = (float) r.NextDouble() * -0.1f; //Will change range dependent into AF
             Bias = 1; //(float) r.NextDouble();
             ActivationFunction = af;
-            LearningRate = (float) r.NextDouble() * 0.2f - 0.1f;
+            LearningRate = (float) r.NextDouble() * 0.1f;
         }
         public float Axon () {
             netPrediction = 0;
