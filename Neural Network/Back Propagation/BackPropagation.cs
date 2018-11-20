@@ -19,6 +19,13 @@ using System.Text;
 using System.Threading.Tasks;
 namespace Neural_Network {
     public class BackPropagation : Activations {
+        // Gradient Descent
+        // Learning_Rate = 0.05
+        // Prediction = I * W + B
+        // Error = Correct - Prediction
+        // W += Error * I * Learning_Rate
+        // B += Error * Learning_Rate
+
         //Output layer will soon changed into Motor layer, Because of CNS
         NeuronLayerGroup nlgBuffer; //This one is the thing being returned. SHould only consist of updated weights and biases
 
@@ -44,7 +51,7 @@ namespace Neural_Network {
 
             // Calculation of the cost (error term). Output cost for each output
             for (int n = 0; n < nLengh; n++) {
-                _cNeurons[n].Error = _cNeurons[n].Prediction - tD.Target[n];
+                _cNeurons[n].Error = tD.Target[n] - _cNeurons[n].Prediction;
             }
 
             //WEIGHT UPDATE FOR OUTPUT BUFFER LAYER
@@ -60,7 +67,6 @@ namespace Neural_Network {
                     _bNeurons[n].Weights[w] += lr * d_Cost * _cNeurons[n].Dendrites[w];
                 }
             }
-
             // COPY TO BUFFER
             for (int n = 0; n < _cNeurons.Length; n++) {
                 nlgBuffer.NeuronLayers[nlg.NeuronLayers.Length - 1].neurons[n].Bias = _bNeurons[n].Bias;
