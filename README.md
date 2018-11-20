@@ -18,10 +18,7 @@ My attemp on ANN Library. My objective for this one is to learn more in C#. This
   * Activations
     - [x] Logistic, TanH, Step and Relu are working
   * BackPropagation
-    - [ ] Output Cost calculation
-    - [ ] Hidden Cost calculation
-    - [ ] Output Layer (Untested)
-    - [ ] Hidden Layer
+    - [x] BackPropagate (kind of working)
   * Genetics
     - [x] NeuronLayerGroup mutation functions
     - [ ] CNS mutation functions
