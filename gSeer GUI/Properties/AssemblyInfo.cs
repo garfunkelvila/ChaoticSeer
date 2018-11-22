@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Dark Seer")]
+[assembly: AssemblyTitle("Nice Seer")]
 [assembly: AssemblyDescription("GUI for experimenting the class library.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Dark Seer")]
+[assembly: AssemblyProduct("Nice Seer GUI")]
 [assembly: AssemblyCopyright("Copyright © 2018 Garfunkel Vila")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

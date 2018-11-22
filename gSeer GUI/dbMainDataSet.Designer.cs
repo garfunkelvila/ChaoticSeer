@@ -10,7 +10,7 @@
 
 #pragma warning disable 1591
 
-namespace Dark_Seer {
+namespace Nice_Seer {
     
     
     /// <summary>
@@ -659,7 +659,7 @@ namespace Dark_Seer {
         }
     }
 }
-namespace Dark_Seer.dbMainDataSetTableAdapters {
+namespace Nice_Seer.dbMainDataSetTableAdapters {
     
     
     /// <summary>

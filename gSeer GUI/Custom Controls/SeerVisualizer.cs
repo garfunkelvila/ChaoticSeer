@@ -14,11 +14,5 @@ namespace Dark_Seer {
         public SeerVisualizer () {
             InitializeComponent();
         }
-        public void SetAnswer (double[] value) {
-            a.Text = value[0].ToString();
-            b.Text = value[0].ToString();
-            c.Text = value[0].ToString();
-            d.Text = value[0].ToString();
-        }
     }
 }
