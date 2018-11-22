@@ -1,5 +1,0 @@
-﻿[Identity]
-SeerName = "Dark Seer";
-
-[NeuronLayerGroup]
-[NeuronLayer]

@@ -19,7 +19,7 @@ using System.Text;
 using System.Threading.Tasks;
 using gSeer;
 
-namespace Dark_Seer {
+namespace Nice_Seer {
     class TestSeer {
         //This is the specie, planned to requre to have a mutation class
         //Planned to hold the selection class. Specie selects whom to mutate

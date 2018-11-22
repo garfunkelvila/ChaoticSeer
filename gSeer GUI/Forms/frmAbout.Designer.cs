@@ -1,4 +1,4 @@
-﻿namespace Dark_Seer {
+﻿namespace Nice_Seer {
     partial class frmAbout {
         /// <summary>
         /// Required designer variable.

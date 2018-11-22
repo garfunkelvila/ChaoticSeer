@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Dark_Seer {
+namespace Nice_Seer {
     public partial class SeerVisualizer : UserControl {
         //this thing is planned to visualize seer via text, and might be created dynamic and transfered into specie visualizer with weight view on different user control
         public SeerVisualizer () {

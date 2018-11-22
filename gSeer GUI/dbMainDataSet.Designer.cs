@@ -823,7 +823,7 @@ SELECT Id, LayerId, Bias FROM Neurons WHERE (Id = @Id)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Dark_Seer.Properties.Settings.Default.dbMainConnectionString;
+            this._connection.ConnectionString = global::Nice_Seer.Properties.Settings.Default.dbMainConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

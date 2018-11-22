@@ -7,11 +7,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using gSeer;
 
-namespace Dark_Seer.Forms.Seer_Creation_setup {
+namespace Nice_Seer.Forms.Seer_Creation_setup {
     public partial class frmNewSeer : Form {
+        public Seer[] seers = new Seer[123];
+
         public frmNewSeer () {
             InitializeComponent();
+        }
+
+        private void btnOk_Click (object sender, EventArgs e) {
+            seers = new Seer[(int) numSpecie.Value];
+            for (int i = 0; i < seers.Length; i++) {
+                seers[i] = new Seer((int)numInput.Value, (int)numOutput.Value, (int)numLayer.Value);
+            }            
         }
     }
 }

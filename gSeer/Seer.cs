@@ -9,7 +9,7 @@ namespace gSeer {
         public NeuronLayerGroup nlg;
 
         /// <summary>
-        /// This seer creates a fully connected network
+        /// This seer creates a fully connected network. If you want to create a custom one, you may want to use Neuron, NeuronLayer and NeuronLayergroup to create what you want
         /// </summary>
         /// <param name="inputCount"></param>
         /// <param name="outputCount"></param>
