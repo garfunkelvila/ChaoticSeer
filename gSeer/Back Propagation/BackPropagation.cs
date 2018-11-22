@@ -1,23 +1,26 @@
-﻿//  Copyright (C) 2018  Garfunkel Vila
-//
-//  This program is free software: you can redistribute it and/or modify
-//  it under the terms of the GNU General Public License as published by
-//  the Free Software Foundation, either version 3 of the License, or
-//  any later version.
-//
-//  This program is distributed in the hope that it will be useful,
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-//  GNU General Public License for more details.
+﻿//  gSeer, a C# Artificial Neural Network Library
+//  Copyright (C) 2018  Garfunkel Vila
 //  
-//  You should have received a copy of the GNU General Public License
-//  along with this program.If not, see<https://www.gnu.org/licenses/>.
+//  This library is free software; you can redistribute it and/or
+//  modify it under the terms of the GNU Lesser General Public
+//  License as published by the Free Software Foundation; either
+//  version 3 of the License, or any later version.
+//  
+//  This library is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+//  Lesser General Public License for more details.
+//  
+//  You should have received a copy of the GNU Lesser General Public
+//  License along with this library. If not,
+//  see<https://www.gnu.org/licenses/>.
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-namespace Neural_Network {
+namespace gSeer {
     public class BackPropagation : Activations {
         // Gradient Descent
         // Learning_Rate = 0.05
@@ -42,6 +45,11 @@ namespace Neural_Network {
             hiddenLayerBP(neuronLayerGroup);
             return this.nlgBuffer;
         }
+        /// <summary>
+        /// Back propagates the output layer
+        /// </summary>
+        /// <param name="nlg">Input NeuronLayerGroup</param>
+        /// <param name="tD">Training data</param>
         void outputLayerBP (NeuronLayerGroup nlg, TrainingData tD) {
             int nLengh = nlg.NeuronLayers[nlg.NeuronLayers.Length - 1].neurons.Length;
             Neuron[] _cNeurons = nlg.NeuronLayers[nlg.NeuronLayers.Length - 1].neurons;        //Singe this is one thing, just cache the layer. I think neurons will be faster
@@ -73,6 +81,10 @@ namespace Neural_Network {
                 nlgBuffer.NeuronLayers[nlg.NeuronLayers.Length - 1].neurons[n].Weights = _bNeurons[n].Weights;
             }            
         }
+        /// <summary>
+        /// Backpropagates the hidden layer
+        /// </summary>
+        /// <param name="nlg">Input NeuronLayerGroup</param>
         void hiddenLayerBP(NeuronLayerGroup nlg) {
             for (int nl = nlg.NeuronLayers.Length - 2; nl >= 0; nl--) {  //Start from second to last
                 int nLengh = nlg.NeuronLayers[nl].neurons.Length;
