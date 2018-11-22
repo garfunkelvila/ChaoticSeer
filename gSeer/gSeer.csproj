@@ -59,6 +59,7 @@
     <Compile Include="Neuron\Activations.cs" />
     <Compile Include="Back Propagation\BackPropagation.cs" />
     <Compile Include="Genetic Algorithm\Selection.cs" />
+    <Compile Include="Seer.cs" />
     <Compile Include="TrainingData.cs" />
     <Compile Include="Genetic Algorithm\Genetics.cs" />
     <Compile Include="Neuron\NeuronLayerGroup.cs" />
