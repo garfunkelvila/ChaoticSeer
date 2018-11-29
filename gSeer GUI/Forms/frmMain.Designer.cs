@@ -53,13 +53,14 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.txbLog = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnTestAll = new System.Windows.Forms.Button();
+            this.btnTestData = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnTrainAll = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.btnTrainingData = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
@@ -67,7 +68,7 @@
             this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btnRefreshView = new System.Windows.Forms.ToolStripButton();
-            this.button5 = new System.Windows.Forms.Button();
+            this.lTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -212,7 +213,8 @@
             // 
             this.toolStripMenuItem2.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.toolStripMenuItem2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.aboutToolStripMenuItem});
+            this.aboutToolStripMenuItem,
+            this.lTToolStripMenuItem});
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.Size = new System.Drawing.Size(24, 20);
             this.toolStripMenuItem2.Text = "?";
@@ -334,8 +336,8 @@
             // groupBox2
             // 
             this.groupBox2.AutoSize = true;
-            this.groupBox2.Controls.Add(this.button4);
-            this.groupBox2.Controls.Add(this.button2);
+            this.groupBox2.Controls.Add(this.btnTestAll);
+            this.groupBox2.Controls.Add(this.btnTestData);
             this.groupBox2.Location = new System.Drawing.Point(3, 101);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(279, 90);
@@ -343,32 +345,32 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Test data";
             // 
-            // button4
+            // btnTestAll
             // 
-            this.button4.Location = new System.Drawing.Point(6, 48);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(98, 23);
-            this.button4.TabIndex = 1;
-            this.button4.Text = "Test all";
-            this.button4.UseVisualStyleBackColor = true;
+            this.btnTestAll.Location = new System.Drawing.Point(6, 48);
+            this.btnTestAll.Name = "btnTestAll";
+            this.btnTestAll.Size = new System.Drawing.Size(98, 23);
+            this.btnTestAll.TabIndex = 1;
+            this.btnTestAll.Text = "Test all";
+            this.btnTestAll.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // btnTestData
             // 
-            this.button2.Location = new System.Drawing.Point(6, 19);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(98, 23);
-            this.button2.TabIndex = 0;
-            this.button2.Text = "Test data";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnTestData.Location = new System.Drawing.Point(6, 19);
+            this.btnTestData.Name = "btnTestData";
+            this.btnTestData.Size = new System.Drawing.Size(98, 23);
+            this.btnTestData.TabIndex = 0;
+            this.btnTestData.Text = "Test data";
+            this.btnTestData.UseVisualStyleBackColor = true;
             // 
             // groupBox1
             // 
             this.groupBox1.AutoSize = true;
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.numericUpDown1);
-            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.btnTrainAll);
             this.groupBox1.Controls.Add(this.button5);
-            this.groupBox1.Controls.Add(this.button3);
+            this.groupBox1.Controls.Add(this.btnTrainingData);
             this.groupBox1.Location = new System.Drawing.Point(3, 4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(279, 91);
@@ -408,23 +410,32 @@
             0,
             0});
             // 
-            // button1
+            // btnTrainAll
             // 
-            this.button1.Location = new System.Drawing.Point(9, 49);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(95, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Train all";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnTrainAll.Location = new System.Drawing.Point(9, 49);
+            this.btnTrainAll.Name = "btnTrainAll";
+            this.btnTrainAll.Size = new System.Drawing.Size(95, 23);
+            this.btnTrainAll.TabIndex = 0;
+            this.btnTrainAll.Text = "Train all";
+            this.btnTrainAll.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // button5
             // 
-            this.button3.Location = new System.Drawing.Point(9, 19);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(95, 23);
-            this.button3.TabIndex = 0;
-            this.button3.Text = "Trainig data";
-            this.button3.UseVisualStyleBackColor = true;
+            this.button5.Location = new System.Drawing.Point(110, 19);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(95, 23);
+            this.button5.TabIndex = 0;
+            this.button5.Text = "View model";
+            this.button5.UseVisualStyleBackColor = true;
+            // 
+            // btnTrainingData
+            // 
+            this.btnTrainingData.Location = new System.Drawing.Point(9, 19);
+            this.btnTrainingData.Name = "btnTrainingData";
+            this.btnTrainingData.Size = new System.Drawing.Size(95, 23);
+            this.btnTrainingData.TabIndex = 0;
+            this.btnTrainingData.Text = "Trainig data";
+            this.btnTrainingData.UseVisualStyleBackColor = true;
             // 
             // flowLayoutPanel1
             // 
@@ -486,15 +497,14 @@
             this.btnRefreshView.Name = "btnRefreshView";
             this.btnRefreshView.Size = new System.Drawing.Size(66, 22);
             this.btnRefreshView.Text = "Refresh";
+            this.btnRefreshView.Click += new System.EventHandler(this.btnRefreshView_Click);
             // 
-            // button5
+            // lTToolStripMenuItem
             // 
-            this.button5.Location = new System.Drawing.Point(110, 19);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(95, 23);
-            this.button5.TabIndex = 0;
-            this.button5.Text = "View model";
-            this.button5.UseVisualStyleBackColor = true;
+            this.lTToolStripMenuItem.Name = "lTToolStripMenuItem";
+            this.lTToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.lTToolStripMenuItem.Text = "LT";
+            this.lTToolStripMenuItem.Click += new System.EventHandler(this.lTToolStripMenuItem_Click_1);
             // 
             // frmMain
             // 
@@ -509,6 +519,7 @@
             this.MinimumSize = new System.Drawing.Size(816, 489);
             this.Name = "frmMain";
             this.Text = "Dark Seer";
+            this.Load += new System.EventHandler(this.frmMain_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
@@ -554,13 +565,13 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
         private System.Windows.Forms.TextBox txbLog;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnTrainingData;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnTrainAll;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnTestAll;
+        private System.Windows.Forms.Button btnTestData;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem genericSeerToolStripMenuItem;
@@ -580,6 +591,7 @@
         private System.Windows.Forms.ToolStripMenuItem speciesToolStripMenuItem1;
         private System.Windows.Forms.ToolStripButton btnRefreshView;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.ToolStripMenuItem lTToolStripMenuItem;
     }
 }
 

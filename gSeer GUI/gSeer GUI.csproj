@@ -81,6 +81,12 @@
     <Compile Include="Forms\frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\LT\LT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\LT\LT.Designer.cs">
+      <DependentUpon>LT.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Seer Creation setup\frmNewSeer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -101,6 +107,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\LT\LT.resx">
+      <DependentUpon>LT.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Seer Creation setup\frmNewSeer.resx">
       <DependentUpon>frmNewSeer.cs</DependentUpon>
@@ -139,6 +148,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Content Include="Forms\LT\TD.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Model.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -174,5 +186,6 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
