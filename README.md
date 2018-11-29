@@ -18,7 +18,7 @@ My attemp on ANN Library. My objective for this one is to learn more in C#. This
   * Activations
     - [x] Logistic, TanH, Step and Relu are working
   * BackPropagation
-    - [x] BackPropagate (kind of working)
+    - [x] Gradient Descent BackPropagate (kind of working)
   * Genetics
     - [x] NeuronLayerGroup mutation functions
     - [ ] CNS mutation functions
