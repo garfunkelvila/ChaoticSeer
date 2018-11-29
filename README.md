@@ -1,5 +1,7 @@
 # DarkSeer
-My attemp on ANN Library. My objective for this one is to learn more in C#. This is an ongoing project and most of functions don't work yet or don't exist
+My attemp on ANN Library. My objective for this one is to learn more in C#. This is an ongoing project and most of functions don't work yet or don't exist.
+
+When satisfied, I will also make a PHP (Class/Functions set), MSSQL (Functions set) and MySQL (Functions set) versions of it.
 
 ## Current classes
   * **Neuron** - Contains Weights and Bias
