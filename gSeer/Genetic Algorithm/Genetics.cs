@@ -1,4 +1,4 @@
-﻿//  gSeer, a C# Artificial Neural Network Library
+//  gSeer, a C# Artificial Neural Network Library
 //  Copyright (C) 2018  Garfunkel Vila
 //  
 //  This library is free software; you can redistribute it and/or
@@ -154,11 +154,13 @@ namespace gSeer {
         #endregion
         #endregion
         #region Clone
-        public void Clone (NeuronLayer neuronLayer) {
-            
+        public NeuronLayer Clone (NeuronLayer neuronLayer) {
+            //Literally just return itself, ensure that this is by value
+            return neuronLayer;
         }
-        public void Clone (NeuronLayerGroup neuronLayerGroup) {
-            
+        public NeuronLayerGroup Clone (NeuronLayerGroup neuronLayerGroup) {
+            //Literally just return itself, ensure that this is by value
+            return neuronLayerGroup;
         }
         #endregion
         public void Epoch () {
