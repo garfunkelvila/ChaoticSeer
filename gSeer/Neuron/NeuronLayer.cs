@@ -21,7 +21,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace gSeer {
+namespace gSeer.Neuron {
     public enum NeuronTypes {
         Sensory = 1,    //Will soon add normalization feature
         Inter = 2,      //BP Related Logistic, or TanH

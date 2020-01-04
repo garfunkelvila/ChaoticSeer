@@ -21,7 +21,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace gSeer {
+namespace gSeer.Neuron {
     /// <summary>
     /// This class contains method for mutations and maybe others
     /// I did not expect this thing to get this messy. I havent tested this thing

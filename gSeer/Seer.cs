@@ -20,7 +20,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace gSeer {
+namespace gSeer.Neuron {
     public class Seer {
         public NeuronLayerGroup nlg;
 

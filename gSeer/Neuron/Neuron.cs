@@ -21,7 +21,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace gSeer {
+namespace gSeer.Neuron {
     public class Neuron : Activations{
         readonly public ActivationFunctions ActivationFunction; //I assume that when this thing is readonly, affected scripts will skip jump instructions except the one with random
         readonly public float LearningRate;    // This is for mutation too

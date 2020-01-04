@@ -20,7 +20,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-namespace gSeer {
+namespace gSeer.Neuron {
     public class BackPropagation : Activations {
         // Gradient Descent
         // Learning_Rate = 0.05

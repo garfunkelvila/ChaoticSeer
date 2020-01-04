@@ -21,7 +21,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace gSeer {
+namespace gSeer.Neuron {
     public class NeuronLayerGroup{
         readonly public NeuronLayer[] NeuronLayers;
         public float[] Prediction { get; set; }
