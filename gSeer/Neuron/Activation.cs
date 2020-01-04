@@ -5,17 +5,18 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace gSeer.Neuron {
-    internal class Activation {
-        public virtual float calcAxon(float x) {
-#if DEBUG
-            throw new Exception("This method should be overiden");
-#endif
+    public class Activation {
+        readonly public static Random r = new Random();
+        public virtual float CalcAxon(float x) {
             return 0;
         }
-        public virtual float calcAxon(float x, float y) {
-#if DEBUG
-            throw new Exception("This method should be overiden");
-#endif
+        public virtual float CalcAxon(float x, float y) {
+            return 0;
+        }
+        public virtual float AxonDerv(float x) {
+            return 0;
+        }
+        public virtual float AxonDerv(float x, float y) {
             return 0;
         }
     }

@@ -12,7 +12,7 @@ namespace gSeer.Neuron.ActivationFunction {
         /// <param name="x">Input</param>
         /// <param name="trigger">Threshold</param>
         /// <returns>Either 0 or 1</returns>
-        public override float calcAxon(float x, float trigger = 0.5f) {
+        public override float CalcAxon(float x, float trigger = 0.5f) {
             return x > trigger ? 1 : 0;
         }
     }
