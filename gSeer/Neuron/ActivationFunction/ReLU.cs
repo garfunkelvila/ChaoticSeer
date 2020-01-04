@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace gSeer.Neuron.ActivationFunction {
-    class ReLU : Activation {
+    public class ReLU : Activation {
         /// <summary>
         /// Retuns a rectified linear unit
         /// </summary>

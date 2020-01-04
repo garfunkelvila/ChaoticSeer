@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace gSeer.Neuron.ActivationFunction {
-    class Logistic : Activation {
+    public class Logistic : Activation {
         /// <summary>
         /// Returns logistic function
         /// </summary>

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace gSeer.Neuron.ActivationFunction {
-    class Step : Activation {
+    public class Step : Activation {
         /// <summary>
         /// Returns a Step or 0 and 1
         /// </summary>
