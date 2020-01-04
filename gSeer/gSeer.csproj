@@ -62,7 +62,6 @@
     <Compile Include="Neuron\ActivationFunction\ReLU.cs" />
     <Compile Include="Neuron\ActivationFunction\Step.cs" />
     <Compile Include="Neuron\ActivationFunction\TanH.cs" />
-    <Compile Include="Neuron\Activations.cs" />
     <Compile Include="Back Propagation\BackPropagation.cs" />
     <Compile Include="Genetic Algorithm\Selection.cs" />
     <Compile Include="Parsers\SeerParser.cs" />
