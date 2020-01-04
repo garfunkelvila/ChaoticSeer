@@ -21,7 +21,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 namespace gSeer.Neuron {
-    public class BackPropagation : Activation {
+    public class BackPropagation {
+        readonly private static Random r = new Random();
         // Gradient Descent
         // Learning_Rate = 0.05
         // Prediction = I * W + B
