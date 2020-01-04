@@ -6,17 +6,16 @@ using System.Threading.Tasks;
 
 namespace gSeer.Neuron {
     public class Activation {
-        readonly public static Random r = new Random();
-        public virtual float CalcAxon(float x) {
+        protected virtual float CalcAxon(float x) {
             return 0;
         }
-        public virtual float CalcAxon(float x, float y) {
+        protected virtual float CalcAxon(float x, float y) {
             return 0;
         }
-        public virtual float CalcDerv(float x) {
+        protected virtual float CalcDerv(float x) {
             return 0;
         }
-        public virtual float CalcDerv(float x, float y) {
+        protected virtual float CalcDerv(float x, float y) {
             return 0;
         }
     }

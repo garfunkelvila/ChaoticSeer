@@ -11,7 +11,7 @@ namespace gSeer.Neuron.ActivationFunction {
         /// </summary>
         /// <param name="x">Input</param>
         /// <returns>Returns logistic function</returns>
-        public override float CalcAxon(float x) {
+        protected override float CalcAxon(float x) {
             return (float)(1 / (1 + Math.Exp(-x)));
         }
         /// <summary>
@@ -19,7 +19,7 @@ namespace gSeer.Neuron.ActivationFunction {
         /// </summary>
         /// <param name="x">Input</param>
         /// <returns>Returnes derivative of Logistic</returns>
-        public override float CalcDerv(float x) {
+        protected override float CalcDerv(float x) {
             //Not sure if this is correct
             float _logistic = new Logistic().CalcAxon(x);
             return _logistic * (1 - _logistic);
