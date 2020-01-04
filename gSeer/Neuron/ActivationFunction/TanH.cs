@@ -14,6 +14,11 @@ namespace gSeer.Neuron.ActivationFunction {
         protected override float CalcAxon(float x) {
             return (float)Math.Tanh(x);
         }
+
+        protected override float CalcAxon(float x, float y) {
+            throw new NotImplementedException();
+        }
+
         /// <summary>
         /// Returnes derivative of HyperbolicTangent
         /// </summary>
@@ -21,6 +26,10 @@ namespace gSeer.Neuron.ActivationFunction {
         /// <returns>Returnes derivative of HyperbolicTangent</returns>
         protected override float CalcDerv(float x) {
             return (float)(1 / (Math.Cosh(x) * Math.Cosh(x)));
+        }
+
+        protected override float CalcDerv(float x, float y) {
+            throw new NotImplementedException();
         }
     }
 }

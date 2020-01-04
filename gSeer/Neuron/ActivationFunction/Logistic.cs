@@ -14,6 +14,11 @@ namespace gSeer.Neuron.ActivationFunction {
         protected override float CalcAxon(float x) {
             return (float)(1 / (1 + Math.Exp(-x)));
         }
+
+        protected override float CalcAxon(float x, float y) {
+            throw new NotImplementedException();
+        }
+
         /// <summary>
         /// Returnes derivative of Logistic
         /// </summary>
@@ -23,6 +28,10 @@ namespace gSeer.Neuron.ActivationFunction {
             //Not sure if this is correct
             float _logistic = new Logistic().CalcAxon(x);
             return _logistic * (1 - _logistic);
+        }
+
+        protected override float CalcDerv(float x, float y) {
+            throw new NotImplementedException();
         }
     }
 }

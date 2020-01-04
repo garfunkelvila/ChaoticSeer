@@ -15,5 +15,17 @@ namespace gSeer.Neuron.ActivationFunction {
         protected override float CalcAxon(float x, float trigger = 0.5f) {
             return x > trigger ? x : 0;
         }
+
+        protected override float CalcAxon(float x) {
+            throw new NotImplementedException();
+        }
+
+        protected override float CalcDerv(float x) {
+            throw new NotImplementedException();
+        }
+
+        protected override float CalcDerv(float x, float y) {
+            throw new NotImplementedException();
+        }
     }
 }
