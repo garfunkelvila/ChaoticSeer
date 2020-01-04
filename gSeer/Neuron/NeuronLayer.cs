@@ -15,6 +15,7 @@
 //  License along with this library. If not,
 //  see<https://www.gnu.org/licenses/>.
 
+using gSeer.Neuron.ActivationFunction;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -49,7 +50,10 @@ namespace gSeer.Neuron {
         /// <param name="iCount">Input count</param>
         /// <param name="nCount">Output count</param>
         /// <param name="aF">Activation function for this layer</param>
-        public NeuronLayer (int iCount, int nCount,  ActivationFunctions aF = ActivationFunctions.Logistic) {
+        public NeuronLayer (int iCount, int nCount,  Activation aF) {
+            /// <see cref="Neuron.Neuron(int, Activation)"/>
+            if (aF == null) aF = new Logistic();
+
             neurons = new Neuron[nCount];
             InputCount = iCount;
             for (int i = 0; i < nCount; i++) {

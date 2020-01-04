@@ -20,10 +20,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using gSeer.Neuron.ActivationFunction;
 
 namespace gSeer.Neuron {
-    public class Neuron : Activations{
-        readonly public ActivationFunctions ActivationFunction; //I assume that when this thing is readonly, affected scripts will skip jump instructions except the one with random
+    public class Neuron : Activation {
+        readonly public Activation _activationFunction; //I assume that when this thing is readonly, affected scripts will skip jump instructions except the one with random
         readonly public float LearningRate;    // This is for mutation too
 
         public float[] Dendrites { get; set; }
@@ -36,15 +37,18 @@ namespace gSeer.Neuron {
         /// Creates an instance of neuron. Currently BP only supports Logistic.
         /// </summary>
         /// <param name="dendritesCount">Input count</param>
-        /// <param name="af">Activation function to use</param>
-        public Neuron (int dendritesCount,
-                ActivationFunctions af = ActivationFunctions.Logistic) {
+        /// <param name="aF">Activation function to use</param>
+        public Neuron (int dendritesCount, Activation aF = null) {
+            //I cannot set it to defualt so I use null for now
+            // Err: Default parameter for value must be a compile time constant
+            if (aF == null) aF = new Logistic();
+
             Dendrites = new float[dendritesCount];
             Weights = new float[dendritesCount];
             for (int i = 0; i < dendritesCount; i++)
                 Weights[i] = (float) r.NextDouble() * -0.1f; //Will change range dependent into AF
             Bias = 1; //(float) r.NextDouble();
-            ActivationFunction = af;
+            _activationFunction = aF;
             LearningRate = (float) r.NextDouble() * 0.1f;
         }
         /// <summary>
@@ -57,8 +61,15 @@ namespace gSeer.Neuron {
                 netPrediction += Dendrites[i] * Weights[i];
             }
             netPrediction += Bias;
-            Prediction = calcAxon(netPrediction, ActivationFunction);
+            Prediction = CalcAxon(netPrediction);
             return Prediction;
+        }
+        /// <summary>
+        /// Attemp to move here teh back propagation so it will always use the same derivatives
+        /// </summary>
+        /// <returns></returns>
+        public float AxonPrime() {
+            return CalcDerv(netPrediction);
         }
         
     }

@@ -21,7 +21,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 namespace gSeer.Neuron {
-    public class BackPropagation : Activations {
+    public class BackPropagation : Activation {
         // Gradient Descent
         // Learning_Rate = 0.05
         // Prediction = I * W + B
@@ -66,12 +66,12 @@ namespace gSeer.Neuron {
             for (int n = 0; n < _cNeurons.Length; n++) {
                 float lr = _cNeurons[n].LearningRate;
                 float d_Cost = 0;
-
-                d_Cost = _cNeurons[n].Error * LogisticPrime(_cNeurons[n].netPrediction);
+                
+                d_Cost = _cNeurons[n].Error * _cNeurons[n].AxonPrime();
                 _bNeurons[n].Bias += lr * d_Cost;
 
                 for (int w = 0; w < _cNeurons[n].Weights.Length; w++) { //Weight loop
-                    d_Cost = _cNeurons[n].Error * LogisticPrime(_cNeurons[n].netPrediction);
+                    d_Cost = _cNeurons[n].Error * _cNeurons[n].AxonPrime();
                     _bNeurons[n].Weights[w] += lr * d_Cost * _cNeurons[n].Dendrites[w];
                 }
             }
@@ -109,11 +109,11 @@ namespace gSeer.Neuron {
                     float nLearningRate = _cNeurons[n].LearningRate;
                     float d_Cost = 0;
 
-                    d_Cost = _cNeurons[n].Error * LogisticPrime(_cNeurons[n].netPrediction);
+                    d_Cost = _cNeurons[n].Error * _cNeurons[n].AxonPrime();
                     _cNeurons[n].Bias += nLearningRate * d_Cost;
 
                     for (int w = 0; w < _cNeurons[n].Weights.Length; w++) { //Weight loop
-                        d_Cost = _cNeurons[n].Error * LogisticPrime(_cNeurons[n].netPrediction);
+                        d_Cost = _cNeurons[n].Error * _cNeurons[n].AxonPrime();
                         _bNeurons[n].Weights[w] += nLearningRate * d_Cost * _cNeurons[n].Dendrites[w];
                     }
                 }
