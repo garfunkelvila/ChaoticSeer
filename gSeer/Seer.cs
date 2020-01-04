@@ -19,8 +19,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using gSeer.Neuron;
 
-namespace gSeer.Neuron {
+namespace gSeer {
     public class Seer {
         public NeuronLayerGroup nlg;
 

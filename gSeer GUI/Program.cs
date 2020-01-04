@@ -27,7 +27,7 @@ namespace Nice_Seer {
         static void Main () {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Forms.LT.LT());
+            Application.Run(new frmMain());
         }
     }
 }

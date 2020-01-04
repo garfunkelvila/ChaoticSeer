@@ -18,6 +18,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using gSeer;
+using gSeer.Neuron; //I should replace the namespace inside -_-
+using gSeer.Neuron.ActivationFunction;
 
 namespace Nice_Seer {
     class TestSeer {
@@ -32,7 +34,7 @@ namespace Nice_Seer {
             nL[0] = new NeuronLayer(3, 5);
             nL[1] = new NeuronLayer(5, 5);
             nL[2] = new NeuronLayer(5, 5);
-            nL[3] = new NeuronLayer(5, 3, ActivationFunctions.Step);
+            nL[3] = new NeuronLayer(5, 3, new Logistic());
             //nL[2] = new NeuronLayer(2, 1);
             nlg = new NeuronLayerGroup(nL);
         }

@@ -122,8 +122,8 @@ namespace Nice_Seer {
         }
 
         private void lTToolStripMenuItem_Click_1 (object sender, EventArgs e) {
-            Forms.LT.LT frmLt = new Forms.LT.LT();
-            frmLt.Show();
+            //forms.lt.lt frmlt = new forms.lt.lt();
+            //frmlt.show();
         }
     }
 }
