@@ -19,9 +19,9 @@ namespace gSeer.Neuron.ActivationFunction {
         /// </summary>
         /// <param name="x">Input</param>
         /// <returns>Returnes derivative of Logistic</returns>
-        public override float AxonDerv(float x) {
+        public override float CalcDerv(float x) {
             //Not sure if this is correct
-            float _logistic = new Logistic().AxonDerv(x);
+            float _logistic = new Logistic().CalcAxon(x);
             return _logistic * (1 - _logistic);
         }
     }

@@ -13,10 +13,10 @@ namespace gSeer.Neuron {
         public virtual float CalcAxon(float x, float y) {
             return 0;
         }
-        public virtual float AxonDerv(float x) {
+        public virtual float CalcDerv(float x) {
             return 0;
         }
-        public virtual float AxonDerv(float x, float y) {
+        public virtual float CalcDerv(float x, float y) {
             return 0;
         }
     }
