@@ -18,14 +18,22 @@ namespace Nice_Seer.Forms {
             Seer _seer = new Seer(2,1,2);
 
 
-            TrainingData[] tds = new TrainingData[1] {
+            TrainingData[] tds = new TrainingData[] {
+                new TrainingData(
+                    new float[2] { 0, 0 },
+                    new float[1] { 0 }
+                ),
+                new TrainingData(
+                    new float[2] { 0, 1 },
+                    new float[1] { 1 }
+                ),
                 new TrainingData(
                     new float[2] { 1, 1 },
-                    new float[1] { 1 }
+                    new float[1] { 0 }
                 )
             };
             _seer.Train(tds, (int) trainLoop.Value);
-            float pred = _seer.Predict(new float[2] { 1, 1 })[0];
+            float pred = _seer.Predict(new float[2] { 1, 0 })[0];
             lblPred.Text = "Prediction: " + pred;
         }
     }
