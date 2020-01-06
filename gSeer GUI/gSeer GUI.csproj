@@ -87,6 +87,12 @@
     <Compile Include="Forms\Seer Creation setup\frmNewSeer.Designer.cs">
       <DependentUpon>frmNewSeer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\SimpleTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SimpleTest.Designer.cs">
+      <DependentUpon>SimpleTest.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Seer.cs" />
@@ -104,6 +110,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Seer Creation setup\frmNewSeer.resx">
       <DependentUpon>frmNewSeer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SimpleTest.resx">
+      <DependentUpon>SimpleTest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -129,7 +138,6 @@
     <None Include="dbMainDataSet.xss">
       <DependentUpon>dbMainDataSet.xsd</DependentUpon>
     </None>
-    <None Include="LICENSE" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -139,9 +147,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Content Include="Forms\LT\TD.xml">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Model.xml">
       <SubType>Designer</SubType>
     </Content>

@@ -125,5 +125,13 @@ namespace Nice_Seer {
             //forms.lt.lt frmlt = new forms.lt.lt();
             //frmlt.show();
         }
+
+        private void btnTestAll_Click(object sender, EventArgs e) {
+
+        }
+
+        private void btnTestData_Click(object sender, EventArgs e) {
+
+        }
     }
 }
