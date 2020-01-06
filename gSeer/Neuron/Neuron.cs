@@ -55,7 +55,7 @@ namespace gSeer.Neuron {
         /// Returns the prediction of the neuron and also put it into its property
         /// </summary>
         /// <returns>Returns the prediction of the neuron</returns>
-        public float Axon () {
+        public float Axon() {
             netPrediction = 0;
             for (int i = 0; i < Dendrites.Length; i++) {
                 netPrediction += Dendrites[i] * Weights[i];
