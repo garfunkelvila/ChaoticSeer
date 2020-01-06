@@ -42,6 +42,7 @@
             this.mutateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
@@ -68,7 +69,6 @@
             this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btnRefreshView = new System.Windows.Forms.ToolStripButton();
-            this.lTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -200,7 +200,7 @@
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mutateToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
             this.toolsToolStripMenuItem.Text = "Tools";
             // 
             // mutateToolStripMenuItem
@@ -225,6 +225,13 @@
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            // 
+            // lTToolStripMenuItem
+            // 
+            this.lTToolStripMenuItem.Name = "lTToolStripMenuItem";
+            this.lTToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.lTToolStripMenuItem.Text = "LT";
+            this.lTToolStripMenuItem.Click += new System.EventHandler(this.lTToolStripMenuItem_Click_1);
             // 
             // toolStrip1
             // 
@@ -353,6 +360,7 @@
             this.btnTestAll.TabIndex = 1;
             this.btnTestAll.Text = "Test all";
             this.btnTestAll.UseVisualStyleBackColor = true;
+            this.btnTestAll.Click += new System.EventHandler(this.btnTestAll_Click);
             // 
             // btnTestData
             // 
@@ -362,6 +370,7 @@
             this.btnTestData.TabIndex = 0;
             this.btnTestData.Text = "Test data";
             this.btnTestData.UseVisualStyleBackColor = true;
+            this.btnTestData.Click += new System.EventHandler(this.btnTestData_Click);
             // 
             // groupBox1
             // 
@@ -498,13 +507,6 @@
             this.btnRefreshView.Size = new System.Drawing.Size(66, 22);
             this.btnRefreshView.Text = "Refresh";
             this.btnRefreshView.Click += new System.EventHandler(this.btnRefreshView_Click);
-            // 
-            // lTToolStripMenuItem
-            // 
-            this.lTToolStripMenuItem.Name = "lTToolStripMenuItem";
-            this.lTToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.lTToolStripMenuItem.Text = "LT";
-            this.lTToolStripMenuItem.Click += new System.EventHandler(this.lTToolStripMenuItem_Click_1);
             // 
             // frmMain
             // 

@@ -23,7 +23,7 @@ using gSeer.Neuron;
 
 namespace gSeer {
     public class Seer {
-        public NeuronLayerGroup nlg;
+        private NeuronLayerGroup nlg;
 
         /// <summary>
         /// This seer creates a fully connected network. If you want to create a custom one, you may want to use Neuron, NeuronLayer and NeuronLayergroup to create what you want
@@ -55,9 +55,12 @@ namespace gSeer {
             //Will add event feature soon
         }
 
-        public void Train (TrainingData[] td) {
-            BackPropagation bp = new BackPropagation();
-            nlg = bp.BackPropagate(nlg, td);
+        public void Train (TrainingData[] td, int iteration) {
+            for (int i = 0; i < iteration; i++) {
+                //This is a cpu intensive process, should be in a seperate thread
+                BackPropagation bp = new BackPropagation();
+                nlg = bp.BackPropagate(nlg, td);
+            }
         }
 
         public float[] getError () {
@@ -68,9 +71,17 @@ namespace gSeer {
             return _rBuffer;
         }
 
-        public NeuronLayerGroup MutateWith (NeuronLayerGroup nlg) {
+        private NeuronLayerGroup MutateWith (NeuronLayerGroup nlg) {
             Genetics ga = new Genetics();
             return ga.Mutate(this.nlg, nlg);
+        }
+        /// <summary>
+        /// This will be used for while seer mutation
+        /// </summary>
+        /// <param name="seer"></param>
+        /// <returns></returns>
+        public Seer MutateWith (Seer seer) {
+            return seer;
         }
     }
 }
