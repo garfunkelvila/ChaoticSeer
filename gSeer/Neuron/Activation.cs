@@ -15,7 +15,7 @@ namespace gSeer.Neuron {
             return CalcAxon(x);
         }
         public float GetAxon(float x, float y) {
-            return GetAxon(x, y);
+            return CalcAxon(x, y);
         }
         public float GetDerv(float x) {
             return GetAxon(x);
