@@ -48,8 +48,8 @@ namespace gSeer.Neuron {
 
             //I cannot set it to defualt so I use null for now
             // Err: Default parameter for value must be a compile time constant
-            LearningRate = (float) r.NextDouble() * 0.1f;
             _activationFunction = aF ?? new Logistic();
+            LearningRate = (float) r.NextDouble() * 0.005f;
         }
         /// <summary>
         /// Returns the prediction of the neuron and also put it into its property
