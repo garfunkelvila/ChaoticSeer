@@ -32,7 +32,7 @@ namespace gSeer.Neuron {
         public float[] Weights { get; set; }
         public float Bias { get; set; }
         public float Prediction { get; set; }
-        public float netPrediction { get; set; }
+        public float NetPrediction { get; set; }
         public float Error { get; set; }
         /// <summary>
         /// Creates an instance of neuron. Currently BP only supports Logistic.
@@ -56,11 +56,11 @@ namespace gSeer.Neuron {
         /// </summary>
         /// <returns>Returns the prediction of the neuron</returns>
         public float Axon() {
-            netPrediction = 0;
+            NetPrediction = 0;
             for (int i = 0; i < Dendrites.Length; i++) {
-                netPrediction += Dendrites[i] * Weights[i];
+                NetPrediction += Dendrites[i] * Weights[i];
             }
-            netPrediction += Bias;
+            NetPrediction += Bias;
 
             Prediction = _activationFunction.GetAxon(netPrediction);// CalcAxon(netPrediction);
             return Prediction;
@@ -70,7 +70,7 @@ namespace gSeer.Neuron {
         /// </summary>
         /// <returns></returns>
         public float AxonPrime() {
-            return _activationFunction.GetDerv(netPrediction);
+            return _activationFunction.GetDerv(NetPrediction);
         }
         
     }
