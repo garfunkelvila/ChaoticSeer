@@ -62,7 +62,7 @@ namespace gSeer.Neuron {
             }
             NetPrediction += Bias;
 
-            Prediction = _activationFunction.GetAxon(netPrediction);// CalcAxon(netPrediction);
+            Prediction = _activationFunction.GetAxon(NetPrediction);// CalcAxon(netPrediction);
             return Prediction;
         }
         /// <summary>
