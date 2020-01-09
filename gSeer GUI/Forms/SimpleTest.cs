@@ -10,15 +10,8 @@ using System.Windows.Forms;
 using gSeer;
 namespace Nice_Seer.Forms {
     public partial class SimpleTest : Form {
-        public SimpleTest() {
-            InitializeComponent();
-        }
-
-        private void btnTest_Click(object sender, EventArgs e) {
-            Seer _seer = new Seer(2,1,2);
-
-
-            TrainingData[] tds = new TrainingData[] {
+        Seer _seer = new Seer(2, 1, 2);
+        TrainingData[] tds = new TrainingData[] {
                 new TrainingData(
                     new float[2] { 0, 0 },
                     new float[1] { 0 }
@@ -32,9 +25,24 @@ namespace Nice_Seer.Forms {
                     new float[1] { 0 }
                 )
             };
+        public SimpleTest() {
+            InitializeComponent();
+        }
+
+        private void btnTest_Click(object sender, EventArgs e) {
             _seer.Train(tds, (int) trainLoop.Value);
             float pred = _seer.Predict(new float[2] { 1, 0 })[0];
             lblPred.Text = "Prediction: " + pred;
+            lblCorrect.Text = "Correct: 1";
+            txbLogs.AppendText("err:" + _seer.getError()[0] + Environment.NewLine);
+        }
+
+        private void btnReTrain_Click(object sender, EventArgs e) {
+            _seer.Train(tds, (int)trainLoop.Value);
+            float pred = _seer.Predict(new float[2] { 1, 0 })[0];
+            lblPred.Text = "Prediction: " + pred;
+            lblCorrect.Text = "Correct: 1 : err : " +_seer.getError()[0];
+            txbLogs.AppendText("err:" + _seer.getError()[0] + Environment.NewLine);
         }
     }
 }

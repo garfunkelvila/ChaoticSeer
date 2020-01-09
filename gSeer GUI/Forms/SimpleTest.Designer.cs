@@ -26,6 +26,9 @@
             this.btnTest = new System.Windows.Forms.Button();
             this.lblPred = new System.Windows.Forms.Label();
             this.trainLoop = new System.Windows.Forms.NumericUpDown();
+            this.btnReTrain = new System.Windows.Forms.Button();
+            this.lblCorrect = new System.Windows.Forms.Label();
+            this.txbLogs = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.trainLoop)).BeginInit();
             this.SuspendLayout();
             // 
@@ -52,7 +55,7 @@
             // 
             this.trainLoop.Location = new System.Drawing.Point(93, 15);
             this.trainLoop.Minimum = new decimal(new int[] {
-            10,
+            1,
             0,
             0,
             0});
@@ -60,17 +63,48 @@
             this.trainLoop.Size = new System.Drawing.Size(55, 20);
             this.trainLoop.TabIndex = 2;
             this.trainLoop.Value = new decimal(new int[] {
-            10,
+            1,
             0,
             0,
             0});
+            // 
+            // btnReTrain
+            // 
+            this.btnReTrain.Location = new System.Drawing.Point(12, 71);
+            this.btnReTrain.Name = "btnReTrain";
+            this.btnReTrain.Size = new System.Drawing.Size(75, 23);
+            this.btnReTrain.TabIndex = 3;
+            this.btnReTrain.Text = "Re-train";
+            this.btnReTrain.UseVisualStyleBackColor = true;
+            this.btnReTrain.Click += new System.EventHandler(this.btnReTrain_Click);
+            // 
+            // lblCorrect
+            // 
+            this.lblCorrect.AutoSize = true;
+            this.lblCorrect.Location = new System.Drawing.Point(13, 55);
+            this.lblCorrect.Name = "lblCorrect";
+            this.lblCorrect.Size = new System.Drawing.Size(51, 13);
+            this.lblCorrect.TabIndex = 1;
+            this.lblCorrect.Text = "lblCorrect";
+            // 
+            // txbLogs
+            // 
+            this.txbLogs.Location = new System.Drawing.Point(13, 101);
+            this.txbLogs.Multiline = true;
+            this.txbLogs.Name = "txbLogs";
+            this.txbLogs.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txbLogs.Size = new System.Drawing.Size(290, 337);
+            this.txbLogs.TabIndex = 4;
             // 
             // SimpleTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(315, 450);
+            this.Controls.Add(this.txbLogs);
+            this.Controls.Add(this.btnReTrain);
             this.Controls.Add(this.trainLoop);
+            this.Controls.Add(this.lblCorrect);
             this.Controls.Add(this.lblPred);
             this.Controls.Add(this.btnTest);
             this.Name = "SimpleTest";
@@ -86,5 +120,8 @@
         private System.Windows.Forms.Button btnTest;
         private System.Windows.Forms.Label lblPred;
         private System.Windows.Forms.NumericUpDown trainLoop;
+        private System.Windows.Forms.Button btnReTrain;
+        private System.Windows.Forms.Label lblCorrect;
+        private System.Windows.Forms.TextBox txbLogs;
     }
 }
