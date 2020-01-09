@@ -27,6 +27,11 @@ namespace Nice_Seer.Forms {
             };
         public SimpleTest() {
             InitializeComponent();
+            txbLogs.AppendText("Training Data" + Environment.NewLine);
+            txbLogs.AppendText("0 0 -> 0" + Environment.NewLine);
+            txbLogs.AppendText("0 1 -> 1" + Environment.NewLine);
+            txbLogs.AppendText("1 1 -> 0" + Environment.NewLine);
+            txbLogs.AppendText("Expected: 1" + Environment.NewLine);
         }
 
         private void btnTest_Click(object sender, EventArgs e) {
