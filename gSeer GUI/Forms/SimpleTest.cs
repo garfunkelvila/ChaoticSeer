@@ -11,7 +11,8 @@ using gSeer;
 namespace Nice_Seer.Forms {
     public partial class SimpleTest : Form {
         Seer _seer = new Seer(2, 1, 2);
-        TrainingData[] tds = new TrainingData[] {
+        //Out 1
+        TrainingData[] _and = new TrainingData[] {
                 new TrainingData(
                     new float[2] { 0, 0 },
                     new float[1] { 0 }
@@ -21,33 +22,113 @@ namespace Nice_Seer.Forms {
                     new float[1] { 1 }
                 ),
                 new TrainingData(
+                    new float[2] { 1, 0 },
+                    new float[1] { 0 }
+                ),
+                new TrainingData(
+                    new float[2] { 1, 1 },
+                    new float[1] { 1 }
+                )
+            };
+        //Out 1
+        TrainingData[] _or = new TrainingData[] {
+                new TrainingData(
+                    new float[2] { 0, 0 },
+                    new float[1] { 0 }
+                ),
+                new TrainingData(
+                    new float[2] { 0, 1 },
+                    new float[1] { 1 }
+                ),
+                new TrainingData(
+                    new float[2] { 1, 0 },
+                    new float[1] { 1 }
+                ),
+                new TrainingData(
+                    new float[2] { 1, 1 },
+                    new float[1] { 1 }
+                )
+            };
+        //Out 0
+        TrainingData[] _xor = new TrainingData[] {
+                new TrainingData(
+                    new float[2] { 0, 0 },
+                    new float[1] { 0 }
+                ),
+                new TrainingData(
+                    new float[2] { 0, 1 },
+                    new float[1] { 1 }
+                ),
+                new TrainingData(
+                    new float[2] { 1, 0 },
+                    new float[1] { 1 }
+                ),
+                new TrainingData(
                     new float[2] { 1, 1 },
                     new float[1] { 0 }
                 )
             };
         public SimpleTest() {
             InitializeComponent();
-            txbLogs.AppendText("Training Data" + Environment.NewLine);
-            txbLogs.AppendText("0 0 -> 0" + Environment.NewLine);
-            txbLogs.AppendText("0 1 -> 1" + Environment.NewLine);
-            txbLogs.AppendText("1 1 -> 0" + Environment.NewLine);
-            txbLogs.AppendText("Expected: 1" + Environment.NewLine);
         }
 
-        private void btnTest_Click(object sender, EventArgs e) {
-            _seer.Train(tds, (int) trainLoop.Value);
-            float pred = _seer.Predict(new float[2] { 1, 0 })[0];
-            lblPred.Text = "Prediction: " + pred;
-            lblCorrect.Text = "Correct: 1";
-            txbLogs.AppendText("err:" + _seer.getError()[0] + Environment.NewLine);
+        private void timer1_Tick(object sender, EventArgs e) {
+            
         }
 
-        private void btnReTrain_Click(object sender, EventArgs e) {
-            _seer.Train(tds, (int)trainLoop.Value);
-            float pred = _seer.Predict(new float[2] { 1, 0 })[0];
-            lblPred.Text = "Prediction: " + pred;
-            lblCorrect.Text = "Correct: 1 : err : " +_seer.getError()[0];
+        private void button1_Click(object sender, EventArgs e) {
+            _seer.Train(_or, (int)trainLoop.Value);
+            float _pred1 = _seer.Predict(new float[2] { 0, 0 })[0];
+            float _pred2 = _seer.Predict(new float[2] { 0, 1 })[0];
+            float _pred3 = _seer.Predict(new float[2] { 1, 0 })[0];
+            float _pred4 = _seer.Predict(new float[2] { 1, 1 })[0];
+            pred1.Text = "0 :: Prediction: " + _pred1;
+            pred2.Text = "1 :: Prediction: " + _pred2;
+            pred3.Text = "1 :: Prediction: " + _pred3;
+            pred4.Text = "1 :: Prediction: " + _pred4;
+            lblCorrect.Text = "Correct: 0 : err : " + _seer.getError()[0];
             txbLogs.AppendText("err:" + _seer.getError()[0] + Environment.NewLine);
+
+            l1n1w1.Text = _seer.LayerGroups.NeuronLayers[0].neurons[0].Weights[0].ToString();
+            l1n1w2.Text = _seer.LayerGroups.NeuronLayers[0].neurons[0].Weights[1].ToString();
+            l1n1b.Text = _seer.LayerGroups.NeuronLayers[0].neurons[0].Bias.ToString();
+            l1n1e.Text = _seer.LayerGroups.NeuronLayers[0].neurons[0].Error.ToString();
+
+            l1n2w1.Text = _seer.LayerGroups.NeuronLayers[0].neurons[1].Weights[0].ToString();
+            l1n2w2.Text = _seer.LayerGroups.NeuronLayers[0].neurons[1].Weights[1].ToString();
+            l1n2b.Text = _seer.LayerGroups.NeuronLayers[0].neurons[1].Bias.ToString();
+            l1n2e.Text = _seer.LayerGroups.NeuronLayers[0].neurons[1].Error.ToString();
+
+            o1n1w1.Text = _seer.LayerGroups.NeuronLayers[1].neurons[0].Weights[0].ToString();
+            o1n1w2.Text = _seer.LayerGroups.NeuronLayers[1].neurons[0].Weights[1].ToString();
+            o1n1b.Text = _seer.LayerGroups.NeuronLayers[1].neurons[0].Bias.ToString();
+            o1n1e.Text = _seer.LayerGroups.NeuronLayers[1].neurons[0].Error.ToString();
+
+            //Update color
+            l1n1w1.BackColor = weightColor(_seer.LayerGroups.NeuronLayers[0].neurons[0].Weights[0]);
+            l1n1w2.BackColor = weightColor(_seer.LayerGroups.NeuronLayers[0].neurons[0].Weights[1]);
+            l1n2w1.BackColor = weightColor(_seer.LayerGroups.NeuronLayers[0].neurons[1].Weights[0]);
+            l1n2w2.BackColor = weightColor(_seer.LayerGroups.NeuronLayers[0].neurons[1].Weights[1]);
+            
+            o1n1w1.BackColor = weightColor(_seer.LayerGroups.NeuronLayers[1].neurons[0].Weights[0]);
+            o1n1w2.BackColor = weightColor(_seer.LayerGroups.NeuronLayers[1].neurons[0].Weights[1]);
+        }
+
+        private Color weightColor(float weight) {
+            float newColor = -weight * 255;
+            Console.WriteLine("NC: " + (int)newColor);
+
+            int nc = (int)newColor + 255;
+            //clamp
+            nc = nc > 255 ? 255 : nc;
+            nc = nc < 0 ? 0 : nc;
+
+            if (weight > 0) {
+                return Color.FromArgb(255, nc, nc);
+            }
+            else {
+                return TextBox.DefaultBackColor;
+            }
         }
     }
 }
