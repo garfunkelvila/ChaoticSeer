@@ -28,7 +28,7 @@ namespace gSeer.Neuron {
     /// Codes are based on CodeBullet's tutoral, with my customizations
     /// </summary>
     public class Genetics {
-        readonly static Random r = new Random();
+        //readonly static Random r = new Random();
 
         #region Mutate
         #region NeuronLayer
