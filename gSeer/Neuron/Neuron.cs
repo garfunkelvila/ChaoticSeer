@@ -24,7 +24,6 @@ using gSeer.Neuron.ActivationFunction;
 
 namespace gSeer.Neuron {
     public class Neuron {
-        readonly private static Random r = new Random();
         readonly public Activation _activationFunction; //I assume that when this thing is readonly, affected scripts will skip jump instructions except the one with random
         readonly public float LearningRate;    // This is for mutation too
 
@@ -43,13 +42,13 @@ namespace gSeer.Neuron {
             Dendrites = new float[dendritesCount];
             Weights = new float[dendritesCount];
             for (int i = 0; i < dendritesCount; i++)
-                Weights[i] = (float) r.NextDouble() * -0.1f; //Will change range dependent into AF
-            Bias = 1; //(float) r.NextDouble();
+                Weights[i] = (float) rng.getRng() * -0.1f; //Will change range dependent into AF
+            Bias = 1; //(float) rng.getRng();
 
             //I cannot set it to defualt so I use null for now
             // Err: Default parameter for value must be a compile time constant
             _activationFunction = aF ?? new Logistic();
-            LearningRate = (float) r.NextDouble() * 0.005f;
+            LearningRate = (float)rng.getRng() * 0.05f;
         }
         /// <summary>
         /// Returns the prediction of the neuron and also put it into its property

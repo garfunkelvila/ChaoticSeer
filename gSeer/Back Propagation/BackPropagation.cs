@@ -22,7 +22,6 @@ using System.Text;
 using System.Threading.Tasks;
 namespace gSeer.Neuron {
     public class BackPropagation {
-        readonly private static Random r = new Random();
         // Gradient Descent
         // Learning_Rate = 0.05
         // Prediction = I * W + B
@@ -41,7 +40,7 @@ namespace gSeer.Neuron {
         /// <returns>Returned the back propagated NeuronLayerGroup</returns>
         public NeuronLayerGroup BackPropagate (NeuronLayerGroup neuronLayerGroup, TrainingData[] trainingData) {
             nlgBuffer = neuronLayerGroup;
-            int tDr = r.Next(0, trainingData.Length);
+            int tDr = rng.getRngMinMax(0, trainingData.Length);
             outputLayerBP(neuronLayerGroup, trainingData[tDr]);
             hiddenLayerBP(neuronLayerGroup);
             return this.nlgBuffer;
