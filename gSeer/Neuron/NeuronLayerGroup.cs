@@ -27,7 +27,7 @@ namespace gSeer.Neuron {
         public float[] Prediction { get; set; }
         #region Constructors
         /// <summary>
-        /// Holds an array of Neuron layers.
+        /// Holds an array of Neuron layers and their connections
         /// </summary>
         /// <param name="nLayers">Neuron Layers</param>
         public NeuronLayerGroup (NeuronLayer[] nLayers) {
