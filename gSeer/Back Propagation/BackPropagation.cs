@@ -42,7 +42,7 @@ namespace gSeer.Neuron {
             nlgBuffer = neuronLayerGroup;
             int tDr = rng.getRngMinMax(0, trainingData.Length);
             outputLayerBP(neuronLayerGroup, trainingData[tDr]);
-            hiddenLayerBP(neuronLayerGroup);
+            HiddenLayerBP(neuronLayerGroup);
             return this.nlgBuffer;
         }
         /// <summary>
@@ -86,7 +86,7 @@ namespace gSeer.Neuron {
         /// Backpropagates the hidden layer
         /// </summary>
         /// <param name="nlg">Input NeuronLayerGroup</param>
-        void hiddenLayerBP(NeuronLayerGroup nlg) {
+        void HiddenLayerBP(NeuronLayerGroup nlg) {
             for (int nl = nlg.NeuronLayers.Length - 2; nl >= 0; nl--) {  //Start from second to last
                 int nLengh = nlg.NeuronLayers[nl].neurons.Length;
                 Neuron[] _cNeurons = nlg.NeuronLayers[nl].neurons;
