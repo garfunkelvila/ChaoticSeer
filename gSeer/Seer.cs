@@ -23,7 +23,7 @@ using gSeer.Neuron;
 
 namespace gSeer {
     public class Seer {
-        private NeuronLayerGroup nlg;
+        public NeuronLayerGroup LayerGroups { get; private set; }
 
         /// <summary>
         /// This seer creates a fully connected network. If you want to create a custom one, you may want to use Neuron, NeuronLayer and NeuronLayergroup to create what you want
@@ -36,7 +36,7 @@ namespace gSeer {
             // If single layer
             if (numLayers == 1) {
                 nL[0] = new NeuronLayer(inputCount, outputCount);
-                nlg = new NeuronLayerGroup(nL);
+                LayerGroups = new NeuronLayerGroup(nL);
                 return;
             }
             // If multilayer
@@ -46,11 +46,11 @@ namespace gSeer {
                 nL[nli] = new NeuronLayer(hn, hn);
             }
             nL[numLayers - 1] = new NeuronLayer(hn, outputCount);   // Select the last
-            nlg = new NeuronLayerGroup(nL);
+            LayerGroups = new NeuronLayerGroup(nL);     // add the layers to the group
         }
 
         public float[] Predict (float[] Sensories) {
-            return nlg.Predict(Sensories);
+            return LayerGroups.Predict(Sensories);
             //This thing is supposed to raise an event when finished. But instead, I just directly accesed its field xD
             //Will add event feature soon
         }
@@ -59,21 +59,21 @@ namespace gSeer {
             for (int i = 0; i < iteration; i++) {
                 //This is a cpu intensive process, should be in a seperate thread
                 BackPropagation bp = new BackPropagation();
-                nlg = bp.BackPropagate(nlg, td);
+                LayerGroups = bp.BackPropagate(LayerGroups, td);
             }
         }
 
         public float[] getError () {
-            float[] _rBuffer = new float[nlg.NeuronLayers[nlg.NeuronLayers.Length - 1].neurons.Length];
-            for (int n = 0; n < nlg.NeuronLayers[nlg.NeuronLayers.Length - 1].neurons.Length; n++) {
-                _rBuffer[n] = nlg.NeuronLayers[nlg.NeuronLayers.Length - 1].neurons[n].Error;
+            float[] _rBuffer = new float[LayerGroups.NeuronLayers[LayerGroups.NeuronLayers.Length - 1].neurons.Length];
+            for (int n = 0; n < LayerGroups.NeuronLayers[LayerGroups.NeuronLayers.Length - 1].neurons.Length; n++) {
+                _rBuffer[n] = LayerGroups.NeuronLayers[LayerGroups.NeuronLayers.Length - 1].neurons[n].Error;
             }
             return _rBuffer;
         }
 
         private NeuronLayerGroup MutateWith (NeuronLayerGroup nlg) {
             Genetics ga = new Genetics();
-            return ga.Mutate(this.nlg, nlg);
+            return ga.Mutate(this.LayerGroups, nlg);
         }
         /// <summary>
         /// This will be used for while seer mutation
