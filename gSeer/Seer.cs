@@ -24,6 +24,7 @@ using gSeer.Neuron;
 namespace gSeer {
     public class Seer {
         public NeuronLayerGroup LayerGroups { get; private set; }
+        readonly Back_Propagation.BackPropagation _BackPropagation;
 
         /// <summary>
         /// This seer creates a fully connected network. If you want to create a custom one, you may want to use Neuron, NeuronLayer and NeuronLayergroup to create what you want
@@ -31,7 +32,14 @@ namespace gSeer {
         /// <param name="inputCount"></param>
         /// <param name="outputCount"></param>
         /// <param name="numLayers"></param>
-        public Seer (int inputCount, int outputCount, int numLayers = 1) {
+        /// <param name="mtBP">Use multi threading for back propagation?</param>
+        public Seer (int inputCount, int outputCount, int numLayers = 1, bool mtBP = false) {
+            if (mtBP) {
+                _BackPropagation = new Back_Propagation.BpMultiThread();
+            }
+            else {
+                _BackPropagation = new Back_Propagation.BpSingleThread();
+            }
             NeuronLayer[] nL = new NeuronLayer[numLayers];
             // If single layer
             if (numLayers == 1) {
@@ -57,9 +65,7 @@ namespace gSeer {
 
         public void Train (TrainingData[] td, int iteration) {
             for (int i = 0; i < iteration; i++) {
-                //This is a cpu intensive process, should be in a seperate thread
-                BackPropagation bp = new BackPropagation();
-                LayerGroups = bp.BackPropagate(LayerGroups, td);
+                LayerGroups = _BackPropagation.BackPropagate(LayerGroups, td);
             }
         }
 

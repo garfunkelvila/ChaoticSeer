@@ -46,10 +46,6 @@ namespace Nice_Seer {
             //This thing is supposed to raise an event when finished. But instead, I just directly accesed its field xD
             //Will add event feature soon
         }
-        public void BP (TrainingData[] td) {
-            BackPropagation bp = new BackPropagation();
-            nlg = bp.BackPropagate(nlg, td);
-        }
 
         public float[] getError () {
             float[] _rBuffer = new float[nlg.NeuronLayers[nlg.NeuronLayers.Length - 1].neurons.Length];

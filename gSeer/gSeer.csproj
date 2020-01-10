@@ -57,12 +57,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Back Propagation\BpMultiThread.cs" />
+    <Compile Include="Back Propagation\BpSingleThread.cs" />
+    <Compile Include="Back Propagation\BackPropagation.cs" />
     <Compile Include="Neuron\Activation.cs" />
     <Compile Include="Neuron\ActivationFunction\Logistic.cs" />
     <Compile Include="Neuron\ActivationFunction\ReLU.cs" />
     <Compile Include="Neuron\ActivationFunction\Step.cs" />
     <Compile Include="Neuron\ActivationFunction\TanH.cs" />
-    <Compile Include="Back Propagation\BackPropagation.cs" />
     <Compile Include="Genetic Algorithm\Selection.cs" />
     <Compile Include="Parsers\SeerParser.cs" />
     <Compile Include="rng.cs" />
