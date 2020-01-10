@@ -63,7 +63,7 @@ namespace gSeer.Neuron {
                 _cNeurons[n].Error = tD.Target[n] - _cNeurons[n].Prediction;
             }
 
-            //WEIGHT UPDATE FOR OUTPUT BUFFER LAYER
+            /// WEIGHT UPDATE FOR OUTPUT BUFFER LAYER
             for (int n = 0; n < _cNeurons.Length; n++) {
                 float lr = _cNeurons[n].LearningRate;
                 float d_Cost = 0;
@@ -93,7 +93,7 @@ namespace gSeer.Neuron {
                 Neuron[] _bNeurons = nlg.NeuronLayers[nl].neurons;
 
 
-                // Calculation of the cost (error term). Hidden cost.
+                /// Calculation of the cost (error term). Hidden cost.
                 for (int n = 0; n < nLengh; n++) { //Current Layer Neuron loop
                     float sumBuffer = 0;
                     Neuron[] _oNeurons = nlg.NeuronLayers[nl + 1].neurons;
