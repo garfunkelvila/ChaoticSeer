@@ -40,12 +40,12 @@ namespace gSeer {
                 return;
             }
             // If multilayer
-            int hn = (int)Math.Ceiling(outputCount * 1.1d);
-            nL[0] = new NeuronLayer(inputCount, hn);
+            int hn = (int)Math.Ceiling(outputCount * 1.1d); // 1.1d to make the hidden layer a bit fat
+            nL[0] = new NeuronLayer(inputCount, hn);        // Add the first one
             for (int nli = 1; nli < numLayers - 1; nli++) { // Skip the last
                 nL[nli] = new NeuronLayer(hn, hn);
             }
-            nL[numLayers - 1] = new NeuronLayer(hn, outputCount);   // Select the last
+            nL[numLayers - 1] = new NeuronLayer(hn, outputCount);   // Add the last
             LayerGroups = new NeuronLayerGroup(nL);     // add the layers to the group
         }
 
