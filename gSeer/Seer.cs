@@ -81,7 +81,7 @@ namespace gSeer {
         /// <param name="seer"></param>
         /// <returns></returns>
         public Seer MutateWith (Seer seer) {
-            return seer;
+            throw new NotImplementedException();
         }
     }
 }
