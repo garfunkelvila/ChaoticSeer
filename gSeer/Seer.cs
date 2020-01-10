@@ -31,7 +31,7 @@ namespace gSeer {
         /// <param name="inputCount"></param>
         /// <param name="outputCount"></param>
         /// <param name="numLayers"></param>
-        public Seer (int inputCount, int outputCount, int numLayers) {
+        public Seer (int inputCount, int outputCount, int numLayers = 1) {
             NeuronLayer[] nL = new NeuronLayer[numLayers];
             // If single layer
             if (numLayers == 1) {
