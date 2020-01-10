@@ -60,7 +60,7 @@ namespace gSeer.Neuron {
             // Calculation of the cost (error term). Output cost for each output
             for (int n = 0; n < nLengh; n++) {
                 //For some reason my error function need to be reversed, I think I messed up the layer back propagation
-                _cNeurons[n].Error = _cNeurons[n].Prediction - tD.Target[n];
+                _cNeurons[n].Error = tD.Target[n] - _cNeurons[n].Prediction;
             }
 
             //WEIGHT UPDATE FOR OUTPUT BUFFER LAYER
