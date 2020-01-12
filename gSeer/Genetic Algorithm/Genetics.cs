@@ -24,9 +24,9 @@ using System.Threading.Tasks;
 
 namespace gSeer.Neuron {
     /// <summary>
-    /// This class contains method for mutations and maybe others
-    /// I did not expect this thing to get this messy. I havent tested this thing
-    /// Codes are based on CodeBullet's tutoral, with my customizations
+    /// This class contains method for mutations and maybe others.
+    /// I did not expect this thing to get this messy. I havent tested this thing.
+    /// Codes are based on CodeBullet's tutoral, with my customizations.
     /// </summary>
     public abstract class Genetics {
         #region Mutate
