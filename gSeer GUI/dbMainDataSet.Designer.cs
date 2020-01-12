@@ -800,7 +800,7 @@ namespace Nice_Seer.dbMainDataSetTableAdapters {
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Neurons] ([Id], [LayerId], [Bias]) VALUES (@Id, @LayerId, @Bia" +
-                "s);\r\nSELECT Id, LayerId, Bias FROM Neurons WHERE (Id = @Id)";
+                "s);\nSELECT Id, LayerId, Bias FROM Neurons WHERE (Id = @Id)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LayerId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LayerId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
