@@ -54,10 +54,5 @@ namespace Nice_Seer {
             }
             return _rBuffer;
         }
-
-        public NeuronLayerGroup MutateWith(NeuronLayerGroup nlg) {
-            Genetics ga = new Genetics();
-            return ga.Mutate(this.nlg, nlg);
-        }
     }
 }
