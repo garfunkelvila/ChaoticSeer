@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using gSeer;
 namespace Nice_Seer.Forms {
     public partial class SimpleTest : Form {
-        Seer _seer = new Seer(2, 1, 2,true);
+        Seer _seer = new Seer(2, 1, 2);
         //Out 1
         TrainingData[] _and = new TrainingData[] {
                 new TrainingData(
