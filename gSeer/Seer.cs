@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using gSeer.Back_Propagation;
 using gSeer.Neuron;
 
 namespace gSeer {
@@ -34,12 +35,14 @@ namespace gSeer {
         /// <param name="numLayers"></param>
         /// <param name="mtBP">Use multi threading for back propagation?</param>
         public Seer (int inputCount, int outputCount, int numLayers = 1, bool mtBP = false) {
-            if (mtBP) {
-                _BackPropagation = new Back_Propagation.BpMultiThread();
-            }
-            else {
-                _BackPropagation = new Back_Propagation.BpSingleThread();
-            }
+            _BackPropagation = SetThreadingMode(mtBP);
+            //if (mtBP) {
+            //    _BackPropagation = new BpMultiThread();
+            //}
+            //else {
+            //    _BackPropagation = new BpSingleThread();
+            //}
+
             NeuronLayer[] nL = new NeuronLayer[numLayers];
             // If single layer
             if (numLayers == 1) {
@@ -63,7 +66,6 @@ namespace gSeer {
         public Seer (NeuronLayerGroup neuronLayerGroup, bool mtBP = false) {
             NeuronLayerGroups = neuronLayerGroup;
         }
-
         public float[] Predict (float[] Sensories) {
             return NeuronLayerGroups.Predict(Sensories);
             //This thing is supposed to raise an event when finished. But instead, I just return the value xD
@@ -84,10 +86,6 @@ namespace gSeer {
             return _rBuffer;
         }
 
-        private NeuronLayerGroup MutateWith (NeuronLayerGroup nlg) {
-            Genetics ga = new Genetics();
-            return ga.Mutate(this.LayerGroups, nlg);
-        }
         /// <summary>
         /// This will be used for seer mutation
         /// </summary>
