@@ -135,11 +135,9 @@ namespace gSeer.Neuron {
             });
             return neuronLayerGroup[0];
         }
-        public NeuronLayerGroup Mutate (NeuronLayerGroup neuronLayerGroupX, NeuronLayerGroup neuronLayerGroupY, float mutationRate = 0.5f) {
-#if DEBUG
-            //if (neuronLayerGroupX.NeuronLayers.neurons.Length != neuronLayerY.neurons.Length) throw new Exception("X and Y Should have thesame number of neurons.");
-            //TODO: Allow mutation for unequal neuron
-#endif
+        protected NeuronLayerGroup Mutate (NeuronLayerGroup neuronLayerGroupX, NeuronLayerGroup neuronLayerGroupY, float mutationRate = 0.5f) {
+            CheckNeuronLayerGroupScheme(neuronLayerGroupX, neuronLayerGroupY);
+            //TODO: Allow mutation for unequal neuron, just add warning
             Parallel.For(0, neuronLayerGroupX.NeuronLayers.Length, new ParallelOptions { MaxDegreeOfParallelism = 2 }, nL => {
                 for (int n = 0; n < neuronLayerGroupX.NeuronLayers[nL].neurons.Length; n++) {
                     if (rng.getRng() < mutationRate) {
