@@ -28,9 +28,7 @@ namespace gSeer.Neuron {
     /// I did not expect this thing to get this messy. I havent tested this thing
     /// Codes are based on CodeBullet's tutoral, with my customizations
     /// </summary>
-    public class Genetics {
-        //readonly static Random r = new Random();
-
+    public abstract class Genetics {
         #region Mutate
         #region NeuronLayer
         //--------------------------------------------------------------------------------
@@ -42,7 +40,7 @@ namespace gSeer.Neuron {
         /// <param name="neuronLayer">Layers to mutate</param>
         /// <param name="mutationRate"></param>
         /// <returns>Returns the result of the mutation as a NeuronLayer</returns>
-        public NeuronLayer Mutate (NeuronLayer[] neuronLayer, float mutationRate = 0.01f) {
+        protected NeuronLayer Mutate (NeuronLayer[] neuronLayer, float mutationRate = 0.01f) {
             #region CHECKING
 #if DEBUG //Just checking thing even we know we just duplicate the template programatically
             bool notMatch = false;
@@ -90,7 +88,7 @@ namespace gSeer.Neuron {
         /// <param name="neuronLayerY">Second</param>
         /// <param name="mutationRate">Rate of mutation</param>
         /// <returns>Returns the result of the mutation as a NeuronLayer</returns>
-        public NeuronLayer Mutate (NeuronLayer neuronLayerX, NeuronLayer neuronLayerY, float mutationRate = 0.5f) {
+        protected NeuronLayer Mutate (NeuronLayer neuronLayerX, NeuronLayer neuronLayerY, float mutationRate = 0.5f) {
             #region CHECKING
 #if DEBUG 
             //Check if X and Y have thesame layout.
@@ -116,7 +114,7 @@ namespace gSeer.Neuron {
         //--------------------------------------------------------------------------------
         //Neuron Layer Group
         //--------------------------------------------------------------------------------
-        public NeuronLayerGroup Mutate (NeuronLayerGroup[] neuronLayerGroup, float mutationRate = 0.01f) {
+        protected NeuronLayerGroup Mutate (NeuronLayerGroup[] neuronLayerGroup, float mutationRate = 0.01f) {
             #region CHECKING
 #if DEBUG
             if (neuronLayerGroup.Length == 1) throw new Exception("Cant be solo, use clone instead");
