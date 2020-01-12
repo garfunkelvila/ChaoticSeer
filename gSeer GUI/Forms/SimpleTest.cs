@@ -89,29 +89,29 @@ namespace Nice_Seer.Forms {
             lblCorrect.Text = "Correct: 0 : err : " + _seer.getError()[0];
             txbLogs.AppendText("err:" + _seer.getError()[0] + Environment.NewLine);
 
-            l1n1w1.Text = _seer.LayerGroups.NeuronLayers[0].neurons[0].Weights[0].ToString();
-            l1n1w2.Text = _seer.LayerGroups.NeuronLayers[0].neurons[0].Weights[1].ToString();
-            l1n1b.Text = _seer.LayerGroups.NeuronLayers[0].neurons[0].Bias.ToString();
-            l1n1e.Text = _seer.LayerGroups.NeuronLayers[0].neurons[0].Error.ToString();
+            l1n1w1.Text = _seer.NeuronLayerGroups.NeuronLayers[0].neurons[0].Weights[0].ToString();
+            l1n1w2.Text = _seer.NeuronLayerGroups.NeuronLayers[0].neurons[0].Weights[1].ToString();
+            l1n1b.Text = _seer.NeuronLayerGroups.NeuronLayers[0].neurons[0].Bias.ToString();
+            l1n1e.Text = _seer.NeuronLayerGroups.NeuronLayers[0].neurons[0].Error.ToString();
 
-            l1n2w1.Text = _seer.LayerGroups.NeuronLayers[0].neurons[1].Weights[0].ToString();
-            l1n2w2.Text = _seer.LayerGroups.NeuronLayers[0].neurons[1].Weights[1].ToString();
-            l1n2b.Text = _seer.LayerGroups.NeuronLayers[0].neurons[1].Bias.ToString();
-            l1n2e.Text = _seer.LayerGroups.NeuronLayers[0].neurons[1].Error.ToString();
+            l1n2w1.Text = _seer.NeuronLayerGroups.NeuronLayers[0].neurons[1].Weights[0].ToString();
+            l1n2w2.Text = _seer.NeuronLayerGroups.NeuronLayers[0].neurons[1].Weights[1].ToString();
+            l1n2b.Text = _seer.NeuronLayerGroups.NeuronLayers[0].neurons[1].Bias.ToString();
+            l1n2e.Text = _seer.NeuronLayerGroups.NeuronLayers[0].neurons[1].Error.ToString();
 
-            o1n1w1.Text = _seer.LayerGroups.NeuronLayers[1].neurons[0].Weights[0].ToString();
-            o1n1w2.Text = _seer.LayerGroups.NeuronLayers[1].neurons[0].Weights[1].ToString();
-            o1n1b.Text = _seer.LayerGroups.NeuronLayers[1].neurons[0].Bias.ToString();
-            o1n1e.Text = _seer.LayerGroups.NeuronLayers[1].neurons[0].Error.ToString();
+            o1n1w1.Text = _seer.NeuronLayerGroups.NeuronLayers[1].neurons[0].Weights[0].ToString();
+            o1n1w2.Text = _seer.NeuronLayerGroups.NeuronLayers[1].neurons[0].Weights[1].ToString();
+            o1n1b.Text = _seer.NeuronLayerGroups.NeuronLayers[1].neurons[0].Bias.ToString();
+            o1n1e.Text = _seer.NeuronLayerGroups.NeuronLayers[1].neurons[0].Error.ToString();
 
             //Update color
-            l1n1w1.BackColor = weightColor(_seer.LayerGroups.NeuronLayers[0].neurons[0].Weights[0]);
-            l1n1w2.BackColor = weightColor(_seer.LayerGroups.NeuronLayers[0].neurons[0].Weights[1]);
-            l1n2w1.BackColor = weightColor(_seer.LayerGroups.NeuronLayers[0].neurons[1].Weights[0]);
-            l1n2w2.BackColor = weightColor(_seer.LayerGroups.NeuronLayers[0].neurons[1].Weights[1]);
+            l1n1w1.BackColor = weightColor(_seer.NeuronLayerGroups.NeuronLayers[0].neurons[0].Weights[0]);
+            l1n1w2.BackColor = weightColor(_seer.NeuronLayerGroups.NeuronLayers[0].neurons[0].Weights[1]);
+            l1n2w1.BackColor = weightColor(_seer.NeuronLayerGroups.NeuronLayers[0].neurons[1].Weights[0]);
+            l1n2w2.BackColor = weightColor(_seer.NeuronLayerGroups.NeuronLayers[0].neurons[1].Weights[1]);
             
-            o1n1w1.BackColor = weightColor(_seer.LayerGroups.NeuronLayers[1].neurons[0].Weights[0]);
-            o1n1w2.BackColor = weightColor(_seer.LayerGroups.NeuronLayers[1].neurons[0].Weights[1]);
+            o1n1w1.BackColor = weightColor(_seer.NeuronLayerGroups.NeuronLayers[1].neurons[0].Weights[0]);
+            o1n1w2.BackColor = weightColor(_seer.NeuronLayerGroups.NeuronLayers[1].neurons[0].Weights[1]);
         }
 
         private Color weightColor(float weight) {
@@ -129,6 +129,9 @@ namespace Nice_Seer.Forms {
             else {
                 return TextBox.DefaultBackColor;
             }
+        }
+        private void test() {
+
         }
     }
 }

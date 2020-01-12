@@ -22,8 +22,8 @@ using System.Threading.Tasks;
 using gSeer.Neuron;
 
 namespace gSeer {
-    public class Seer {
-        public NeuronLayerGroup LayerGroups { get; private set; }
+    public class Seer : Genetics {
+        public NeuronLayerGroup NeuronLayerGroups { get; private set; }
         readonly Back_Propagation.BackPropagation _BackPropagation;
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace gSeer {
             // If single layer
             if (numLayers == 1) {
                 nL[0] = new NeuronLayer(inputCount, outputCount);
-                LayerGroups = new NeuronLayerGroup(nL);
+                NeuronLayerGroups = new NeuronLayerGroup(nL);
                 return;
             }
             // If multilayer
@@ -54,25 +54,32 @@ namespace gSeer {
                 nL[nli] = new NeuronLayer(hn, hn);
             }
             nL[numLayers - 1] = new NeuronLayer(hn, outputCount);   // Add the last
-            LayerGroups = new NeuronLayerGroup(nL);     // add the layers to the group
+            NeuronLayerGroups = new NeuronLayerGroup(nL);     // add the layers to the group
+        }
+        /// <summary>
+        /// This one should only be used on mutations
+        /// </summary>
+        /// <param name="neuronLayerGroup"></param>
+        public Seer (NeuronLayerGroup neuronLayerGroup, bool mtBP = false) {
+            NeuronLayerGroups = neuronLayerGroup;
         }
 
         public float[] Predict (float[] Sensories) {
-            return LayerGroups.Predict(Sensories);
-            //This thing is supposed to raise an event when finished. But instead, I just directly accesed its field xD
+            return NeuronLayerGroups.Predict(Sensories);
+            //This thing is supposed to raise an event when finished. But instead, I just return the value xD
             //Will add event feature soon
         }
 
         public void Train (TrainingData[] td, int iteration) {
             for (int i = 0; i < iteration; i++) {
-                LayerGroups = _BackPropagation.BackPropagate(LayerGroups, td);
+                NeuronLayerGroups = _BackPropagation.BackPropagate(NeuronLayerGroups, td);
             }
         }
 
-        public float[] getError () {
-            float[] _rBuffer = new float[LayerGroups.NeuronLayers[LayerGroups.NeuronLayers.Length - 1].neurons.Length];
-            for (int n = 0; n < LayerGroups.NeuronLayers[LayerGroups.NeuronLayers.Length - 1].neurons.Length; n++) {
-                _rBuffer[n] = LayerGroups.NeuronLayers[LayerGroups.NeuronLayers.Length - 1].neurons[n].Error;
+        public float[] GetError () {
+            float[] _rBuffer = new float[NeuronLayerGroups.NeuronLayers[NeuronLayerGroups.NeuronLayers.Length - 1].neurons.Length];
+            for (int n = 0; n < NeuronLayerGroups.NeuronLayers[NeuronLayerGroups.NeuronLayers.Length - 1].neurons.Length; n++) {
+                _rBuffer[n] = NeuronLayerGroups.NeuronLayers[NeuronLayerGroups.NeuronLayers.Length - 1].neurons[n].Error;
             }
             return _rBuffer;
         }
@@ -82,12 +89,18 @@ namespace gSeer {
             return ga.Mutate(this.LayerGroups, nlg);
         }
         /// <summary>
-        /// This will be used for while seer mutation
+        /// This will be used for seer mutation
         /// </summary>
         /// <param name="seer"></param>
         /// <returns></returns>
         public Seer MutateWith (Seer seer) {
-            throw new NotImplementedException();
+            return new Seer(Mutate(this.NeuronLayerGroups, seer.NeuronLayerGroups));
+        }
+        private BackPropagation SetThreadingMode(bool isMultiThreaded = false) {
+            if (isMultiThreaded)
+                return new BpMultiThread();
+            else
+                return new BpSingleThread();
         }
     }
 }
