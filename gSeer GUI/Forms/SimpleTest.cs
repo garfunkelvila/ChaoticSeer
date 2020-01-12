@@ -86,8 +86,8 @@ namespace Nice_Seer.Forms {
             pred2.Text = "1 :: Prediction: " + _pred2;
             pred3.Text = "1 :: Prediction: " + _pred3;
             pred4.Text = "1 :: Prediction: " + _pred4;
-            lblCorrect.Text = "Correct: 0 : err : " + _seer.getError()[0];
-            txbLogs.AppendText("err:" + _seer.getError()[0] + Environment.NewLine);
+            lblCorrect.Text = "Correct: 0 : err : " + _seer.GetError()[0];
+            txbLogs.AppendText("err:" + _seer.GetError()[0] + Environment.NewLine);
 
             l1n1w1.Text = _seer.NeuronLayerGroups.NeuronLayers[0].neurons[0].Weights[0].ToString();
             l1n1w2.Text = _seer.NeuronLayerGroups.NeuronLayers[0].neurons[0].Weights[1].ToString();
