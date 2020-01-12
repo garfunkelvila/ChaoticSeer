@@ -164,8 +164,24 @@ namespace gSeer.Neuron {
             return neuronLayerGroup;
         }
         #endregion
-        public void Epoch () {
-            //TODO
+        protected void Epoch () {
+            /// TODO
+        }
+        /// <summary>
+        /// This one stops execution on debug if NeuronLayerGroup scheme is different
+        /// </summary>
+        /// <param name="neuronLayerGroupX"></param>
+        /// <param name="neuronLayerGroupY"></param>
+        [Conditional("DEBUG")]
+        private void CheckNeuronLayerGroupScheme(NeuronLayerGroup neuronLayerGroupX, NeuronLayerGroup neuronLayerGroupY) {
+            /// Check if layers match
+            if (neuronLayerGroupX.NeuronLayers.Length != neuronLayerGroupY.NeuronLayers.Length)
+                throw new Exception("X and Y Should have the same number of layers.");
+            /// Match the number of neurons per layer
+            for (int i = 0; i < neuronLayerGroupX.NeuronLayers.Length; i++) {
+                if (neuronLayerGroupX.NeuronLayers[i].neurons.Length != neuronLayerGroupY.NeuronLayers[i].neurons.Length)
+                    throw new Exception("X and Y Should have the same number of layers.");
+            }
         }
     }
 }
