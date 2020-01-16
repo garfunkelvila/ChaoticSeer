@@ -41,11 +41,11 @@ namespace gSeer.Neuron {
 
             Parallel.For(0, neuronLayerX.neurons.Length, new ParallelOptions { MaxDegreeOfParallelism = 16 }, n => {
                 /// Mutate bias
-                if (rng.getRng() < mutationRate)
+                if (rng.GetRng() < mutationRate)
                     neuronLayerX.neurons[n].Bias = neuronLayerY.neurons[n].Bias;
                 /// Mutate weights
                 for (int w = 0; w < neuronLayerX.neurons[n].Weights.Length; w++) {
-                    if (rng.getRng() < mutationRate)
+                    if (rng.GetRng() < mutationRate)
                         neuronLayerX.neurons[n].Weights[w] = neuronLayerY.neurons[n].Weights[w];
                 }
             });
@@ -62,7 +62,7 @@ namespace gSeer.Neuron {
             Parallel.For(0, neuronLayerGroup.Length, new ParallelOptions { MaxDegreeOfParallelism = 2 }, nlG => {
                 for (int nL = 0; nL < neuronLayerGroup[nlG].NeuronLayers.Length; nL++) {
                     for (int n = 0; n < neuronLayerGroup[nlG].NeuronLayers[nL].neurons.Length; n++) {
-                        if (rng.getRng() < mutationRate)
+                        if (rng.GetRng() < mutationRate)
                             neuronLayerGroup[0].NeuronLayers[nL].neurons[n].Bias = neuronLayerGroup[nlG].NeuronLayers[nL].neurons[n].Bias;
                         for (int w = 0; w < neuronLayerGroup[0].NeuronLayers[nL].neurons[n].Weights.Length; w++) {
                             neuronLayerGroup[0].NeuronLayers[nL].neurons[n].Weights[w] = neuronLayerGroup[nlG].NeuronLayers[nL].neurons[n].Weights[w];
