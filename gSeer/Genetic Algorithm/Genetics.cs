@@ -89,14 +89,8 @@ namespace gSeer.Neuron {
         /// <param name="mutationRate">Rate of mutation</param>
         /// <returns>Returns the result of the mutation as a NeuronLayer</returns>
         protected NeuronLayer Mutate (NeuronLayer neuronLayerX, NeuronLayer neuronLayerY, float mutationRate = 0.5f) {
-            #region CHECKING
-#if DEBUG 
-            //Check if X and Y have thesame layout.
-            //Lazyness kicked in, I will just make a mutation that supports unequal layout sooner
-            if (neuronLayerX.neurons.Length != neuronLayerY.neurons.Length) throw new Exception("X and Y Should have thesame number of neurons.");
-            //TODO: Allow mutation for unequal neuron
-#endif
-            #endregion
+            CheckNeuronLayerScheme(neuronLayerX, neuronLayerY);
+
             Parallel.For(0, neuronLayerX.neurons.Length, new ParallelOptions { MaxDegreeOfParallelism = 16 }, n => {
                 //Mutate bias
                 if (rng.getRng() < mutationRate)
@@ -115,11 +109,7 @@ namespace gSeer.Neuron {
         //Neuron Layer Group
         //--------------------------------------------------------------------------------
         protected NeuronLayerGroup Mutate (NeuronLayerGroup[] neuronLayerGroup, float mutationRate = 0.01f) {
-            #region CHECKING
-#if DEBUG
-            if (neuronLayerGroup.Length == 1) throw new Exception("Cant be solo, use clone instead");
-#endif
-            #endregion
+            CheckNeuronLayerGroupScheme(neuronLayerGroup);
             Parallel.For(0, neuronLayerGroup.Length, new ParallelOptions { MaxDegreeOfParallelism = 2 }, nlG => {
                 for (int nL = 0; nL < neuronLayerGroup[nlG].NeuronLayers.Length; nL++) {
                     for (int n = 0; n < neuronLayerGroup[nlG].NeuronLayers[nL].neurons.Length; n++) {
