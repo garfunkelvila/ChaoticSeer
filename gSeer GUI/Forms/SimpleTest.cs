@@ -68,6 +68,7 @@ namespace Nice_Seer.Forms {
                     new float[1] { 0 }
                 )
             };
+        static Random rng;
         public SimpleTest() {
             InitializeComponent();
         }
