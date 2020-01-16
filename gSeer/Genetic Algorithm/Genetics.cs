@@ -149,26 +149,9 @@ namespace gSeer.Neuron {
             });
             return neuronLayerGroupX;
         }
-        #endregion
-        #endregion
-        #region Clone
-        public NeuronLayer Clone (NeuronLayer neuronLayer) {
-            //Literally just return itself, ensure that this is by value
-            return neuronLayer;
-        }
-        public NeuronLayerGroup Clone (NeuronLayerGroup neuronLayerGroup) {
-            //Literally just return itself, ensure that this is by value
-            return neuronLayerGroup;
-        }
-        #endregion
         protected void Epoch () {
             /// TODO
         }
-        /// <summary>
-        /// This one stops execution on debug if NeuronLayerGroup scheme is different
-        /// </summary>
-        /// <param name="neuronLayerGroupX"></param>
-        /// <param name="neuronLayerGroupY"></param>
 
         /// Debug Functions
         [Conditional("DEBUG")]
