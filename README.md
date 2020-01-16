@@ -34,5 +34,6 @@ Currently it can train to solve AND, NOT and XOR operators.
   * **Planet** - Contain Countries, will be used for mini batch. Will do it like this because I will make some gender mutation and mini batch mutate limitations.
   * **GenericSeer** - Just a seer constructor that only asks for input and output count. Layers, Neuron count will be based on system specs, input count and output count.
 ### Others
+  * **LearningRateDecay** - Make learning rate slowly go down based on back propagation changes/variables, I still need to make a formula for this one.
   * **Fitness** - Will hold generic fitness functions (Probably won't be needed as each specie will hold fitness field).
   * **Parser** - A kind of translator for network (numbers into binary, bitmap into RGB, and others)
