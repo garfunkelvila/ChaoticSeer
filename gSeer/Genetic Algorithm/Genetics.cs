@@ -149,9 +149,6 @@ namespace gSeer.Neuron {
             });
             return neuronLayerGroupX;
         }
-        protected void Epoch () {
-            /// TODO
-        }
 
         /// Debug Functions
         [Conditional("DEBUG")]
