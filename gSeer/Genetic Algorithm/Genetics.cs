@@ -82,7 +82,7 @@ namespace gSeer.Neuron {
             return neuronLayer[0];
         }
         /// <summary>
-        /// Mutate two layers
+        /// Use this to mutate two layers
         /// </summary>
         /// <param name="neuronLayerX">First</param>
         /// <param name="neuronLayerY">Second</param>
@@ -92,10 +92,10 @@ namespace gSeer.Neuron {
             CheckNeuronLayerScheme(neuronLayerX, neuronLayerY);
 
             Parallel.For(0, neuronLayerX.neurons.Length, new ParallelOptions { MaxDegreeOfParallelism = 16 }, n => {
-                //Mutate bias
+                /// Mutate bias
                 if (rng.getRng() < mutationRate)
                     neuronLayerX.neurons[n].Bias = neuronLayerY.neurons[n].Bias;
-                //Mutate weights
+                /// Mutate weights
                 for (int w = 0; w < neuronLayerX.neurons[n].Weights.Length; w++) {
                     if (rng.getRng() < mutationRate)
                         neuronLayerX.neurons[n].Weights[w] = neuronLayerY.neurons[n].Weights[w];
@@ -105,9 +105,12 @@ namespace gSeer.Neuron {
         }
         #endregion
         #region LayerGroup
-        //--------------------------------------------------------------------------------
-        //Neuron Layer Group
-        //--------------------------------------------------------------------------------
+        /// <summary>
+        /// Use this to mutate using neuron layer groups from different species where the first one is the dominante gene
+        /// </summary>
+        /// <param name="neuronLayerGroup"></param>
+        /// <param name="mutationRate"></param>
+        /// <returns></returns>
         protected NeuronLayerGroup Mutate (NeuronLayerGroup[] neuronLayerGroup, float mutationRate = 0.01f) {
             CheckNeuronLayerGroupScheme(neuronLayerGroup);
             Parallel.For(0, neuronLayerGroup.Length, new ParallelOptions { MaxDegreeOfParallelism = 2 }, nlG => {
@@ -125,7 +128,7 @@ namespace gSeer.Neuron {
         }
         protected NeuronLayerGroup Mutate (NeuronLayerGroup neuronLayerGroupX, NeuronLayerGroup neuronLayerGroupY, float mutationRate = 0.5f) {
             CheckNeuronLayerGroupScheme(neuronLayerGroupX, neuronLayerGroupY);
-            //TODO: Allow mutation for unequal neuron, just add warning
+            /// TODO: Allow mutation for unequal neuron, also add warning
             Parallel.For(0, neuronLayerGroupX.NeuronLayers.Length, new ParallelOptions { MaxDegreeOfParallelism = 2 }, nL => {
                 for (int n = 0; n < neuronLayerGroupX.NeuronLayers[nL].neurons.Length; n++) {
                     if (rng.getRng() < mutationRate) {
