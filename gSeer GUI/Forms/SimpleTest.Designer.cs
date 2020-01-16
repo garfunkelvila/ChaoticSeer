@@ -31,26 +31,26 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.l1n1w1 = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.l1n1w2 = new System.Windows.Forms.TextBox();
+            this.l1n1e = new System.Windows.Forms.TextBox();
             this.l1n1b = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.o1n1b = new System.Windows.Forms.TextBox();
-            this.o1n1w1 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.o1n1e = new System.Windows.Forms.TextBox();
+            this.o1n1b = new System.Windows.Forms.TextBox();
+            this.o1n1w2 = new System.Windows.Forms.TextBox();
+            this.o1n1w1 = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.l1n2w2 = new System.Windows.Forms.TextBox();
+            this.l1n2e = new System.Windows.Forms.TextBox();
             this.l1n2b = new System.Windows.Forms.TextBox();
             this.l1n2w1 = new System.Windows.Forms.TextBox();
-            this.o1n1w2 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.l1n1e = new System.Windows.Forms.TextBox();
-            this.l1n2e = new System.Windows.Forms.TextBox();
-            this.o1n1e = new System.Windows.Forms.TextBox();
             this.pred1 = new System.Windows.Forms.Label();
             this.pred2 = new System.Windows.Forms.Label();
             this.pred3 = new System.Windows.Forms.Label();
@@ -74,7 +74,7 @@
             // 
             this.trainLoop.Location = new System.Drawing.Point(222, 22);
             this.trainLoop.Maximum = new decimal(new int[] {
-            1000,
+            100000,
             0,
             0,
             0});
@@ -136,12 +136,37 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Input";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(74, 16);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(27, 13);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "Bias";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 16);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(41, 13);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Weight";
+            // 
             // l1n1w2
             // 
             this.l1n1w2.Location = new System.Drawing.Point(6, 58);
             this.l1n1w2.Name = "l1n1w2";
             this.l1n1w2.Size = new System.Drawing.Size(65, 20);
             this.l1n1w2.TabIndex = 5;
+            // 
+            // l1n1e
+            // 
+            this.l1n1e.Location = new System.Drawing.Point(77, 58);
+            this.l1n1e.Name = "l1n1e";
+            this.l1n1e.Size = new System.Drawing.Size(49, 20);
+            this.l1n1e.TabIndex = 5;
             // 
             // l1n1b
             // 
@@ -165,38 +190,6 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Output";
             // 
-            // o1n1b
-            // 
-            this.o1n1b.Location = new System.Drawing.Point(77, 32);
-            this.o1n1b.Name = "o1n1b";
-            this.o1n1b.Size = new System.Drawing.Size(49, 20);
-            this.o1n1b.TabIndex = 5;
-            // 
-            // o1n1w1
-            // 
-            this.o1n1w1.Location = new System.Drawing.Point(6, 32);
-            this.o1n1w1.Name = "o1n1w1";
-            this.o1n1w1.Size = new System.Drawing.Size(65, 20);
-            this.o1n1w1.TabIndex = 5;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 16);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 13);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "Weight";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(74, 16);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(27, 13);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "Bias";
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -214,6 +207,34 @@
             this.label4.Size = new System.Drawing.Size(41, 13);
             this.label4.TabIndex = 9;
             this.label4.Text = "Weight";
+            // 
+            // o1n1e
+            // 
+            this.o1n1e.Location = new System.Drawing.Point(77, 58);
+            this.o1n1e.Name = "o1n1e";
+            this.o1n1e.Size = new System.Drawing.Size(49, 20);
+            this.o1n1e.TabIndex = 5;
+            // 
+            // o1n1b
+            // 
+            this.o1n1b.Location = new System.Drawing.Point(77, 32);
+            this.o1n1b.Name = "o1n1b";
+            this.o1n1b.Size = new System.Drawing.Size(49, 20);
+            this.o1n1b.TabIndex = 5;
+            // 
+            // o1n1w2
+            // 
+            this.o1n1w2.Location = new System.Drawing.Point(6, 58);
+            this.o1n1w2.Name = "o1n1w2";
+            this.o1n1w2.Size = new System.Drawing.Size(65, 20);
+            this.o1n1w2.TabIndex = 5;
+            // 
+            // o1n1w1
+            // 
+            this.o1n1w1.Location = new System.Drawing.Point(6, 32);
+            this.o1n1w1.Name = "o1n1w1";
+            this.o1n1w1.Size = new System.Drawing.Size(65, 20);
+            this.o1n1w1.TabIndex = 5;
             // 
             // groupBox2
             // 
@@ -255,6 +276,13 @@
             this.l1n2w2.Size = new System.Drawing.Size(65, 20);
             this.l1n2w2.TabIndex = 5;
             // 
+            // l1n2e
+            // 
+            this.l1n2e.Location = new System.Drawing.Point(77, 58);
+            this.l1n2e.Name = "l1n2e";
+            this.l1n2e.Size = new System.Drawing.Size(49, 20);
+            this.l1n2e.TabIndex = 5;
+            // 
             // l1n2b
             // 
             this.l1n2b.Location = new System.Drawing.Point(77, 32);
@@ -269,13 +297,6 @@
             this.l1n2w1.Size = new System.Drawing.Size(65, 20);
             this.l1n2w1.TabIndex = 5;
             // 
-            // o1n1w2
-            // 
-            this.o1n1w2.Location = new System.Drawing.Point(6, 58);
-            this.o1n1w2.Name = "o1n1w2";
-            this.o1n1w2.Size = new System.Drawing.Size(65, 20);
-            this.o1n1w2.TabIndex = 5;
-            // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(141, 22);
@@ -285,27 +306,6 @@
             this.button1.Text = "Train";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // l1n1e
-            // 
-            this.l1n1e.Location = new System.Drawing.Point(77, 58);
-            this.l1n1e.Name = "l1n1e";
-            this.l1n1e.Size = new System.Drawing.Size(49, 20);
-            this.l1n1e.TabIndex = 5;
-            // 
-            // l1n2e
-            // 
-            this.l1n2e.Location = new System.Drawing.Point(77, 58);
-            this.l1n2e.Name = "l1n2e";
-            this.l1n2e.Size = new System.Drawing.Size(49, 20);
-            this.l1n2e.TabIndex = 5;
-            // 
-            // o1n1e
-            // 
-            this.o1n1e.Location = new System.Drawing.Point(77, 58);
-            this.o1n1e.Name = "o1n1e";
-            this.o1n1e.Size = new System.Drawing.Size(49, 20);
-            this.o1n1e.TabIndex = 5;
             // 
             // pred1
             // 
