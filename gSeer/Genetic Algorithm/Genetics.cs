@@ -169,6 +169,8 @@ namespace gSeer.Neuron {
         /// </summary>
         /// <param name="neuronLayerGroupX"></param>
         /// <param name="neuronLayerGroupY"></param>
+
+        /// Debug Functions
         [Conditional("DEBUG")]
         private void CheckNeuronLayerGroupScheme(NeuronLayerGroup neuronLayerGroupX, NeuronLayerGroup neuronLayerGroupY) {
             /// Check if layers match
@@ -179,6 +181,14 @@ namespace gSeer.Neuron {
                 if (neuronLayerGroupX.NeuronLayers[i].neurons.Length != neuronLayerGroupY.NeuronLayers[i].neurons.Length)
                     throw new Exception("X and Y Should have the same number of layers.");
             }
+        }
+        [Conditional("DEBUG")]
+        private void CheckNeuronLayerScheme(NeuronLayer neuronLayerX, NeuronLayer neuronLayerY) {
+            if (neuronLayerX.neurons.Length != neuronLayerY.neurons.Length) throw new Exception("X and Y Should have thesame number of neurons.");
+        }
+        [Conditional("DEBUG")]
+        private void CheckNeuronLayerGroupScheme(NeuronLayerGroup[] neuronLayerGroup) {
+            if (neuronLayerGroup.Length == 1) throw new Exception("Cant be solo, use clone instead");
         }
     }
 }
