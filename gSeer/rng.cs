@@ -11,6 +11,9 @@ namespace gSeer {
             return random.NextDouble();
         }
         internal static int getRngMinMax(int min, int max) {
+        internal static float GetRngF() {
+            return (float)random.NextDouble();
+        }
             return random.Next(min,max);
         }
     }
