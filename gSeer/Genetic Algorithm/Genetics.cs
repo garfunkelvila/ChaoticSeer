@@ -27,6 +27,8 @@ namespace gSeer.Neuron {
     /// This class contains method for mutations and maybe others.
     /// I did not expect this thing to get this messy. I havent tested this thing.
     /// Codes are based on CodeBullet's tutoral, with my customizations.
+    /// 
+    /// Formula: (wX * mBias) + (wY * rng).
     /// </summary>
     public abstract class Genetics {
         /// <summary>
@@ -34,9 +36,9 @@ namespace gSeer.Neuron {
         /// </summary>
         /// <param name="neuronLayerX">First</param>
         /// <param name="neuronLayerY">Second</param>
-        /// <param name="mutationRate">Rate of mutation</param>
+        /// <param name="mutationBias">Rate of mutation</param>
         /// <returns>Returns the result of the mutation as a NeuronLayer</returns>
-        protected NeuronLayer Mutate (NeuronLayer neuronLayerX, NeuronLayer neuronLayerY, float mutationRate = 0.5f) {
+        protected NeuronLayer Mutate (NeuronLayer neuronLayerX, NeuronLayer neuronLayerY, float mutationBias = 0.5f) {
             CheckNeuronLayerScheme(neuronLayerX, neuronLayerY);
 
             Parallel.For(0, neuronLayerX.neurons.Length, new ParallelOptions { MaxDegreeOfParallelism = 16 }, n => {
