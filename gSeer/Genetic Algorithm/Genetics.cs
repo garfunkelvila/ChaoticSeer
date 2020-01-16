@@ -29,58 +29,6 @@ namespace gSeer.Neuron {
     /// Codes are based on CodeBullet's tutoral, with my customizations.
     /// </summary>
     public abstract class Genetics {
-        #region Mutate
-        #region NeuronLayer
-        //--------------------------------------------------------------------------------
-        //Neuron Layer
-        //--------------------------------------------------------------------------------
-        /// <summary>
-        /// Mutuate the layer. First layer is the dominant layer. The default rate is 10%.
-        /// </summary>
-        /// <param name="neuronLayer">Layers to mutate</param>
-        /// <param name="mutationRate"></param>
-        /// <returns>Returns the result of the mutation as a NeuronLayer</returns>
-        protected NeuronLayer Mutate (NeuronLayer[] neuronLayer, float mutationRate = 0.01f) {
-            #region CHECKING
-#if DEBUG //Just checking thing even we know we just duplicate the template programatically
-            bool notMatch = false;
-            //Check if solo
-            if (neuronLayer.Length == 1) throw new Exception("neuronLayer Cant be solo, use clone instead");
-            
-            foreach (NeuronLayer nL in neuronLayer) {
-                //Check if neuron count per layer match don't math
-                if (nL.neurons.Length != neuronLayer[0].neurons.Length) {
-                    notMatch = true;
-                    break;
-                }
-                //Check if dendrites on current neuronLayer matches to each neuron dendrites in the first layer
-                foreach (Neuron n2 in nL.neurons) {
-                    foreach (Neuron n in neuronLayer[0].neurons) {
-                        if(n2.Dendrites.Length != n.Dendrites.Length) {
-                            notMatch = true;
-                            break;
-                        }
-                    }
-                    if (notMatch) break;
-                }
-            }
-            if (notMatch == true) throw new Exception("Layout doesn't match");
-#endif
-            #endregion
-            Parallel.For(0, neuronLayer.Length, nL => {
-                for (int n = 0; n < neuronLayer[nL].neurons.Length; n++) {
-                    //Mutate bias
-                    if (rng.getRng() < mutationRate)
-                        neuronLayer[0].neurons[n].Bias = neuronLayer[nL].neurons[n].Bias;
-                    //Mutate weights
-                    for (int w = 0; w < neuronLayer[0].neurons[n].Weights.Length; w++) {
-                        if (rng.getRng() < mutationRate)
-                            neuronLayer[0].neurons[n].Weights[w] = neuronLayer[nL].neurons[n].Weights[w];
-                    }
-                }
-            });
-            return neuronLayer[0];
-        }
         /// <summary>
         /// Use this to mutate two layers
         /// </summary>
@@ -103,8 +51,6 @@ namespace gSeer.Neuron {
             });
             return neuronLayerX;
         }
-        #endregion
-        #region LayerGroup
         /// <summary>
         /// Use this to mutate using neuron layer groups from different species where the first one is the dominante gene
         /// </summary>
