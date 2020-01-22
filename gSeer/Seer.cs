@@ -24,6 +24,7 @@ using gSeer.Neuron;
 
 namespace gSeer {
     public class Seer : Genetics {
+        public float Fitness { get; set; }
         public NeuronLayerGroup NeuronLayerGroups { get; private set; }
         readonly Back_Propagation.BackPropagation _BackPropagation;
 
