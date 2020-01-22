@@ -61,6 +61,7 @@
     <Compile Include="Back Propagation\BpMultiThread.cs" />
     <Compile Include="Back Propagation\BpSingleThread.cs" />
     <Compile Include="Back Propagation\BackPropagation.cs" />
+    <Compile Include="Genetic Algorithm\Country.cs" />
     <Compile Include="Neuron\Activation.cs" />
     <Compile Include="Neuron\ActivationFunction\Logistic.cs" />
     <Compile Include="Neuron\ActivationFunction\ReLU.cs" />
@@ -76,10 +77,6 @@
     <Compile Include="Neuron\Neuron.cs" />
     <Compile Include="Neuron\NeuronLayer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="LICENSE" />
-    <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
