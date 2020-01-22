@@ -26,15 +26,17 @@ namespace gSeer.Genetic_Algorithm {
         public Country(Seer _seer, int seerCount) {
             Seers = new Seer[seerCount];
             for (int i = 0; i < Seers.Length; i++) {
-                Seers[i] = _seer;
+                Seers[i] = _seer; // Need to make a template class for scheme. this one produces the same random seers
             }
         }
         /// <summary>
         /// Use this if there is a training data. Access the seer directly for
         /// the chaotic simulation thing.
         /// </summary>
-        public void Train(TrainingData trainingData) {
-
+        public void Train(TrainingData[] trainingData) {
+            CalcFitness(trainingData);
+            Array.Sort(Seers);
+            Console.WriteLine("Sorting Test");
         }
 
         /// <summary>
