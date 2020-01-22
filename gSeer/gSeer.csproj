@@ -71,6 +71,7 @@
     <Compile Include="Parsers\SeerParser.cs" />
     <Compile Include="rng.cs" />
     <Compile Include="Seer.cs" />
+    <Compile Include="TSeer.cs" />
     <Compile Include="TrainingData.cs" />
     <Compile Include="Genetic Algorithm\Genetics.cs" />
     <Compile Include="Neuron\NeuronLayerGroup.cs" />
@@ -90,5 +91,6 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
