@@ -38,6 +38,7 @@ namespace Nice_Seer.Forms {
         private void GeneticsTest_Load(object sender, EventArgs e) {
             InitializeSeers(10);
             FirstPrediction();
+            StartChaos();
         }
         private void InitializeSeers(int count) {
             txbLog.AppendText("Initializing Seer..." + Environment.NewLine);
@@ -62,7 +63,7 @@ namespace Nice_Seer.Forms {
         }
 
         private void StartChaos() {
-
+            nemic.Train(_xor);
         }
     }
 }
