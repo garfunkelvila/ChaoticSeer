@@ -24,7 +24,7 @@ Currently it can train to solve AND, NOT and XOR operators.
   * BackPropagation
     - [x] Gradient Descent BackPropagate (Tested on 2 layers 2 input and one output)
   * Genetics
-    - [ ] NeuronLayerGroup mutation functions
+    - [x] NeuronLayerGroup mutation functions (partial untested)
     - [ ] CNS mutation functions
     - [ ] Mutate Different NeuronLayerGroup layout
 ## Todo
