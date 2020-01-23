@@ -22,20 +22,35 @@ using System.Threading.Tasks;
 
 namespace gSeer {
     public class TSeer {
-        public T.NeuronLayerGroup neuronLayerGroup;
+        public readonly T.NeuronLayerGroup neuronLayerGroup;
+        public T.NeuronLayerGroup NeuronLayerGroups { get; private set; }
+
+        /// <summary>
+        /// Create a template based on given seer
+        /// </summary>
+        /// <param name="seer"></param>
         public TSeer(Seer seer) {
-            
+            NeuronLayerGroups = seer.NeuronLayerGroups.GetNeuronLayerGroup;
         }
     }
 }
 namespace gSeer.T {
     public class Neuron {
-        readonly int Dendrites;
+        int Dendrites { get; }  /// Neuron input
+        public Neuron(int dendritesCount) {
+            Dendrites = dendritesCount;
+        }
     }
     public class NeuronLayer {
-        public readonly Neuron[] neurons;
-        public NeuronLayer(Neuron[] neuron) {
-            neurons = neuron;
+        public Neuron[] Neurons { get; }
+        //public NeuronTypes NeuronType { get; }
+        public int InputCount { get; }
+        public NeuronLayer(int iCount, int nCount) {
+            Neurons = new Neuron[nCount];
+            InputCount = iCount;
+            for (int i = 0; i < nCount; i++) {
+                Neurons[i] = new T.Neuron(iCount);
+            }
         }
     }
     public class NeuronLayerGroup {

@@ -78,6 +78,16 @@ namespace gSeer.Neuron {
             Prediction = outputBuffer;
             //Add event soon
             return outputBuffer;
-        }        
+        } 
+        
+        public T.NeuronLayerGroup GetNeuronLayerGroup {
+            get {
+                T.NeuronLayer[] _neuronLayerGroup = new T.NeuronLayer[NeuronLayers.Length];
+                for (int i = 0; i < NeuronLayers.Length; i++) {
+                    _neuronLayerGroup[i] = NeuronLayers[i].GetNeuronLayer;
+                }
+                return new T.NeuronLayerGroup(_neuronLayerGroup);
+            }
+        }
     }
 }

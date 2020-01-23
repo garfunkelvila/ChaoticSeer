@@ -71,6 +71,11 @@ namespace gSeer.Neuron {
         public float AxonPrime() {
             return _activationFunction.GetDerv(NetPrediction);
         }
-        
+
+        public T.Neuron GetNeuron {
+            get {
+                return new T.Neuron(Dendrites.Length);
+            }
+        }
     }
 }
