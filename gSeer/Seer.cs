@@ -20,25 +20,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using gSeer.Back_Propagation;
+using gSeer.Genetic_Algorithm;
 using gSeer.Neuron;
 
 namespace gSeer {
-    public class Seer : Genetics {
+    public class Seer {
+		
         public float Fitness { get; set; }
         public NeuronLayerGroup NeuronLayerGroups { get; private set; }     /// I made it like this in preperation for CNS
         readonly BackPropagation _BackPropagation;
+		readonly Genetics _GA;	// might rename this to reprodoctive organ or something
 
-        /// <summary>
-        /// This seer creates a fully connected network. If you want to create a custom one, you may want to use Neuron, NeuronLayer and NeuronLayergroup to create what you want
-        /// </summary>
-        /// <param name="inputCount"></param>
-        /// <param name="outputCount"></param>
-        /// <param name="numLayers"></param>
-        /// <param name="mtBP">Use multi threading for back propagation?</param>
-        public Seer (int inputCount, int outputCount, int numLayers = 1, bool mtBP = false) {
-            _BackPropagation = SetThreadingMode(mtBP);
+		/// <summary>
+		/// This seer creates a fully connected network. If you want to create a custom one, you may want to use Neuron, NeuronLayer and NeuronLayergroup to create what you want
+		/// </summary>
+		/// <param name="inputCount"></param>
+		/// <param name="outputCount"></param>
+		/// <param name="numLayers"></param>
+		/// <param name="mtBP">Use multi threading for back propagation?</param>
+		public Seer (int inputCount, int outputCount, int numLayers = 1, bool mtBP = false, bool mtGA = false) {
+			_BackPropagation = SetThreadingMode(mtBP);
+			_GA = SetGAThreadingMode(mtGA);
 
-            NeuronLayer[] nL = new NeuronLayer[numLayers];
+			NeuronLayer[] nL = new NeuronLayer[numLayers];
             /// If single layer
             if (numLayers == 1) {
                 nL[0] = new NeuronLayer(inputCount, outputCount);
@@ -58,15 +62,18 @@ namespace gSeer {
         /// This one should only be used on mutations
         /// </summary>
         /// <param name="neuronLayerGroup"></param>
-        public Seer (NeuronLayerGroup neuronLayerGroup, bool mtBP = false) {
-            NeuronLayerGroups = neuronLayerGroup;
+        public Seer (NeuronLayerGroup neuronLayerGroup, bool mtBP = false, bool mtGA = false) {
+			_BackPropagation = SetThreadingMode(mtBP);
+			_GA = SetGAThreadingMode(mtGA);
+			NeuronLayerGroups = neuronLayerGroup;
         }
         /// <summary>
         /// Create a Seer based on a template
         /// </summary>
         /// <param name="tseer">Seer Template</param>
-        public Seer (TSeer tseer, bool mtBP = false) {
+        public Seer (TSeer tseer, bool mtBP = false, bool mtGA = false) {
 			_BackPropagation = SetThreadingMode(mtBP);
+			_GA = SetGAThreadingMode(mtGA);
 			NeuronLayerGroups = new NeuronLayerGroup(tseer.NeuronLayerGroup);
 		}
         public float[] Predict (float[] Sensories) {
@@ -95,7 +102,7 @@ namespace gSeer {
         /// <param name="seer"></param>
         /// <returns></returns>
         public Seer MutateWith (Seer seer) {
-            return new Seer(Mutate(this.NeuronLayerGroups, seer.NeuronLayerGroups));
+            return new Seer(_GA.Mutate(NeuronLayerGroups, seer.NeuronLayerGroups));
         }
         /// <summary>
         /// Relocate this thing somewhere else
@@ -108,5 +115,16 @@ namespace gSeer {
             else
                 return new BpSingleThread();
         }
-    }
+		/// <summary>
+		/// Relocate this thing somewhere else
+		/// </summary>
+		/// <param name="isMultiThreaded"></param>
+		/// <returns></returns>
+		private Genetics SetGAThreadingMode(bool isMultiThreaded = false) {
+			if (isMultiThreaded)
+				return new MutationMT();
+			else
+				return new MutationST();
+		}
+	}
 }
