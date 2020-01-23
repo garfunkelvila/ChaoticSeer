@@ -62,7 +62,7 @@ namespace gSeer.Back_Propagation {
             }
         }
 
-        public override void outputLayerBP(NeuronLayerGroup nlg, TrainingData tD) {
+        public override void OutputLayerBP(NeuronLayerGroup nlg, TrainingData tD) {
             int nLengh = nlg.NeuronLayers[nlg.NeuronLayers.Length - 1].Neurons.Length;
             Neuron.Neuron[] _cNeurons = nlg.NeuronLayers[nlg.NeuronLayers.Length - 1].Neurons;        //Singe this is one thing, just cache the layer. I think neurons will be faster
             Neuron.Neuron[] _bNeurons = nlg.NeuronLayers[nlg.NeuronLayers.Length - 1].Neurons;

@@ -26,12 +26,12 @@ namespace gSeer.Back_Propagation {
     abstract class BackPropagation {
         protected NeuronLayerGroup nlgBuffer;
         /// Try to polymorph the back propagation for multithreading
-        public abstract void outputLayerBP(NeuronLayerGroup nlg, TrainingData tD);
+        public abstract void OutputLayerBP(NeuronLayerGroup nlg, TrainingData tD);
         public abstract void HiddenLayerBP(NeuronLayerGroup nlg);
         public NeuronLayerGroup BackPropagate(NeuronLayerGroup neuronLayerGroup, TrainingData[] trainingData) {
             nlgBuffer = neuronLayerGroup;
             int tDr = Util.GetRngMinMax(0, trainingData.Length);
-            outputLayerBP(neuronLayerGroup, trainingData[tDr]);
+            OutputLayerBP(neuronLayerGroup, trainingData[tDr]);
             HiddenLayerBP(neuronLayerGroup);
             return this.nlgBuffer;
         }
