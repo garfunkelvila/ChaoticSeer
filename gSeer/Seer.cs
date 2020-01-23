@@ -26,7 +26,7 @@ namespace gSeer {
     public class Seer : Genetics {
         public float Fitness { get; set; }
         public NeuronLayerGroup NeuronLayerGroups { get; private set; }     /// I made it like this in preperation for CNS
-        readonly Back_Propagation.BackPropagation _BackPropagation;
+        readonly BackPropagation _BackPropagation;
 
         /// <summary>
         /// This seer creates a fully connected network. If you want to create a custom one, you may want to use Neuron, NeuronLayer and NeuronLayergroup to create what you want
