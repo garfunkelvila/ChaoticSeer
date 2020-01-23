@@ -61,7 +61,7 @@ namespace gSeer.Neuron {
 			}
 		}
 
-        public T.NeuronLayer GetNeuronLayer {
+        public T.NeuronLayer GetTNeuronLayer {
             get {
                 return new T.NeuronLayer(InputCount,Neurons.Length);
             }

@@ -90,11 +90,11 @@ namespace gSeer.Neuron {
             return outputBuffer;
         } 
         
-        public T.NeuronLayerGroup GetNeuronLayerGroup {
+        public T.NeuronLayerGroup GetTNeuronLayerGroup {
             get {
                 T.NeuronLayer[] _neuronLayerGroup = new T.NeuronLayer[NeuronLayers.Length];
                 for (int i = 0; i < NeuronLayers.Length; i++) {
-                    _neuronLayerGroup[i] = NeuronLayers[i].GetNeuronLayer;
+                    _neuronLayerGroup[i] = NeuronLayers[i].GetTNeuronLayer;
                 }
                 return new T.NeuronLayerGroup(_neuronLayerGroup);
             }

@@ -87,7 +87,7 @@ namespace gSeer.Neuron {
             return _activationFunction.GetDerv(NetPrediction);
         }
 
-        public T.Neuron GetNeuron {
+        public T.Neuron GetTNeuron {
             get {
                 return new T.Neuron(Dendrites.Length);
             }
