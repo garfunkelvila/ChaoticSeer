@@ -45,6 +45,21 @@ namespace gSeer.Neuron {
                 Neurons[i] = new Neuron(iCount, aF);
             }
         }
+		/// <summary>
+		/// Create a NeuronLayer based on template
+		/// </summary>
+		/// <param name="neuronLayer"></param>
+		public NeuronLayer (T.NeuronLayer neuronLayer) {
+			int nCount = neuronLayer.Neurons.Length;
+			int iCount = neuronLayer.InputCount;
+
+			Neurons = new Neuron[nCount];
+			InputCount = iCount;
+			for (int i = 0; i < nCount; i++) {
+				//Need to check if AF is passed correctly
+				Neurons[i] = new Neuron(iCount,neuronLayer.Neurons[i]._activationFunction);
+			}
+		}
 
         public T.NeuronLayer GetNeuronLayer {
             get {
