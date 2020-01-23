@@ -30,7 +30,7 @@ namespace gSeer.Back_Propagation {
                 Neuron.Neuron[] _bNeurons = nlg.NeuronLayers[nl].Neurons;
 
                 /// Calculation of the cost (error term). Hidden cost.
-                Parallel.For(0,nLengh, new ParallelOptions { MaxDegreeOfParallelism = 16 }, n => {
+                Parallel.For(0,nLengh, new ParallelOptions { MaxDegreeOfParallelism = Util.Cores }, n => {
                     float sumBuffer = 0;
                     Neuron.Neuron[] _oNeurons = nlg.NeuronLayers[nl + 1].Neurons;
 
@@ -41,7 +41,7 @@ namespace gSeer.Back_Propagation {
                 });
 
                 // WEIGHT UPDATE
-                Parallel.For(0, nLengh, new ParallelOptions { MaxDegreeOfParallelism = 16 }, n => {
+                Parallel.For(0, nLengh, new ParallelOptions { MaxDegreeOfParallelism = Util.Cores }, n => {
                     float nLearningRate = _cNeurons[n].LearningRate;
                     float d_Cost = 0;
 
@@ -70,12 +70,12 @@ namespace gSeer.Back_Propagation {
             nlg.Predict(tD.Input);  // Propagation forward through the network to generate the output value(s)
 
             /// Calculation of the cost (error term). Output cost for each output
-            Parallel.For(0, nLengh, new ParallelOptions { MaxDegreeOfParallelism = 16 }, n => {
+            Parallel.For(0, nLengh, new ParallelOptions { MaxDegreeOfParallelism = Util.Cores }, n => {
                 _cNeurons[n].Error = tD.Target[n] - _cNeurons[n].Prediction;
             });
 
             /// WEIGHT UPDATE FOR OUTPUT BUFFER LAYER
-            Parallel.For(0, nLengh, new ParallelOptions { MaxDegreeOfParallelism = 16 }, n => {
+            Parallel.For(0, nLengh, new ParallelOptions { MaxDegreeOfParallelism = Util.Cores }, n => {
                 float lr = _cNeurons[n].LearningRate;
                 float d_Cost = 0;
 

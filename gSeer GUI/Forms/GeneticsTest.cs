@@ -41,6 +41,8 @@ namespace Nice_Seer.Forms {
             StartChaos();
         }
         private void InitializeSeers(int count) {
+			txbLog.AppendText("Cores" + Environment.ProcessorCount + Environment.NewLine);
+
             txbLog.AppendText("Initializing Seer..." + Environment.NewLine);
 			/// Use the template converter to create a template from newly created seer
 			Seer _TestSeer = new Seer(2, 1, 2);

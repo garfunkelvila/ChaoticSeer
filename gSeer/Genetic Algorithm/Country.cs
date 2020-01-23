@@ -46,7 +46,7 @@ namespace gSeer.Genetic_Algorithm {
         /// <returns></returns>
         public float[][] Predict(float[] Sensories) {
             float[][] _predBuffer = new float[Seers.Length][];
-			Parallel.For(0, Seers.Length, new ParallelOptions { MaxDegreeOfParallelism = 16 }, i => {
+			Parallel.For(0, Seers.Length, new ParallelOptions { MaxDegreeOfParallelism = Util.Cores }, i => {
 			    _predBuffer[i] = Seers[i].Predict(Sensories);
 			});
             return _predBuffer;
@@ -62,7 +62,7 @@ namespace gSeer.Genetic_Algorithm {
             /// calculation with others
 
             /// Loop through seers in parallel
-            Parallel.For(0, Seers.Length, new ParallelOptions { MaxDegreeOfParallelism = 16 }, i => {
+            Parallel.For(0, Seers.Length, new ParallelOptions { MaxDegreeOfParallelism = Util.Cores }, i => {
                 float _fitnessBuffer = 0.0f;
                 /// Loop through training data
                 for (int iTd = 0; iTd < td.Length; iTd++) {
