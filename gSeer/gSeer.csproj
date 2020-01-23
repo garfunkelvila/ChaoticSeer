@@ -69,7 +69,6 @@
     <Compile Include="Neuron\ActivationFunction\TanH.cs" />
     <Compile Include="Genetic Algorithm\Selection.cs" />
     <Compile Include="Parsers\SeerParser.cs" />
-    <Compile Include="rng.cs" />
     <Compile Include="Seer.cs" />
     <Compile Include="TSeer.cs" />
     <Compile Include="TrainingData.cs" />
