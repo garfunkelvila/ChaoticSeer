@@ -25,7 +25,7 @@ using gSeer.Neuron.ActivationFunction;
 namespace gSeer.Neuron {
     public class Neuron {
         public Activation _activationFunction { get; } //I assume that when this thing is readonly, affected scripts will skip jump instructions except the one with random
-        readonly public float LearningRate;    // This is for mutation too
+        public float LearningRate { get; }    // This is for mutation too
 
         public float[] Dendrites { get; set; }
         public float[] Weights { get; set; }
