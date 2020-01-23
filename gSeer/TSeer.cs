@@ -23,7 +23,7 @@ using System.Threading.Tasks;
 
 namespace gSeer {
     public class TSeer {
-        public readonly T.NeuronLayerGroup neuronLayerGroup;
+        public T.NeuronLayerGroup NeuronLayerGroup { get; }
         public T.NeuronLayerGroup NeuronLayerGroups { get; }
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace gSeer {
         /// </summary>
         /// <param name="seer"></param>
         public TSeer(Seer seer) {
-            NeuronLayerGroups = seer.NeuronLayerGroups.GetTNeuronLayerGroup;
+            NeuronLayerGroup = seer.NeuronLayerGroups.GetTNeuronLayerGroup;
         }
     }
 }

@@ -67,7 +67,7 @@ namespace gSeer {
         /// <param name="tseer">Seer Template</param>
         public Seer (TSeer tseer, bool mtBP = false) {
 			_BackPropagation = SetThreadingMode(mtBP);
-			NeuronLayerGroups = new NeuronLayerGroup(tseer.neuronLayerGroup);
+			NeuronLayerGroups = new NeuronLayerGroup(tseer.NeuronLayerGroup);
 		}
         public float[] Predict (float[] Sensories) {
             return NeuronLayerGroups.Predict(Sensories);

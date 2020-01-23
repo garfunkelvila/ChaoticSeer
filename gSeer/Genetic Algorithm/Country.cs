@@ -23,10 +23,10 @@ namespace gSeer.Genetic_Algorithm {
     public class Country {
         /// I might need an indexer for the fitness function
         public Seer[] Seers { get; }
-        public Country(Seer _seer, int seerCount) {
+        public Country(TSeer _seer, int seerCount) {
             Seers = new Seer[seerCount];
             for (int i = 0; i < Seers.Length; i++) {
-                Seers[i] = _seer; // Need to make a template class for scheme. this one produces the same random seers
+                Seers[i] = new Seer(_seer);
             }
         }
         /// <summary>
@@ -34,8 +34,8 @@ namespace gSeer.Genetic_Algorithm {
         /// the chaotic simulation thing.
         /// </summary>
         public void Train(TrainingData[] trainingData) {
-            CalcFitness(trainingData);
-            Array.Sort(Seers);
+            CalcFitness(trainingData );
+            //Array.Sort(Seers);
             Console.WriteLine("Sorting Test");
         }
 
@@ -46,9 +46,9 @@ namespace gSeer.Genetic_Algorithm {
         /// <returns></returns>
         public float[][] Predict(float[] Sensories) {
             float[][] _predBuffer = new float[Seers.Length][];
-            Parallel.For(0, Seers.Length, new ParallelOptions { MaxDegreeOfParallelism = 16 }, i => {
-                _predBuffer[i] = Seers[i].Predict(Sensories);
-            });
+			Parallel.For(0, Seers.Length, new ParallelOptions { MaxDegreeOfParallelism = 16 }, i => {
+			    _predBuffer[i] = Seers[i].Predict(Sensories);
+			});
             return _predBuffer;
         }
         /// <summary>
