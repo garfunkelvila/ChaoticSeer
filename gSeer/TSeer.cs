@@ -23,7 +23,7 @@ using System.Threading.Tasks;
 namespace gSeer {
     public class TSeer {
         public readonly T.NeuronLayerGroup neuronLayerGroup;
-        public T.NeuronLayerGroup NeuronLayerGroups { get; private set; }
+        public T.NeuronLayerGroup NeuronLayerGroups { get; }
 
         /// <summary>
         /// Create a template based on given seer
@@ -36,8 +36,9 @@ namespace gSeer {
 }
 namespace gSeer.T {
     public class Neuron {
-        int Dendrites { get; }  /// Neuron input
-        public Neuron(int dendritesCount) {
+        public int Dendrites { get; }  /// Neuron input
+		public gSeer.Neuron.Activation _activationFunction { get; }
+		public Neuron(int dendritesCount, gSeer.Neuron.Activation aF = null) {
             Dendrites = dendritesCount;
         }
     }
