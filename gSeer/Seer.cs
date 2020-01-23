@@ -61,13 +61,17 @@ namespace gSeer {
         public Seer (NeuronLayerGroup neuronLayerGroup, bool mtBP = false) {
             NeuronLayerGroups = neuronLayerGroup;
         }
+        /// <summary>
+        /// Create a Seer based on a template
+        /// </summary>
+        /// <param name="tseer">Seer Template</param>
         public Seer (TSeer tseer, bool mtBP = false) {
 			_BackPropagation = SetThreadingMode(mtBP);
 			NeuronLayerGroups = new NeuronLayerGroup(tseer.neuronLayerGroup);
 		}
         public float[] Predict (float[] Sensories) {
             return NeuronLayerGroups.Predict(Sensories);
-            /// This thing is supposed to raise an event when finished. But instead, I just return the value xD
+            /// This thing is supposed to raise an event when finisheed. But instead, I just return the value xD
             /// Will add event feature soon
         }
 
