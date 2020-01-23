@@ -33,13 +33,23 @@ namespace gSeer.Neuron {
         public NeuronLayerGroup (NeuronLayer[] nLayers) {
             NeuronLayers = nLayers;
         }
-        #endregion
-        /// <summary>
-        /// Returns the prediction and also put it into its property
-        /// </summary>
-        /// <param name="Inputs">Input data</param>
-        /// <returns>Returns the prediction of the group</returns>
-        public float[] Predict (float[] Inputs) {
+
+		public NeuronLayerGroup (T.NeuronLayerGroup neuronLayerGroup) {
+			NeuronLayer[] nL = new NeuronLayer[neuronLayerGroup.neuronLayers.Length];
+
+			for (int i = 0; i < nL.Length; i++) {
+				nL[i] = new NeuronLayer(neuronLayerGroup.neuronLayers[i]);
+			}
+
+			NeuronLayers = nL;
+		}
+		#endregion
+		/// <summary>
+		/// Returns the prediction and also put it into its property
+		/// </summary>
+		/// <param name="Inputs">Input data</param>
+		/// <returns>Returns the prediction of the group</returns>
+		public float[] Predict (float[] Inputs) {
             float[] outputBuffer;
             // Feed the inputs to the input layer
             for (int n = 0; n < NeuronLayers[0].Neurons.Length; n++) {
