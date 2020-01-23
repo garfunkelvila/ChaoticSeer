@@ -41,7 +41,7 @@ namespace gSeer.Neuron {
         protected NeuronLayer Mutate (NeuronLayer neuronLayerX, NeuronLayer neuronLayerY, float mutationBias = 0.5f) {
             CheckNeuronLayerScheme(neuronLayerX, neuronLayerY);
 
-			Parallel.For(0, neuronLayerX.Neurons.Length, new ParallelOptions { MaxDegreeOfParallelism = Util.Cores }, (Action<int>)(n => {
+			Parallel.For(0, neuronLayerX.Neurons.Length, new ParallelOptions { MaxDegreeOfParallelism = Util.Cores }, (n => {
                 neuronLayerX.Neurons[n].Bias =
                     (neuronLayerX.Neurons[n].Bias * mutationBias) +
                     (neuronLayerY.Neurons[n].Bias * Util.GetRngF());
@@ -61,7 +61,7 @@ namespace gSeer.Neuron {
         /// <returns></returns>
         protected NeuronLayerGroup Mutate (NeuronLayerGroup[] neuronLayerGroup, float mutationBias = 0.01f) {
             CheckNeuronLayerGroupScheme(neuronLayerGroup);
-			Parallel.For(0, neuronLayerGroup.Length, new ParallelOptions { MaxDegreeOfParallelism = Util.Cores }, (Action<int>)(nlG => {
+			Parallel.For(0, neuronLayerGroup.Length, new ParallelOptions { MaxDegreeOfParallelism = Util.Cores }, (nlG => {
                 for (int nL = 0; nL < neuronLayerGroup[nlG].NeuronLayers.Length; nL++) {
                     for (int n = 0; n < neuronLayerGroup[nlG].NeuronLayers[nL].Neurons.Length; n++) {
                         neuronLayerGroup[0].NeuronLayers[nL].Neurons[n].Bias =
