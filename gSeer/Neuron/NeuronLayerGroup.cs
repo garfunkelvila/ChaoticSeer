@@ -42,15 +42,15 @@ namespace gSeer.Neuron {
         public float[] Predict (float[] Inputs) {
             float[] outputBuffer;
             // Feed the inputs to the input layer
-            for (int n = 0; n < NeuronLayers[0].neurons.Length; n++) {
-                for (int d = 0; d < NeuronLayers[0].neurons[n].Dendrites.Length; d++) {
-                    NeuronLayers[0].neurons[n].Dendrites[d] = Inputs[d];
+            for (int n = 0; n < NeuronLayers[0].Neurons.Length; n++) {
+                for (int d = 0; d < NeuronLayers[0].Neurons[n].Dendrites.Length; d++) {
+                    NeuronLayers[0].Neurons[n].Dendrites[d] = Inputs[d];
                 }
             }
             // Cache the prediction for the input layer
-            outputBuffer = new float[NeuronLayers[0].neurons.Length];
+            outputBuffer = new float[NeuronLayers[0].Neurons.Length];
             for (int oB = 0; oB < outputBuffer.Length; oB++) {
-                outputBuffer[oB] = NeuronLayers[0].neurons[oB].Axon();
+                outputBuffer[oB] = NeuronLayers[0].Neurons[oB].Axon();
             }
 
             // Return if it is just a single layer
@@ -61,19 +61,19 @@ namespace gSeer.Neuron {
             // Loop through each next layer
             for (int nL = 1; nL < NeuronLayers.Length; nL++) {
                 // Feed the current layer the prediction of last layer
-                for (int n = 0; n < NeuronLayers[nL].neurons.Length; n++) {
-                    for (int d = 0; d < NeuronLayers[nL].neurons[n].Dendrites.Length; d++) {
-                        NeuronLayers[nL].neurons[n].Dendrites[d] = NeuronLayers[nL - 1].neurons[d].Prediction;
+                for (int n = 0; n < NeuronLayers[nL].Neurons.Length; n++) {
+                    for (int d = 0; d < NeuronLayers[nL].Neurons[n].Dendrites.Length; d++) {
+                        NeuronLayers[nL].Neurons[n].Dendrites[d] = NeuronLayers[nL - 1].Neurons[d].Prediction;
                     }
                 }
                 // Cache the prediction for the input layer
-                for (int oB = 0; oB < NeuronLayers[nL].neurons.Length; oB++) {
-                    NeuronLayers[nL].neurons[oB].Axon();
+                for (int oB = 0; oB < NeuronLayers[nL].Neurons.Length; oB++) {
+                    NeuronLayers[nL].Neurons[oB].Axon();
                 }
             }
-            outputBuffer = new float[NeuronLayers[NeuronLayers.Length - 1].neurons.Length];
-            for (int n = 0; n < NeuronLayers[NeuronLayers.Length - 1].neurons.Length; n++) {
-                outputBuffer[n] = NeuronLayers[NeuronLayers.Length - 1].neurons[n].Prediction;
+            outputBuffer = new float[NeuronLayers[NeuronLayers.Length - 1].Neurons.Length];
+            for (int n = 0; n < NeuronLayers[NeuronLayers.Length - 1].Neurons.Length; n++) {
+                outputBuffer[n] = NeuronLayers[NeuronLayers.Length - 1].Neurons[n].Prediction;
             }
             Prediction = outputBuffer;
             //Add event soon

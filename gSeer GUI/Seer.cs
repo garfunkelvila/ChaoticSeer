@@ -48,9 +48,9 @@ namespace Nice_Seer {
         }
 
         public float[] getError () {
-            float[] _rBuffer = new float[nlg.NeuronLayers[nlg.NeuronLayers.Length - 1].neurons.Length];
-            for (int n = 0; n < nlg.NeuronLayers[nlg.NeuronLayers.Length - 1].neurons.Length; n++) {
-                _rBuffer[n] = nlg.NeuronLayers[nlg.NeuronLayers.Length - 1].neurons[n].Error;
+            float[] _rBuffer = new float[nlg.NeuronLayers[nlg.NeuronLayers.Length - 1].Neurons.Length];
+            for (int n = 0; n < nlg.NeuronLayers[nlg.NeuronLayers.Length - 1].Neurons.Length; n++) {
+                _rBuffer[n] = nlg.NeuronLayers[nlg.NeuronLayers.Length - 1].Neurons[n].Error;
             }
             return _rBuffer;
         }

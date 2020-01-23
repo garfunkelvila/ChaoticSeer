@@ -28,20 +28,20 @@ namespace gSeer.Neuron {
         Inter = 2,      //BP Related Logistic, or TanH
         Motor = 3       //BP Related Logistic, TanH, or Step
     }
-    public class NeuronLayer{
-        readonly public Neuron[] neurons;
-        readonly public NeuronTypes neuronType;
-        readonly public int InputCount;
+    public class NeuronLayer {
+        public Neuron[] Neurons { get; }
+        public NeuronTypes NeuronType { get; }
+        public int InputCount { get; }
         /// <summary>
         /// Creates a layer filled with neurons
         /// </summary>
         /// <param name="iCount">Input count</param>
         /// <param name="nCount"></param>
         public NeuronLayer (int iCount, int nCount) {
-            neurons = new Neuron[nCount];
+            Neurons = new Neuron[nCount];
             InputCount = iCount;
             for (int i = 0; i < nCount; i++) {
-                neurons[i] = new Neuron(iCount);
+                Neurons[i] = new Neuron(iCount);
             }
         }
         /// <summary>
@@ -54,10 +54,10 @@ namespace gSeer.Neuron {
             /// <see cref="Neuron.Neuron(int, Activation)"/>
             if (aF == null) aF = new Logistic();
 
-            neurons = new Neuron[nCount];
+            Neurons = new Neuron[nCount];
             InputCount = iCount;
             for (int i = 0; i < nCount; i++) {
-                neurons[i] = new Neuron(iCount, aF);
+                Neurons[i] = new Neuron(iCount, aF);
             }
         }
     }

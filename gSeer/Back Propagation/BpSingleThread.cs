@@ -25,14 +25,14 @@ namespace gSeer.Back_Propagation {
     class BpSingleThread : BackPropagation {
         public override void HiddenLayerBP(NeuronLayerGroup nlg) {
             for (int nl = nlg.NeuronLayers.Length - 2; nl >= 0; nl--) {  //Start from second to last
-                int nLengh = nlg.NeuronLayers[nl].neurons.Length;
-                Neuron.Neuron[] _cNeurons = nlg.NeuronLayers[nl].neurons;
-                Neuron.Neuron[] _bNeurons = nlg.NeuronLayers[nl].neurons;
+                int nLengh = nlg.NeuronLayers[nl].Neurons.Length;
+                Neuron.Neuron[] _cNeurons = nlg.NeuronLayers[nl].Neurons;
+                Neuron.Neuron[] _bNeurons = nlg.NeuronLayers[nl].Neurons;
 
                 /// Calculation of the cost (error term). Hidden cost.
                 for (int n = 0; n < nLengh; n++) { //Current Layer Neuron loop
                     float sumBuffer = 0;
-                    Neuron.Neuron[] _oNeurons = nlg.NeuronLayers[nl + 1].neurons;
+                    Neuron.Neuron[] _oNeurons = nlg.NeuronLayers[nl + 1].Neurons;
 
 
                     for (int en = 0; en < _oNeurons.Length; en++) {  // Last layer error loop
@@ -56,16 +56,16 @@ namespace gSeer.Back_Propagation {
                 }
                 // COPY TO BUFFER
                 for (int n = 0; n < _cNeurons.Length; n++) {
-                    nlgBuffer.NeuronLayers[nl].neurons[n].Bias = _bNeurons[n].Bias;
-                    nlgBuffer.NeuronLayers[nl].neurons[n].Weights = _bNeurons[n].Weights;
+                    nlgBuffer.NeuronLayers[nl].Neurons[n].Bias = _bNeurons[n].Bias;
+                    nlgBuffer.NeuronLayers[nl].Neurons[n].Weights = _bNeurons[n].Weights;
                 }
             }
         }
 
         public override void outputLayerBP(NeuronLayerGroup nlg, TrainingData tD) {
-            int nLengh = nlg.NeuronLayers[nlg.NeuronLayers.Length - 1].neurons.Length;
-            Neuron.Neuron[] _cNeurons = nlg.NeuronLayers[nlg.NeuronLayers.Length - 1].neurons;        //Singe this is one thing, just cache the layer. I think neurons will be faster
-            Neuron.Neuron[] _bNeurons = nlg.NeuronLayers[nlg.NeuronLayers.Length - 1].neurons;
+            int nLengh = nlg.NeuronLayers[nlg.NeuronLayers.Length - 1].Neurons.Length;
+            Neuron.Neuron[] _cNeurons = nlg.NeuronLayers[nlg.NeuronLayers.Length - 1].Neurons;        //Singe this is one thing, just cache the layer. I think neurons will be faster
+            Neuron.Neuron[] _bNeurons = nlg.NeuronLayers[nlg.NeuronLayers.Length - 1].Neurons;
 
             nlg.Predict(tD.Input);  // Propagation forward through the network to generate the output value(s)
 
@@ -90,8 +90,8 @@ namespace gSeer.Back_Propagation {
             }
             // COPY TO BUFFER
             for (int n = 0; n < _cNeurons.Length; n++) {
-                nlgBuffer.NeuronLayers[nlg.NeuronLayers.Length - 1].neurons[n].Bias = _bNeurons[n].Bias;
-                nlgBuffer.NeuronLayers[nlg.NeuronLayers.Length - 1].neurons[n].Weights = _bNeurons[n].Weights;
+                nlgBuffer.NeuronLayers[nlg.NeuronLayers.Length - 1].Neurons[n].Bias = _bNeurons[n].Bias;
+                nlgBuffer.NeuronLayers[nlg.NeuronLayers.Length - 1].Neurons[n].Weights = _bNeurons[n].Weights;
             }
         }
     }

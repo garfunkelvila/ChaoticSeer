@@ -74,9 +74,9 @@ namespace gSeer {
         }
 
         public float[] GetError () {
-            float[] _rBuffer = new float[NeuronLayerGroups.NeuronLayers[NeuronLayerGroups.NeuronLayers.Length - 1].neurons.Length];
-            for (int n = 0; n < NeuronLayerGroups.NeuronLayers[NeuronLayerGroups.NeuronLayers.Length - 1].neurons.Length; n++) {
-                _rBuffer[n] = NeuronLayerGroups.NeuronLayers[NeuronLayerGroups.NeuronLayers.Length - 1].neurons[n].Error;
+            float[] _rBuffer = new float[NeuronLayerGroups.NeuronLayers[NeuronLayerGroups.NeuronLayers.Length - 1].Neurons.Length];
+            for (int n = 0; n < NeuronLayerGroups.NeuronLayers[NeuronLayerGroups.NeuronLayers.Length - 1].Neurons.Length; n++) {
+                _rBuffer[n] = NeuronLayerGroups.NeuronLayers[NeuronLayerGroups.NeuronLayers.Length - 1].Neurons[n].Error;
             }
             return _rBuffer;
         }

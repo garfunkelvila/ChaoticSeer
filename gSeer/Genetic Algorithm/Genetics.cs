@@ -41,14 +41,14 @@ namespace gSeer.Neuron {
         protected NeuronLayer Mutate (NeuronLayer neuronLayerX, NeuronLayer neuronLayerY, float mutationBias = 0.5f) {
             CheckNeuronLayerScheme(neuronLayerX, neuronLayerY);
 
-            Parallel.For(0, neuronLayerX.neurons.Length, new ParallelOptions { MaxDegreeOfParallelism = 16 }, n => {
-                neuronLayerX.neurons[n].Bias =
-                    (neuronLayerX.neurons[n].Bias * mutationBias) +
-                    (neuronLayerY.neurons[n].Bias * rng.GetRngF());
-                for (int w = 0; w < neuronLayerX.neurons[n].Weights.Length; w++) {
-                    neuronLayerX.neurons[n].Weights[w] =
-                        (neuronLayerX.neurons[n].Weights[w] * mutationBias) +
-                        (neuronLayerY.neurons[n].Weights[w] * rng.GetRngF());
+            Parallel.For(0, neuronLayerX.Neurons.Length, new ParallelOptions { MaxDegreeOfParallelism = 16 }, n => {
+                neuronLayerX.Neurons[n].Bias =
+                    (neuronLayerX.Neurons[n].Bias * mutationBias) +
+                    (neuronLayerY.Neurons[n].Bias * rng.GetRngF());
+                for (int w = 0; w < neuronLayerX.Neurons[n].Weights.Length; w++) {
+                    neuronLayerX.Neurons[n].Weights[w] =
+                        (neuronLayerX.Neurons[n].Weights[w] * mutationBias) +
+                        (neuronLayerY.Neurons[n].Weights[w] * rng.GetRngF());
                 }
             });
             return neuronLayerX;
@@ -63,14 +63,14 @@ namespace gSeer.Neuron {
             CheckNeuronLayerGroupScheme(neuronLayerGroup);
             Parallel.For(0, neuronLayerGroup.Length, new ParallelOptions { MaxDegreeOfParallelism = 2 }, nlG => {
                 for (int nL = 0; nL < neuronLayerGroup[nlG].NeuronLayers.Length; nL++) {
-                    for (int n = 0; n < neuronLayerGroup[nlG].NeuronLayers[nL].neurons.Length; n++) {
-                        neuronLayerGroup[0].NeuronLayers[nL].neurons[n].Bias =
-                            (neuronLayerGroup[0].NeuronLayers[nL].neurons[n].Bias * mutationBias) +
-                            (neuronLayerGroup[nlG].NeuronLayers[nL].neurons[n].Bias * rng.GetRngF());
-                        for (int w = 0; w < neuronLayerGroup[0].NeuronLayers[nL].neurons[n].Weights.Length; w++) {
-                            neuronLayerGroup[0].NeuronLayers[nL].neurons[n].Weights[w] =
-                                (neuronLayerGroup[0].NeuronLayers[nL].neurons[n].Weights[w] * mutationBias) + 
-                                (neuronLayerGroup[nlG].NeuronLayers[nL].neurons[n].Weights[w] * rng.GetRngF());
+                    for (int n = 0; n < neuronLayerGroup[nlG].NeuronLayers[nL].Neurons.Length; n++) {
+                        neuronLayerGroup[0].NeuronLayers[nL].Neurons[n].Bias =
+                            (neuronLayerGroup[0].NeuronLayers[nL].Neurons[n].Bias * mutationBias) +
+                            (neuronLayerGroup[nlG].NeuronLayers[nL].Neurons[n].Bias * rng.GetRngF());
+                        for (int w = 0; w < neuronLayerGroup[0].NeuronLayers[nL].Neurons[n].Weights.Length; w++) {
+                            neuronLayerGroup[0].NeuronLayers[nL].Neurons[n].Weights[w] =
+                                (neuronLayerGroup[0].NeuronLayers[nL].Neurons[n].Weights[w] * mutationBias) + 
+                                (neuronLayerGroup[nlG].NeuronLayers[nL].Neurons[n].Weights[w] * rng.GetRngF());
                         }
                     }
                 }
@@ -81,15 +81,15 @@ namespace gSeer.Neuron {
             CheckNeuronLayerGroupScheme(neuronLayerGroupX, neuronLayerGroupY);
             /// TODO: Allow mutation for unequal neuron, also add warning
             Parallel.For(0, neuronLayerGroupX.NeuronLayers.Length, new ParallelOptions { MaxDegreeOfParallelism = 2 }, nL => {
-                for (int n = 0; n < neuronLayerGroupX.NeuronLayers[nL].neurons.Length; n++) {
+                for (int n = 0; n < neuronLayerGroupX.NeuronLayers[nL].Neurons.Length; n++) {
                     /// I might use polymorphism here for the mutation algorithm
-                    neuronLayerGroupX.NeuronLayers[nL].neurons[n].Bias =
-                        (neuronLayerGroupX.NeuronLayers[nL].neurons[n].Bias * mutationBias) +
-                        (neuronLayerGroupY.NeuronLayers[nL].neurons[n].Bias * rng.GetRngF());
-                    for (int w = 0; w < neuronLayerGroupX.NeuronLayers[nL].neurons[n].Weights.Length; w++) {
-                        neuronLayerGroupX.NeuronLayers[nL].neurons[n].Weights[w] =
-                            (neuronLayerGroupX.NeuronLayers[nL].neurons[n].Weights[w] * mutationBias) +
-                            (neuronLayerGroupY.NeuronLayers[nL].neurons[n].Weights[w] * rng.GetRngF());
+                    neuronLayerGroupX.NeuronLayers[nL].Neurons[n].Bias =
+                        (neuronLayerGroupX.NeuronLayers[nL].Neurons[n].Bias * mutationBias) +
+                        (neuronLayerGroupY.NeuronLayers[nL].Neurons[n].Bias * rng.GetRngF());
+                    for (int w = 0; w < neuronLayerGroupX.NeuronLayers[nL].Neurons[n].Weights.Length; w++) {
+                        neuronLayerGroupX.NeuronLayers[nL].Neurons[n].Weights[w] =
+                            (neuronLayerGroupX.NeuronLayers[nL].Neurons[n].Weights[w] * mutationBias) +
+                            (neuronLayerGroupY.NeuronLayers[nL].Neurons[n].Weights[w] * rng.GetRngF());
                     }
                 }
             });
@@ -104,13 +104,13 @@ namespace gSeer.Neuron {
                 throw new Exception("X and Y Should have the same number of layers.");
             /// Match the number of neurons per layer
             for (int i = 0; i < neuronLayerGroupX.NeuronLayers.Length; i++) {
-                if (neuronLayerGroupX.NeuronLayers[i].neurons.Length != neuronLayerGroupY.NeuronLayers[i].neurons.Length)
+                if (neuronLayerGroupX.NeuronLayers[i].Neurons.Length != neuronLayerGroupY.NeuronLayers[i].Neurons.Length)
                     throw new Exception("X and Y Should have the same number of layers.");
             }
         }
         [Conditional("DEBUG")]
         private void CheckNeuronLayerScheme(NeuronLayer neuronLayerX, NeuronLayer neuronLayerY) {
-            if (neuronLayerX.neurons.Length != neuronLayerY.neurons.Length) throw new Exception("X and Y Should have thesame number of neurons.");
+            if (neuronLayerX.Neurons.Length != neuronLayerY.Neurons.Length) throw new Exception("X and Y Should have thesame number of neurons.");
         }
         [Conditional("DEBUG")]
         private void CheckNeuronLayerGroupScheme(NeuronLayerGroup[] neuronLayerGroup) {
