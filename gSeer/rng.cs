@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace gSeer {
-    static class rng {
+    static class Rng {
         static Random random = new Random();
         internal static double GetRng() {
             return random.NextDouble();
