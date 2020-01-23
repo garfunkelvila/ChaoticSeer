@@ -57,7 +57,7 @@ namespace gSeer.Neuron {
 			InputCount = iCount;
 			for (int i = 0; i < nCount; i++) {
 				//Need to check if AF is passed correctly
-				Neurons[i] = new Neuron(iCount,neuronLayer.Neurons[i]._activationFunction);
+				Neurons[i] = new Neuron(neuronLayer.Neurons[i], neuronLayer.Neurons[i]._activationFunction);
 			}
 		}
 
