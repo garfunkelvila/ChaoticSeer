@@ -29,6 +29,7 @@ Currently it can train to solve AND, NOT and XOR operators.
     - [ ] Mutate Different NeuronLayerGroup layout
 ## Todo
   - [x] **NeuronLayerGroup** - (To test) Change the mutation into sum instead of copy. This will make the bias and weight greater than its random range.
+  * **Normalze Weight** - (Mutation) Re center the weights and biases of the neurons before mutation. May or may not be needed
 ### Classes (Minibatch related)
   - [x] **Country** - (To test) Contains Species/batch
   * **Planet** - Contain Countries, will be used for mini batch. Will do it like this because I will make some gender mutation and mini batch mutate limitations.
