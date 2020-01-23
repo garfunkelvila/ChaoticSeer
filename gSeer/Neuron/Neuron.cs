@@ -45,11 +45,26 @@ namespace gSeer.Neuron {
                 Weights[i] = (float) rng.GetRng() * -0.1f; //Will change range dependent into AF
             Bias = 1; //(float) rng.getRng();
 
-            //I cannot set it to defualt so I use null for now
-            // Err: Default parameter for value must be a compile time constant
             _activationFunction = aF ?? new Logistic();
             LearningRate = (float)rng.GetRng() * 0.05f;
         }
+		/// <summary>
+		/// Create a neuron based on a template
+		/// </summary>
+		/// <param name="neuron"></param>
+		public Neuron (T.Neuron neuron, Activation aF = null) {
+			int dendritesCount = neuron.Dendrites;
+
+			Dendrites = new float[dendritesCount];
+			Weights = new float[dendritesCount];
+			for (int i = 0; i < dendritesCount; i++)
+				Weights[i] = (float)rng.GetRng() * -0.1f; /// Will change range dependent into AF
+			Bias = 1; //(float) rng.getRng();
+
+			_activationFunction = aF ?? new Logistic();
+			LearningRate = (float)rng.GetRng() * 0.05f;
+		}
+
         /// <summary>
         /// Returns the prediction of the neuron and also put it into its property
         /// </summary>
