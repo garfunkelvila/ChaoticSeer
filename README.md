@@ -28,9 +28,9 @@ Currently it can train to solve AND, NOT and XOR operators.
     - [ ] CNS mutation functions
     - [ ] Mutate Different NeuronLayerGroup layout
 ## Todo
-  [x] **NeuronLayerGroup** - (To test) Change the mutation into sum instead of copy. This will make the bias and weight greater than its random range.
+  - [x] **NeuronLayerGroup** - (To test) Change the mutation into sum instead of copy. This will make the bias and weight greater than its random range.
 ### Classes (Minibatch related)
-  [x] **Country** - (To test) Contains Species/batch
+  - [x] **Country** - (To test) Contains Species/batch
   * **Planet** - Contain Countries, will be used for mini batch. Will do it like this because I will make some gender mutation and mini batch mutate limitations.
   * **GenericSeer** - Just a seer constructor that only asks for input and output count. Layers, Neuron count will be based on system specs, input count and output count.
 ### Others
