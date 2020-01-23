@@ -36,24 +36,9 @@ namespace gSeer.Neuron {
         /// Creates a layer filled with neurons
         /// </summary>
         /// <param name="iCount">Input count</param>
-        /// <param name="nCount"></param>
-        public NeuronLayer(int iCount, int nCount) {
-            Neurons = new Neuron[nCount];
-            InputCount = iCount;
-            for (int i = 0; i < nCount; i++) {
-                Neurons[i] = new Neuron(iCount);
-            }
-        }
-        /// <summary>
-        /// Creates a layer filled with neurons
-        /// </summary>
-        /// <param name="iCount">Input count</param>
         /// <param name="nCount">Output count</param>
         /// <param name="aF">Activation function for this layer</param>
-        public NeuronLayer(int iCount, int nCount, Activation aF) {
-            /// <see cref="Neuron.Neuron(int, Activation)"/>
-            if (aF == null) aF = new Logistic();
-
+        public NeuronLayer(int iCount, int nCount, Activation aF = null) {
             Neurons = new Neuron[nCount];
             InputCount = iCount;
             for (int i = 0; i < nCount; i++) {
