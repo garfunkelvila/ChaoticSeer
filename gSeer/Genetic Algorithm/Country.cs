@@ -45,6 +45,7 @@ namespace gSeer.Genetic_Algorithm {
 				}
 			}
 			CalcFitness(trainingData);
+			Array.Sort(Seers);
 		}
 
         /// <summary>
@@ -70,15 +71,13 @@ namespace gSeer.Genetic_Algorithm {
 				int tDr = Util.GetRngMinMax(0, td.Length);
 				Seer seer = Seers[i];
 
-				int OutLayerIndex = seer.NeuronLayerGroups.NeuronLayers.Length - 1;
-				Neuron.NeuronLayer OutLayer = seer.NeuronLayerGroups.NeuronLayers[OutLayerIndex];
-
-				for (int n = 0; n < OutLayer.Neurons.Length; n++) {
-					Neuron.Neuron[] oNeurons = seer.NeuronLayerGroups.NeuronLayers[OutLayerIndex].Neurons;
-					oNeurons[n].Error = td[tDr].Target[n] - oNeurons[n].Prediction;
+				float[] _Pred = seer.Predict(td[tDr].Input);
+				float _FitnessBuffer = 0.0f;
+				for (int n = 0; n < _Pred.Length; n++) {
+					_FitnessBuffer += td[tDr].Target[n] - _Pred[n];
 				}
 
-				Seers[i].Fitness = Seers[i].GetError()[0];
+				Seers[i].Fitness = _FitnessBuffer;
 			});
 		}
     }
