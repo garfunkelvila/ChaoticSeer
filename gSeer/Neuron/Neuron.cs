@@ -30,7 +30,7 @@ namespace gSeer.Neuron {
         public float[] Dendrites { get; set; }
         public float[] Weights { get; set; }
         public float Bias { get; set; }
-        public float Prediction { get; set; }
+        public float Prediction { get; private set; }
         public float NetPrediction { get; set; }
         public float Error { get; set; }
         /// <summary>
