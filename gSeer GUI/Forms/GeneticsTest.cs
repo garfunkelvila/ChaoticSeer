@@ -36,10 +36,23 @@ namespace Nice_Seer.Forms {
         }
 
         private void GeneticsTest_Load(object sender, EventArgs e) {
-            InitializeSeers(10);
+            InitializeSeers(50);
             FirstPrediction();
-            StartChaos();
-        }
+            StartChaos(1);
+			FirstPrediction();
+			StartChaos(10);
+			FirstPrediction();
+			StartChaos(100);
+			FirstPrediction();
+			StartChaos(100);
+			FirstPrediction();
+			StartChaos(10000);
+			FirstPrediction();
+			StartChaos(10000);
+			FirstPrediction();
+			StartChaos(10000);
+			FirstPrediction();
+		}
         private void InitializeSeers(int count) {
 			txbLog.AppendText("Cores" + Environment.ProcessorCount + Environment.NewLine);
 
@@ -49,28 +62,33 @@ namespace Nice_Seer.Forms {
 			TSeer _TestSeerTemplate = new TSeer(_TestSeer);
 			nemic = new Country(_TestSeerTemplate, count);
 
-            txbLog.AppendText(nemic.Seers.Count() + " seers Initialized" + Environment.NewLine);
+            txbLog.AppendText(nemic.Seers.Length + " seers Initialized" + Environment.NewLine);
             txbLog.AppendText(Environment.NewLine);
         }
         private void FirstPrediction() {
             txbLog.AppendText("Listing prediction..." + Environment.NewLine);
-            foreach (Seer _seer in nemic.Seers) {
-                txbLog.AppendText(_seer.Predict(_xor[0].Input)[0] + " : ");
-                txbLog.AppendText(_seer.Predict(_xor[1].Input)[0] + " : ");
-                txbLog.AppendText(_seer.Predict(_xor[2].Input)[0] + " : ");
-                txbLog.AppendText(_seer.Predict(_xor[3].Input)[0] + " :-> ");
+			Array.Sort(nemic.Seers);
+
+			foreach (Seer _seer in nemic.Seers) {
+                txbLog.AppendText(_seer.Predict(_xor[0].Input)[0] + " \t ");
+                txbLog.AppendText(_seer.Predict(_xor[1].Input)[0] + " \t ");
+                txbLog.AppendText(_seer.Predict(_xor[2].Input)[0] + " \t ");
+                txbLog.AppendText(_seer.Predict(_xor[3].Input)[0] + " \t|-> ");
                 txbLog.AppendText(_xor[0].Target[0] + "");
                 txbLog.AppendText(_xor[1].Target[0] + "");
                 txbLog.AppendText(_xor[2].Target[0] + "");
-                txbLog.AppendText(_xor[3].Target[0] + Environment.NewLine);
-            }
+                txbLog.AppendText(_xor[3].Target[0] + " - ");
+				txbLog.AppendText("F:" + _seer.Fitness + " ");
+				txbLog.AppendText("E:" + _seer.GetError()[0] + Environment.NewLine);
+			}
 
             txbLog.AppendText("Prediction end" + Environment.NewLine);
             txbLog.AppendText(Environment.NewLine);
         }
 
-        private void StartChaos() {
-            nemic.Train(_xor);
+        private void StartChaos(int Loop) {
+			txbLog.AppendText("Training until: " + Loop + " generations"  + Environment.NewLine);
+			nemic.Train(_xor, Loop);
         }
     }
 }
