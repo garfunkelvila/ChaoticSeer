@@ -19,6 +19,8 @@ Currently it can train to solve AND, NOT and XOR operators.
     - [x] This is just a container with some fields
   * NeuronLayerGroup
     - [x] Forward feed
+  * Central Nervous System
+	- [ ] Neuron layer group container. To allow non fully-connected network
   * Activations
     - [x] Logistic, TanH, Step and Relu are working
   * BackPropagation
