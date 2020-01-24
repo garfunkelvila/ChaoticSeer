@@ -35,7 +35,7 @@ namespace gSeer.Genetic_Algorithm {
         /// </summary>
         public void Train(TrainingData[] trainingData) {
             CalcFitness(trainingData );
-            //Array.Sort(Seers);
+            Array.Sort(Seers);
             Console.WriteLine("Sorting Test");
         }
 

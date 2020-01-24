@@ -24,7 +24,7 @@ using gSeer.Genetic_Algorithm;
 using gSeer.Neuron;
 
 namespace gSeer {
-    public class Seer {
+    public class Seer : IComparable<Seer> {
 		
         public float Fitness { get; set; }
         public NeuronLayerGroup NeuronLayerGroups { get; private set; }     /// I made it like this in preperation for CNS
@@ -125,6 +125,18 @@ namespace gSeer {
 				return new MutationMT();
 			else
 				return new MutationST();
+		}
+
+		public int CompareTo(Seer other) {
+			if (Fitness < other.Fitness) {
+				return 1;
+			}
+			else if (Fitness > other.Fitness) {
+				return -1;
+			}
+			else {
+				return 0;
+			}
 		}
 	}
 }
