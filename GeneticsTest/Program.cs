@@ -50,8 +50,9 @@ namespace GeneticsTest {
 		static private void FirstPrediction() {
 			Console.WriteLine("Listing prediction...");
 			Array.Sort(nemic.Seers);
-
+			nemic.CalcFitness(_xor);
 			foreach (Seer _seer in nemic.Seers) {
+				
 				Console.Write(_seer.Predict(_xor[0].Input)[0] + " \t ");
 				Console.Write(_seer.Predict(_xor[1].Input)[0] + " \t ");
 
@@ -60,8 +61,8 @@ namespace GeneticsTest {
 				Console.Write(_xor[0].Target[0] + "");
 				Console.Write(_xor[1].Target[0] + "");
 				Console.Write(_xor[2].Target[0] + "");
-				Console.Write(_xor[3].Target[0] + " - ");
-				Console.Write("F:" + _seer.Fitness + " ");
+				Console.Write(_xor[3].Target[0] + "\t");
+				Console.Write("F:" + _seer.Fitness + "\t");
 				Console.WriteLine("E:" + _seer.GetError()[0]);
 			}
 
