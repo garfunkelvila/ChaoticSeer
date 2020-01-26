@@ -25,7 +25,6 @@ using gSeer.Neuron;
 
 namespace gSeer {
     public class Seer : IComparable<Seer> {
-		
         public float Fitness { get; set; }
         public NeuronLayerGroup NeuronLayerGroups { get; private set; }     /// I made it like this in preperation for CNS
         readonly BackPropagation _BackPropagation;
@@ -81,13 +80,11 @@ namespace gSeer {
             /// This thing is supposed to raise an event when finisheed. But instead, I just return the value xD
             /// Will add event feature soon
         }
-
         public void Train (TrainingData[] td, int iteration) {
             for (int i = 0; i < iteration; i++) {
                 NeuronLayerGroups = _BackPropagation.BackPropagate(NeuronLayerGroups, td);
             }
         }
-
         public float[] GetError () {
             float[] _rBuffer = new float[NeuronLayerGroups.NeuronLayers[NeuronLayerGroups.NeuronLayers.Length - 1].Neurons.Length];
             for (int n = 0; n < NeuronLayerGroups.NeuronLayers[NeuronLayerGroups.NeuronLayers.Length - 1].Neurons.Length; n++) {
@@ -95,7 +92,6 @@ namespace gSeer {
             }
             return _rBuffer;
         }
-
         /// <summary>
         /// This will be used for seer mutation
         /// </summary>
@@ -126,7 +122,6 @@ namespace gSeer {
 			else
 				return new MutationST();
 		}
-
 		public int CompareTo(Seer other) {
 			if (Fitness < other.Fitness) {
 				return 1;
