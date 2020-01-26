@@ -24,7 +24,7 @@ using gSeer.Neuron.ActivationFunction;
 
 namespace gSeer.Neuron {
     public class Neuron {
-        public Activation _activationFunction { get; } //I assume that when this thing is readonly, affected scripts will skip jump instructions except the one with random
+        public Activation ActivationFunction { get; } //I assume that when this thing is readonly, affected scripts will skip jump instructions except the one with random
         public float LearningRate { get; }    // This is for mutation too
 
         public float[] Dendrites { get; set; }
@@ -45,7 +45,7 @@ namespace gSeer.Neuron {
                 Weights[i] = (float) Util.GetRng() * -0.1f; //Will change range dependent into AF
             Bias = 1; //(float) rng.getRng();
 
-            _activationFunction = aF ?? new Logistic();
+            ActivationFunction = aF ?? new Logistic();
             LearningRate = (float)Util.GetRng() * 0.05f;
         }
 		/// <summary>
@@ -61,7 +61,7 @@ namespace gSeer.Neuron {
 				Weights[i] = (float)Util.GetRng() * -0.1f; /// Will change range dependent into AF
 			Bias = 1; //(float) rng.getRng();
 
-			_activationFunction = aF ?? new Logistic();
+			ActivationFunction = aF ?? new Logistic();
 			LearningRate = (float)Util.GetRng() * 0.05f;
 		}
 
@@ -76,7 +76,7 @@ namespace gSeer.Neuron {
             }
             NetPrediction += Bias;
 
-            Prediction = _activationFunction.GetAxon(NetPrediction);// CalcAxon(netPrediction);
+            Prediction = ActivationFunction.GetAxon(NetPrediction);// CalcAxon(netPrediction);
             return Prediction;
         }
         /// <summary>
@@ -84,7 +84,7 @@ namespace gSeer.Neuron {
         /// </summary>
         /// <returns></returns>
         public float AxonPrime() {
-            return _activationFunction.GetDerv(NetPrediction);
+            return ActivationFunction.GetDerv(NetPrediction);
         }
 
         public T.Neuron GetTNeuron {
