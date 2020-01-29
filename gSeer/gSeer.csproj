@@ -61,10 +61,6 @@
     <Compile Include="Back Propagation\BpMultiThread.cs" />
     <Compile Include="Back Propagation\BpSingleThread.cs" />
     <Compile Include="Back Propagation\BackPropagation.cs" />
-    <Compile Include="Genetic Algorithm\Country.cs" />
-    <Compile Include="Genetic Algorithm\MutationMT.cs" />
-    <Compile Include="Genetic Algorithm\MutationST.cs" />
-    <Compile Include="Genetic Algorithm\Genetics.cs" />
     <Compile Include="Genetic Algorithm\ConnectionGene.cs" />
     <Compile Include="Genetic Algorithm\Gene.cs" />
     <Compile Include="Genetic Algorithm\Genome.cs" />
@@ -74,7 +70,6 @@
     <Compile Include="Neuron\ActivationFunction\ReLU.cs" />
     <Compile Include="Neuron\ActivationFunction\Step.cs" />
     <Compile Include="Neuron\ActivationFunction\TanH.cs" />
-    <Compile Include="Genetic Algorithm\Selection.cs" />
     <Compile Include="Parsers\SeerParser.cs" />
     <Compile Include="Seer.cs" />
     <Compile Include="TSeer.cs" />
