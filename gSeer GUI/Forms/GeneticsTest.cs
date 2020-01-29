@@ -20,11 +20,12 @@ namespace Nice_Seer.Forms {
         }
 
         private void GeneticsTest_Load(object sender, EventArgs e) {
-			DrawSeer();
+			Genome _seer = new Genome();
+			DrawSeer(_seer);
 		}
 
 		///http://csharphelper.com/blog/2015/07/zoom-and-scroll-a-picture-drawn-in-c/
-		private void DrawSeer() {
+		private void DrawSeer(Genome _seer) {
 			PictureScale = 1;
 			Pen connectionPen = new Pen(Color.Blue);
 			SolidBrush nodeBrush = new SolidBrush(Color.Green);
