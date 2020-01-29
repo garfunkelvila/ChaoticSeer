@@ -11,41 +11,70 @@ using gSeer;
 using gSeer.Genetic_Algorithm;
 namespace Nice_Seer.Forms {
     public partial class GeneticsTest : Form {
-        public GeneticsTest() {
+		float PictureScale;
+		Bitmap Bm;
+
+
+		public GeneticsTest() {
             InitializeComponent();
         }
 
         private void GeneticsTest_Load(object sender, EventArgs e) {
-            
-        }
+			DrawSeer();
+		}
 
-        private void pictureBox1_Paint(object sender, PaintEventArgs e) {
-            Point[] points = {
-                new Point(20, 50),
-                new Point(100, 10),
-                new Point(200, 100),
-                new Point(300, 50),
-                new Point(400, 80)
-            };
-            
-            Rectangle[] rectangles = new Rectangle[points.Length];
+		///http://csharphelper.com/blog/2015/07/zoom-and-scroll-a-picture-drawn-in-c/
+		private void DrawSeer() {
+			PictureScale = 1;
+			Pen connectionPen = new Pen(Color.Blue);
+			SolidBrush nodeBrush = new SolidBrush(Color.Green);
 
-            for (int i = 0; i < points.Length; i++) {
-                Point _offset = points[i];
-                _offset.Offset(-5, -5);
+			Point[] nodePoints = {
+				new Point(10, 50),
+				new Point(100, 10),
+				new Point(200, 100),
+				new Point(300, 50),
+				new Point(400, 80)
+			};
 
-                rectangles[i] = new Rectangle(_offset, new Size(10, 10));
-            }
+			float CanvasWidth = 100;
+			float CanvasHeight = 100;
 
-            Pen RedPen = new Pen(Color.Red);
-            Pen BluePen = new Pen(Color.Red);
+			//Get the largest point
+			for (int i = 0; i < nodePoints.Length; i++) {
+				CanvasWidth = Math.Max(nodePoints[i].X, CanvasWidth);
+				CanvasHeight = Math.Max(nodePoints[i].Y, CanvasHeight);
+			}
+			CanvasWidth += 10;
+			CanvasHeight += 10;
 
-            SolidBrush brush = new SolidBrush(Color.Red);
-            e.Graphics.DrawCurve(BluePen, points, 0.0f);
-            foreach (Rectangle item in rectangles) {
-                e.Graphics.FillEllipse(brush, item);
-            }
-        }
-    }
+			Bm = new Bitmap(
+				(int)(PictureScale * CanvasWidth),
+				(int)(PictureScale * CanvasHeight));
+
+			Graphics gr = Graphics.FromImage(Bm);
+			gr.Clear(Color.AliceBlue);
+			gr.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+			gr.ScaleTransform(PictureScale, PictureScale);
+
+			Rectangle[] rectangles = new Rectangle[nodePoints.Length];
+
+			////Draw line
+			//gr.DrawCurve(connectionPen, nodePoints, 0.0f);
+
+			//Draw circle
+			for (int i = 0; i < nodePoints.Length; i++) {
+				Point _offset = nodePoints[i];
+				_offset.Offset(-5, -5);
+
+				rectangles[i] = new Rectangle(_offset, new Size(10, 10));
+			}
+			foreach (Rectangle item in rectangles) {
+				gr.FillEllipse(nodeBrush, item);
+			}
+			picCanvas.Image = Bm;
+
+		}
+	}
 }
 
