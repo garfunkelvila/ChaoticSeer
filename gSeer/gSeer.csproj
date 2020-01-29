@@ -65,7 +65,10 @@
     <Compile Include="Genetic Algorithm\MutationMT.cs" />
     <Compile Include="Genetic Algorithm\MutationST.cs" />
     <Compile Include="Genetic Algorithm\Genetics.cs" />
+    <Compile Include="Genetic Algorithm\ConnectionGene.cs" />
+    <Compile Include="Genetic Algorithm\Gene.cs" />
     <Compile Include="Genetic Algorithm\Genome.cs" />
+    <Compile Include="Genetic Algorithm\NodeGene.cs" />
     <Compile Include="Neuron\Activation.cs" />
     <Compile Include="Neuron\ActivationFunction\Logistic.cs" />
     <Compile Include="Neuron\ActivationFunction\ReLU.cs" />
