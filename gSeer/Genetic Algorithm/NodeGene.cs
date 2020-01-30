@@ -6,4 +6,5 @@ using System.Threading.Tasks;
 
 namespace gSeer.Genetic_Algorithm {
     public class NodeGene : Gene {
+    }
 }
