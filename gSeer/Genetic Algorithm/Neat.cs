@@ -5,6 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace gSeer.Genetic_Algorithm {
-    public class NodeGene : Gene {
+    /// <summary>
+    /// Might rename this to CNS
+    /// </summary>
+    public class Neat {
     }
 }
