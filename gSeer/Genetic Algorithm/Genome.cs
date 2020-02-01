@@ -9,7 +9,7 @@ namespace gSeer.Genetic_Algorithm {
         /// <summary>
         /// Might be converted to seer in future
         /// </summary>
-        public void MutateLink() {
+        public void MutateConnection() {
         }
         public void MutateNode() {
         }
@@ -17,7 +17,7 @@ namespace gSeer.Genetic_Algorithm {
         }
         public void MutateWeightRandom() {
         }
-        public void MutateToggleLink() {
+        public void MutateToggleConnection() {
         }
     }
 }
