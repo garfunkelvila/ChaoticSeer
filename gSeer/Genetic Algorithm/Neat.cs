@@ -17,5 +17,11 @@ namespace gSeer.Genetic_Algorithm {
         public const float PROBABILITY_MUTATE_WEIGHT_SHIFT = 0.025f;
         public const float PROBABILITY_MUTATE_WEIGHT_RANDOM = 0.0f;
         public const float PROBABILITY_MUTATE_TOGGLE = 0.005f;
+        ///Protecting Innovation through Speciation
+        public float C1 { get; }
+        public float C2 { get; }
+        public float C3 { get; }
+        public int InputSize { get; set; }  //Sensor
+        public int OutputSize { get; set; } //Motor
     }
 }
