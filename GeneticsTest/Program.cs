@@ -11,7 +11,7 @@ namespace GeneticsTest {
 		
 		static void Main(string[] args) {
 			Neat neat = new Neat(3, 3, 100);
-			Genome g = new Genome(neat);
+			ChaoticSeer g = new ChaoticSeer(neat);
 			//Genome g = neat.NewEmptyGenome();
 			Console.WriteLine(g.Nodes.Count);
 			Console.ReadKey();
