@@ -62,6 +62,7 @@ namespace gSeer.Data_Structures {
             return Data.IndexOf(item);
         }
         public void Insert(int index, T item) {
+            //TODO
             throw new NotImplementedException();
         }
         public bool Remove(T item) {
