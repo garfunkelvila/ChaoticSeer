@@ -231,7 +231,7 @@ namespace gSeer {
             if(replaceIndex == 0) {
                 middle = Neat.AddNode();
                 middle.X = (from.X + to.X) / 2;
-                middle.Y = (from.Y + to.Y) / 2 + (float)(Util.GetRngF() * 0.1 - 0.05);
+                middle.Y = (from.Y + to.Y) / 2 + (float)((Util.GetRngF() * 0.1) - 0.05);
                 Neat.SetReplaceIndex(from, to, middle.InnovationNumber);
             }
             else {
@@ -263,7 +263,7 @@ namespace gSeer {
         public void MutateWeightShift() {
             ConnectionGene con = Connections.Random;
             if (con != null) {
-                con.Weight += (Util.GetRngF() * 2 - 1) * Neat.WEIGHT_SHIFT_STRENGTH;
+                con.Weight += ((Util.GetRngF() * 2) - 1) * Neat.WEIGHT_SHIFT_STRENGTH;
             }
         }
         /// <summary>
@@ -272,7 +272,7 @@ namespace gSeer {
         public void MutateWeightRandom() {
             ConnectionGene con = Connections.Random;
             if (con != null) {
-                con.Weight = (Util.GetRngF() * 2 - 1) * Neat.WEIGHT_RANDOM_STRENGTH;
+                con.Weight = ((Util.GetRngF() * 2) - 1) * Neat.WEIGHT_RANDOM_STRENGTH;
             }
         }
         public void MutateToggleConnection() {
