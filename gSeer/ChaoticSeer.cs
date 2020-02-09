@@ -200,7 +200,7 @@ namespace gSeer {
                 }
 
                 con = Neat.AddConnection(con.From, con.To);
-                con.Weight = (Util.GetRngF() * 2 - 1) * Neat.WEIGHT_RANDOM_STRENGTH;
+                con.Weight = ((Util.GetRngF() * 2) - 1) * Neat.WEIGHT_RANDOM_STRENGTH;
 
                 //Attempt to ensure that the data is sorted by its InnovaitonNumber
                 for (int cI = 0; i < Connections.Count; i++) {
