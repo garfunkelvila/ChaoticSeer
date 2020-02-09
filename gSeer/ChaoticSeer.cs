@@ -230,8 +230,8 @@ namespace gSeer {
 
             if(replaceIndex == 0) {
                 middle = Neat.AddNode();
-                middle.X = from.X + to.X / 2;
-                middle.Y = from.Y + to.Y / 2 + (float)(Util.GetRngF() * 0.1 - 0.05);
+                middle.X = (from.X + to.X) / 2;
+                middle.Y = (from.Y + to.Y) / 2 + (float)(Util.GetRngF() * 0.1 - 0.05);
                 Neat.SetReplaceIndex(from, to, middle.InnovationNumber);
             }
             else {
