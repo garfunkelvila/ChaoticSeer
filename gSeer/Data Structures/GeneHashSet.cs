@@ -77,14 +77,17 @@ namespace gSeer.Data_Structures {
 			}
 			//FillBooth
 			Hash.Clear();
-			for (int i = 0; i < Left.Count + 1; i++) {
-				Hash.Add(Left.ElementAt(i));
+			if (Left.Count > 0) {
+				for (int i = 0; i < Left.Count + 1; i++) {
+					Hash.Add(Left.ElementAt(i));
+				}
 			}
 			Hash.Add(item);
-			for (int i = 0; i < Right.Count + 1; i++) {
-				Hash.Add(Right.ElementAt(i));
+			if (Right.Count > 0) {
+				for (int i = 0; i < Right.Count + 1; i++) {
+					Hash.Add(Right.ElementAt(i));
+				}
 			}
-
 			Data.Insert(index, item);
 			return;
 			throw new NotImplementedException();
