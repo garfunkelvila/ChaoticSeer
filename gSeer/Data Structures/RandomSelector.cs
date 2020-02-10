@@ -35,7 +35,7 @@ namespace gSeer.Genetic_Algorithm {
                 if(c > v) 
                     return seers[i];
             }
-            return default;
+            return default(T);
         }
         public void Reset() {
             seers.Clear();

@@ -26,7 +26,7 @@ namespace gSeer.Data_Structures {
             get {
                 if(Hash.Count > 0)
                     return Data[Util.GetRng(Count)];
-                return default;
+                return default(T);
             } 
         }
         //Might be removed
