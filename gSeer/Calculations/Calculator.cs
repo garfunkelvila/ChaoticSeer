@@ -17,9 +17,7 @@ namespace gSeer.Calculations {
         public Calculator(ChaoticSeer seer) {
             GeneHashSet<NodeGene> _nodes = seer.Nodes;
             GeneHashSet<ConnectionGene> _cons = seer.Connections;
-
             Dictionary<int, Node> _nodeHashMap = new Dictionary<int, Node>();
-
             foreach (NodeGene item in _nodes.Data) {
                 Node node = new Node(item.X);
                 _nodeHashMap.Add(item.InnovationNumber, node);
@@ -33,15 +31,13 @@ namespace gSeer.Calculations {
                 else {
                     HiddenNodes.Add(node);
                 }
-
             }
-
-            //HiddenNodes.Sort(delegate(Node n1, Node n2) {
-            //    //https://stackoverflow.com/questions/3163922/sort-a-custom-class-listt
-            //    return n1.CompareTo(n2);
-            //});
-            HiddenNodes.Sort();
-
+			//Node inherits comparable so it should use the sort correctly
+			//HiddenNodes.Sort(delegate (Node n1, Node n2) {
+			//	//https://stackoverflow.com/questions/3163922/sort-a-custom-class-listt
+			//	return n1.CompareTo(n2);
+			//});
+			HiddenNodes.Sort();
             foreach (ConnectionGene item in _cons.Data) {
                 NodeGene from = item.From;
                 NodeGene to = item.To;
@@ -56,7 +52,6 @@ namespace gSeer.Calculations {
                 node_to.Connections.Add(con);
             }
         }
-
         public float[] Calculate( params float[] input) {
             if (input.Length != InputNodes.Count) throw new NotSupportedException();
             //Initialze input nodes
@@ -67,14 +62,12 @@ namespace gSeer.Calculations {
             foreach (Node item in HiddenNodes) {
                 item.Calculate();
             }
-
             float[] output = new float[OutputNodes.Count];
             //calculate ouput nodes
             for (int i = 0; i < OutputNodes.Count; i++) {
                 OutputNodes[i].Calculate();
                 output[i] = OutputNodes[i].Output;
             }
-
             return output;
         }
     }
