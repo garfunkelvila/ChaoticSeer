@@ -21,6 +21,8 @@ namespace gSeer.Genetic_Algorithm {
         }
 
         public void InitializeCalculator() {
+			/// Transfer calculator on the genome soon
+			/// Genome calculate its own network
             _Calculator = new Calculator(Genome);
         }
         public float[] Calculate(params float[] arr) {

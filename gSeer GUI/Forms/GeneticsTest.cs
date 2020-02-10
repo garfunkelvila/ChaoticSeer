@@ -90,7 +90,6 @@ namespace Nice_Seer.Forms {
 				gr.FillEllipse(nodeBrush, item);
 			}
 			picCanvas.Image = Bm;
-
 		}
 
 		private Point[] NodeToPoints(NodeGene[] nodes) {
