@@ -62,8 +62,32 @@ namespace gSeer.Data_Structures {
             return Data.IndexOf(item);
         }
         public void Insert(int index, T item) {
-            //TODO
-            throw new NotImplementedException();
+			Console.WriteLine("Need to test the hash on this Insert Thing");
+
+			//TODO
+			HashSet<T> Left = new HashSet<T>();
+			HashSet<T> Right = new HashSet<T>();
+			//FillLeft
+			for (int i = 0; i < index; i++) {
+				Left.Add(Hash.ElementAt(i));
+			}
+			//FillRight
+			for (int i = index; i < Hash.Count; i++) {
+				Right.Add(Hash.ElementAt(i));
+			}
+			//FillBooth
+			Hash.Clear();
+			for (int i = 0; i < Left.Count + 1; i++) {
+				Hash.Add(Left.ElementAt(i));
+			}
+			Hash.Add(item);
+			for (int i = 0; i < Right.Count + 1; i++) {
+				Hash.Add(Right.ElementAt(i));
+			}
+
+			Data.Insert(index, item);
+			return;
+			throw new NotImplementedException();
         }
         public bool Remove(T item) {
             Hash.Remove(item);
