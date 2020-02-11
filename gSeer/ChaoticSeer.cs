@@ -12,11 +12,11 @@ namespace gSeer {
     /// <summary>
     /// Genome
     /// </summary>
-    public class ChaoticSeer : Paint {
+    public class ChaoticSeer {
         public GeneHashSet<ConnectionGene> Connections { get; set; }
         public GeneHashSet<NodeGene> Nodes { get; set; }
         public Neat Neat { get; set; }
-		private static Mutation.Mutation _mutation =  new Mutation.MutationST();
+		private static Mutation.Mutation _mutation;
         /// Percentage of this species allowed to reproduce
         public const float SURVIVAL_THRESHOLD = 0.02f;
         /// <summary>
@@ -25,7 +25,8 @@ namespace gSeer {
         public ChaoticSeer() {
             Connections = new GeneHashSet<ConnectionGene>();
             Nodes = new GeneHashSet<NodeGene>();
-        }
+			_mutation = new Mutation.MutationST();
+		}
         /// <summary>
         /// Create an emptygenome with only nodes wihtout connections based on a Neat
         /// </summary>
@@ -36,9 +37,7 @@ namespace gSeer {
                 Nodes.Add(neat.AddNode(i + 1));
             }
         }
-		public Bitmap GetBitmap() {
-			return GenBitmap(this);
-		}
+		public Bitmap GetBitmap() => Paint.GenBitmap(this);
         /// <summary>
         /// Calculate the distance between g1 and g2
         /// </summary>

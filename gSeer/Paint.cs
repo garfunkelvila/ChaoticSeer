@@ -8,8 +8,8 @@ using gSeer.Genetic_Algorithm;
 
 namespace gSeer {
 	///http://csharphelper.com/blog/2015/07/zoom-and-scroll-a-picture-drawn-in-c/
-	public abstract class Paint {
-		public Bitmap GenBitmap(ChaoticSeer _seer) {
+	internal class Paint {
+		public static Bitmap GenBitmap(ChaoticSeer _seer) {
 			Bitmap Bm;
 			int PictureScale = 1;
 
@@ -66,7 +66,7 @@ namespace gSeer {
 			//picCanvas.Image = Bm;
 			return Bm;
 		}
-		private Point[] NodeToPoints(NodeGene[] nodes) {
+		private static Point[] NodeToPoints(NodeGene[] nodes) {
 			Point[] _pBuffer = new Point[nodes.Length];
 			for (int i = 0; i < nodes.Length; i++) {
 				_pBuffer[i].X = (int)(nodes[i].X * 1000 - 90);
@@ -76,7 +76,7 @@ namespace gSeer {
 			}
 			return _pBuffer;
 		}
-		private Point[][] ConnectionsToPoint(ConnectionGene[] connections) {
+		private static Point[][] ConnectionsToPoint(ConnectionGene[] connections) {
 			Point[][] _connectionPoints = new Point[connections.Length][];
 
 			for (int i = 0; i < connections.Length; i++) {
