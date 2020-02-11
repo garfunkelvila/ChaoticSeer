@@ -30,7 +30,7 @@ namespace gSeer.Genetic_Algorithm {
             return _Calculator.Calculate(arr);
         }
         public float Distance(Client other) {
-            return Genome.Distance(other.Genome);
+            return Genome.DistanceTo(other.Genome);
         }
         public void Mutate() {
             Genome.Mutate();

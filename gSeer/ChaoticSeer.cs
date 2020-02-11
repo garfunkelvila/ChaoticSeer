@@ -16,6 +16,7 @@ namespace gSeer {
         public GeneHashSet<ConnectionGene> Connections { get; set; }
         public GeneHashSet<NodeGene> Nodes { get; set; }
         public Neat Neat { get; set; }
+		private static Mutation.Mutation _mutation =  new Mutation.MutationST();
         /// Percentage of this species allowed to reproduce
         public const float SURVIVAL_THRESHOLD = 0.02f;
         /// <summary>
@@ -43,7 +44,7 @@ namespace gSeer {
         /// </summary>
         /// <param name="g2"></param>
         /// <returns></returns>
-        public float Distance(ChaoticSeer g2) {
+        public float DistanceTo(ChaoticSeer g2) {
             // g1 genome must have highest innovation number
             #region Cache
             ChaoticSeer g1_this = this;
@@ -107,68 +108,6 @@ namespace gSeer {
             // Protecting Innovation through Speciation phd04.38
             return (Neat.C1 * disjoint / N) + (Neat.C2 * excess / N) + (Neat.C3 * weightDiff);
         }
-        /// <summary>
-        /// Creates a new genome.
-        /// current g1 should have the higher score
-        /// take all the genes of g1
-        /// if there is a genome in g1 that is also in g2, choose randomly
-        /// do not take disjoint genes of g2
-        /// take excess genes of g1 if they exist
-        /// </summary>
-        /// <param name="g1"></param>
-        /// <param name="g2"></param>
-        /// <returns></returns>
-        public static ChaoticSeer CrossOver(ChaoticSeer g1, ChaoticSeer g2) {
-            Neat neat = g1.Neat;
-            //Genome _genomeBuffer = neat.NewEmptyGenome();
-            ChaoticSeer _genomeBuffer = new ChaoticSeer();
-
-            int indexG1 = 0;
-            int indexG2 = 0;
-
-            //Handle not connectec genes
-            while (indexG1 < g1.Connections.Count && indexG2 < g2.Connections.Count) {
-                ConnectionGene gene1 = g1.Connections[indexG1];
-                ConnectionGene gene2 = g2.Connections[indexG2];
-
-                int in1 = gene1.InnovationNumber;
-                int in2 = gene2.InnovationNumber;
-
-                if (in1 == in2) {
-                    // basically if they are thesame, just select either of them randomly
-                    if (Util.GetRngF() > 0.5f)
-                        _genomeBuffer.Connections.Add(neat.Connections[gene1]);
-                    else
-                        _genomeBuffer.Connections.Add(neat.Connections[gene2]);
-
-                    indexG1++;
-                    indexG2++;
-                }
-                else if (in1 > in2) {
-                    //genome.Connections.Add(neat.Connections[gene2]);
-                    //disjoint/skip gene of b
-                    indexG2++;
-                }
-                else {
-                    //disjoint/skip gene of a
-                    _genomeBuffer.Connections.Add(neat.Connections[gene1]);
-                    indexG1++;
-                }
-            }
-            // Add the connections
-            while (indexG1 < g1.Connections.Count) {
-                ConnectionGene gene1 = g1.Connections[indexG1];
-                _genomeBuffer.Connections.Add(neat.Connections[gene1]);
-                indexG1++;
-            }
-            // Add the nodes
-            foreach (ConnectionGene c in _genomeBuffer.Connections) {
-                _genomeBuffer.Nodes.Add(c.From);
-                _genomeBuffer.Nodes.Add(c.To);
-            }
-
-            return _genomeBuffer;
-        }
         public void Mutate() {
             if (Neat.PROBABILITY_MUTATE_CONNECTION > Util.GetRngF())
                 MutateConnection();
@@ -180,111 +119,13 @@ namespace gSeer {
                 MutateWeightShift();
             if (Neat.PROBABILITY_MUTATE_WEIGHT_RANDOM > Util.GetRngF())
                 MutateWeightRandom();
-        }
-        /// <summary>
-        /// Check existing link first
-        /// </summary>
-        public void MutateConnection() {
-            for (int i = 0; i < 100; i++) {
-                NodeGene a = Nodes.Random;
-                NodeGene b = Nodes.Random;
-
-                if (a == null || b == null) continue;   //skip if empty
-                if (a.X == b.X)  continue;              //skip if thesame
-
-                // Create connection for the new seed
-                ConnectionGene con;
-                if (a.X < b.X)
-                    con = new ConnectionGene(a, b);
-                else
-                    con = new ConnectionGene(b, a);
-
-                if (Connections.Contains(con)) {
-                    //skip if newly generated connection already exist
-                    continue;
-                }
-
-                con = Neat.AddConnection(con.From, con.To);
-                con.Weight = ((Util.GetRngF() * 2) - 1) * Neat.WEIGHT_RANDOM_STRENGTH;
-
-                //Attempt to ensure that the data is sorted by its InnovaitonNumber
-                for (int cI = 0; i < Connections.Count; i++) {
-                    int innovation = Connections[cI].InnovationNumber;
-                    if (con.InnovationNumber < innovation) {
-                        //Insert it right next
-                        Connections.Insert(cI, con);
-                        return;
-                    }
-                }
-                Connections.Add(con);
-                return;
-            }
-        }
-        /// <summary>
-        /// Add node
-        /// </summary>
-        public void MutateNode() {
-            ConnectionGene con = Connections.Random;
-            if (con == null) return;
-
-            NodeGene from = con.From;
-            NodeGene middle;
-            NodeGene to = con.To;
-
-            int replaceIndex = Neat.GetReplaceIndex(from, to);
-
-            if(replaceIndex == 0) {
-                middle = Neat.AddNode();
-                middle.X = (from.X + to.X) / 2;
-                middle.Y = (from.Y + to.Y) / 2 + (float)((Util.GetRngF() * 0.1) - 0.05);
-                Neat.SetReplaceIndex(from, to, middle.InnovationNumber);
-            }
-            else {
-                middle = Neat.AddNode(replaceIndex);
-            }
-
-            //NodeGene middle = Neat.AddNode();
-            //middle.X = (from.X + to.X) / 2; //Divide by to to get the center
-            //middle.Y = (from.Y + to.Y) / 2; //Divide by to to get the center
-
-            ConnectionGene con1 = Neat.AddConnection(from, middle);
-            ConnectionGene con2 = Neat.AddConnection(middle, to);
-
-
-            con1.Weight = 1;
-            con2.Weight = con.Weight;
-            con2.IsEnabled = con.IsEnabled;
-
-            Connections.Remove(con);
-            Connections.Add(con1);
-            Connections.Add(con2);
-
-            Nodes.Add(middle);
-
-        }
-        /// <summary>
-        /// Shift weight based on shift strength
-        /// </summary>
-        public void MutateWeightShift() {
-            ConnectionGene con = Connections.Random;
-            if (con != null) {
-                con.Weight += ((Util.GetRngF() * 2) - 1) * Neat.WEIGHT_SHIFT_STRENGTH;
-            }
-        }
-        /// <summary>
-        /// Shift weight based on random strength
-        /// </summary>
-        public void MutateWeightRandom() {
-            ConnectionGene con = Connections.Random;
-            if (con != null) {
-                con.Weight = ((Util.GetRngF() * 2) - 1) * Neat.WEIGHT_RANDOM_STRENGTH;
-            }
-        }
-        public void MutateToggleConnection() {
-            ConnectionGene con = Connections.Random;
-            if (con != null) {
-                con.IsEnabled = con.IsEnabled;
-            }
-        }
-    }
+		}
+        public void MutateConnection() => _mutation.MutateConnection(this);
+		public void MutateNode() => _mutation.MutateNode(this);
+		public void MutateWeightShift() => _mutation.MutateWeightShift(this);
+		public void MutateWeightRandom() => _mutation.MutateWeightRandom(this);
+		public void MutateToggleConnection() => _mutation.MutateToggleConnection(this);
+		public static ChaoticSeer CrossOver(ChaoticSeer g1, ChaoticSeer g2) => _mutation.CrossOver(g1, g2);
+		public ChaoticSeer MutateWith(ChaoticSeer partner) => _mutation.CrossOver(this, partner);
+	}
 }
