@@ -96,7 +96,7 @@ namespace Nice_Seer.Forms {
 			Point[] _pBuffer = new Point[nodes.Length];
 			for (int i = 0; i < nodes.Length; i++) {
 				_pBuffer[i].X = (int)(nodes[i].X * 1000 - 90);
-				_pBuffer[i].Y = (int)(nodes[i].Y * 100);
+				_pBuffer[i].Y = (int)(nodes[i].Y * 100 - 90);
 
 				//Console.WriteLine("X: " + _pBuffer[i].X + " Y:" + _pBuffer[i].Y);
 			}
@@ -109,10 +109,10 @@ namespace Nice_Seer.Forms {
 				_connectionPoints[i] = new Point[2];
 
 				_connectionPoints[i][0].X = (int)(connections[i].From.X * 1000 - 90);
-				_connectionPoints[i][0].Y = (int)(connections[i].From.Y * 100);
+				_connectionPoints[i][0].Y = (int)(connections[i].From.Y * 100 - 90);
 
 				_connectionPoints[i][1].X = (int)(connections[i].To.X * 1000 - 90);
-				_connectionPoints[i][1].Y = (int)(connections[i].To.Y * 100);
+				_connectionPoints[i][1].Y = (int)(connections[i].To.Y * 100 - 90);
 
 				Console.WriteLine("From X: " + _connectionPoints[i][0].X + " Y:" + _connectionPoints[i][0].Y + " To X: " + _connectionPoints[i][0].X + " Y:" + _connectionPoints[i][0].Y);
 			}
