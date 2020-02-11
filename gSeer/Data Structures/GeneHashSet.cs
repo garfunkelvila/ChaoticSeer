@@ -84,7 +84,7 @@ namespace gSeer.Data_Structures {
 			}
 			Hash.Add(item);
 			if (Right.Count > 0) {
-				for (int i = 0; i < Right.Count + 1; i++) {
+				for (int i = 0; i < Right.Count; i++) {
 					Hash.Add(Right.ElementAt(i));
 				}
 			}
