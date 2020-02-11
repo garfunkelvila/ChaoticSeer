@@ -149,6 +149,11 @@ namespace Nice_Seer.Forms {
 			genome.MutateToggleConnection();
 			PaintSeer(genome);
 		}
+
+		private void button2_Click(object sender, EventArgs e) {
+			genome.Mutate();
+			PaintSeer(genome);
+		}
 	}
 }
 
