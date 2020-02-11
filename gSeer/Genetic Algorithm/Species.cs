@@ -11,7 +11,17 @@ namespace gSeer.Genetic_Algorithm {
     public class Species {
         public GeneHashSet<Client> Clients { get; private set; } = new GeneHashSet<Client>();
         public Client Representative { get; private set; }
-        public float Score { get; private set; }
+        public float Score {
+			get {
+				if (Clients.Count == 0) return 0;
+				float y = 0;
+				foreach (Client item in Clients.Data) {
+					y += item.Score;
+				}
+				return y / Clients.Count;
+			}
+			private set { }
+		}
 
         public Species(Client representative) {
             Representative = representative;
@@ -31,23 +41,16 @@ namespace gSeer.Genetic_Algorithm {
             client.Species = this;
             Clients.Add(client);
         }
-        /// <summary>
-        /// Make the specie extinct
-        /// </summary>
-        public void GoExtinct() {
-            foreach (Client item in Clients.Data) {
-                item.Species = null;
-            }
-        }
-        public void EvalueateScore() {
-            float y = 0;
-            foreach (Client item in Clients.Data) {
-                y += item.Score;
-            }
-            Score = y / Clients.Count;
-        }
+		//Transfered to property
+		//public void EvalueateScore() {
+		//	float y = 0;
+		//	foreach (Client item in Clients.Data) {
+		//		y += item.Score;
+		//	}
+		//	Score = y / Clients.Count;
+		//}
 
-        public void Reset() {
+		public void Reset() {
             Representative = Clients.Random;
             foreach (Client item in Clients.Data) {
                 item.Species = null;
@@ -59,22 +62,30 @@ namespace gSeer.Genetic_Algorithm {
         }
 
         public void Kill(float percentage) {
-            Clients.Data.Sort();
-
+			Console.WriteLine("Need to check if the sort is correct");
+            Clients.Data.Sort(); //sort clients by score lowest at top
             float ammount = percentage * Clients.Count;
             for (int i = 0; i < ammount; i++) {
-                // This flow assumes the top is the crappiest, will fix soon
+                // This flow assumes the top is the crappiest, will check soon
                 // TODO: fix sorting of this thing
                 Clients[0].Species = null;
                 Clients.RemoveAt(0);
             }
         }
-        /// <summary>
-        /// Create offspring.
-        /// Create random client and breed
-        /// </summary>
-        /// <returns></returns>
-        public ChaoticSeer Breed() {
+		/// <summary>
+		/// Make the specie extinct
+		/// </summary>
+		public void GoExtinct() {
+			foreach (Client item in Clients.Data) {
+				item.Species = null;
+			}
+		}
+		/// <summary>
+		/// Create offspring.
+		/// Create random client and breed
+		/// </summary>
+		/// <returns></returns>
+		public ChaoticSeer Breed() {
             Client C1 = Clients.Random;
             Client C2 = Clients.Random;
 
