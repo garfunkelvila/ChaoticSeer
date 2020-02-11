@@ -148,9 +148,10 @@ namespace gSeer.Genetic_Algorithm {
                     Species.Add(new Species(CItem));
                 }
             }
-            foreach (Species item in Species.Data) {
-                item.EvalueateScore();
-            }
+			/// Attemp to skip as the Score is dynamic now. But may cause overall slowdown
+            //foreach (Species item in Species.Data) {
+            //    item.EvalueateScore();
+            //}
         }
         private void Kill() {
             foreach (Species item in Species.Data) {
