@@ -37,6 +37,9 @@ namespace gSeer {
                 Nodes.Add(neat.AddNode(i + 1));
             }
         }
+		public ChaoticSeer(int input, int output) {
+			throw new NotImplementedException();
+		}
 		public Bitmap GetBitmap() => Paint.GenBitmap(this);
         /// <summary>
         /// Calculate the distance between g1 and g2
