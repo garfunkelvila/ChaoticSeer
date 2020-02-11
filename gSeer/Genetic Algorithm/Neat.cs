@@ -158,7 +158,7 @@ namespace gSeer.Genetic_Algorithm {
             }
         }
         private void RemoveExtinct() {
-            for (int i = Species.Count - 1; i >= 0; i--) {
+            for (int i = Species.Count - 1; i > 0; i--) {
                 if (Species[i].Clients.Count <= 1) {
                     Species[i].GoExtinct();
                     Species.RemoveAt(i);
