@@ -50,6 +50,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -78,6 +79,7 @@
     <Compile Include="Neuron\ActivationFunction\ReLU.cs" />
     <Compile Include="Neuron\ActivationFunction\Step.cs" />
     <Compile Include="Neuron\ActivationFunction\TanH.cs" />
+    <Compile Include="Paint.cs" />
     <Compile Include="Parsers\SeerParser.cs" />
     <Compile Include="Data Structures\GeneHashSet.cs" />
     <Compile Include="Seer.cs" />

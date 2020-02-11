@@ -127,7 +127,7 @@
 			this.button2.TabIndex = 1;
 			this.button2.Text = "Mutate";
 			this.button2.UseVisualStyleBackColor = true;
-			this.button2.Click += new System.EventHandler(this.button2_Click);
+			this.button2.Click += new System.EventHandler(this.bbtnMutate_Click);
 			// 
 			// GeneticsTest
 			// 

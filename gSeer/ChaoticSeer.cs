@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 using gSeer.Genetic_Algorithm;
 using gSeer.Data_Structures;
 using gSeer.Calculations;
+using System.Drawing;
+
 namespace gSeer {
     /// <summary>
     /// Genome
     /// </summary>
-    public class ChaoticSeer {
+    public class ChaoticSeer : Paint {
         public GeneHashSet<ConnectionGene> Connections { get; set; }
         public GeneHashSet<NodeGene> Nodes { get; set; }
         public Neat Neat { get; set; }
@@ -33,6 +35,9 @@ namespace gSeer {
                 Nodes.Add(neat.AddNode(i + 1));
             }
         }
+		public Bitmap GetBitmap() {
+			return GenBitmap(this);
+		}
         /// <summary>
         /// Calculate the distance between g1 and g2
         /// </summary>
