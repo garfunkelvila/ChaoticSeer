@@ -173,7 +173,7 @@ namespace gSeer.Genetic_Algorithm {
             }
             foreach (Client c in Clients.Data) {
                 if (c.Species == null) {
-                    Species s = selector.Random();
+					Species s = new Species(selector.Random().Representative);
                     c.Genome = s.Breed();
                     s.ForcePut(c);
                 }
