@@ -32,7 +32,7 @@ namespace gSeer.Genetic_Algorithm {
             float c = 0;
             for (int i = 0; i < seers.Count; i++) {
                 c += scores[i];
-                if(c > v) 
+                if(c >= v) 
                     return seers[i];
             }
             return default(T);
