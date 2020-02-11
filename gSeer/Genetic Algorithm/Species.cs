@@ -51,6 +51,7 @@ namespace gSeer.Genetic_Algorithm {
 		//}
 
 		public void Reset() {
+			//This reset don't work yet -_-
             Representative = Clients.Random;
             foreach (Client item in Clients.Data) {
                 item.Species = null;
