@@ -7,9 +7,6 @@ using gSeer.Calculations;
 using gSeer.Data_Structures;
 using gSeer.Genetic_Algorithm;
 namespace gSeer.Genetic_Algorithm {
-    /// <summary>
-    /// Implement comparable next
-    /// </summary>
     public class Client : IComparable<Client> {
         Calculator _Calculator;
 
@@ -19,7 +16,6 @@ namespace gSeer.Genetic_Algorithm {
         public Client() {
 
         }
-
         public void InitializeCalculator() {
 			/// Transfer calculator on the genome soon
 			/// Genome calculate its own network
