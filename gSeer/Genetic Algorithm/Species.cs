@@ -50,8 +50,14 @@ namespace gSeer.Genetic_Algorithm {
 		//	Score = y / Clients.Count;
 		//}
 
+		/// <summary>
+		/// Choose a new representative
+		/// remove all the clients
+		/// every clients will be replace with a new species
+		/// </summary>
 		public void Reset() {
 			//This reset don't work yet -_-
+			//I think because clients are zeroed before copying
             Representative = Clients.Random;
             foreach (Client item in Clients.Data) {
                 item.Species = null;
