@@ -28,7 +28,7 @@ namespace Nice_Seer.Forms {
 			Console.WriteLine("Connections: " + genome.Connections.Count);
 		}
 		private void InitializeNeat() {
-			neat = new Neat(10, 1, 1000);
+			neat = new Neat(2, 1, 10);
 			float[] input = new float[10];
 			for (int i = 0; i < 10; i++) {
 				input[i] = (float)new Random().NextDouble();
