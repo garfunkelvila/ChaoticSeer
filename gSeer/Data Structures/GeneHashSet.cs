@@ -56,7 +56,8 @@ namespace gSeer.Data_Structures {
             Console.WriteLine("Gene Hash Set CopyTo Triggered");
         }
         public IEnumerator<T> GetEnumerator() {
-            throw new NotImplementedException();
+			//throw new NotImplementedException();
+			return Data.GetEnumerator();
         }
         public int IndexOf(T item) {
             return Data.IndexOf(item);
