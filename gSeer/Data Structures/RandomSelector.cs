@@ -9,7 +9,7 @@ namespace gSeer.Genetic_Algorithm {
     /// I just learned that you can do custom list implementations
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    class RandomSelector<T> {
+    public class RandomSelector<T> {
         private readonly List<T> seers = new List<T>();
         private readonly List<float> scores = new List<float>();
         public float TotalScore = 0;

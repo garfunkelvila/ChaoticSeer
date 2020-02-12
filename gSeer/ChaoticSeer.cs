@@ -11,38 +11,53 @@ using System.Drawing;
 namespace gSeer {
     /// <summary>
     /// Genome
+	/// Attemp for seer to calculate for itself
     /// </summary>
     public class ChaoticSeer {
         public GeneHashSet<ConnectionGene> Connections { get; set; }
         public GeneHashSet<NodeGene> Nodes { get; set; }
-        public Neat Neat { get; set; }
+		public float Score { get; set; }
+		public int Age { get; set; }
+		public NeatCNS Cns { get; private set; }
+		/// Percentage of this genome to survive
+		public readonly float SURVIVAL_THRESHOLD = 0.02f;
+		public readonly int AGE_THRESHOLD = 60;	// Attempt to kill the genome after this age
+
 		private static Mutation.Mutation _mutation;
-        /// Percentage of this species allowed to reproduce
-        public const float SURVIVAL_THRESHOLD = 0.02f;
-        /// <summary>
-        /// Create a Genome without neat template
-        /// </summary>
-        public ChaoticSeer() {
+
+		/// <summary>
+		/// Create a Genome without neat template.
+		/// 
+		/// </summary>
+		[Obsolete("This feature will be disabled sooner and require to create neat locally.", false)] 
+		public ChaoticSeer() {
             Connections = new GeneHashSet<ConnectionGene>();
             Nodes = new GeneHashSet<NodeGene>();
 			_mutation = new Mutation.MutationST();
+			Score = 0;
+			Age = 0;
 		}
         /// <summary>
         /// Create an emptygenome with only nodes wihtout connections based on a Neat
         /// </summary>
-        /// <param name="neat"></param>
-        public ChaoticSeer(Neat neat) : this() {
-            Neat = neat;
-            for (int i = 0; i < neat.InputSize + neat.OutputSize; i++) {
-                Nodes.Add(neat.AddNode(i + 1));
+        /// <param name="Cns"></param>
+        public ChaoticSeer(NeatCNS Cns) : this() {
+            this.Cns = Cns;
+            for (int i = 0; i < Cns.InputSize + Cns.OutputSize; i++) {
+                Nodes.Add(Cns.AddNode(i + 1));
             }
         }
-		public ChaoticSeer(int input, int output) {
-			throw new NotImplementedException();
+		/// <summary>
+		/// Construct a seer without CNS
+		/// </summary>
+		/// <param name="input"></param>
+		/// <param name="output"></param>
+		public ChaoticSeer(int input, int output) : this() {
+			Cns = new NeatCNS(input, output);
 		}
 		public Bitmap GetBitmap() => Paint.GenBitmap(this);
         /// <summary>
-        /// Calculate the distance between g1 and g2
+        /// Calculate the gene distance between g1 and g2
         /// </summary>
         /// <param name="g2"></param>
         /// <returns></returns>
@@ -108,18 +123,18 @@ namespace gSeer {
                 N = 1;  //Clamp to 1
             }
             // Protecting Innovation through Speciation phd04.38
-            return (Neat.C1 * disjoint / N) + (Neat.C2 * excess / N) + (Neat.C3 * weightDiff);
+            return (Cns.C1 * disjoint / N) + (Cns.C2 * excess / N) + (Cns.C3 * weightDiff);
         }
         public void Mutate() {
-            if (Neat.PROBABILITY_MUTATE_CONNECTION > Util.GetRngF())
+            if (NeatCNS.PROBABILITY_MUTATE_CONNECTION > Util.GetRngF())
                 MutateConnection();
-            if (Neat.PROBABILITY_MUTATE_NODE > Util.GetRngF())
+            if (NeatCNS.PROBABILITY_MUTATE_NODE > Util.GetRngF())
                 MutateNode();
-            if (Neat.PROBABILITY_MUTATE_TOGGLE > Util.GetRngF())
+            if (NeatCNS.PROBABILITY_MUTATE_TOGGLE > Util.GetRngF())
                 MutateToggleConnection();
-            if (Neat.PROBABILITY_MUTATE_WEIGHT_SHIFT > Util.GetRngF())
+            if (NeatCNS.PROBABILITY_MUTATE_WEIGHT_SHIFT > Util.GetRngF())
                 MutateWeightShift();
-            if (Neat.PROBABILITY_MUTATE_WEIGHT_RANDOM > Util.GetRngF())
+            if (NeatCNS.PROBABILITY_MUTATE_WEIGHT_RANDOM > Util.GetRngF())
                 MutateWeightRandom();
 		}
         public void MutateConnection() => _mutation.MutateConnection(this);
@@ -127,7 +142,8 @@ namespace gSeer {
 		public void MutateWeightShift() => _mutation.MutateWeightShift(this);
 		public void MutateWeightRandom() => _mutation.MutateWeightRandom(this);
 		public void MutateToggleConnection() => _mutation.MutateToggleConnection(this);
+		[Obsolete("This will be deleted soon as use MutateWith",false)]
 		public static ChaoticSeer CrossOver(ChaoticSeer g1, ChaoticSeer g2) => _mutation.CrossOver(g1, g2);
-		public ChaoticSeer MutateWith(ChaoticSeer partner) => _mutation.CrossOver(this, partner);
+		public ChaoticSeer MateWith(ChaoticSeer partner) => _mutation.CrossOver(this, partner);
 	}
 }

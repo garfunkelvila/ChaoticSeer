@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using gSeer.Data_Structures;
 namespace gSeer.Genetic_Algorithm {
     /// <summary>
-    /// Might rename this to country
+    /// Might rename this to Tribe
 	/// This class holds the 
     /// </summary>
     public class Species {
@@ -31,7 +31,7 @@ namespace gSeer.Genetic_Algorithm {
         }
 
         public bool Put(Client client) {
-            if (client.Distance(Representative) < Representative.Genome.Neat.CP) {
+            if (client.Distance(Representative) < Representative.Genome.Cns.CP) {
                 client.Species = this;
                 Clients.Add(client);
                 return true;

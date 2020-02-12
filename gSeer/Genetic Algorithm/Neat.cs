@@ -11,7 +11,7 @@ namespace gSeer.Genetic_Algorithm {
     /// Especially https://github.com/Luecx/NEAT. I just inserted some C#
     /// specifics and other .net optimizations
     /// </summary>
-    public class Neat {
+    public class NeatCNS {
         public static int MAX_NODES;
         public const float WEIGHT_SHIFT_STRENGTH = 0.3f;
         public const float WEIGHT_RANDOM_STRENGTH = 0.1f;
@@ -33,9 +33,9 @@ namespace gSeer.Genetic_Algorithm {
         public float CP { get; } = 4f;
         public int InputSize { get; private set; }  //Sensor
         public int OutputSize { get; private set; } //Motor
-        public int MaxClients { get; private set; }
+        public int MaxPopulation { get; private set; }
         #endregion
-        Neat() {
+        NeatCNS() {
             MAX_NODES = (int)Math.Pow(2, 20);       // 1M max nodes
             Connections = new Dictionary<ConnectionGene, ConnectionGene>();
             Nodes = new GeneHashSet<NodeGene>();
@@ -45,13 +45,41 @@ namespace gSeer.Genetic_Algorithm {
             C2 = 1;
             C3 = 1;
         }
-        public Neat(int inputSize, int outputSize, int clients) : this() {
-            Reset(inputSize, outputSize, clients);
+        public NeatCNS(int inputSize, int outputSize, int population) : this() {
+            Reset(inputSize, outputSize, population);
         }
-        public void Reset(int inputSize, int outputSize, int clients) {
+		public NeatCNS(int inputSize, int outputSize) : this() {
+			Reset2(inputSize, outputSize);
+		}
+		public void Reset2(int inputSize, int outputSize) {
+			InputSize = inputSize;
+			OutputSize = outputSize;
+
+			Connections.Clear();
+			Nodes.Clear();
+
+			// Directly access property of the newly addded node to list
+			for (int i = 0; i < inputSize; i++) {
+				NodeGene n = AddNode();
+				n.X = 0.1f; // Used for drawing
+
+				float _testa = i + 1;
+				float _testb = inputSize + 1;
+				float _testc = _testa / _testb;
+				//n.Y = _testc;
+				n.Y = i + 1 / inputSize + 1;
+			}
+			for (int i = 0; i < outputSize; i++) {
+				NodeGene n = AddNode();
+				n.X = 0.9f; // Used for drawing
+				n.Y = i + 1 / outputSize + 1;
+			}
+
+		}
+		public void Reset(int inputSize, int outputSize, int population) {
             InputSize = inputSize;
             OutputSize = outputSize;
-            MaxClients = clients;
+            MaxPopulation = population;
 
             Connections.Clear();
             Nodes.Clear();
@@ -74,7 +102,7 @@ namespace gSeer.Genetic_Algorithm {
                 n.Y = i + 1 / outputSize + 1;
             }
             // Miror to calculator
-            for (int i = 0; i < MaxClients; i++) {
+            for (int i = 0; i < MaxPopulation; i++) {
                 Client c = new Client {
                     //c.Genome = NewEmptyGenome();
                     Genome = new ChaoticSeer(this)
@@ -83,21 +111,23 @@ namespace gSeer.Genetic_Algorithm {
                 Clients.Add(c);
             }
         }
-        /// <summary>
-        /// Add a new node to the nervous system
-        /// </summary>
-        /// <returns>Returns the added node</returns>
-        public NodeGene AddNode() {
+		/// <summary>
+		/// Add a new node to the nervous system
+		/// </summary>
+		/// <returns>Returns the added node</returns>
+		[Obsolete("Might make this one private", false)]
+		public NodeGene AddNode() {
             NodeGene n = new NodeGene(Nodes.Count + 1);
             Nodes.Add(n);
             return n;
         }
-        /// <summary>
-        /// Add a new node to the nervous system
-        /// </summary>
-        /// <param name="id">Returns the added node</param>
-        /// <returns></returns>
-        public NodeGene AddNode(int id) {
+		/// <summary>
+		/// Add a new node to the nervous system
+		/// </summary>
+		/// <param name="id">Returns the added node</param>
+		/// <returns></returns>
+		[Obsolete("Might make this one private", false)]
+		public NodeGene AddNode(int id) {
             if (id <= Nodes.Count) return Nodes[id - 1];
             return AddNode();
         }
@@ -127,13 +157,12 @@ namespace gSeer.Genetic_Algorithm {
             RemoveExtinct();
             Reproduce();
             Mutate();
-            Calculate(); ;
+            Calculate();
         }
         private void GenerateSpecies() {
             foreach (Species item in Species.Data) {
                 item.Reset();
             }
-
             foreach (Client CItem in Clients.Data) {
                 if (CItem.Species != null) continue;
                 bool hasFound = false;
@@ -143,7 +172,6 @@ namespace gSeer.Genetic_Algorithm {
                         break;
                     }
                 }
-
                 if (!hasFound) {
                     Species.Add(new Species(CItem));
                 }
@@ -155,7 +183,7 @@ namespace gSeer.Genetic_Algorithm {
         }
         private void Kill() {
             foreach (Species item in Species.Data) {
-                item.Kill(1 - SURVIVAL_THRESHOLD);
+                item.Kill(0.9f - SURVIVAL_THRESHOLD);
             }
         }
         private void RemoveExtinct() {

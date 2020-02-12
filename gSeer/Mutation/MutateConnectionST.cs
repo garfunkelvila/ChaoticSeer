@@ -28,8 +28,8 @@ namespace gSeer.Mutation {
 					continue;
 				}
 
-				con = seer.Neat.AddConnection(con.From, con.To);
-				con.Weight = ((Util.GetRngF() * 2) - 1) * Neat.WEIGHT_RANDOM_STRENGTH;
+				con = seer.Cns.AddConnection(con.From, con.To);
+				con.Weight = ((Util.GetRngF() * 2) - 1) * NeatCNS.WEIGHT_RANDOM_STRENGTH;
 
 				//Attempt to ensure that the data is sorted by its InnovaitonNumber
 				for (int cI = 0; i < seer.Connections.Count; i++) {
@@ -52,24 +52,24 @@ namespace gSeer.Mutation {
 			NodeGene middle;
 			NodeGene to = con.To;
 
-			int replaceIndex = seer.Neat.GetReplaceIndex(from, to);
+			int replaceIndex = seer.Cns.GetReplaceIndex(from, to);
 
 			if (replaceIndex == 0) {
-				middle = seer.Neat.AddNode();
+				middle = seer.Cns.AddNode();
 				middle.X = (from.X + to.X) / 2;
 				middle.Y = (from.Y + to.Y) / 2 + (float)((Util.GetRngF() * 0.1) - 0.05);
-				seer.Neat.SetReplaceIndex(from, to, middle.InnovationNumber);
+				seer.Cns.SetReplaceIndex(from, to, middle.InnovationNumber);
 			}
 			else {
-				middle = seer.Neat.AddNode(replaceIndex);
+				middle = seer.Cns.AddNode(replaceIndex);
 			}
 
 			//NodeGene middle = Neat.AddNode();
 			//middle.X = (from.X + to.X) / 2; //Divide by to to get the center
 			//middle.Y = (from.Y + to.Y) / 2; //Divide by to to get the center
 
-			ConnectionGene con1 = seer.Neat.AddConnection(from, middle);
-			ConnectionGene con2 = seer.Neat.AddConnection(middle, to);
+			ConnectionGene con1 = seer.Cns.AddConnection(from, middle);
+			ConnectionGene con2 = seer.Cns.AddConnection(middle, to);
 
 
 			con1.Weight = 1;
@@ -86,14 +86,14 @@ namespace gSeer.Mutation {
 		public override void MutateToggleConnection(ChaoticSeer seer) {
 			ConnectionGene con = seer.Connections.Random;
 			if (con != null) {
-				con.Weight += ((Util.GetRngF() * 2) - 1) * Neat.WEIGHT_SHIFT_STRENGTH;
+				con.Weight += ((Util.GetRngF() * 2) - 1) * NeatCNS.WEIGHT_SHIFT_STRENGTH;
 			}
 		}
 
 		public override void MutateWeightRandom(ChaoticSeer seer) {
 			ConnectionGene con = seer.Connections.Random;
 			if (con != null) {
-				con.Weight = ((Util.GetRngF() * 2) - 1) * Neat.WEIGHT_RANDOM_STRENGTH;
+				con.Weight = ((Util.GetRngF() * 2) - 1) * NeatCNS.WEIGHT_RANDOM_STRENGTH;
 			}
 		}
 
@@ -109,7 +109,7 @@ namespace gSeer.Mutation {
 			/// if there is a genome in g1 that is also in g2, choose randomly
 			/// do not take disjoint genes of g2
 			/// take excess genes of g1 if they exist
-			Neat neat = g1.Neat;
+			NeatCNS neat = g1.Cns;
 			//Genome _genomeBuffer = neat.NewEmptyGenome();
 			ChaoticSeer _genomeBuffer = new ChaoticSeer();
 

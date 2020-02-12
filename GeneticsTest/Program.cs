@@ -10,7 +10,7 @@ namespace GeneticsTest {
 	class Program {
 		
 		static void Main(string[] args) {
-			Neat neat = new Neat(3, 3, 100);
+			NeatCNS neat = new NeatCNS(3, 3, 100);
 			ChaoticSeer g = new ChaoticSeer(neat);
 			//Genome g = neat.NewEmptyGenome();
 			Console.WriteLine(g.Nodes.Count);

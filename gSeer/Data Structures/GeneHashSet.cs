@@ -91,7 +91,7 @@ namespace gSeer.Data_Structures {
 			}
 			Data.Insert(index, item);
 			return;
-			throw new NotImplementedException();
+			//throw new NotImplementedException();
         }
         public bool Remove(T item) {
             Hash.Remove(item);
@@ -103,7 +103,7 @@ namespace gSeer.Data_Structures {
             Data.RemoveAt(index);
         }
         IEnumerator IEnumerable.GetEnumerator() {
-            throw new NotImplementedException();
+			return Data.GetEnumerator();
         }
-    }
+	}
 }

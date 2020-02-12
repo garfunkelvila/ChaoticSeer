@@ -20,7 +20,7 @@ namespace gSeer.Genetic_Algorithm {
             From = from;
             To = to;
         }
-        public ConnectionGene(NodeGene from, NodeGene to, Neat neat) : this() {
+        public ConnectionGene(NodeGene from, NodeGene to, NeatCNS neat) : this() {
             throw new NotImplementedException();
             //if (neat.Connections.ContainsKey(connectionGene)) {
             //    connectionGene.InnovationNumber = Connections[connectionGene].InnovationNumber;
@@ -47,7 +47,7 @@ namespace gSeer.Genetic_Algorithm {
             return (From.Equals(cg.From) && To.Equals(cg.To));
         }
         public override int GetHashCode() {
-            return From.InnovationNumber * Neat.MAX_NODES + To.InnovationNumber;
+            return From.InnovationNumber * NeatCNS.MAX_NODES + To.InnovationNumber;
         }
     }
 }
