@@ -7,6 +7,9 @@ using gSeer.Calculations;
 using gSeer.Data_Structures;
 using gSeer.Genetic_Algorithm;
 namespace gSeer.Genetic_Algorithm {
+	/// <summary>
+	/// THis class holds the genomes
+	/// </summary>
     public class Client : IComparable<Client> {
         Calculator _Calculator;
 

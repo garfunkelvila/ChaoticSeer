@@ -7,6 +7,7 @@ using gSeer.Data_Structures;
 namespace gSeer.Genetic_Algorithm {
     /// <summary>
     /// Might rename this to country
+	/// This class holds the 
     /// </summary>
     public class Species {
         public GeneHashSet<Client> Clients { get; private set; } = new GeneHashSet<Client>();
@@ -53,7 +54,7 @@ namespace gSeer.Genetic_Algorithm {
 		/// <summary>
 		/// Choose a new representative
 		/// remove all the clients
-		/// every clients will be replace with a new species
+		/// every clients will be replace with a new species based on representative
 		/// </summary>
 		public void Reset() {
 			//This reset don't work yet -_-
