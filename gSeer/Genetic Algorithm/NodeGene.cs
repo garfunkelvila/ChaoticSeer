@@ -9,7 +9,7 @@ namespace gSeer.Genetic_Algorithm {
     /// <summary>
     /// X,Y handles recursion
     /// </summary>
-    public class NodeGene : Gene {
+    public class NodeGene : Gene, IComparable<NodeGene> {
         /// <summary>
         /// Used for drawing and comparing the position of node
         /// </summary>
@@ -31,5 +31,15 @@ namespace gSeer.Genetic_Algorithm {
         public override int GetHashCode() {
             return InnovationNumber;
         }
-    }
+		/// <summary>
+		/// Put the lower X value on top of array
+		/// </summary>
+		/// <param name="other"></param>
+		/// <returns></returns>
+		public int CompareTo(NodeGene other) {
+			if (X > other.X) return -1;
+			if (X < other.X) return 1;
+			return 0;
+		}
+	}
 }

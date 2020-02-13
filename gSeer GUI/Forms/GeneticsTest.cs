@@ -76,6 +76,10 @@ namespace Nice_Seer.Forms {
 			genome.Cns.Evolve();
 			picCanvas.Image = genome.GetBitmap();
 		}
+
+		private void button4_Click(object sender, EventArgs e) {
+			genome.GetPrediction(1, 1);
+		}
 	}
 }
 

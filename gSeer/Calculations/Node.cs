@@ -5,16 +5,16 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace gSeer.Calculations {
-    public class Node : IComparable<Node> {
+    public class CalcNode : IComparable<CalcNode> {
 		Neuron.Activation ActivationFunction;
         public float X { get; set; }
         public float Output { get; set; }
-        public List<Connection> Connections { get; set; }
-		Node() {
+        public List<CalcConnection> Connections { get; set; }
+		CalcNode() {
 			ActivationFunction = new Neuron.ActivationFunction.Logistic();
-			Connections = new List<Connection>();
+			Connections = new List<CalcConnection>();
 		}
-        public Node(float x ) : this() {
+        public CalcNode(float x ) : this() {
             X = x;
         }
 		public void Calculate() {
@@ -26,7 +26,12 @@ namespace gSeer.Calculations {
             }
             Output = ActivationFunction.GetAxon(s);
         }
-		public int CompareTo(Node other) {
+		/// <summary>
+		/// Compare position left to right
+		/// </summary>
+		/// <param name="other"></param>
+		/// <returns></returns>
+		public int CompareTo(CalcNode other) {
 			if (X > other.X) return -1;
 			if (X < other.X) return 1;
 			return 0;

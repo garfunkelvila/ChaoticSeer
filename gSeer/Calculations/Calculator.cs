@@ -11,15 +11,15 @@ namespace gSeer.Calculations {
     /// This thing calculates the values for the genes
     /// </summary>
     public class Calculator {
-        public List<Node> InputNodes { get; private set; } = new List<Node>();
-        public List<Node> HiddenNodes { get; private set; }  = new List<Node>();
-        public List<Node> OutputNodes { get; private set; }  = new List<Node>();
+        public List<CalcNode> InputNodes { get; private set; } = new List<CalcNode>();
+        public List<CalcNode> HiddenNodes { get; private set; }  = new List<CalcNode>();
+        public List<CalcNode> OutputNodes { get; private set; }  = new List<CalcNode>();
         public Calculator(ChaoticSeer seer) {
             GeneHashSet<NodeGene> _nodes = seer.Nodes;
             GeneHashSet<ConnectionGene> _cons = seer.Connections;
-            Dictionary<int, Node> _nodeHashMap = new Dictionary<int, Node>();
+            Dictionary<int, CalcNode> _nodeHashMap = new Dictionary<int, CalcNode>();
             foreach (NodeGene item in _nodes.Data) {
-                Node node = new Node(item.X);
+                CalcNode node = new CalcNode(item.X);
                 _nodeHashMap.Add(item.InnovationNumber, node);
 
                 if(item.X < 0.1) {
@@ -42,10 +42,10 @@ namespace gSeer.Calculations {
                 NodeGene from = item.From;
                 NodeGene to = item.To;
 
-                Node node_from = _nodeHashMap[from.InnovationNumber];
-                Node node_to = _nodeHashMap[to.InnovationNumber];
+                CalcNode node_from = _nodeHashMap[from.InnovationNumber];
+                CalcNode node_to = _nodeHashMap[to.InnovationNumber];
 
-				Connection con = new Connection(node_from, node_to) {
+				CalcConnection con = new CalcConnection(node_from, node_to) {
 					Weight = item.Weight,
 					IsEnabled = item.IsEnabled
 				};
@@ -60,7 +60,7 @@ namespace gSeer.Calculations {
                 InputNodes[i].Output = input[i];
             }
             //Calculate hidden nodes
-            foreach (Node item in HiddenNodes) {
+            foreach (CalcNode item in HiddenNodes) {
                 item.Calculate();
             }
             float[] output = new float[OutputNodes.Count];

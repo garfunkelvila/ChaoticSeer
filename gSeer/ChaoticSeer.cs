@@ -13,7 +13,7 @@ namespace gSeer {
     /// Genome
 	/// Attemp for seer to calculate for itself
     /// </summary>
-    public class ChaoticSeer {
+    public class ChaoticSeer : IComparable<ChaoticSeer> {
         public GeneHashSet<ConnectionGene> Connections { get; set; }
         public GeneHashSet<NodeGene> Nodes { get; set; }
 		public float Score { get; set; }
@@ -47,6 +47,7 @@ namespace gSeer {
 			Connections = new GeneHashSet<ConnectionGene>();
             Nodes = new GeneHashSet<NodeGene>();
 			_mutation = new Mutation.MutationST();
+			_FPropagation = new Forward_Propagation.FPropagateST(this);
 			Score = 0;
 			Age = 0;
 		}
@@ -70,6 +71,9 @@ namespace gSeer {
 			for (int i = 0; i < Cns.InputSize + Cns.OutputSize; i++) {
 				Nodes.Add(Cns.AddNode(i + 1));
 			}
+		}
+		public float[] GetPrediction(params float[] input) {
+			return _FPropagation.Output(input);
 		}
 		public Bitmap GetBitmap() => Paint.GenBitmap(this);
         /// <summary>
@@ -161,5 +165,15 @@ namespace gSeer {
 		[Obsolete("This will be deleted soon as use MutateWith",false)]
 		public static ChaoticSeer CrossOver(ChaoticSeer g1, ChaoticSeer g2) => _mutation.CrossOver(g1, g2);
 		public ChaoticSeer MateWith(ChaoticSeer partner) => _mutation.CrossOver(this, partner);
+		/// <summary>
+		/// Larger score move first to the array
+		/// </summary>
+		/// <param name="other"></param>
+		/// <returns></returns>
+		public int CompareTo(ChaoticSeer other) {
+			if (Score > other.Score) return -1;
+			if (Score < other.Score) return 1;
+			return 0;
+		}
 	}
 }
