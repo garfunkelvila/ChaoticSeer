@@ -66,9 +66,10 @@
     <Compile Include="Calculations\Connection.cs" />
     <Compile Include="Calculations\Node.cs" />
     <Compile Include="ChaoticSeer.cs" />
+    <Compile Include="Forward Propagation\ForwardPropagation.cs" />
+    <Compile Include="Forward Propagation\FPropagateST.cs" />
     <Compile Include="Genetic Algorithm\Client.cs" />
     <Compile Include="Genetic Algorithm\ConnectionGene.cs" />
-    <Compile Include="Genetic Algorithm\Evolution.cs" />
     <Compile Include="Genetic Algorithm\Gene.cs" />
     <Compile Include="Genetic Algorithm\Neat.cs" />
     <Compile Include="Genetic Algorithm\NodeGene.cs" />

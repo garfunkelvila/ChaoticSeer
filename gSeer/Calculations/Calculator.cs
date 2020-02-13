@@ -45,11 +45,12 @@ namespace gSeer.Calculations {
                 Node node_from = _nodeHashMap[from.InnovationNumber];
                 Node node_to = _nodeHashMap[to.InnovationNumber];
 
-                Connection con = new Connection(node_from, node_to);
-                con.Weight = item.Weight;
-                con.IsEnabled = item.IsEnabled;
+				Connection con = new Connection(node_from, node_to) {
+					Weight = item.Weight,
+					IsEnabled = item.IsEnabled
+				};
 
-                node_to.Connections.Add(con);
+				node_to.Connections.Add(con);
             }
         }
         public float[] Calculate( params float[] input) {

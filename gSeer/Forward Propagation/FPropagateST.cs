@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace gSeer.Genetic_Algorithm {
-    public class Evolution {
+namespace gSeer.Forward_Propagation {
+	class FPropagateST {
 
-    }
+	}
 }

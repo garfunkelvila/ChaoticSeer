@@ -10,6 +10,7 @@ namespace gSeer.Genetic_Algorithm {
 	/// <summary>
 	/// This class holds the genomes
 	/// </summary>
+	[Obsolete("Will delete this soon", false)]
     public class Client : IComparable<Client> {
         Calculator _Calculator;
 
