@@ -54,6 +54,9 @@ namespace gSeer {
 		/// <param name="output"></param>
 		public ChaoticSeer(int input, int output) : this() {
 			Cns = new NeatCNS(input, output);
+			for (int i = 0; i < Cns.InputSize + Cns.OutputSize; i++) {
+				Nodes.Add(Cns.AddNode(i + 1));
+			}
 		}
 		public Bitmap GetBitmap() => Paint.GenBitmap(this);
         /// <summary>

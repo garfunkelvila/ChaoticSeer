@@ -48,7 +48,6 @@ namespace gSeer {
 
 			////Draw line
 			//gr.DrawCurve(connectionPen, nodePoints, 0.0f);
-
 			for (int i = 0; i < connectionPoints.Length; i++) {
 				gr.DrawLine(connectionPen, connectionPoints[i][0], connectionPoints[i][1]);
 			}

@@ -124,8 +124,8 @@ namespace gSeer.Genetic_Algorithm {
 		/// <summary>
 		/// Add a new node to the nervous system
 		/// </summary>
-		/// <param name="id">Returns the added node</param>
-		/// <returns></returns>
+		/// <param name="id"></param>
+		/// <returns>Returns the added node</returns>
 		[Obsolete("Might make this one private", false)]
 		public NodeGene AddNode(int id) {
             if (id <= Nodes.Count) return Nodes[id - 1];

@@ -21,7 +21,9 @@ namespace gSeer {
 		public Tribe(int inputSize, int outputSize, int maxPopulation) {
 			_Species = new GeneHashSet<ChaoticSeer>();
 			for (int i = 0; i < maxPopulation; i++) {
-				_Species.Add(new ChaoticSeer(inputSize, outputSize));
+				ChaoticSeer _seer;
+				_seer = new ChaoticSeer(inputSize, outputSize);
+				_Species.Add(_seer);
 			}
 			Representative = _Species[0];
 		}
