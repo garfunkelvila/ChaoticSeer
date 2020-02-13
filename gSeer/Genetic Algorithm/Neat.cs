@@ -215,7 +215,6 @@ namespace gSeer.Genetic_Algorithm {
                 item.InitializeCalculator();
             }
         }
-
         public void SetReplaceIndex(NodeGene node1, NodeGene node2, int index) {
             Connections[new ConnectionGene(node1, node2)].ReplaceIndex = index;
         }

@@ -16,6 +16,7 @@ namespace gSeer {
 			//PictureScale = 1;
 			Pen connectionPen = new Pen(Color.Blue);
 			SolidBrush nodeBrush = new SolidBrush(Color.Green);
+			SolidBrush textBrush = new SolidBrush(Color.Orange);
 
 			Point[] nodePoints = NodeToPoints(_seer.Nodes.ToArray());
 			Point[][] connectionPoints = ConnectionsToPoint(_seer.Connections.ToArray());
@@ -55,13 +56,23 @@ namespace gSeer {
 			//Draw circle/node
 			for (int i = 0; i < nodePoints.Length; i++) {
 				Point _offset = nodePoints[i];
-				_offset.Offset(-5, -5);
+				_offset.Offset(-8, -8);
 
-				rectangles[i] = new Rectangle(_offset, new Size(10, 10));
+				rectangles[i] = new Rectangle(_offset, new Size(16, 16));
 			}
 			foreach (Rectangle item in rectangles) {
 				gr.FillEllipse(nodeBrush, item);
 			}
+			//Draw text InnovationNumber
+			//gr.DrawString("ASDF", new Font("Arial", 16), textBrush, new Point(10,10));
+			for (int i = 0; i < nodePoints.Length; i++) {
+				Point _offset = nodePoints[i];
+				_offset.Offset(-5, -7);
+
+				gr.DrawString("" + _seer.Nodes[i].InnovationNumber, new Font("Courier New", 8), textBrush, _offset);
+				//rectangles[i] = new Rectangle(_offset, new Size(10, 10));
+			}
+
 			//picCanvas.Image = Bm;
 			return Bm;
 		}
