@@ -20,10 +20,16 @@ namespace gSeer {
 		public int Age { get; set; }
 		public NeatCNS Cns { get; private set; }
 		/// Percentage of this genome to survive
-		public readonly float SURVIVAL_THRESHOLD = 0.02f;
-		public readonly int AGE_THRESHOLD = 60;	// Attempt to kill the genome after this age
+		public readonly float SURVIVAL_THRESHOLD;// Narual selection dying
+		public readonly int AGE_THRESHOLD;         // Natural dying
+
+		public readonly int REPRODUCE_START_THRESHOLD;	// Age when reproduction is allowd
+		public readonly int REPRODUCE_END_THRESHOLD;	// Age when reproduction is stopped
+		public readonly int EVOLVE_START_THRESHOLD;		// Age when to start evolving
+		public readonly int EVOLVE_END_THRESHOLD;		// Age when to stop evolving
 
 		private static Mutation.Mutation _mutation;
+		private static Forward_Propagation.ForwardPropagation _FPropagation;
 
 		/// <summary>
 		/// Create a Genome without neat template.
@@ -31,7 +37,14 @@ namespace gSeer {
 		/// </summary>
 		[Obsolete("This feature will be disabled sooner and require to create neat locally.", false)] 
 		public ChaoticSeer() {
-            Connections = new GeneHashSet<ConnectionGene>();
+			SURVIVAL_THRESHOLD = 0.02f;
+			AGE_THRESHOLD = 60; //Replace with random that averages to 60
+			REPRODUCE_START_THRESHOLD = 12; // Replace with random that averages to 15
+			REPRODUCE_END_THRESHOLD = 50; // Replace with random that averages to 45
+			EVOLVE_START_THRESHOLD = 0;
+			EVOLVE_END_THRESHOLD = 40;	// replace with random that averages to 45
+
+			Connections = new GeneHashSet<ConnectionGene>();
             Nodes = new GeneHashSet<NodeGene>();
 			_mutation = new Mutation.MutationST();
 			Score = 0;
