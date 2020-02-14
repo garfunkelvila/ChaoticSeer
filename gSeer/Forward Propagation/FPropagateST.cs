@@ -13,6 +13,10 @@ namespace gSeer.Forward_Propagation {
 	/// </summary>
 	public class FPropagateST : ForwardPropagation {
 		public FPropagateST(ChaoticSeer seer) {
+			InputNodes = new List<CalcNode>();
+			HiddenNodes = new List<CalcNode>();
+			OutputNodes = new List<CalcNode>();
+
 			GeneHashSet<NodeGene> _nodes = seer.Nodes;
 			GeneHashSet<ConnectionGene> _cons = seer.Connections;
 			Dictionary<int, CalcNode> _nodeHashMap = new Dictionary<int, CalcNode>();
@@ -20,10 +24,10 @@ namespace gSeer.Forward_Propagation {
 				CalcNode node = new CalcNode(item.X);
 				_nodeHashMap.Add(item.InnovationNumber, node);
 
-				if (item.X < 0.1) {
+				if (item.X <= 0.1f) {
 					InputNodes.Add(node);
 				}
-				else if (item.X >= 0.9) {
+				else if (item.X >= 0.9f) {
 					OutputNodes.Add(node);
 				}
 				else {
@@ -51,7 +55,14 @@ namespace gSeer.Forward_Propagation {
 				node_to.Connections.Add(con);
 			}
 		}
+
+		public override List<CalcNode> InputNodes { get; set; }
+		public override List<CalcNode> HiddenNodes { get; set; }
+		public override List<CalcNode> OutputNodes { get;  set; }
+
 		public override float[] Output(params float[] input) {
+			//Need to initialize this class/object
+
 			if (input.Length != InputNodes.Count) throw new NotSupportedException();
 			//Initialze input nodes
 			for (int i = 0; i < InputNodes.Count; i++) {

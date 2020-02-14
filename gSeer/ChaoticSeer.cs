@@ -73,6 +73,7 @@ namespace gSeer {
 			}
 		}
 		public float[] GetPrediction(params float[] input) {
+			_FPropagation = new Forward_Propagation.FPropagateST(this);
 			return _FPropagation.Output(input);
 		}
 		public Bitmap GetBitmap() => Paint.GenBitmap(this);

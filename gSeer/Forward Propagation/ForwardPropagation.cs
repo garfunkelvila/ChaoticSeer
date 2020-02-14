@@ -8,9 +8,9 @@ using gSeer.Genetic_Algorithm;
 
 namespace gSeer.Forward_Propagation {
 	public abstract class ForwardPropagation {
-		public List<CalcNode> InputNodes { get; private set; } = new List<CalcNode>();
-		public List<CalcNode> HiddenNodes { get; private set; } = new List<CalcNode>();
-		public List<CalcNode> OutputNodes { get; private set; } = new List<CalcNode>();
+		public abstract List<CalcNode> InputNodes { get; set; }
+		public abstract List<CalcNode> HiddenNodes { get; set; }
+		public abstract List<CalcNode> OutputNodes { get; set; }
 		public abstract float[] Output(params float[] input);
 	}
 }

@@ -78,7 +78,7 @@ namespace Nice_Seer.Forms {
 		}
 
 		private void button4_Click(object sender, EventArgs e) {
-			genome.GetPrediction(1, 1);
+			Console.WriteLine("Pred: " + genome.GetPrediction(1, 1)[0]);
 		}
 	}
 }
