@@ -129,7 +129,7 @@
 			this.button2.TabIndex = 1;
 			this.button2.Text = "Mutate";
 			this.button2.UseVisualStyleBackColor = true;
-			this.button2.Click += new System.EventHandler(this.bbtnMutate_Click);
+			this.button2.Click += new System.EventHandler(this.btnMutate_Click);
 			// 
 			// button3
 			// 

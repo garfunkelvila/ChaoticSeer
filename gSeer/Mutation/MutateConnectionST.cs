@@ -82,21 +82,18 @@ namespace gSeer.Mutation {
 
 			seer.Nodes.Add(middle);
 		}
-
 		public override void MutateToggleConnection(ChaoticSeer seer) {
 			ConnectionGene con = seer.Connections.Random;
 			if (con != null) {
 				con.Weight += ((Util.GetRngF() * 2) - 1) * NeatCNS.WEIGHT_SHIFT_STRENGTH;
 			}
 		}
-
 		public override void MutateWeightRandom(ChaoticSeer seer) {
 			ConnectionGene con = seer.Connections.Random;
 			if (con != null) {
 				con.Weight = ((Util.GetRngF() * 2) - 1) * NeatCNS.WEIGHT_RANDOM_STRENGTH;
 			}
 		}
-
 		public override void MutateWeightShift(ChaoticSeer seer) {
 			ConnectionGene con = seer.Connections.Random;
 			if (con != null) {

@@ -34,12 +34,7 @@ namespace gSeer.Forward_Propagation {
 					HiddenNodes.Add(node);
 				}
 			}
-			//Node inherits comparable so it should use the sort correctly
-			//HiddenNodes.Sort(delegate (Node n1, Node n2) {
-			//	//https://stackoverflow.com/questions/3163922/sort-a-custom-class-listt
-			//	return n1.CompareTo(n2);
-			//});
-			HiddenNodes.Sort();
+			HiddenNodes.Sort();	//This thing is working correct
 			foreach (ConnectionGene item in _cons.Data) {
 				NodeGene from = item.From;
 				NodeGene to = item.To;

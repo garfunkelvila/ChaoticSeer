@@ -24,8 +24,6 @@ namespace gSeer.Genetic_Algorithm {
         #region Properties
         public Dictionary<ConnectionGene, ConnectionGene> Connections { get; }
         public GeneHashSet<NodeGene> Nodes { get; }
-        public GeneHashSet<Client> Clients { get; private set; }
-        public GeneHashSet<Species> Species { get; private set; }
         ///Protecting Innovation through Speciation
         public float C1 { get; }
         public float C2 { get; }
@@ -39,8 +37,6 @@ namespace gSeer.Genetic_Algorithm {
             MAX_NODES = (int)Math.Pow(2, 20);       // 1M max nodes
             Connections = new Dictionary<ConnectionGene, ConnectionGene>();
             Nodes = new GeneHashSet<NodeGene>();
-            Clients = new GeneHashSet<Client>();
-            Species = new GeneHashSet<Species>();
             C1 = 1;
             C2 = 1;
             C3 = 1;
@@ -83,8 +79,6 @@ namespace gSeer.Genetic_Algorithm {
 
             Connections.Clear();
             Nodes.Clear();
-            Clients.Clear();
-
             // Directly access property of the newly addded node to list
             for (int i = 0; i < inputSize; i++) {
                 NodeGene n = AddNode();
@@ -100,15 +94,6 @@ namespace gSeer.Genetic_Algorithm {
                 NodeGene n = AddNode();
                 n.X = 0.9f; // Used for drawing
                 n.Y = i + 1 / outputSize + 1;
-            }
-            // Miror to calculator
-            for (int i = 0; i < MaxPopulation; i++) {
-                Client c = new Client {
-                    //c.Genome = NewEmptyGenome();
-                    Genome = new ChaoticSeer(this)
-                };
-                c.InitializeCalculator();
-                Clients.Add(c);
             }
         }
 		/// <summary>
@@ -150,80 +135,23 @@ namespace gSeer.Genetic_Algorithm {
         }
         #region EVOLUTION
         public void Evolve() {
-            GenerateSpecies();
-            Kill();
-            RemoveExtinct();
-            Reproduce();
-            Mutate();
-            Calculate();
+			throw new Exception("Transfer this to tribe");
+            //GenerateSpecies();
+            //Kill();
+            //RemoveExtinct();
+            //Reproduce();
+            //Mutate();
+            //Calculate();
         }
-        private void GenerateSpecies() {
-            foreach (Species item in Species.Data) {
-                item.Reset();
-            }
-            foreach (Client CItem in Clients.Data) {
-                if (CItem.Species != null) continue;
-                bool hasFound = false;
-                foreach (Species SItem in Species.Data) {
-                    if (SItem.Put(CItem)) {
-                        hasFound = true;
-                        break;
-                    }
-                }
-                if (!hasFound) {
-                    Species.Add(new Species(CItem));
-                }
-            }
-			/// Attemp to skip as the Score is dynamic now. But may cause overall slowdown
-            //foreach (Species item in Species.Data) {
-            //    item.EvalueateScore();
-            //}
-        }
-        private void Kill() {
-            foreach (Species item in Species.Data) {
-                item.Kill(0.9f - SURVIVAL_THRESHOLD);
-            }
-        }
-        private void RemoveExtinct() {
-            for (int i = Species.Count - 1; i > 0; i--) {
-                if (Species[i].Clients.Count <= 1) {
-                    Species[i].GoExtinct();
-                    Species.RemoveAt(i);
-                }
-            }
-        }
-        private void Reproduce() {
-            RandomSelector<Species> selector = new RandomSelector<Species>();
-            foreach (Species s in Species.Data) {
-                selector.Add(s, s.Score);
-            }
-            foreach (Client c in Clients.Data) {
-                if (c.Species == null) {
-					Species s = new Species(selector.Random().Representative);
-                    c.Genome = s.Breed();
-                    s.ForcePut(c);
-                }
-            }
-        }
-        private void Mutate() {
-            foreach (Client item in Clients.Data) {
-                item.Mutate();
-            }
-        }
-        private void Calculate() {
-            foreach (Client item in Clients.Data) {
-                item.InitializeCalculator();
-            }
-        }
-        public void SetReplaceIndex(NodeGene node1, NodeGene node2, int index) {
-            Connections[new ConnectionGene(node1, node2)].ReplaceIndex = index;
-        }
-        public int GetReplaceIndex(NodeGene node1, NodeGene node2) {
-            ConnectionGene con = new ConnectionGene(node1, node2);
-            ConnectionGene data = Connections[con];
-            if (data == null) return 0;
-            return data.ReplaceIndex;
-        }
-        #endregion
-    }
+		#endregion
+		public void SetReplaceIndex(NodeGene node1, NodeGene node2, int index) {
+			Connections[new ConnectionGene(node1, node2)].ReplaceIndex = index;
+		}
+		public int GetReplaceIndex(NodeGene node1, NodeGene node2) {
+			ConnectionGene con = new ConnectionGene(node1, node2);
+			ConnectionGene data = Connections[con];
+			if (data == null) return 0;
+			return data.ReplaceIndex;
+		}
+	}
 }

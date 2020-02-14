@@ -69,13 +69,11 @@
     <Compile Include="Forward Propagation\ForwardPropagation.cs" />
     <Compile Include="Forward Propagation\FPropagateST.cs" />
     <Compile Include="Forward Propagation\Node.cs" />
-    <Compile Include="Genetic Algorithm\Client.cs" />
     <Compile Include="Genetic Algorithm\ConnectionGene.cs" />
     <Compile Include="Genetic Algorithm\Gene.cs" />
     <Compile Include="Genetic Algorithm\Neat.cs" />
     <Compile Include="Genetic Algorithm\NodeGene.cs" />
     <Compile Include="Data Structures\RandomSelector.cs" />
-    <Compile Include="Genetic Algorithm\Species.cs" />
     <Compile Include="Mutation\MutateConnection.cs" />
     <Compile Include="Mutation\MutateConnectionST.cs" />
     <Compile Include="Neuron\Activation.cs" />

@@ -10,6 +10,7 @@ namespace gSeer.Calculations {
     /// <summary>
     /// This thing calculates the values for the genes
     /// </summary>
+	[Obsolete("Will be deleted")]
     public class Calculator {
         public List<CalcNode> InputNodes { get; private set; } = new List<CalcNode>();
         public List<CalcNode> HiddenNodes { get; private set; }  = new List<CalcNode>();

@@ -35,7 +35,6 @@ namespace gSeer {
 		/// Create a Genome without neat template.
 		/// 
 		/// </summary>
-		[Obsolete("This feature will be disabled sooner and require to create neat locally.", false)] 
 		public ChaoticSeer() {
 			SURVIVAL_THRESHOLD = 0.02f;
 			AGE_THRESHOLD = 60; //Replace with random that averages to 60
@@ -47,7 +46,7 @@ namespace gSeer {
 			Connections = new GeneHashSet<ConnectionGene>();
             Nodes = new GeneHashSet<NodeGene>();
 			_mutation = new Mutation.MutationST();
-			_FPropagation = new Forward_Propagation.FPropagateST(this);
+			//_FPropagation = new Forward_Propagation.FPropagateST(this);
 			Score = 0;
 			Age = 0;
 		}

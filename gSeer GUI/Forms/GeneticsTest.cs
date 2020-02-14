@@ -67,7 +67,7 @@ namespace Nice_Seer.Forms {
 			picCanvas.Image = genome.GetBitmap();
 		}
 
-		private void bbtnMutate_Click(object sender, EventArgs e) {
+		private void btnMutate_Click(object sender, EventArgs e) {
 			genome.Mutate();
 			picCanvas.Image = genome.GetBitmap();
 		}
