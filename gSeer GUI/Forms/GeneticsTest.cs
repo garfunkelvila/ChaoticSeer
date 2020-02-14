@@ -11,7 +11,7 @@ using gSeer;
 using gSeer.Genetic_Algorithm;
 namespace Nice_Seer.Forms {
     public partial class GeneticsTest : Form {
-		NeatCNS neat;
+		Tribe tribe;
 		ChaoticSeer genome;
 
 		public GeneticsTest() {
@@ -19,7 +19,7 @@ namespace Nice_Seer.Forms {
         }
 
         private void GeneticsTest_Load(object sender, EventArgs e) {
-			Tribe tribe = new Tribe(2, 1, 10);
+			tribe = new Tribe(2, 1, 10);
 			genome = tribe.Representative;
 
 			//InitializeNeat();
@@ -29,17 +29,6 @@ namespace Nice_Seer.Forms {
 			picCanvas.Image = genome.GetBitmap();
 			Console.WriteLine("Nodes: " + genome.Nodes.Count);
 			Console.WriteLine("Connections: " + genome.Connections.Count);
-		}
-		private void InitializeNeat() {
-			neat = new NeatCNS(2, 1, 10);
-			float[] input = new float[10];
-			for (int i = 0; i < 10; i++) {
-				input[i] = (float)new Random().NextDouble();
-			}
-		}
-
-		private void btnInitializeNeat(object sender, EventArgs e) {
-			InitializeNeat();
 		}
 
 		private void btnMutateLink_Click(object sender, EventArgs e) {
@@ -73,7 +62,7 @@ namespace Nice_Seer.Forms {
 		}
 
 		private void button3_Click(object sender, EventArgs e) {
-			genome.Cns.Evolve();
+			tribe.Evolve();
 			picCanvas.Image = genome.GetBitmap();
 		}
 

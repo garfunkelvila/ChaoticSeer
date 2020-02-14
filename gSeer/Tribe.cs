@@ -39,13 +39,13 @@ namespace gSeer {
 		}
 		#region EVOLUTION
 		public void Evolve() {
-			//Populate();	// Base of natural selection // Create population
-			Kill();	//Basically like going extinct for now // Base of natural selection
+			//Populate();		// Base of natural selection // Create population
+			Kill();				//Basically like going extinct for now // Base of natural selection
 			//RemoveExtinct();
-			Reproduce();	// Load up population by mating. Spread on some passing of genes
-			Mutate();		// Evolve each species internally // Mutated babies
-			Calculate();    // Get their predictions, and probably 
-			Evaluate();		// set their scores
+			Reproduce();		// Load up population by mating. Spread on some passing of genes
+			Mutate();			// Evolve each species internally // Mutated babies
+			//Calculate();		// Get their predictions, and probably 
+			//Evaluate();		// set their scores
 		}
 		/// <summary>
 		/// Natural Selection
@@ -78,9 +78,6 @@ namespace gSeer {
 			foreach (ChaoticSeer seer in _Species) {
 				seer.Mutate();
 			}
-		}
-		private void Calculate() {
-			throw new NotImplementedException();
 		}
 		private void Evaluate() {
 			// Basically just give them their score
