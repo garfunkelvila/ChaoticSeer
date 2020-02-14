@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using gSeer.Genetic_Algorithm;
 using gSeer.Data_Structures;
-using gSeer.Calculations;
 using System.Drawing;
 
 namespace gSeer {
