@@ -118,6 +118,8 @@ namespace gSeer.Mutation {
 				ConnectionGene gene1 = g1.Connections[indexG1];
 				ConnectionGene gene2 = g2.Connections[indexG2];
 
+
+				//Because I seperated the client, the innovation number for them is different. This is a problem
 				int in1 = gene1.InnovationNumber;
 				int in2 = gene2.InnovationNumber;
 
