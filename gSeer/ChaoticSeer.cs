@@ -60,18 +60,6 @@ namespace gSeer {
                 Nodes.Add(Cns.AddNode(i + 1));
             }
         }
-		/// <summary>
-		/// Construct a seer without CNS
-		/// </summary>
-		/// <param name="input"></param>
-		/// <param name="output"></param>
-		public ChaoticSeer(int input, int output, int id) : this() {
-			Identity = id;
-			Cns = new NeatCNS(input, output);
-			for (int i = 0; i < Cns.InputSize + Cns.OutputSize; i++) {
-				Nodes.Add(Cns.AddNode(i + 1));
-			}
-		}
 		public float[] GetPrediction(params float[] input) {
 			_FPropagation = new Forward_Propagation.FPropagateST(this);
 			return _FPropagation.Output(input);
