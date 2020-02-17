@@ -12,6 +12,7 @@
 //  
 //  You should have received a copy of the GNU General Public License
 //  along with this program.If not, see<https://www.gnu.org/licenses/>.
+using Nice_Seer.Forms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +28,7 @@ namespace Nice_Seer {
         static void Main () {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Custom_Controls.LT ());
+            Application.Run(new GeneticsTest() );
         }
     }
 }
