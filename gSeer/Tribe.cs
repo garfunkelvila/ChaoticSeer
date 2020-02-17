@@ -13,6 +13,7 @@ namespace gSeer {
 	public class Tribe {
 		public GeneHashSet<ChaoticSeer> _Species;
 		public ChaoticSeer Representative;
+		public NeatCNS neat;
 		/// <summary>
 		/// Create a batch of species filled with Genomes
 		/// </summary>
