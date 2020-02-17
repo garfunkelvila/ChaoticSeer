@@ -95,7 +95,7 @@ namespace Nice_Seer.Forms {
 				};
 			}
 		}
-		private void button1_Click_1(object sender, EventArgs e) {
+		private void btnMutate_Click(object sender, EventArgs e) {
 			tribe.Mutate();
 			for (int i = 0; i < tribe._Species.Count; i++) {
 				pictureBoxes[i].Image = tribe._Species[i].GetBitmap();
