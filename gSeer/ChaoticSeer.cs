@@ -35,7 +35,7 @@ namespace gSeer {
 		/// Create a Genome without neat template.
 		/// 
 		/// </summary>
-		public ChaoticSeer() {
+		private ChaoticSeer() {
 			SURVIVAL_THRESHOLD = 0.02f;
 			AGE_THRESHOLD = 60; //Replace with random that averages to 60
 			REPRODUCE_START_THRESHOLD = 12; // Replace with random that averages to 15
