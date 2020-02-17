@@ -11,34 +11,27 @@ namespace gSeer {
 	/// Might rename this to Tribe
 	/// </summary>
 	public class Tribe {
-		public GeneHashSet<ChaoticSeer> _Species;
-		public ChaoticSeer Representative;
-		public NeatCNS neat;
+		public GeneHashSet<ChaoticSeer> Species { get; set; }
+		public ChaoticSeer Representative { get; set; }
+		public NeatCNS Neat { get; set; }
 		/// <summary>
 		/// Create a batch of species filled with Genomes
 		/// </summary>
 		/// <param name="inputSize"></param>
 		/// <param name="outputSize"></param>
 		public Tribe(int inputSize, int outputSize, int maxPopulation) {
-			_Species = new GeneHashSet<ChaoticSeer>();
+			Neat = new NeatCNS(inputSize, outputSize);
+			Species = new GeneHashSet<ChaoticSeer>();
 			for (int i = 0; i < maxPopulation; i++) {
 				Species.Add(new ChaoticSeer(Neat) {
 					Identity = i
 				});
 			}
-			Representative = _Species[0];
+			Representative = Species[0];
 		}
 		/// <summary>
 		/// Create a batch of species filled with Genomes
 		/// </summary>
-		[Obsolete("Might not be properly implemented soon")]
-		public Tribe(NeatCNS cns, int maxPopulation) {
-			//_Species = new GeneHashSet<ChaoticSeer>();
-			//for (int i = 0; i < maxPopulation; i++) {
-			//	_Species.Add(new ChaoticSeer(cns));
-			//}
-			//Representative = _Species[0];
-		}
 		#region EVOLUTION
 		public void Evolve() {
 			//Populate();		// Base of natural selection // Create population
@@ -51,11 +44,13 @@ namespace gSeer {
 		/// <summary>
 		/// Natural Selection
 		/// </summary>
-		public void Kill() {
+		public void Purge() {
 			//TODO: add somehting to make the fittest survive
-			for (int i = 0; i < _Species.Count; i++) {
-				if(_Species[i].SURVIVAL_THRESHOLD > Util.GetRngF()) {
-					_Species.RemoveAt(i);
+			int speciesKilled = 0;
+			for (int i = 0; i < Species.Count; i++) {
+				if(Species[i].SURVIVAL_THRESHOLD > Util.GetRngF()) {
+					Species.RemoveAt(i);
+					speciesKilled++;
 				}
 			}
 			Console.WriteLine("speciesKilled: " + speciesKilled);
@@ -81,7 +76,7 @@ namespace gSeer {
 		/// Mutate self, like self evolve
 		/// </summary>
 		public void Mutate() {
-			foreach (ChaoticSeer seer in _Species) {
+			foreach (ChaoticSeer seer in Species) {
 				seer.Mutate();
 			}
 		}
