@@ -22,7 +22,7 @@ namespace gSeer {
 			_Species = new GeneHashSet<ChaoticSeer>();
 			for (int i = 0; i < maxPopulation; i++) {
 				ChaoticSeer _seer;
-				_seer = new ChaoticSeer(inputSize, outputSize);
+				_seer = new ChaoticSeer(inputSize, outputSize, i);
 				_Species.Add(_seer);
 			}
 			Representative = _Species[0];

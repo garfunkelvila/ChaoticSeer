@@ -13,6 +13,7 @@ namespace gSeer {
 	/// Attemp for seer to calculate for itself
     /// </summary>
     public class ChaoticSeer : IComparable<ChaoticSeer> {
+		public int Identity { get; set; }
         public GeneHashSet<ConnectionGene> Connections { get; set; }
         public GeneHashSet<NodeGene> Nodes { get; set; }
 		public float Score { get; set; }
@@ -64,7 +65,8 @@ namespace gSeer {
 		/// </summary>
 		/// <param name="input"></param>
 		/// <param name="output"></param>
-		public ChaoticSeer(int input, int output) : this() {
+		public ChaoticSeer(int input, int output, int id) : this() {
+			Identity = id;
 			Cns = new NeatCNS(input, output);
 			for (int i = 0; i < Cns.InputSize + Cns.OutputSize; i++) {
 				Nodes.Add(Cns.AddNode(i + 1));
