@@ -68,8 +68,12 @@ namespace gSeer {
 
 			// Mutate with 10 times for now
 			// TODO: add something to prevent mutation with self
-			for (int i = 0; i < 10; i++) {
-				_Species[i].MateWith(_Species.Random);
+			for (int i = 0; i < 1; i++) {
+				ChaoticSeer _seerX = _Species.Random;
+				ChaoticSeer _seerY = _Species[i];
+				ChaoticSeer _seerChild = _seerY.MateWith(_seerX);
+				_seerChild.Identity = _Species.Count;
+				_Species.Add(_seerChild);
 			}
 		}
 		/// <summary>
