@@ -37,9 +37,9 @@ namespace gSeer {
 				(int)(PictureScale * CanvasWidth),
 				(int)(PictureScale * CanvasHeight));
 
-			Console.WriteLine("Canvas Size: " + CanvasWidth + " x " + CanvasHeight);
-			Console.WriteLine("Nodes: " + _seer.Nodes.Count);
-			Console.WriteLine("Connections: " + _seer.Connections.Count);
+			//Console.WriteLine("Canvas Size: " + CanvasWidth + " x " + CanvasHeight);
+			//Console.WriteLine("Nodes: " + _seer.Nodes.Count);
+			//Console.WriteLine("Connections: " + _seer.Connections.Count);
 
 			Graphics gr = Graphics.FromImage(Bm);
 			gr.Clear(Color.AliceBlue);
@@ -102,7 +102,7 @@ namespace gSeer {
 				_connectionPoints[i][1].X = (int)((connections[i].To.X * 1000) - 90);
 				_connectionPoints[i][1].Y = (int)((connections[i].To.Y * 100) - 90);
 
-				Console.WriteLine("From X: " + _connectionPoints[i][0].X + " Y:" + _connectionPoints[i][0].Y + " To X: " + _connectionPoints[i][0].X + " Y:" + _connectionPoints[i][0].Y);
+				//Console.WriteLine("From X: " + _connectionPoints[i][0].X + " Y:" + _connectionPoints[i][0].Y + " To X: " + _connectionPoints[i][0].X + " Y:" + _connectionPoints[i][0].Y);
 			}
 
 			return _connectionPoints;

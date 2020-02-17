@@ -58,6 +58,7 @@ namespace gSeer {
 					_Species.RemoveAt(i);
 				}
 			}
+			Console.WriteLine("speciesKilled: " + speciesKilled);
 		}
 		/// <summary>
 		/// Reproduce by mating with others

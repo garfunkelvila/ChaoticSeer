@@ -53,7 +53,7 @@ namespace gSeer.Data_Structures {
             for (int i = 0; i < Data.Count; i++) {
                 array.SetValue(Data[i], arrayIndex++);
             }
-            Console.WriteLine("Gene Hash Set CopyTo Triggered");
+            //Console.WriteLine("Gene Hash Set CopyTo Triggered");
         }
         public IEnumerator<T> GetEnumerator() {
 			//throw new NotImplementedException();
@@ -63,7 +63,7 @@ namespace gSeer.Data_Structures {
             return Data.IndexOf(item);
         }
         public void Insert(int index, T item) {
-			Console.WriteLine("Need to test the hash on this Insert Thing");
+			//Console.WriteLine("Need to test the hash on this Insert Thing");
 
 			//TODO
 			HashSet<T> Left = new HashSet<T>();
