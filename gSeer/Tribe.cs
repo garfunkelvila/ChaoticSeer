@@ -22,9 +22,9 @@ namespace gSeer {
 		public Tribe(int inputSize, int outputSize, int maxPopulation) {
 			_Species = new GeneHashSet<ChaoticSeer>();
 			for (int i = 0; i < maxPopulation; i++) {
-				ChaoticSeer _seer;
-				_seer = new ChaoticSeer(inputSize, outputSize, i);
-				_Species.Add(_seer);
+				Species.Add(new ChaoticSeer(Neat) {
+					Identity = i
+				});
 			}
 			Representative = _Species[0];
 		}
@@ -70,11 +70,11 @@ namespace gSeer {
 			// Mutate with 10 times for now
 			// TODO: add something to prevent mutation with self
 			for (int i = 0; i < 1; i++) {
-				ChaoticSeer _seerX = _Species.Random;
-				ChaoticSeer _seerY = _Species[i];
+				ChaoticSeer _seerX = Species.Random;
+				ChaoticSeer _seerY = Species[i];
 				ChaoticSeer _seerChild = _seerY.MateWith(_seerX);
-				_seerChild.Identity = _Species.Count;
-				_Species.Add(_seerChild);
+				_seerChild.Identity = Species.Count;
+				Species.Add(_seerChild);
 			}
 		}
 		/// <summary>
