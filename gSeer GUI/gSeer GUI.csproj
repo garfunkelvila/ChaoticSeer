@@ -65,12 +65,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Custom Controls\LT.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Custom Controls\LT.Designer.cs">
-      <DependentUpon>LT.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\frmAbout.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -115,9 +109,6 @@
     <Compile Include="Custom Controls\SeerVisualizer.Designer.cs">
       <DependentUpon>SeerVisualizer.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Custom Controls\LT.resx">
-      <DependentUpon>LT.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmAbout.resx">
       <DependentUpon>frmAbout.cs</DependentUpon>
     </EmbeddedResource>
