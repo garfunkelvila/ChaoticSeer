@@ -24,10 +24,10 @@ namespace gSeer.Data_Structures {
         public T Random {
             //might need to check if set has items
             get {
-                if(Hash.Count > 0)
-                    return Data[Util.GetRng(Count)];
+				if (Hash.Count > 0)
+					return Data[Util.GetRng(Count)];
                 return default(T);
-            } 
+            }
         }
         //Might be removed
         //public T get(T template) {
