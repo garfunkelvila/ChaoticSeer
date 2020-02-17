@@ -29,10 +29,6 @@ namespace gSeer.Data_Structures {
 				return default(T);
             }
         }
-        //Might be removed
-        //public T get(T template) {
-        //    return Data[Data.IndexOf(template)];
-        //}
         public int Count => Data.Count;
         public bool IsReadOnly => false;
         public void Add(T item) {
