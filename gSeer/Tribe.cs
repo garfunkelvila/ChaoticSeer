@@ -30,19 +30,19 @@ namespace gSeer {
 		/// <summary>
 		/// Create a batch of species filled with Genomes
 		/// </summary>
+		[Obsolete("Might not be properly implemented soon")]
 		public Tribe(NeatCNS cns, int maxPopulation) {
-			_Species = new GeneHashSet<ChaoticSeer>();
-			for (int i = 0; i < maxPopulation; i++) {
-				_Species.Add(new ChaoticSeer(cns));
-			}
-			Representative = _Species[0];
+			//_Species = new GeneHashSet<ChaoticSeer>();
+			//for (int i = 0; i < maxPopulation; i++) {
+			//	_Species.Add(new ChaoticSeer(cns));
+			//}
+			//Representative = _Species[0];
 		}
 		#region EVOLUTION
 		public void Evolve() {
 			//Populate();		// Base of natural selection // Create population
-			Kill();				//Basically like going extinct for now // Base of natural selection
-			//RemoveExtinct();
-			Reproduce();		// Load up population by mating. Spread on some passing of genes
+			///Kill();				//Basically like going extinct for now // Base of natural selection
+			///Reproduce();		// Load up population by mating. Spread on some passing of genes
 			Mutate();			// Evolve each species internally // Mutated babies
 			//Calculate();		// Get their predictions, and probably 
 			//Evaluate();		// set their scores
@@ -50,7 +50,7 @@ namespace gSeer {
 		/// <summary>
 		/// Natural Selection
 		/// </summary>
-		private void Kill() {
+		public void Kill() {
 			//TODO: add somehting to make the fittest survive
 			for (int i = 0; i < _Species.Count; i++) {
 				if(_Species[i].SURVIVAL_THRESHOLD > Util.GetRngF()) {
@@ -61,7 +61,7 @@ namespace gSeer {
 		/// <summary>
 		/// Reproduce by mating with others
 		/// </summary>
-		private void Reproduce() {
+		public void Reproduce() {
 			//Use mutate with to fill population
 			//GeneHashSet<ChaoticSeer> selector = _Species;
 
@@ -74,12 +74,12 @@ namespace gSeer {
 		/// <summary>
 		/// Mutate self, like self evolve
 		/// </summary>
-		private void Mutate() {
+		public void Mutate() {
 			foreach (ChaoticSeer seer in _Species) {
 				seer.Mutate();
 			}
 		}
-		private void Evaluate() {
+		public void Evaluate() {
 			// Basically just give them their score
 			throw new NotImplementedException();
 		}
