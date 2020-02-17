@@ -54,8 +54,8 @@ namespace gSeer {
         /// Create an emptygenome with only nodes wihtout connections based on a Neat
         /// </summary>
         /// <param name="Cns"></param>
-        public ChaoticSeer(NeatCNS Cns) : this() {
-            this.Cns = Cns;
+        public ChaoticSeer(NeatCNS neat) : this() {
+            Cns = neat;
             for (int i = 0; i < Cns.InputSize + Cns.OutputSize; i++) {
                 Nodes.Add(Cns.AddNode(i + 1));
             }

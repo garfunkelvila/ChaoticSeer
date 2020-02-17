@@ -108,7 +108,7 @@ namespace gSeer.Mutation {
 			/// take excess genes of g1 if they exist
 			NeatCNS neat = g1.Cns;
 			//Genome _genomeBuffer = neat.NewEmptyGenome();
-			ChaoticSeer _genomeBuffer = new ChaoticSeer();
+			ChaoticSeer _genomeBuffer = new ChaoticSeer(neat);
 
 			int indexG1 = 0;
 			int indexG2 = 0;
