@@ -41,9 +41,6 @@ namespace gSeer.Genetic_Algorithm {
             C2 = 1;
             C3 = 1;
         }
-        public NeatCNS(int inputSize, int outputSize, int population) : this() {
-            Reset(inputSize, outputSize, population);
-        }
 		public NeatCNS(int inputSize, int outputSize) : this() {
 			Reset2(inputSize, outputSize);
 		}
@@ -133,8 +130,9 @@ namespace gSeer.Genetic_Algorithm {
             }
             return connectionGene;
         }
-        #region EVOLUTION
-        public void Evolve() {
+		#region EVOLUTION
+		[Obsolete("This method is transfered", false)]
+		public void Evolve() {
 			throw new Exception("Transfer this to tribe");
             //GenerateSpecies();
             //Kill();
