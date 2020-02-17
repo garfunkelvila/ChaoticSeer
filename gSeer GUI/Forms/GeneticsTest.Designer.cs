@@ -26,10 +26,10 @@
 			this.button3 = new System.Windows.Forms.Button();
 			this.button4 = new System.Windows.Forms.Button();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
-			this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-			this.button1 = new System.Windows.Forms.Button();
 			this.button2 = new System.Windows.Forms.Button();
 			this.button6 = new System.Windows.Forms.Button();
+			this.button1 = new System.Windows.Forms.Button();
+			this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
 			this.groupBox2.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -69,6 +69,36 @@
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Tribe";
 			// 
+			// button2
+			// 
+			this.button2.Location = new System.Drawing.Point(6, 229);
+			this.button2.Name = "button2";
+			this.button2.Size = new System.Drawing.Size(100, 50);
+			this.button2.TabIndex = 2;
+			this.button2.Text = "Purge";
+			this.button2.UseVisualStyleBackColor = true;
+			this.button2.Click += new System.EventHandler(this.btnPurge_Click);
+			// 
+			// button6
+			// 
+			this.button6.Location = new System.Drawing.Point(6, 285);
+			this.button6.Name = "button6";
+			this.button6.Size = new System.Drawing.Size(100, 50);
+			this.button6.TabIndex = 2;
+			this.button6.Text = "Reproduce";
+			this.button6.UseVisualStyleBackColor = true;
+			this.button6.Click += new System.EventHandler(this.btnReproduce_Click);
+			// 
+			// button1
+			// 
+			this.button1.Location = new System.Drawing.Point(6, 341);
+			this.button1.Name = "button1";
+			this.button1.Size = new System.Drawing.Size(100, 50);
+			this.button1.TabIndex = 2;
+			this.button1.Text = "Mutate";
+			this.button1.UseVisualStyleBackColor = true;
+			this.button1.Click += new System.EventHandler(this.button1_Click_1);
+			// 
 			// flowLayoutPanel1
 			// 
 			this.flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -81,36 +111,6 @@
 			this.flowLayoutPanel1.Name = "flowLayoutPanel1";
 			this.flowLayoutPanel1.Size = new System.Drawing.Size(673, 558);
 			this.flowLayoutPanel1.TabIndex = 6;
-			// 
-			// button1
-			// 
-			this.button1.Location = new System.Drawing.Point(6, 341);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(100, 50);
-			this.button1.TabIndex = 2;
-			this.button1.Text = "Mutate";
-			this.button1.UseVisualStyleBackColor = true;
-			this.button1.Click += new System.EventHandler(this.button1_Click_1);
-			// 
-			// button2
-			// 
-			this.button2.Location = new System.Drawing.Point(6, 229);
-			this.button2.Name = "button2";
-			this.button2.Size = new System.Drawing.Size(100, 50);
-			this.button2.TabIndex = 2;
-			this.button2.Text = "Kill";
-			this.button2.UseVisualStyleBackColor = true;
-			this.button2.Click += new System.EventHandler(this.button2_Click);
-			// 
-			// button6
-			// 
-			this.button6.Location = new System.Drawing.Point(6, 285);
-			this.button6.Name = "button6";
-			this.button6.Size = new System.Drawing.Size(100, 50);
-			this.button6.TabIndex = 2;
-			this.button6.Text = "Reproduce";
-			this.button6.UseVisualStyleBackColor = true;
-			this.button6.Click += new System.EventHandler(this.button1_Click);
 			// 
 			// GeneticsTest
 			// 

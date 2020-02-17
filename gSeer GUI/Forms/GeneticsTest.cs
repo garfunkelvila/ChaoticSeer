@@ -25,6 +25,7 @@ namespace Nice_Seer.Forms {
 			//InitializeNeat();
 			//genome = new ChaoticSeer(neat);
 			//genome = neat.NewEmptyGenome();
+			pictureBoxes = new PictureBox[tribe._Species.Count];
 			for (int i = 0; i < tribe._Species.Count; i++) {
 				pictureBoxes[i] = new PictureBox {
 					Parent = flowLayoutPanel1,
@@ -58,24 +59,42 @@ namespace Nice_Seer.Forms {
 			}
 		}
 
-		private void button1_Click(object sender, EventArgs e) {
+		private void btnReproduce_Click(object sender, EventArgs e) {
+			for (int i = 0; i < pictureBoxes.Length; i++) {
+				pictureBoxes[i].Dispose();
+			}
+			pictureBoxes = null;
+
 			tribe.Reproduce();
+
+			pictureBoxes = new PictureBox[tribe._Species.Count];
 			for (int i = 0; i < tribe._Species.Count; i++) {
-				pictureBoxes[i].Image = tribe._Species[i].GetBitmap();
+				pictureBoxes[i] = new PictureBox {
+					Parent = flowLayoutPanel1,
+					SizeMode = PictureBoxSizeMode.AutoSize,
+					Image = tribe._Species[i].GetBitmap(),
+					BorderStyle = BorderStyle.FixedSingle
+				};
 			}
 		}
+		private void btnPurge_Click(object sender, EventArgs e) {
+			for (int i = 0; i < pictureBoxes.Length; i++) {
+				pictureBoxes[i].Dispose();
+			}
+			pictureBoxes = null;
 
-		private void button5_Click(object sender, EventArgs e) {
-			
-		}
+			tribe.Purge();
 
-		private void button2_Click(object sender, EventArgs e) {
-			tribe.Kill();
+			pictureBoxes = new PictureBox[tribe._Species.Count];
 			for (int i = 0; i < tribe._Species.Count; i++) {
-				pictureBoxes[i].Image = tribe._Species[i].GetBitmap();
+				pictureBoxes[i] = new PictureBox {
+					Parent = flowLayoutPanel1,
+					SizeMode = PictureBoxSizeMode.AutoSize,
+					Image = tribe._Species[i].GetBitmap(),
+					BorderStyle = BorderStyle.FixedSingle
+				};
 			}
 		}
-
 		private void button1_Click_1(object sender, EventArgs e) {
 			tribe.Mutate();
 			for (int i = 0; i < tribe._Species.Count; i++) {
