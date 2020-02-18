@@ -33,8 +33,9 @@ namespace Nice_Seer.Forms {
 
 		}
 
-		private void button4_Click(object sender, EventArgs e) {
-			Console.WriteLine("Pred: " + genome.GetPrediction(1, 1)[0]);
+		private void btnEvaluate_click(object sender, EventArgs e) {
+			tribe.Evaluate(_and);
+			UpdatePictureBoxes();
 		}
 
 		private void btnReproduce_Click(object sender, EventArgs e) {
@@ -49,9 +50,7 @@ namespace Nice_Seer.Forms {
 		}
 		private void btnMutate_Click(object sender, EventArgs e) {
 			tribe.Mutate();
-			for (int i = 0; i < tribe.Species.Count; i++) {
-				pictureBoxes[i].Image = tribe.Species[i].GetBitmap();
-			}
+			UpdatePictureBoxes();
 		}
 		private void ClearPictureBoxes() {
 			for (int i = 0; i < pictureBoxes.Length; i++) {
@@ -69,6 +68,84 @@ namespace Nice_Seer.Forms {
 					BorderStyle = BorderStyle.FixedSingle
 				};
 			}
+		}
+		private void UpdatePictureBoxes() {
+			for (int i = 0; i < tribe.Species.Count; i++) {
+				pictureBoxes[i].Image = tribe.Species[i].GetBitmap();
+			}
+		}
+		TrainingData[] _and = new TrainingData[] {
+				new TrainingData(
+					new float[2] { 0, 0 },
+					new float[1] { 0 }
+				),
+				new TrainingData(
+					new float[2] { 0, 1 },
+					new float[1] { 1 }
+				),
+				new TrainingData(
+					new float[2] { 1, 0 },
+					new float[1] { 0 }
+				),
+				new TrainingData(
+					new float[2] { 1, 1 },
+					new float[1] { 1 }
+				)
+			};
+		TrainingData[] _or = new TrainingData[] {
+				new TrainingData(
+					new float[2] { 0, 0 },
+					new float[1] { 0 }
+				),
+				new TrainingData(
+					new float[2] { 0, 1 },
+					new float[1] { 1 }
+				),
+				new TrainingData(
+					new float[2] { 1, 0 },
+					new float[1] { 1 }
+				),
+				new TrainingData(
+					new float[2] { 1, 1 },
+					new float[1] { 1 }
+				)
+			};
+		TrainingData[] _xor = new TrainingData[] {
+				new TrainingData(
+					new float[2] { 0, 0 },
+					new float[1] { 0 }
+				),
+				new TrainingData(
+					new float[2] { 0, 1 },
+					new float[1] { 1 }
+				),
+				new TrainingData(
+					new float[2] { 1, 0 },
+					new float[1] { 1 }
+				),
+				new TrainingData(
+					new float[2] { 1, 1 },
+					new float[1] { 0 }
+				)
+			};
+
+		private void button4_Click(object sender, EventArgs e) {
+			int mutateRNG = new Random().Next(1,360);
+			for (int i = 0; i < mutateRNG; i++) {
+				tribe.Mutate();
+			}
+			tribe.Evaluate(_and);
+
+			int purgeRNG = new Random().Next(1, 12);
+			for (int i = 0; i < purgeRNG; i++) {
+				tribe.Purge();
+			}
+			tribe.Reproduce();
+
+			tribe.Evaluate(_and);
+
+			ClearPictureBoxes();
+			InitializePictureBoxes();
 		}
 	}
 }

@@ -36,10 +36,18 @@ namespace gSeer {
 		/// Natural Selection
 		/// </summary>
 		public void Purge() {
-			//TODO: add somehting to make the fittest survive
+			if (Species.Count == 2) return;
+			//TODO: add somehting to make the highest score survive
 			int speciesKilled = 0;
+			float avgFitness = 0f;
 			for (int i = 0; i < Species.Count; i++) {
-				if(Species[i].SURVIVAL_THRESHOLD > Util.GetRngF()) {
+				avgFitness += Species[i].Fitness;
+			}
+			avgFitness /= Species.Count;
+
+			// attempt to kill lower fitness with survival threshold as luck
+			for (int i = 0; i < Species.Count; i++) {
+				if(Species[i].Fitness < avgFitness && Species[i].SURVIVAL_THRESHOLD > Util.GetRngF()) {
 					Species.RemoveAt(i);
 					speciesKilled++;
 				}
@@ -50,18 +58,24 @@ namespace gSeer {
 		/// Reproduce by mating with others
 		/// </summary>
 		public void Reproduce() {
-			//Use mutate with to fill population
-			//GeneHashSet<ChaoticSeer> selector = _Species;
+			//Currently it will just fill up to max population
 
-			// Mutate with 10 times for now
-			// TODO: add something to prevent mutation with self
-			for (int i = 0; i < 1; i++) {
+			// TODO: add something to prevent mating with self
+			//for (int i = 0; i < 1; i++) {
+			//	ChaoticSeer _seerX = Species.Random;
+			//	ChaoticSeer _seerY = Species[i];
+			//	ChaoticSeer _seerChild = _seerY.MateWith(_seerX);
+			//	_seerChild.Identity = _seerX.Identity + _seerY.Identity;
+			//	Species.Add(_seerChild);
+			//}
+
+			do {
 				ChaoticSeer _seerX = Species.Random;
-				ChaoticSeer _seerY = Species[i];
+				ChaoticSeer _seerY = Species.Random;
 				ChaoticSeer _seerChild = _seerY.MateWith(_seerX);
-				_seerChild.Identity = Species.Count;
+				_seerChild.Identity = _seerX.Identity + _seerY.Identity;
 				Species.Add(_seerChild);
-			}
+			} while (Species.Count < MAX_POPULATION);
 		}
 		/// <summary>
 		/// Mutate self, like self evolve
@@ -85,10 +99,39 @@ namespace gSeer {
 		/// Fill their score based on their predictions
 		/// </summary>
 		/// <param name="td"></param>
-		public void Evaluate(TrainingData td) {
-			// Basically just give them their score
-			throw new NotImplementedException();
+		public void Evaluate(TrainingData[] td) {
+			// I just realized I need the BP error function here
+			// TODO: use proper cost function
+
+			for (int iSpecie = 0; iSpecie < Species.Count; iSpecie++) {
+				// Loop through species
+				
+				Species[iSpecie].Fitness = 0;
+				for (int iTd = 0; iTd < td.Length; iTd++) {
+					// Loop through training datas
+
+					float[] pred = Species[iSpecie].GetPrediction(td[iTd].Input);
+					for (int i = 0; i < pred.Length; i++) {
+						// Loop througo output neurons
+
+						//float _cost = pred[i] && td[iTd].Target[i];
+						float _cost = FloatingAnd(pred[i] , td[iTd].Target[i]);
+						Species[iSpecie].Fitness += _cost;
+					}
+				}
+			}
+
+			//throw new NotImplementedException();
 		}
+		private float FloatingAnd(float x, float y) {
+			if (x < y) {
+				return (x + 1) - y;
+			}
+			else {
+				return (y + 1) - x;
+			}
+		}
+
 		public float[][] Decisions() {
 			throw new NotImplementedException();
 		}
