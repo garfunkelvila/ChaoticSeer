@@ -1,31 +1,28 @@
-# NiceSeer
-This branch is for converting the whole seer to be compatible with neat so I can impelement it here.
-I just realized that what I want to do is called NEAT
+# ChaoticSeer
+This is basically just bad implementation of NEAT.
+
+My attemp on ANN Library. My objective for this one is to learn more in C#. This is an ongoing project and most of functions don't work yet or don't exist.
+
+When satisfied, I will also make a PHP (Class/Functions set), MSSQL (Functions set) and MySQL (Functions set) versions of it.
+
+Currently it can't train to solve AND, NOT and XOR operators.
 
 ## Current classes
-  * **Neuron** - Contains Weights and Bias
-  * **NeuronLayer** - Contains neurons (Will be deleted)
-  * **NeuronLayerGroup** - Contains Neuron Layers (Will be deleted)
+  * **Tribe** - Contains the population
+  * **Neat** - Contains the NEAT functions and variables
   * **Activations** - Contains Activation functions
-  * **BackPropagation** - Contains Back Propagation functions (Will be revised to work with neat)
+  * **BackPropagation** - Need to be converted to work with neat
   * **Genetics** - Contains Mutation functions (Will be elaborated)
 ## Known working classes
-  * Neuron
-    - [x] Axon/Output
-  * Genome
-    - [x] Forward feed (Will be revised to use with node and connections)
   * Activations
     - [x] Logistic, TanH, Step and Relu are working (Others don't have derivatives to use with Back Propagation)
-  * BackPropagation
-    - [x] Gradient Descent BackPropagate (Will be revised, error propagation formula will change after the connection and nodes are done)
   * Genetics
     - [ ] Selection
-    - [ ] Crossover
-    - [ ] Mutation
-	- [ ] Connection
+    - [x] Crossover
+    - [x] Mutation
+	- [x] Connection
 ## Todo
-  * A thing that can contain connections, and match if current connection exists. Probably will be inserted in seer/neat 
-  * **Normalze Weight** - (Mutation) Re center the weights and biases of the neurons before mutation. May or may not be needed
+  * Test the NEAT
 ### Classes (Batch and threading related)
   - **Country** - Contains Species/batch
   * **Planet** - Contain Countries, will be used for mini batch. Will do it like this because I will make some gender mutation and mini batch mutate limitations.
@@ -33,4 +30,4 @@ I just realized that what I want to do is called NEAT
 ### Others
   * **LearningRateDecay** - Make learning rate slowly go down based on back propagation changes/variables, I still need to make a formula/flow for this one.
   * **Parser** - A kind of translator for network (numbers into binary, bitmap into RGB, and others)
-  * **MutationRate** - Mutation rate will be fixed every specie. And will be affected by mutation
+  * **Aging** - A kind of natural selection without purging
