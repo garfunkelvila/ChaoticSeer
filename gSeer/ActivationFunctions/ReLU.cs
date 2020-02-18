@@ -4,16 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace gSeer.Neuron.ActivationFunction {
-    public class Step : Activation {
+namespace gSeer.ActivationFunctions {
+    public class ReLU : Activation {
         /// <summary>
-        /// Returns a Step or 0 and 1
+        /// Retuns a rectified linear unit
         /// </summary>
         /// <param name="x">Input</param>
-        /// <param name="trigger">Threshold</param>
-        /// <returns>Either 0 or 1</returns>
+        /// <param name="trigger">The starting point</param>
+        /// <returns>Rectified linerar unit</returns>
         protected override float CalcAxon(float x, float trigger = 0.5f) {
-            return x > trigger ? 1 : 0;
+            return x > trigger ? x : 0;
         }
 
         protected override float CalcAxon(float x) {

@@ -20,6 +20,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using gSeer.ActivationFunctions;
 
 namespace gSeer {
     public class TSeer {
@@ -38,8 +39,8 @@ namespace gSeer {
 namespace gSeer.T {
     public class Neuron {
         public int Dendrites { get; }  /// Neuron input
-		public gSeer.Neuron.Activation _activationFunction { get; }
-		public Neuron(int dendritesCount, gSeer.Neuron.Activation aF = null) {
+		public Activation _activationFunction { get; }
+		public Neuron(int dendritesCount, Activation aF = null) {
             Dendrites = dendritesCount;
         }
     }

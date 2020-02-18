@@ -20,7 +20,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using gSeer.Neuron.ActivationFunction;
+using gSeer.ActivationFunctions;
 
 namespace gSeer.Neuron {
     public class Neuron {

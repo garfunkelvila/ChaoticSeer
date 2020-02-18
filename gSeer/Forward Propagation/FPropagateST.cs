@@ -78,12 +78,12 @@ namespace gSeer.Forward_Propagation {
 	}
 
 	public class CalcNode : IComparable<CalcNode> {
-		Neuron.Activation ActivationFunction;
+		ActivationFunctions.Activation ActivationFunction;
 		public float X { get; set; }
 		public float Output { get; set; }
 		public List<CalcConnection> Connections { get; set; }
 		CalcNode() {
-			ActivationFunction = new Neuron.ActivationFunction.Logistic();
+			ActivationFunction = new ActivationFunctions.Logistic();
 			Connections = new List<CalcConnection>();
 		}
 		public CalcNode(float x) : this() {

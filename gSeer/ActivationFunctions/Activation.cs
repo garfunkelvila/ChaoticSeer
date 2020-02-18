@@ -21,7 +21,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace gSeer.Neuron {
+namespace gSeer.ActivationFunctions {
     public abstract class Activation {
         protected abstract float CalcAxon(float x);
         protected abstract float CalcAxon(float x, float y);

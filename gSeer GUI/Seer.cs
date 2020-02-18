@@ -19,7 +19,7 @@ using System.Text;
 using System.Threading.Tasks;
 using gSeer;
 using gSeer.Neuron; //I should replace the namespace inside -_-
-using gSeer.Neuron.ActivationFunction;
+using gSeer.ActivationFunctions;
 
 namespace Nice_Seer {
     class TestSeer {

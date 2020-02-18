@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace gSeer.Neuron.ActivationFunction {
+namespace gSeer.ActivationFunctions {
     public class TanH : Activation {
         /// <summary>
         /// Returnes hyperbolic tangent
