@@ -73,13 +73,23 @@ namespace gSeer {
 		}
 		#endregion
 
-		#region PREDICTIONS
+		public void Train(TrainingData td) {
+			//Mutate few times maybe 12, or 100+ don'y know yet
+			//Get prediction to all training data, each correct output gives score
+			//Purge
+			//Reproduce
+		}
+
+		#region DECISIONS
 		/// <summary>
 		/// Fill their score based on their predictions
 		/// </summary>
 		/// <param name="td"></param>
 		public void Evaluate(TrainingData td) {
 			// Basically just give them their score
+			throw new NotImplementedException();
+		}
+		public float[][] Decisions() {
 			throw new NotImplementedException();
 		}
 		#endregion
