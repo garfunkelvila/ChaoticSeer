@@ -16,7 +16,7 @@ namespace gSeer {
 		public int Identity { get; set; }
         public GeneHashSet<ConnectionGene> Connections { get; set; }
         public GeneHashSet<NodeGene> Nodes { get; set; }
-		public float Score { get; set; }
+		public float Fitness { get; set; }
 		public int Age { get; set; }
 		public NeatCNS Cns { get; private set; }
 		/// Percentage of this genome to survive
@@ -46,7 +46,7 @@ namespace gSeer {
 			Connections = new GeneHashSet<ConnectionGene>();
             Nodes = new GeneHashSet<NodeGene>();
 			_mutation = new Mutation.MutationST();
-			Score = 0;
+			Fitness = 0;
 			Age = 0;
 		}
         /// <summary>
@@ -157,8 +157,8 @@ namespace gSeer {
 		/// <param name="other"></param>
 		/// <returns></returns>
 		public int CompareTo(ChaoticSeer other) {
-			if (Score > other.Score) return -1;
-			if (Score < other.Score) return 1;
+			if (Fitness > other.Fitness) return -1;
+			if (Fitness < other.Fitness) return 1;
 			return 0;
 		}
 	}

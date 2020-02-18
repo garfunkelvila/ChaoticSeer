@@ -74,8 +74,11 @@ namespace gSeer {
 				//rectangles[i] = new Rectangle(_offset, new Size(10, 10));
 			}
 
-			//Draw text Identity
-			gr.DrawString("Identity: " + _seer.Identity, new Font("Courier New", 8), textBrushBlack, new Point(100,0));
+			//Draw text Status
+			string status = "Identity: " + _seer.Identity + Environment.NewLine + 
+							"Fitness:  " + _seer.Fitness + Environment.NewLine + 
+							"Age:      " + _seer.Age;
+			gr.DrawString(status, new Font("Courier New", 8), textBrushBlack, new Point(600,0));
 
 			//picCanvas.Image = Bm;
 			return Bm;
