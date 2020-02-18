@@ -85,7 +85,7 @@ namespace gSeer.Mutation {
 		public override void MutateToggleConnection(ChaoticSeer seer) {
 			ConnectionGene con = seer.Connections.Random;
 			if (con != null) {
-				con.Weight += ((Util.GetRngF() * 2) - 1) * NeatCNS.WEIGHT_SHIFT_STRENGTH;
+				con.IsEnabled = con.IsEnabled;
 			}
 		}
 		public override void MutateWeightRandom(ChaoticSeer seer) {
@@ -97,7 +97,7 @@ namespace gSeer.Mutation {
 		public override void MutateWeightShift(ChaoticSeer seer) {
 			ConnectionGene con = seer.Connections.Random;
 			if (con != null) {
-				con.IsEnabled = con.IsEnabled;
+				con.Weight += ((Util.GetRngF() * 2) - 1) * NeatCNS.WEIGHT_SHIFT_STRENGTH;
 			}
 		}
 		public override ChaoticSeer CrossOver(ChaoticSeer g1, ChaoticSeer g2) {
