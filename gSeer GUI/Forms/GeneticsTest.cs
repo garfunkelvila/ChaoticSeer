@@ -12,7 +12,7 @@ using gSeer.Genetic_Algorithm;
 namespace Nice_Seer.Forms {
     public partial class GeneticsTest : Form {
 		Tribe tribe;
-		ChaoticSeer genome;
+		ChaoticSeer genomeRepresentative;
 		PictureBox[] pictureBoxes;
 		public GeneticsTest() {
             InitializeComponent();
@@ -20,13 +20,13 @@ namespace Nice_Seer.Forms {
 
         private void GeneticsTest_Load(object sender, EventArgs e) {
 			tribe = new Tribe(2, 1, 10);
-			genome = tribe.Representative;
+			genomeRepresentative = tribe.Representative;
 			pictureBoxes = new PictureBox[tribe.Species.Count];
 
 			InitializePictureBoxes();
 
-			Console.WriteLine("Nodes: " + genome.Nodes.Count);
-			Console.WriteLine("Connections: " + genome.Connections.Count);
+			Console.WriteLine("Nodes: " + genomeRepresentative.Nodes.Count);
+			Console.WriteLine("Connections: " + genomeRepresentative.Connections.Count);
 		}
 
 		private void btnEvolve_Click(object sender, EventArgs e) {
@@ -146,6 +146,14 @@ namespace Nice_Seer.Forms {
 
 			ClearPictureBoxes();
 			InitializePictureBoxes();
+
+			LogRepWeights();
+		}
+
+		private void LogRepWeights() {
+			for (int i = 0; i < tribe.Representative.Connections.Count; i++) {
+				Console.WriteLine("ID:" + tribe.Representative.Connections[i].InnovationNumber + "W: " + tribe.Representative.Connections[i].Weight);
+			}
 		}
 	}
 }
