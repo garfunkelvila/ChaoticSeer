@@ -31,7 +31,6 @@ namespace gSeer.Genetic_Algorithm {
         public float CP { get; } = 4f;
         public int InputSize { get; private set; }  //Sensor
         public int OutputSize { get; private set; } //Motor
-        public int MaxPopulation { get; private set; }
         #endregion
         NeatCNS() {
             MAX_NODES = (int)Math.Pow(2, 20);       // 1M max nodes
@@ -42,9 +41,9 @@ namespace gSeer.Genetic_Algorithm {
             C3 = 1;
         }
 		public NeatCNS(int inputSize, int outputSize) : this() {
-			Reset2(inputSize, outputSize);
+			Reset(inputSize, outputSize);
 		}
-		public void Reset2(int inputSize, int outputSize) {
+		public void Reset(int inputSize, int outputSize) {
 			InputSize = inputSize;
 			OutputSize = outputSize;
 
@@ -69,30 +68,6 @@ namespace gSeer.Genetic_Algorithm {
 			}
 
 		}
-		public void Reset(int inputSize, int outputSize, int population) {
-            InputSize = inputSize;
-            OutputSize = outputSize;
-            MaxPopulation = population;
-
-            Connections.Clear();
-            Nodes.Clear();
-            // Directly access property of the newly addded node to list
-            for (int i = 0; i < inputSize; i++) {
-                NodeGene n = AddNode();
-                n.X = 0.1f; // Used for drawing
-
-                float _testa = i + 1;
-                float _testb = inputSize + 1;
-                float _testc = _testa / _testb;
-                //n.Y = _testc;
-                n.Y = i + 1 / inputSize + 1;
-            }
-            for (int i = 0; i < outputSize; i++) {
-                NodeGene n = AddNode();
-                n.X = 0.9f; // Used for drawing
-                n.Y = i + 1 / outputSize + 1;
-            }
-        }
 		/// <summary>
 		/// Add a new node to the nervous system
 		/// </summary>
@@ -111,13 +86,6 @@ namespace gSeer.Genetic_Algorithm {
             if (id <= Nodes.Count) return Nodes[id - 1];
             return AddNode();
         }
-        public static ConnectionGene AddConnection(ConnectionGene cG) {
-            ConnectionGene c = new ConnectionGene(cG.From, cG.To) {
-                Weight = cG.Weight,
-                IsEnabled = cG.IsEnabled
-            };
-            return c;
-        }
         public ConnectionGene AddConnection(NodeGene node1, NodeGene node2) {
             /// Check if the current connection exists on the current genome
             ConnectionGene connectionGene = new ConnectionGene(node1, node2);
@@ -130,18 +98,6 @@ namespace gSeer.Genetic_Algorithm {
             }
             return connectionGene;
         }
-		#region EVOLUTION
-		[Obsolete("This method is transfered", false)]
-		public void Evolve() {
-			throw new Exception("Transfer this to tribe");
-            //GenerateSpecies();
-            //Kill();
-            //RemoveExtinct();
-            //Reproduce();
-            //Mutate();
-            //Calculate();
-        }
-		#endregion
 		public void SetReplaceIndex(NodeGene node1, NodeGene node2, int index) {
 			Connections[new ConnectionGene(node1, node2)].ReplaceIndex = index;
 		}

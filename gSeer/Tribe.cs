@@ -11,15 +11,17 @@ namespace gSeer {
 	/// Might rename this to Tribe
 	/// </summary>
 	public class Tribe {
-		public GeneHashSet<ChaoticSeer> Species { get; set; }
-		public ChaoticSeer Representative { get; set; }
-		public NeatCNS Neat { get; set; }
+		public GeneHashSet<ChaoticSeer> Species { get; private set; }
+		public ChaoticSeer Representative { get => Species[0]; }
+		public NeatCNS Neat { get; }
+		public int MAX_POPULATION { get; }
 		/// <summary>
 		/// Create a batch of species filled with Genomes
 		/// </summary>
 		/// <param name="inputSize"></param>
 		/// <param name="outputSize"></param>
 		public Tribe(int inputSize, int outputSize, int maxPopulation) {
+			MAX_POPULATION = maxPopulation;
 			Neat = new NeatCNS(inputSize, outputSize);
 			Species = new GeneHashSet<ChaoticSeer>();
 			for (int i = 0; i < maxPopulation; i++) {
@@ -27,20 +29,9 @@ namespace gSeer {
 					Identity = i
 				});
 			}
-			Representative = Species[0];
 		}
-		/// <summary>
-		/// Create a batch of species filled with Genomes
-		/// </summary>
+		/// Will use polymorph soon
 		#region EVOLUTION
-		public void Evolve() {
-			//Populate();		// Base of natural selection // Create population
-			///Kill();				//Basically like going extinct for now // Base of natural selection
-			///Reproduce();		// Load up population by mating. Spread on some passing of genes
-			Mutate();			// Evolve each species internally // Mutated babies
-			//Calculate();		// Get their predictions, and probably 
-			//Evaluate();		// set their scores
-		}
 		/// <summary>
 		/// Natural Selection
 		/// </summary>
@@ -80,7 +71,14 @@ namespace gSeer {
 				seer.Mutate();
 			}
 		}
-		public void Evaluate() {
+		#endregion
+
+		#region PREDICTIONS
+		/// <summary>
+		/// Fill their score based on their predictions
+		/// </summary>
+		/// <param name="td"></param>
+		public void Evaluate(TrainingData td) {
 			// Basically just give them their score
 			throw new NotImplementedException();
 		}

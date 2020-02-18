@@ -37,21 +37,12 @@ namespace Nice_Seer.Forms {
 			Console.WriteLine("Connections: " + genome.Connections.Count);
 		}
 
-		private void button3_Click(object sender, EventArgs e) {
-			tribe.Evolve();
-			for (int i = 0; i < tribe.Species.Count; i++) {
-				pictureBoxes[i].Image = tribe.Species[i].GetBitmap();
-			}
+		private void btnEvolve_Click(object sender, EventArgs e) {
+
 		}
 
 		private void button4_Click(object sender, EventArgs e) {
 			Console.WriteLine("Pred: " + genome.GetPrediction(1, 1)[0]);
-		}
-
-		private void numericUpDown1_ValueChanged(object sender, EventArgs e) {
-			for (int i = 0; i < tribe.Species.Count; i++) {
-				pictureBoxes[i].Image = tribe.Species[i].GetBitmap();
-			}
 		}
 
 		private void btnReproduce_Click(object sender, EventArgs e) {

@@ -46,7 +46,6 @@ namespace gSeer {
 			Connections = new GeneHashSet<ConnectionGene>();
             Nodes = new GeneHashSet<NodeGene>();
 			_mutation = new Mutation.MutationST();
-			//_FPropagation = new Forward_Propagation.FPropagateST(this);
 			Score = 0;
 			Age = 0;
 		}
@@ -151,8 +150,6 @@ namespace gSeer {
 		public void MutateWeightShift() => _mutation.MutateWeightShift(this);
 		public void MutateWeightRandom() => _mutation.MutateWeightRandom(this);
 		public void MutateToggleConnection() => _mutation.MutateToggleConnection(this);
-		[Obsolete("This will be deleted soon as use MutateWith",false)]
-		public static ChaoticSeer CrossOver(ChaoticSeer g1, ChaoticSeer g2) => _mutation.CrossOver(g1, g2);
 		public ChaoticSeer MateWith(ChaoticSeer partner) => _mutation.CrossOver(this, partner);
 		/// <summary>
 		/// Larger score move first to the array
