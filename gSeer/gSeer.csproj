@@ -72,11 +72,11 @@
     <Compile Include="Data Structures\RandomSelector.cs" />
     <Compile Include="Mutation\MutateConnection.cs" />
     <Compile Include="Mutation\MutateConnectionST.cs" />
-    <Compile Include="Neuron\Activation.cs" />
-    <Compile Include="Neuron\ActivationFunction\Logistic.cs" />
-    <Compile Include="Neuron\ActivationFunction\ReLU.cs" />
-    <Compile Include="Neuron\ActivationFunction\Step.cs" />
-    <Compile Include="Neuron\ActivationFunction\TanH.cs" />
+    <Compile Include="ActivationFunctions\Activation.cs" />
+    <Compile Include="ActivationFunctions\Logistic.cs" />
+    <Compile Include="ActivationFunctions\ReLU.cs" />
+    <Compile Include="ActivationFunctions\Step.cs" />
+    <Compile Include="ActivationFunctions\TanH.cs" />
     <Compile Include="Paint.cs" />
     <Compile Include="Parsers\SeerParser.cs" />
     <Compile Include="Data Structures\GeneHashSet.cs" />
