@@ -12,7 +12,7 @@ Currently it can't train to solve AND, NOT and XOR operators.
   * **Neat** - Contains the NEAT functions and variables
   * **Activations** - Contains Activation functions
   * **BackPropagation** - Need to be converted to work with neat
-  * **Genetics** - Contains Mutation functions (Will be elaborated)
+  * **Mutation** - Contains Mutation functions
 ## Known working classes
   * Activations
     - [x] Logistic, TanH, Step and Relu are working (Others don't have derivatives to use with Back Propagation)
