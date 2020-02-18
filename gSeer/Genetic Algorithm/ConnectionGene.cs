@@ -20,27 +20,6 @@ namespace gSeer.Genetic_Algorithm {
             From = from;
             To = to;
         }
-        public ConnectionGene(NodeGene from, NodeGene to, NeatCNS neat) : this() {
-            throw new NotImplementedException();
-            //if (neat.Connections.ContainsKey(connectionGene)) {
-            //    connectionGene.InnovationNumber = Connections[connectionGene].InnovationNumber;
-            //}
-            //else {
-            //    connectionGene.InnovationNumber = Connections.Count + 1;
-            //    Connections.Add(connectionGene, connectionGene);
-            //}
-        }
-        //public ConnectionGene(NodeGene node1, NodeGene node2) : this() {
-        //    ConnectionGene connectionGene = new ConnectionGene(node1, node2);
-        //    if (Connections.ContainsKey(connectionGene)) {
-        //        connectionGene.InnovationNumber = Connections[connectionGene].InnovationNumber;
-        //    }
-        //    else {
-        //        connectionGene.InnovationNumber = Connections.Count + 1;
-        //        Connections.Add(connectionGene, connectionGene);
-        //    }
-        //    return connectionGene;
-        //}
         public override bool Equals(object obj) {
             if (!GetType().Equals(obj.GetType())) return false;
             ConnectionGene cg = (ConnectionGene)obj;
