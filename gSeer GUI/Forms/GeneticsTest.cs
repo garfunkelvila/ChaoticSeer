@@ -23,15 +23,7 @@ namespace Nice_Seer.Forms {
 			genome = tribe.Representative;
 			pictureBoxes = new PictureBox[tribe.Species.Count];
 
-			pictureBoxes = new PictureBox[tribe.Species.Count];
-			for (int i = 0; i < tribe.Species.Count; i++) {
-				pictureBoxes[i] = new PictureBox {
-					Parent = flowLayoutPanel1,
-					SizeMode = PictureBoxSizeMode.AutoSize,
-					Image = tribe.Species[i].GetBitmap(),
-					BorderStyle = BorderStyle.FixedSingle
-				};
-			}
+			InitializePictureBoxes();
 
 			Console.WriteLine("Nodes: " + genome.Nodes.Count);
 			Console.WriteLine("Connections: " + genome.Connections.Count);
@@ -46,45 +38,36 @@ namespace Nice_Seer.Forms {
 		}
 
 		private void btnReproduce_Click(object sender, EventArgs e) {
-			for (int i = 0; i < pictureBoxes.Length; i++) {
-				pictureBoxes[i].Dispose();
-			}
-			pictureBoxes = null;
-
+			ClearPictureBoxes();
 			tribe.Reproduce();
-
-			pictureBoxes = new PictureBox[tribe.Species.Count];
-			for (int i = 0; i < tribe.Species.Count; i++) {
-				pictureBoxes[i] = new PictureBox {
-					Parent = flowLayoutPanel1,
-					SizeMode = PictureBoxSizeMode.AutoSize,
-					Image = tribe.Species[i].GetBitmap(),
-					BorderStyle = BorderStyle.FixedSingle
-				};
-			}
+			InitializePictureBoxes();
 		}
 		private void btnPurge_Click(object sender, EventArgs e) {
-			for (int i = 0; i < pictureBoxes.Length; i++) {
-				pictureBoxes[i].Dispose();
-			}
-			pictureBoxes = null;
-
+			ClearPictureBoxes();
 			tribe.Purge();
-
-			pictureBoxes = new PictureBox[tribe.Species.Count];
-			for (int i = 0; i < tribe.Species.Count; i++) {
-				pictureBoxes[i] = new PictureBox {
-					Parent = flowLayoutPanel1,
-					SizeMode = PictureBoxSizeMode.AutoSize,
-					Image = tribe.Species[i].GetBitmap(),
-					BorderStyle = BorderStyle.FixedSingle
-				};
-			}
+			InitializePictureBoxes();
 		}
 		private void btnMutate_Click(object sender, EventArgs e) {
 			tribe.Mutate();
 			for (int i = 0; i < tribe.Species.Count; i++) {
 				pictureBoxes[i].Image = tribe.Species[i].GetBitmap();
+			}
+		}
+		private void ClearPictureBoxes() {
+			for (int i = 0; i < pictureBoxes.Length; i++) {
+				pictureBoxes[i].Dispose();
+			}
+			pictureBoxes = null;
+		}
+		private void InitializePictureBoxes() {
+			pictureBoxes = new PictureBox[tribe.Species.Count];
+			for (int i = 0; i < tribe.Species.Count; i++) {
+				pictureBoxes[i] = new PictureBox {
+					Parent = flowLayoutPanel1,
+					SizeMode = PictureBoxSizeMode.AutoSize,
+					Image = tribe.Species[i].GetBitmap(),
+					BorderStyle = BorderStyle.FixedSingle
+				};
 			}
 		}
 	}
