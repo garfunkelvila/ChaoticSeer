@@ -33,7 +33,8 @@ namespace gSeer.Genetic_Algorithm {
         public int OutputSize { get; private set; } //Motor
         #endregion
         NeatCNS() {
-            MAX_NODES = (int)Math.Pow(2, 20);       // 1M max nodes
+            //MAX_NODES = (int)Math.Pow(2, 20);       // 1M max nodes
+            MAX_NODES = 5;
             Connections = new Dictionary<ConnectionGene, ConnectionGene>();
             Nodes = new GeneHashSet<NodeGene>();
             C1 = 1;
