@@ -16,10 +16,10 @@ namespace gSeer.Genetic_Algorithm {
         public const float WEIGHT_SHIFT_STRENGTH = 0.3f;
         public const float WEIGHT_RANDOM_STRENGTH = 0.1f;
         public const float SURVIVAL_THRESHOLD = 0.02f;
-        public const float PROBABILITY_MUTATE_CONNECTION = 0.005f;
-        public const float PROBABILITY_MUTATE_NODE = 0.003f;
-        public const float PROBABILITY_MUTATE_WEIGHT_SHIFT = 0.025f;
-        public const float PROBABILITY_MUTATE_WEIGHT_RANDOM = 0.0f;
+        public const float PROBABILITY_MUTATE_CONNECTION = 0.0025f;
+        public const float PROBABILITY_MUTATE_NODE = 0.0025f;
+        public const float PROBABILITY_MUTATE_WEIGHT_SHIFT = 0.75f;
+        public const float PROBABILITY_MUTATE_WEIGHT_RANDOM = 0.001f;
         public const float PROBABILITY_MUTATE_TOGGLE = 0.005f;
         #region Properties
         public Dictionary<ConnectionGene, ConnectionGene> Connections { get; }
