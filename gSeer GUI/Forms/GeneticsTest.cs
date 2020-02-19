@@ -130,7 +130,7 @@ namespace Nice_Seer.Forms {
 			};
 
 		private void button4_Click(object sender, EventArgs e) {
-			int mutateRNG = new Random().Next(1,360);
+			int mutateRNG = new Random().Next(1,3600);
 			for (int i = 0; i < mutateRNG; i++) {
 				tribe.Mutate();
 			}
