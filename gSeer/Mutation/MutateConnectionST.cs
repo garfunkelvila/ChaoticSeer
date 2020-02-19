@@ -45,6 +45,7 @@ namespace gSeer.Mutation {
 			}
 		}
 		public override void MutateNode(ChaoticSeer seer) {
+			if (seer.Nodes.Count >= NeatCNS.MAX_NODES) return;
 			ConnectionGene con = seer.Connections.Random;
 			if (con == null) return;
 
