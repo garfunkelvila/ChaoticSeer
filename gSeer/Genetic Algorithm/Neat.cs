@@ -57,7 +57,7 @@ namespace gSeer.Genetic_Algorithm {
             C2 = 1;
             C3 = 1;
         }
-		public NeatCNS(int inputSize, int outputSize) : this() {
+		internal NeatCNS(int inputSize, int outputSize) : this() {
 			Reset(inputSize, outputSize);
 		}
 		public void Reset(int inputSize, int outputSize) {
