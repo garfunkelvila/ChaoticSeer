@@ -20,5 +20,13 @@ namespace gSeer {
 		internal static int GetRngMinMax(int min, int max) {
 			return random.Next(min, max);
 		}
+		internal static float FloatingAnd(float x, float y) {
+			if (x < y) {
+				return (x + 1) - y;
+			}
+			else {
+				return (y + 1) - x;
+			}
+		}
 	}
 }

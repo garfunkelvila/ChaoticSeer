@@ -114,7 +114,7 @@ namespace gSeer {
 						// Loop througo output neurons
 
 						//float _cost = pred[i] && td[iTd].Target[i];
-						float _cost = FloatingAnd(pred[i] , td[iTd].Target[i]);
+						float _cost = Util.FloatingAnd(pred[i] , td[iTd].Target[i]);
 						Species[iSpecie].Fitness += _cost;
 					}
 				}
@@ -122,14 +122,7 @@ namespace gSeer {
 
 			//throw new NotImplementedException();
 		}
-		private float FloatingAnd(float x, float y) {
-			if (x < y) {
-				return (x + 1) - y;
-			}
-			else {
-				return (y + 1) - x;
-			}
-		}
+
 
 		public float[][] Decisions() {
 			throw new NotImplementedException();
