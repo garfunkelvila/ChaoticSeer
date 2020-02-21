@@ -11,7 +11,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Khiel ANN Library")]
-[assembly: AssemblyCopyright("Copyright © 2018  Garfunkel Vila")]
+[assembly: AssemblyCopyright("Copyright © 2020  Garfunkel Vila")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
