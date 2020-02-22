@@ -81,6 +81,8 @@
     <Compile Include="Parsers\SeerParser.cs" />
     <Compile Include="Data Structures\GeneHashSet.cs" />
     <Compile Include="Seer.cs" />
+    <Compile Include="TribeThreading\TribeMT.cs" />
+    <Compile Include="TribeThreading\TribeST.cs" />
     <Compile Include="TSeer.cs" />
     <Compile Include="TrainingData.cs" />
     <Compile Include="Neuron\NeuronLayerGroup.cs" />

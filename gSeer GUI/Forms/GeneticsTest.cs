@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using gSeer;
+using gSeer.TribeThreading;
 using gSeer.Genetic_Algorithm;
 namespace Nice_Seer.Forms {
     public partial class GeneticsTest : Form {
@@ -19,7 +20,7 @@ namespace Nice_Seer.Forms {
         }
 
         private void GeneticsTest_Load(object sender, EventArgs e) {
-			tribe = new Tribe(2, 1, 10);
+			tribe = new TribeMT(2, 1, 10);
 			genomeRepresentative = tribe.Representative;
 			pictureBoxes = new PictureBox[tribe.Species.Count];
 
