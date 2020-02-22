@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using gSeer;
 using gSeer.TribeThreading;
 using gSeer.Genetic_Algorithm;
+using System.Diagnostics;
+
 namespace Nice_Seer.Forms {
     public partial class GeneticsTest : Form {
 		Tribe tribe;
@@ -155,6 +157,49 @@ namespace Nice_Seer.Forms {
 			for (int i = 0; i < tribe.Representative.Connections.Count; i++) {
 				Console.WriteLine("ID:" + tribe.Representative.Connections[i].InnovationNumber + "W: " + tribe.Representative.Connections[i].Weight);
 			}
+		}
+
+		private void button5_Click(object sender, EventArgs e) {
+			Console.WriteLine("Starting single threaded bench");
+			GC.Collect();
+			Stopwatch sw = new Stopwatch();
+			tribe = new TribeST(2, 1, 128);
+			sw.Start();
+			for (int st = 0; st < 10000; st++) {
+				for (int i = 0; i < 1000; i++) {
+					tribe.Mutate();
+				}
+				tribe.Evaluate(_and);
+				for (int i = 0; i < 100; i++) {
+					tribe.Purge();
+				}
+				tribe.Reproduce();
+
+				tribe.Evaluate(_and);
+			}
+			sw.Stop();
+			Console.WriteLine("Single Threading: " + sw.Elapsed);
+
+
+			GC.Collect();
+			Console.WriteLine("Starting multi threaded bench");
+			//tribe = new TribeMT(2, 1, 128);
+			sw.Reset();
+			sw.Start();
+			for (int st = 0; st < 10000; st++) {
+				for (int i = 0; i < 1000; i++) {
+					tribe.Mutate();
+				}
+				tribe.Evaluate(_and);
+				for (int i = 0; i < 100; i++) {
+					tribe.Purge();
+				}
+				tribe.Reproduce();
+
+				tribe.Evaluate(_and);
+			}
+			sw.Stop();
+			Console.WriteLine("Multi Threading: " + sw.Elapsed);
 		}
 	}
 }
