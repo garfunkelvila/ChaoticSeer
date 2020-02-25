@@ -48,16 +48,16 @@ namespace gSeer.Genetic_Algorithm {
         public int InputSize { get; private set; }  //Sensor
         public int OutputSize { get; private set; } //Motor
         #endregion
-        NeatCNS() {
+        NeatCNS(int maxNodes) {
             //MAX_NODES = (int)Math.Pow(2, 20);       // 1M max nodes
-            MAX_NODES = 5;
+            MAX_NODES = maxNodes;
             Connections = new Dictionary<ConnectionGene, ConnectionGene>();
             Nodes = new GeneHashSet<NodeGene>();
             C1 = 1;
             C2 = 1;
             C3 = 1;
         }
-		public NeatCNS(int inputSize, int outputSize) : this() {
+		public NeatCNS(int inputSize, int outputSize, int maxNodes) : this(maxNodes) {
 			Reset(inputSize, outputSize);
 		}
 		public void Reset(int inputSize, int outputSize) {

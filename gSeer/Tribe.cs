@@ -37,7 +37,9 @@ namespace gSeer {
 		/// </summary>
 		/// <param name="inputSize"></param>
 		/// <param name="outputSize"></param>
-		public Tribe(int inputSize, int outputSize, int maxPopulation) {
+		/// <param name="maxPopulation">Target population</param>
+		/// <param name="maxNodes">Target nodes</param>
+		public Tribe(int inputSize, int outputSize, int maxPopulation, int maxNodes = 10) {
 			MAX_POPULATION = maxPopulation;
 			Neat = new NeatCNS(inputSize, outputSize);
 			Species = new GeneHashSet<ChaoticSeer>();
