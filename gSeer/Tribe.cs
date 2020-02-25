@@ -41,7 +41,7 @@ namespace gSeer {
 		/// <param name="maxNodes">Target nodes</param>
 		public Tribe(int inputSize, int outputSize, int maxPopulation, int maxNodes = 10) {
 			MAX_POPULATION = maxPopulation;
-			Neat = new NeatCNS(inputSize, outputSize);
+			Neat = new NeatCNS(inputSize, outputSize, maxNodes);
 			Species = new GeneHashSet<ChaoticSeer>();
 			for (int i = 0; i < maxPopulation; i++) {
 				Species.Add(new ChaoticSeer(Neat) {
