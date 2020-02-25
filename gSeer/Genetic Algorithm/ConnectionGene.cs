@@ -43,7 +43,7 @@ namespace gSeer.Genetic_Algorithm {
             return (From.Equals(cg.From) && To.Equals(cg.To));
         }
         public override int GetHashCode() {
-            return From.InnovationNumber * NeatCNS.MAX_NODES + To.InnovationNumber;
+            return From.InnovationNumber * NeatCNS.T_MAX_NODES + To.InnovationNumber;
         }
     }
 }

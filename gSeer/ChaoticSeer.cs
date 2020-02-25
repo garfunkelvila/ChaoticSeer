@@ -72,7 +72,9 @@ namespace gSeer {
         /// <param name="Cns"></param>
         public ChaoticSeer(NeatCNS neat) : this() {
             Cns = neat;
-            for (int i = 0; i < Cns.InputSize + Cns.OutputSize; i++) {
+            int _InOut = Cns.InputSize + Cns.OutputSize;
+            if (_InOut > NeatCNS.MAX_NODES) throw new NotSupportedException("nodes reached its theoretical max limit");
+            for (int i = 0; i < _InOut; i++) {
                 Nodes.Add(Cns.AddNode(i + 1));
             }
         }

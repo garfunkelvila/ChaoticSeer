@@ -28,8 +28,9 @@ namespace gSeer.Genetic_Algorithm {
 	/// Mostly from https://github.com/Luecx/NEAT,  MarIO and stanley.phd04
 	/// </summary>
 	public class NeatCNS {
-        public static int MAX_NODES;
-        public const float WEIGHT_SHIFT_STRENGTH = 0.3f;
+		private static int t_MAX_NODES; //Soft cap. Can be overiden by crossover
+		public static int MAX_NODES = (int)Math.Pow(2, 20);	//Hard cap
+		public const float WEIGHT_SHIFT_STRENGTH = 0.3f;
         public const float WEIGHT_RANDOM_STRENGTH = 0.1f;
         public const float SURVIVAL_THRESHOLD = 0.02f;
         public const float PROBABILITY_MUTATE_CONNECTION = 0.0025f;
@@ -47,10 +48,11 @@ namespace gSeer.Genetic_Algorithm {
         public float CP { get; } = 4f;
         public int InputSize { get; private set; }  //Sensor
         public int OutputSize { get; private set; } //Motor
-        #endregion
-        NeatCNS(int maxNodes) {
+		public static int T_MAX_NODES { get => t_MAX_NODES; set => t_MAX_NODES = value; }
+		#endregion
+		NeatCNS(int maxNodes) {
             //MAX_NODES = (int)Math.Pow(2, 20);       // 1M max nodes
-            MAX_NODES = maxNodes;
+            T_MAX_NODES = maxNodes;
             Connections = new Dictionary<ConnectionGene, ConnectionGene>();
             Nodes = new GeneHashSet<NodeGene>();
             C1 = 1;
@@ -90,6 +92,7 @@ namespace gSeer.Genetic_Algorithm {
 		/// </summary>
 		/// <returns>Returns the added node</returns>
 		public NodeGene AddNode() {
+			if (Nodes.Count > MAX_NODES) return null;
             NodeGene n = new NodeGene(Nodes.Count + 1);
             Nodes.Add(n);
             return n;
