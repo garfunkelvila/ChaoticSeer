@@ -30,11 +30,11 @@ namespace gSeer.Genetic_Algorithm {
         /// <summary>
         /// Used for drawing and comparing the position of node
         /// </summary>
-        public float X { get; set; }
+        public double X { get; set; }
         /// <summary>
         /// Used for drawing and comparing the position of node
         /// </summary>
-        public float Y { get; set; }
+        public double Y { get; set; }
         public override int InnovationNumber { get; set; }
         //Transfer from Neat
         public NodeGene(int innovationNumber) {
