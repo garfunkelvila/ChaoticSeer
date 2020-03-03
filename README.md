@@ -17,16 +17,15 @@ Currently it can't train to solve AND, NOT and XOR operators.
   * Activations
     - [x] Logistic, TanH, Step and Relu are working (Others don't have derivatives to use with Back Propagation)
   * Genetics
-    - [ ] Selection
+    - [ ] Selection - Seer tribe sorting based score/fitness  on don't work yet
     - [x] Crossover
-    - [x] Mutation
+    - [x] Mutation - There is an issue of duplicate or non existing connection
 	- [x] Connection
 ## Todo
   * Test the node limit
-### Classes (Batch and threading related)
-  - **Country** - Contains Species/batch
-  * **Planet** - Contain Countries, will be used for mini batch. Will do it like this because I will make some gender mutation and mini batch mutate limitations.
-  * **GenericSeer** - Just a seer constructor that only asks for input and output count. Layers, Neuron count will be based on system specs, input count and output count.
+### Classes (Batch related)
+  - **Country** - Contains tribe batch.
+  * **Planet** - Contains Countries batch.
 ### Others
   * **LearningRateDecay** - Make learning rate slowly go down based on back propagation changes/variables, I still need to make a formula/flow for this one.
   * **Parser** - A kind of translator for network (numbers into binary, bitmap into RGB, and others)
