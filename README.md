@@ -11,7 +11,7 @@ Currently it can't train to solve AND, NOT and XOR operators.
   * **Tribe** - Contains the population
   * **Neat** - Contains the NEAT functions and variables
   * **Activations** - Contains Activation functions
-  * **BackPropagation** - Need to be converted to work with neat
+  * ~~**BackPropagation** - Need to be converted to work with neat~~
   * **Mutation** - Contains Mutation functions
 ## Known working classes
   * Activations
@@ -22,7 +22,7 @@ Currently it can't train to solve AND, NOT and XOR operators.
     - [x] Mutation
 	- [x] Connection
 ## Todo
-  * Test the NEAT
+  * Test the node limit
 ### Classes (Batch and threading related)
   - **Country** - Contains Species/batch
   * **Planet** - Contain Countries, will be used for mini batch. Will do it like this because I will make some gender mutation and mini batch mutate limitations.

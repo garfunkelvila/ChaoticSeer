@@ -28,7 +28,7 @@ namespace gSeer.Genetic_Algorithm {
 	/// Mostly from https://github.com/Luecx/NEAT,  MarIO and stanley.phd04
 	/// </summary>
 	public class NeatCNS {
-		private static int t_MAX_NODES; //Soft cap. Can be overiden by crossover
+		public static int T_MAX_NODES { get; set; }
 		public static int MAX_NODES = (int)Math.Pow(2, 20);	//Hard cap
 		public const float WEIGHT_SHIFT_STRENGTH = 0.3f;
         public const float WEIGHT_RANDOM_STRENGTH = 0.1f;
@@ -48,7 +48,7 @@ namespace gSeer.Genetic_Algorithm {
         public float CP { get; } = 4f;
         public int InputSize { get; private set; }  //Sensor
         public int OutputSize { get; private set; } //Motor
-		public static int T_MAX_NODES { get => t_MAX_NODES; set => t_MAX_NODES = value; }
+		
 		#endregion
 		NeatCNS(int maxNodes) {
             //MAX_NODES = (int)Math.Pow(2, 20);       // 1M max nodes
