@@ -11,7 +11,7 @@ Currently it can't train to solve AND, NOT and XOR operators.
   * **Tribe** - Contains the population
   * **Neat** - Contains the NEAT functions and variables
   * **Activations** - Contains Activation functions
-  * ~~**BackPropagation** - Need to be converted to work with neat~~
+  * ~~**BackPropagation**~~ - Need to be converted to work with neat
   * **Mutation** - Contains Mutation functions
 ## Known working classes
   * Activations
