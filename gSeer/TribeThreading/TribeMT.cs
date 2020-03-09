@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace gSeer.TribeThreading {
 	public class TribeMT : Tribe {
-		public TribeMT(int inputSize, int outputSize, int maxPopulation, int maxNodes)
+		public TribeMT(int inputSize, int outputSize, int maxPopulation, int maxNodes = 10)
 			: base(inputSize, outputSize, maxPopulation, maxNodes) {
 		}
 		#region EVOLUTION
