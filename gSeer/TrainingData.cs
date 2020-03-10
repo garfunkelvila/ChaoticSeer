@@ -47,15 +47,11 @@ namespace gSeer {
 		public TrainingDatas() {
 			_TrainingDatas = new List<TrainingData>();
 		}
-		[Obsolete("Have not tried this thing yet")]
 		public TrainingData this[int index] {
 			get => _TrainingDatas[index];
 			set {
-				int lengthBuffer = 0;
-				lengthBuffer = _TrainingDatas[index].Target.Length;
-				lengthBuffer -= value.Target.Length;
-
-				MaxFitness += lengthBuffer;
+				MaxFitness -= _TrainingDatas[index].Target.Length;
+				MaxFitness += value.Target.Length;
 				_TrainingDatas[index] = value;
 			}
 		}
