@@ -39,14 +39,25 @@ namespace gSeer {
 
 	public class TrainingDatas : IList<TrainingData> {
 		List<TrainingData> _TrainingDatas;
+		/// <summary>
+		/// Cache of theoreticaly max fitness for the given training data
+		/// </summary>
+		public int MaxFitness { get; private set; } = 0;
 
 		public TrainingDatas() {
 			_TrainingDatas = new List<TrainingData>();
 		}
-
+		[Obsolete("Have not tried this thing yet")]
 		public TrainingData this[int index] {
 			get => _TrainingDatas[index];
-			set => _TrainingDatas[index] = value;
+			set {
+				int lengthBuffer = 0;
+				lengthBuffer = _TrainingDatas[index].Target.Length;
+				lengthBuffer -= value.Target.Length;
+
+				MaxFitness += lengthBuffer;
+				_TrainingDatas[index] = value;
+			}
 		}
 
 		public int Count => _TrainingDatas.Count;
@@ -55,6 +66,8 @@ namespace gSeer {
 
 		public void Add(TrainingData item) {
 			_TrainingDatas.Add(item);
+			
+			MaxFitness += item.Target.Length;
 		}
 
 		public void Clear() {
@@ -79,13 +92,16 @@ namespace gSeer {
 
 		public void Insert(int index, TrainingData item) {
 			_TrainingDatas.Insert(index, item);
+			MaxFitness += item.Target.Length;
 		}
 
 		public bool Remove(TrainingData item) {
+			MaxFitness -= item.Target.Length;
 			return _TrainingDatas.Remove(item);
 		}
 
 		public void RemoveAt(int index) {
+			MaxFitness -= _TrainingDatas[index].Target.Length;
 			_TrainingDatas.RemoveAt(index);
 		}
 
