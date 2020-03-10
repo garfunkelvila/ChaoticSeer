@@ -16,6 +16,7 @@
 //  see<https://www.gnu.org/licenses/>.
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -35,4 +36,61 @@ namespace gSeer {
             Target = O;
         }
     }
+
+	public class TrainingDatas : IList<TrainingData> {
+		List<TrainingData> _TrainingDatas;
+
+		public TrainingDatas() {
+			_TrainingDatas = new List<TrainingData>();
+		}
+
+		public TrainingData this[int index] {
+			get => _TrainingDatas[index];
+			set => _TrainingDatas[index] = value;
+		}
+
+		public int Count => _TrainingDatas.Count;
+
+		public bool IsReadOnly => false;
+
+		public void Add(TrainingData item) {
+			_TrainingDatas.Add(item);
+		}
+
+		public void Clear() {
+			_TrainingDatas.Clear();
+		}
+
+		public bool Contains(TrainingData item) {
+			return _TrainingDatas.Contains(item);
+		}
+
+		public void CopyTo(TrainingData[] array, int arrayIndex) {
+			_TrainingDatas.CopyTo(array, arrayIndex);
+		}
+
+		public IEnumerator<TrainingData> GetEnumerator() {
+			return _TrainingDatas.GetEnumerator();
+		}
+
+		public int IndexOf(TrainingData item) {
+			return _TrainingDatas.IndexOf(item);
+		}
+
+		public void Insert(int index, TrainingData item) {
+			_TrainingDatas.Insert(index, item);
+		}
+
+		public bool Remove(TrainingData item) {
+			return _TrainingDatas.Remove(item);
+		}
+
+		public void RemoveAt(int index) {
+			_TrainingDatas.RemoveAt(index);
+		}
+
+		IEnumerator IEnumerable.GetEnumerator() {
+			return _TrainingDatas.GetEnumerator();
+		}
+	}
 }
