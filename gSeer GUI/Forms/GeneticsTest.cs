@@ -23,7 +23,7 @@ namespace Nice_Seer.Forms {
 
         private void GeneticsTest_Load(object sender, EventArgs e) {
 			tribe = new TribeMT(2, 1, 10);
-			genomeRepresentative = tribe.Representative;
+			genomeRepresentative = tribe.Species[0];
 			pictureBoxes = new PictureBox[tribe.Species.Count];
 
 			InitializePictureBoxes();
@@ -151,11 +151,13 @@ namespace Nice_Seer.Forms {
 			InitializePictureBoxes();
 
 			LogRepWeights();
+
+			tribe.Species[0].GetPrediction(_and[0].Input);
 		}
 
 		private void LogRepWeights() {
-			for (int i = 0; i < tribe.Representative.Connections.Count; i++) {
-				Console.WriteLine("ID:" + tribe.Representative.Connections[i].InnovationNumber + "W: " + tribe.Representative.Connections[i].Weight);
+			for (int i = 0; i < tribe.Species[0].Connections.Count; i++) {
+				Console.WriteLine("ID:" + tribe.Species[0].Connections[i].InnovationNumber + "W: " + tribe.Species[0].Connections[i].Weight);
 			}
 		}
 
