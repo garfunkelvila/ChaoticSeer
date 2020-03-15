@@ -79,6 +79,7 @@ namespace gSeer {
             }
         }
 		public float[] GetPrediction(params float[] input) {
+            if (input.Length <= 1) throw new NotSupportedException("Please enter at least 2 inputs");
 			_FPropagation = new Forward_Propagation.FPropagateST(this);
 			return _FPropagation.Output(input);
 		}

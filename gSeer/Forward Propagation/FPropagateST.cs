@@ -75,7 +75,7 @@ namespace gSeer.Forward_Propagation {
 		public override float[] Output(params float[] input) {
 			//Need to initialize this class/object
 
-			if (input.Length != InputNodes.Count) throw new NotSupportedException();
+			if (input.Length != InputNodes.Count) throw new NotSupportedException("Input nodes and Input data are not balance");
 			//Initialze input nodes
 			for (int i = 0; i < InputNodes.Count; i++) {
 				InputNodes[i].Output = input[i];
