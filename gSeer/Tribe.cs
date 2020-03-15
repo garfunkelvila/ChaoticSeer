@@ -29,7 +29,6 @@ namespace gSeer {
 	/// </summary>
 	public abstract class Tribe {
 		public GeneHashSet<ChaoticSeer> Species { get; private set; }
-		public ChaoticSeer Representative { get => Species[0]; }
 		public NeatCNS Neat { get; }
 		public int MAX_POPULATION { get; }
 		/// <summary>
@@ -64,9 +63,7 @@ namespace gSeer {
 		/// </summary>
 		public abstract void Mutate();
 		#endregion
-
 		public abstract void Train(TrainingData td);
-
 		#region DECISIONS
 		/// <summary>
 		/// Fill their score based on their predictions
