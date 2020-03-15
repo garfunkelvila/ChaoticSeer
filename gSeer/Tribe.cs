@@ -74,6 +74,7 @@ namespace gSeer {
 		/// <param name="td"></param>
 		public abstract void Evaluate(TrainingData[] td);
 
+		public abstract void Evaluate(TrainingDatas td);
 
 		public abstract float[][] Decisions();
 		#endregion

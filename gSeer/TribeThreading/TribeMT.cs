@@ -87,6 +87,30 @@ namespace gSeer.TribeThreading {
 
 			//throw new NotImplementedException();
 		}
+
+		public override void Evaluate(TrainingDatas td) {
+			// I just realized I need the BP error function here
+			// TODO: use proper cost function
+
+			Parallel.ForEach(Species, new ParallelOptions() { MaxDegreeOfParallelism = Util.Cores }, (Specie) => {
+				// Loop through species
+
+				Specie.Fitness = 0;
+				for (int iTd = 0; iTd < td.Count; iTd++) {
+					// Loop through training datas
+
+					float[] pred = Specie.GetPrediction(td[iTd].Input);
+					for (int i = 0; i < pred.Length; i++) {
+						// Loop througo output neurons
+
+						//float _cost = pred[i] && td[iTd].Target[i];
+						float _cost = Util.FloatingAnd(pred[i], td[iTd].Target[i]);
+						Specie.Fitness += _cost;
+					}
+				}
+			});
+		}
+
 		public override float[][] Decisions() {
 			throw new NotImplementedException();
 		}

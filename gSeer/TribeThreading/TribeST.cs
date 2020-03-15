@@ -87,6 +87,25 @@ namespace gSeer.TribeThreading {
 
 			//throw new NotImplementedException();
 		}
+		public override void Evaluate(TrainingDatas td) {
+			for (int iSpecie = 0; iSpecie < Species.Count; iSpecie++) {
+				// Loop through species
+
+				Species[iSpecie].Fitness = 0;
+				for (int iTd = 0; iTd < td.Count; iTd++) {
+					// Loop through training datas
+
+					float[] pred = Species[iSpecie].GetPrediction(td[iTd].Input);
+					for (int i = 0; i < pred.Length; i++) {
+						// Loop througo output neurons
+
+						//float _cost = pred[i] && td[iTd].Target[i];
+						float _cost = Util.FloatingAnd(pred[i], td[iTd].Target[i]);
+						Species[iSpecie].Fitness += _cost;
+					}
+				}
+			}
+		}
 		public override float[][] Decisions() {
 			throw new NotImplementedException();
 		}
