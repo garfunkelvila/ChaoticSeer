@@ -37,7 +37,7 @@ namespace gSeer {
         }
     }
 
-	public class TrainingDatas : IList<TrainingData> {
+	public class TrainingDatas : IList<TrainingData>{
 		List<TrainingData> _TrainingDatas;
 		/// <summary>
 		/// Cache of theoreticaly max fitness for the given training data
@@ -62,8 +62,16 @@ namespace gSeer {
 
 		public void Add(TrainingData item) {
 			_TrainingDatas.Add(item);
-			
 			MaxFitness += item.Target.Length;
+		}
+		[Obsolete("Not tested yet")]
+		public void AddRange(IEnumerable<TrainingData> collection) {
+			TrainingData[] _td = collection.ToArray();
+			_TrainingDatas.AddRange(collection);
+
+			for (int i = 0; i < _td.Length; i++) {
+				MaxFitness += _td[i].Target.Length;
+			}
 		}
 
 		public void Clear() {
