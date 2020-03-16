@@ -11,7 +11,7 @@ namespace gSeer {
     /// Basically minibatch I think
     /// </summary>
     public abstract class Region {
-        Tribe[] tribe;
+        Tribe[] tribes;
         public NeatCNS Neat;
 
         public delegate void EventHandler();
@@ -20,17 +20,25 @@ namespace gSeer {
 
         public Region(int tribeSize, int inputSize, int outputSize, int maxPopulation, int maxNodes = 10) {
             Neat = new NeatCNS(inputSize, outputSize, maxNodes);
-            tribe = new Tribe[tribeSize];
-            for (int i = 0; i < tribe.Length; i++) {
-                tribe[i] = new TribeST(Neat, maxPopulation);
+            tribes = new Tribe[tribeSize];
+            for (int i = 0; i < tribes.Length; i++) {
+                tribes[i] = new TribeST(Neat, maxPopulation);
             }
-           
         }
 
         public void Purge() {
             BeforePurge.Invoke();
 
             AfterPurge.Invoke();
+        }
+
+        public void StartChaos(TrainingDatas tds) {
+            //Mutate for 36500 times
+            for (int i = 0; i < 36500; i++) {
+                foreach (Tribe tribe in tribes) {
+                    tribe.Mutate();
+                }
+            }
         }
     }
 }

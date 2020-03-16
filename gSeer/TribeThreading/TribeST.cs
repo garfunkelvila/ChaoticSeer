@@ -55,7 +55,12 @@ namespace gSeer.TribeThreading {
 		}
 		public override void Mutate() {
 			foreach (ChaoticSeer seer in Species) {
-				seer.Mutate();
+				//if(seer.AGE_THRESHOLD >= seer.Year) {
+					seer.Mutate();
+				//}
+				//else {
+				//	Species.Remove(seer);
+				//}
 			}
 		}
 		#endregion

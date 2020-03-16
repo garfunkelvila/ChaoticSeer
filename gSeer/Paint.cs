@@ -94,7 +94,7 @@ namespace gSeer {
 			//Draw text Status
 			string status = "Identity: " + _seer.Identity + Environment.NewLine + 
 							"Fitness:  " + _seer.Fitness + Environment.NewLine + 
-							"Age:      " + _seer.Age;
+							"Age:      " + _seer.Year;
 			gr.DrawString(status, new Font("Courier New", 8), textBrushBlack, new Point(600,0));
 
 			//picCanvas.Image = Bm;

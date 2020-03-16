@@ -34,7 +34,9 @@ namespace gSeer {
         public GeneHashSet<ConnectionGene> Connections { get; set; }
         public GeneHashSet<NodeGene> Nodes { get; set; }
 		public float Fitness { get; set; }
-		public int Age { get; set; }
+		public int Year { get; private set; }
+        private int Day = 0;
+
 		public NeatCNS Cns { get; private set; }
 		/// Percentage of this genome to survive
 		public readonly float SURVIVAL_THRESHOLD;// Narual selection dying
@@ -60,11 +62,13 @@ namespace gSeer {
 			EVOLVE_START_THRESHOLD = 0;
 			EVOLVE_END_THRESHOLD = 40;	// replace with random that averages to 45
 
+
 			Connections = new GeneHashSet<ConnectionGene>();
             Nodes = new GeneHashSet<NodeGene>();
 			_mutation = new Mutation.MutationST();
 			Fitness = 0;
-			Age = 0;
+			Year = 0;
+            Day = 0;
 		}
         /// <summary>
         /// Create an emptygenome with only nodes wihtout connections based on a Neat
@@ -164,7 +168,11 @@ namespace gSeer {
                 MutateWeightShift();
             if (NeatCNS.PROBABILITY_MUTATE_WEIGHT_RANDOM > Util.GetRngF())
                 MutateWeightRandom();
-		}
+            if (Day++ == 365) {
+                Day = 0;
+                Year++;
+            }
+        }
         public void MutateConnection() => _mutation.MutateConnection(this);
 		public void MutateNode() => _mutation.MutateNode(this);
 		public void MutateWeightShift() => _mutation.MutateWeightShift(this);

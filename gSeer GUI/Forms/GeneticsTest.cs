@@ -137,18 +137,6 @@ namespace Nice_Seer.Forms {
 			Console.WriteLine("Progress");
 			for (int i = 0; i < mutateRNG; i++) {
 				tribe.Mutate();
-				if(i == 900) {
-					Console.WriteLine("*");
-				}
-				if (i == 1800) {
-					Console.WriteLine("*");
-				}
-				if (i == 2700) {
-					Console.WriteLine("*");
-				}
-				if (i == 3600) {
-					Console.WriteLine("*");
-				}
 			}
 			tribe.Evaluate(_and);
 
@@ -163,7 +151,8 @@ namespace Nice_Seer.Forms {
 			ClearPictureBoxes();
 			InitializePictureBoxes();
 
-			LogRepWeights();
+			//LogRepWeights();
+			LogAge();
 
 			tribe.Species[0].GetPrediction(_and[0].Input);
 		}
@@ -172,6 +161,9 @@ namespace Nice_Seer.Forms {
 			for (int i = 0; i < tribe.Species[0].Connections.Count; i++) {
 				Console.WriteLine("ID:" + tribe.Species[0].Connections[i].InnovationNumber + "W: " + tribe.Species[0].Connections[i].Weight);
 			}
+		}
+		private void LogAge() {
+			Console.WriteLine("Age" + tribe.Species[0].Year);
 		}
 
 		private void button5_Click(object sender, EventArgs e) {

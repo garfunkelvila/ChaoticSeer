@@ -49,8 +49,13 @@ namespace gSeer.TribeThreading {
 			} while (Species.Count < MAX_POPULATION);
 		}
 		public override void Mutate() {
-			Parallel.ForEach(Species, new ParallelOptions() { MaxDegreeOfParallelism = Util.Cores }, (Specie) => {
-				Specie.Mutate();
+			Parallel.ForEach(Species, new ParallelOptions() { MaxDegreeOfParallelism = Util.Cores }, (seer) => {
+				//if (seer.AGE_THRESHOLD >= seer.Year) {
+					seer.Mutate();
+				//}
+				//else {
+				//	Species.Remove(seer);
+				//}
 			});
 		}
 		#endregion

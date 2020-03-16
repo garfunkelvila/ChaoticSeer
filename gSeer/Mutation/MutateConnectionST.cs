@@ -127,7 +127,6 @@ namespace gSeer.Mutation {
 			NeatCNS neat = g1.Cns;
 			//Genome _genomeBuffer = neat.NewEmptyGenome();
 			ChaoticSeer _genomeBuffer = new ChaoticSeer(neat);
-
 			int indexG1 = 0;
 			int indexG2 = 0;
 
