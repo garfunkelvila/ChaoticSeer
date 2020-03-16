@@ -48,6 +48,17 @@ namespace gSeer {
 				});
 			}
 		}
+		[Obsolete("Not tested yet")]
+		public Tribe(NeatCNS neat, int maxPopulation) {
+			MAX_POPULATION = maxPopulation;
+			Neat = neat;
+			Species = new GeneHashSet<ChaoticSeer>();
+			for (int i = 0; i < maxPopulation; i++) {
+				Species.Add(new ChaoticSeer(Neat) {
+					Identity = i
+				});
+			}
+		}
 		/// Will use polymorph soon
 		#region EVOLUTION
 		/// <summary>

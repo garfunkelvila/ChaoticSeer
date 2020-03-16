@@ -134,8 +134,21 @@ namespace Nice_Seer.Forms {
 
 		private void button4_Click(object sender, EventArgs e) {
 			int mutateRNG = new Random().Next(1,3600);
+			Console.WriteLine("Progress");
 			for (int i = 0; i < mutateRNG; i++) {
 				tribe.Mutate();
+				if(i == 900) {
+					Console.WriteLine("*");
+				}
+				if (i == 1800) {
+					Console.WriteLine("*");
+				}
+				if (i == 2700) {
+					Console.WriteLine("*");
+				}
+				if (i == 3600) {
+					Console.WriteLine("*");
+				}
 			}
 			tribe.Evaluate(_and);
 

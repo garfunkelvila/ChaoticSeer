@@ -1,4 +1,5 @@
-﻿using System;
+﻿using gSeer.Genetic_Algorithm;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,10 @@ namespace gSeer.TribeThreading {
 	public class TribeST : Tribe {
 		public TribeST(int inputSize, int outputSize, int maxPopulation, int maxNodes = 10)
 			: base(inputSize, outputSize, maxPopulation, maxNodes) {
+		}
+		public TribeST(NeatCNS neat, int maxPopulation)
+			: base(neat, maxPopulation) {
+
 		}
 		#region EVOLUTION
 		public override void Purge() {
