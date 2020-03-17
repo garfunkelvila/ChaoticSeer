@@ -26,6 +26,9 @@ using gSeer.Neuron;
 using gSeer.Util;
 
 namespace gSeer {
+    /// <summary>
+    /// This seer dont use Neat
+    /// </summary>
     public class Seer : IComparable<Seer> {
         public float Fitness { get; set; }
         public NeuronLayerGroup NeuronLayerGroups { get; private set; }     /// I made it like this in preperation for CNS

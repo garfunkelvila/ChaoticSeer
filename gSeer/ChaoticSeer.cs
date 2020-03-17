@@ -27,8 +27,7 @@ using gSeer.Util;
 
 namespace gSeer {
     /// <summary>
-    /// Genome
-	/// Attemp for seer to calculate for itself
+    /// THis seer has neat
     /// </summary>
     public class ChaoticSeer : IComparable<ChaoticSeer> {
 		public int Identity { get; set; }
