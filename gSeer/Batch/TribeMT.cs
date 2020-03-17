@@ -60,7 +60,7 @@ namespace gSeer.Batch {
 			do {
 				ChaoticSeer _seerX = Species.Random;
 				ChaoticSeer _seerY = Species.Random;
-				ChaoticSeer _seerChild = _seerY.MateWith(_seerX);
+				ChaoticSeer _seerChild = _seerX.MateWith(_seerY);
 				_seerChild.Identity = _seerX.Identity + _seerY.Identity;
 				Species.Add(_seerChild);
 			} while (Species.Count < MAX_POPULATION);
