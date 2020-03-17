@@ -80,7 +80,7 @@
     <Compile Include="Util\Paint.cs" />
     <Compile Include="Parsers\SeerParser.cs" />
     <Compile Include="Data Structures\GeneHashSet.cs" />
-    <Compile Include="Region.cs" />
+    <Compile Include="Batch\Region.cs" />
     <Compile Include="Seer.cs" />
     <Compile Include="Batch\TribeMT.cs" />
     <Compile Include="Batch\TribeST.cs" />
