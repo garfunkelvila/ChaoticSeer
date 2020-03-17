@@ -203,7 +203,7 @@ namespace Nice_Seer.Forms {
 		}
 
 		private void button7_Click(object sender, EventArgs e) {
-			region.StartChaos(_and);
+			region.StartChaos(_and,10);
 		}
 	}
 }

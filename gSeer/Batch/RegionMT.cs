@@ -20,7 +20,7 @@ namespace gSeer.Batch {
         }
 
         public override void StartChaos(TrainingDatas tds, int mutationIteration = 3600) {
-            for (int i = 0; i < 36500; i++) {
+            for (int i = 0; i < mutationIteration; i++) {
                 Parallel.ForEach(tribes, new ParallelOptions() { MaxDegreeOfParallelism = Rng.Cores }, (tribe) => {
                     tribe.Train(tds);
                 });
@@ -28,7 +28,7 @@ namespace gSeer.Batch {
         }
 
         public override void StartChaos(TrainingData[] tds, int mutationIteration = 3600) {
-            for (int i = 0; i < 36500; i++) {
+            for (int i = 0; i < mutationIteration; i++) {
                 Parallel.ForEach(tribes, new ParallelOptions() { MaxDegreeOfParallelism = Rng.Cores }, (tribe) => {
                     tribe.Train(tds);
                 });
