@@ -34,8 +34,9 @@ namespace gSeer {
         public GeneHashSet<ConnectionGene> Connections { get; set; }
         public GeneHashSet<NodeGene> Nodes { get; set; }
 		public float Fitness { get; set; }
-		public int Year { get; private set; }
-        private int Day = 0;
+        public int Year { get; private set; } = 0;
+        public int Day = 0;
+        public bool isAlive = true;
 
 		public NeatCNS Cns { get; private set; }
 		/// Percentage of this genome to survive
@@ -168,7 +169,7 @@ namespace gSeer {
                 MutateWeightShift();
             if (NeatCNS.PROBABILITY_MUTATE_WEIGHT_RANDOM > Util.GetRngF())
                 MutateWeightRandom();
-            if (Day++ == 365) {
+            if (++Day == 365) {
                 Day = 0;
                 Year++;
             }
