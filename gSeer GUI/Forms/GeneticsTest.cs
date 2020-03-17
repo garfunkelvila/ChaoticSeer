@@ -135,24 +135,12 @@ namespace Nice_Seer.Forms {
 
 		private void button4_Click(object sender, EventArgs e) {
 			int mutateRNG = new Random().Next(1,3600);
-			Console.WriteLine("Progress");
-			for (int i = 0; i < mutateRNG; i++) {
-				tribe.Mutate();
-			}
-			tribe.Evaluate(_and);
 
-			int purgeRNG = new Random().Next(1, 12);
-			for (int i = 0; i < purgeRNG; i++) {
-				tribe.Purge();
-			}
-			tribe.Reproduce();
-
-			tribe.Evaluate(_and);
+			tribe.Train(_and, mutateRNG);
 
 			ClearPictureBoxes();
 			InitializePictureBoxes();
 
-			//LogRepWeights();
 			LogAge();
 
 			tribe.Species[0].GetPrediction(_and[0].Input);

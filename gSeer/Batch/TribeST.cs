@@ -82,11 +82,33 @@ namespace gSeer.Batch {
 		}
 		#endregion
 
-		public override void Train(TrainingData td) {
-			//Mutate few times maybe 12, or 100+ don'y know yet
-			//Get prediction to all training data, each correct output gives score
-			//Purge
-			//Reproduce
+		public override void Train(TrainingDatas td, int mutationIteration = 3600) {
+			for (int i = 0; i < 3600; i++) {
+				Mutate();
+			}
+			Evaluate(td);
+
+			int purgeRNG = new Random().Next(1, 12);
+			for (int i = 0; i < purgeRNG; i++) {
+				Purge();
+			}
+			Reproduce();
+
+			Evaluate(td);
+		}
+		public override void Train(TrainingData[] td, int mutationIteration = 3600) {
+			for (int i = 0; i < 3600; i++) {
+				Mutate();
+			}
+			Evaluate(td);
+
+			int purgeRNG = new Random().Next(1, 12);
+			for (int i = 0; i < purgeRNG; i++) {
+				Purge();
+			}
+			Reproduce();
+
+			Evaluate(td);
 		}
 
 		#region DECISIONS

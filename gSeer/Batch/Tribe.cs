@@ -75,7 +75,8 @@ namespace gSeer.Batch {
 		/// Start Chaos
 		/// </summary>
 		/// <param name="td"></param>
-		public abstract void Train(TrainingData td);
+		public abstract void Train(TrainingDatas td, int mutationIteration = 3600);
+		public abstract void Train(TrainingData[] td, int mutationIteration = 3600);
 		#region DECISIONS
 		/// <summary>
 		/// Fill their score based on their predictions
