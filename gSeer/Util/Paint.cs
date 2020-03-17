@@ -23,7 +23,7 @@ using System.Threading.Tasks;
 using System.Drawing;
 using gSeer.Genetic_Algorithm;
 
-namespace gSeer {
+namespace gSeer.Util {
 	///http://csharphelper.com/blog/2015/07/zoom-and-scroll-a-picture-drawn-in-c/
 	internal class Paint {
 		public static Bitmap GenBitmap(ChaoticSeer _seer) {

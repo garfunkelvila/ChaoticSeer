@@ -21,6 +21,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using gSeer.ActivationFunctions;
+using gSeer.Util;
 
 namespace gSeer.Neuron {
     public class Neuron {

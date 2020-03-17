@@ -20,7 +20,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace gSeer {
+namespace gSeer.Util {
 	static internal class Rng {
 		public static readonly int Cores = Environment.ProcessorCount;
 		static Random random = new Random();

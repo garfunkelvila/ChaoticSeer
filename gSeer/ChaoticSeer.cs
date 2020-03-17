@@ -23,6 +23,7 @@ using System.Threading.Tasks;
 using gSeer.Genetic_Algorithm;
 using gSeer.Data_Structures;
 using System.Drawing;
+using gSeer.Util;
 
 namespace gSeer {
     /// <summary>

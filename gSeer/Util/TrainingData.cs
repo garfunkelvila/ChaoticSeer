@@ -22,7 +22,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace gSeer {
+namespace gSeer.Util {
     public class TrainingData {
         readonly public float[] Input;
         readonly public float[] Target;

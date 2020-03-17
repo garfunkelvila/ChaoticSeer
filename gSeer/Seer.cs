@@ -23,6 +23,7 @@ using System.Threading.Tasks;
 using gSeer.Back_Propagation;
 using gSeer.Genetic_Algorithm;
 using gSeer.Neuron;
+using gSeer.Util;
 
 namespace gSeer {
     public class Seer : IComparable<Seer> {

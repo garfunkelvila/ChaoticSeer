@@ -11,6 +11,7 @@ using gSeer;
 using gSeer.TribeThreading;
 using gSeer.Genetic_Algorithm;
 using System.Diagnostics;
+using gSeer.Util;
 
 namespace Nice_Seer.Forms {
     public partial class GeneticsTest : Form {
