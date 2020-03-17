@@ -27,6 +27,7 @@ Currently it can't train to solve AND, NOT and XOR operators.
   - **Country** - Contains tribe batch.
   * **Planet** - Contains Countries batch.
 ### Others
-  * **LearningRateDecay** - Make learning rate slowly go down based on back propagation changes/variables, I still need to make a formula/flow for this one.
   * **Parser** - A kind of translator for network (numbers into binary, bitmap into RGB, and others)
-  * **Aging** - A kind of natural selection without purging
+  * **Population** - Start population, reproduction and aging related.
+  * **Aging** - Able to make a specie naturally die
+  * **LearningRateDecay** - Make learning rate slowly go down based on back propagation changes/variables, I still need to make a formula/flow for this one.
