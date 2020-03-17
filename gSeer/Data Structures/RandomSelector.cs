@@ -45,7 +45,7 @@ namespace gSeer.Genetic_Algorithm {
         /// </summary>
         /// <returns>Returns a random seer based on score</returns>
         public T Random() {
-            float v = Util.GetRngF() * TotalScore;
+            float v = Rng.GetRngF() * TotalScore;
             float c = 0;
             for (int i = 0; i < seers.Count; i++) {
                 c += scores[i];

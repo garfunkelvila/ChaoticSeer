@@ -27,7 +27,7 @@ namespace gSeer.TribeThreading {
 
 			// attempt to kill lower fitness with survival threshold as luck
 			for (int i = 0; i < Species.Count; i++) {
-				if (Species[i].Fitness < avgFitness && Species[i].SURVIVAL_THRESHOLD > Util.GetRngF()) {
+				if (Species[i].Fitness < avgFitness && Species[i].SURVIVAL_THRESHOLD > Rng.GetRngF()) {
 					Species.RemoveAt(i);
 					speciesKilled++;
 				}
@@ -89,7 +89,7 @@ namespace gSeer.TribeThreading {
 						// Loop througo output neurons
 
 						//float _cost = pred[i] && td[iTd].Target[i];
-						float _cost = Util.FloatingAnd(pred[i], td[iTd].Target[i]);
+						float _cost = Rng.FloatingAnd(pred[i], td[iTd].Target[i]);
 						Species[iSpecie].Fitness += _cost;
 					}
 				}
@@ -110,7 +110,7 @@ namespace gSeer.TribeThreading {
 						// Loop througo output neurons
 
 						//float _cost = pred[i] && td[iTd].Target[i];
-						float _cost = Util.FloatingAnd(pred[i], td[iTd].Target[i]);
+						float _cost = Rng.FloatingAnd(pred[i], td[iTd].Target[i]);
 						Species[iSpecie].Fitness += _cost;
 					}
 				}

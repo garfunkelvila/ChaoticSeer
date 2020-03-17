@@ -42,7 +42,7 @@ namespace gSeer.Data_Structures {
             //might need to check if set has items
             get {
 				if (Hash.Count > 0)
-					return Data[Util.GetRng(Count)];
+					return Data[Rng.GetRng(Count)];
 				return default(T);
             }
         }

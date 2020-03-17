@@ -45,7 +45,7 @@ namespace gSeer.Mutation {
 				}
 
 				con = seer.Cns.AddConnection(con.From, con.To);
-				con.Weight = ((Util.GetRngF() * 2) - 1) * NeatCNS.WEIGHT_RANDOM_STRENGTH;
+				con.Weight = ((Rng.GetRngF() * 2) - 1) * NeatCNS.WEIGHT_RANDOM_STRENGTH;
 
 				//Attempt to ensure that the data is sorted by its InnovaitonNumber
 				for (int cI = 0; i < seer.Connections.Count; i++) {
@@ -75,7 +75,7 @@ namespace gSeer.Mutation {
 			if (replaceIndex == 0) {
 				middle = seer.Cns.AddNode();
 				middle.X = (from.X + to.X) / 2;
-				middle.Y = (from.Y + to.Y) / 2 + (float)((Util.GetRngF() * 0.1) - 0.05);
+				middle.Y = (from.Y + to.Y) / 2 + (float)((Rng.GetRngF() * 0.1) - 0.05);
 				seer.Cns.SetReplaceIndex(from, to, middle.InnovationNumber);
 			}
 			else {
@@ -109,13 +109,13 @@ namespace gSeer.Mutation {
 		public override void MutateWeightRandom(ChaoticSeer seer) {
 			ConnectionGene con = seer.Connections.Random;
 			if (con != null) {
-				con.Weight = ((Util.GetRngF() * 2) - 1) * NeatCNS.WEIGHT_RANDOM_STRENGTH;
+				con.Weight = ((Rng.GetRngF() * 2) - 1) * NeatCNS.WEIGHT_RANDOM_STRENGTH;
 			}
 		}
 		public override void MutateWeightShift(ChaoticSeer seer) {
 			ConnectionGene con = seer.Connections.Random;
 			if (con != null) {
-				con.Weight += ((Util.GetRngF() * 2) - 1) * NeatCNS.WEIGHT_SHIFT_STRENGTH;
+				con.Weight += ((Rng.GetRngF() * 2) - 1) * NeatCNS.WEIGHT_SHIFT_STRENGTH;
 			}
 		}
 		public override ChaoticSeer CrossOver(ChaoticSeer g1, ChaoticSeer g2) {
@@ -142,7 +142,7 @@ namespace gSeer.Mutation {
 
 				if (in1 == in2) {
 					// basically if they are thesame, just select either of them randomly
-					if (Util.GetRngF() > 0.5f)
+					if (Rng.GetRngF() > 0.5f)
 						_genomeBuffer.Connections.Add(neat.Connections[gene1]);
 					else
 						_genomeBuffer.Connections.Add(neat.Connections[gene2]);

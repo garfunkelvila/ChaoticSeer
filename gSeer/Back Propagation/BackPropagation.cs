@@ -30,7 +30,7 @@ namespace gSeer.Back_Propagation {
         public abstract void HiddenLayerBP(NeuronLayerGroup nlg);
         public NeuronLayerGroup BackPropagate(NeuronLayerGroup neuronLayerGroup, TrainingData[] trainingData) {
             nlgBuffer = neuronLayerGroup;
-            int tDr = Util.GetRngMinMax(0, trainingData.Length);
+            int tDr = Rng.GetRngMinMax(0, trainingData.Length);
             OutputLayerBP(neuronLayerGroup, trainingData[tDr]);
             HiddenLayerBP(neuronLayerGroup);
             return this.nlgBuffer;

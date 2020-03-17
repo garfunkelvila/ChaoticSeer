@@ -41,11 +41,11 @@ namespace gSeer.Neuron {
             Dendrites = new float[dendritesCount];
             Weights = new float[dendritesCount];
             for (int i = 0; i < dendritesCount; i++)
-                Weights[i] = (float) Util.GetRng() * -0.1f; //Will change range dependent into AF
+                Weights[i] = (float) Rng.GetRng() * -0.1f; //Will change range dependent into AF
             Bias = 1; //(float) rng.getRng();
 
             ActivationFunction = aF ?? new Logistic();
-            LearningRate = (float)Util.GetRng() * 0.05f;
+            LearningRate = (float)Rng.GetRng() * 0.05f;
         }
 		/// <summary>
 		/// Create a neuron based on a template
@@ -57,11 +57,11 @@ namespace gSeer.Neuron {
 			Dendrites = new float[dendritesCount];
 			Weights = new float[dendritesCount];
 			for (int i = 0; i < dendritesCount; i++)
-				Weights[i] = (float)Util.GetRng() * -0.1f; /// Will change range dependent into AF
+				Weights[i] = (float)Rng.GetRng() * -0.1f; /// Will change range dependent into AF
 			Bias = 1; //(float) rng.getRng();
 
 			ActivationFunction = aF ?? new Logistic();
-			LearningRate = (float)Util.GetRng() * 0.05f;
+			LearningRate = (float)Rng.GetRng() * 0.05f;
 		}
 
         /// <summary>

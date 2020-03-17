@@ -159,15 +159,15 @@ namespace gSeer {
             return (Cns.C1 * disjoint / N) + (Cns.C2 * excess / N) + (Cns.C3 * weightDiff);
         }
         public void Mutate() {
-            if (NeatCNS.PROBABILITY_MUTATE_CONNECTION > Util.GetRngF())
+            if (NeatCNS.PROBABILITY_MUTATE_CONNECTION > Rng.GetRngF())
                 MutateConnection();
-            if (NeatCNS.PROBABILITY_MUTATE_NODE > Util.GetRngF())
+            if (NeatCNS.PROBABILITY_MUTATE_NODE > Rng.GetRngF())
                 MutateNode();
-            if (NeatCNS.PROBABILITY_MUTATE_TOGGLE > Util.GetRngF())
+            if (NeatCNS.PROBABILITY_MUTATE_TOGGLE > Rng.GetRngF())
                 MutateToggleConnection();
-            if (NeatCNS.PROBABILITY_MUTATE_WEIGHT_SHIFT > Util.GetRngF())
+            if (NeatCNS.PROBABILITY_MUTATE_WEIGHT_SHIFT > Rng.GetRngF())
                 MutateWeightShift();
-            if (NeatCNS.PROBABILITY_MUTATE_WEIGHT_RANDOM > Util.GetRngF())
+            if (NeatCNS.PROBABILITY_MUTATE_WEIGHT_RANDOM > Rng.GetRngF())
                 MutateWeightRandom();
             if (++Day == 365) {
                 Day = 0;

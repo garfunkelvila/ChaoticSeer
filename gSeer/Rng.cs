@@ -21,7 +21,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace gSeer {
-	static internal class Util {
+	static internal class Rng {
 		public static readonly int Cores = Environment.ProcessorCount;
 		static Random random = new Random();
 		internal static double GetRng() {

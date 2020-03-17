@@ -22,7 +22,7 @@ namespace gSeer.TribeThreading {
 
 			// attempt to kill lower fitness with survival threshold as luck
 			for (int i = 0; i < Species.Count; i++) {
-				if (Species[i].Fitness < avgFitness && Species[i].SURVIVAL_THRESHOLD > Util.GetRngF()) {
+				if (Species[i].Fitness < avgFitness && Species[i].SURVIVAL_THRESHOLD > Rng.GetRngF()) {
 					Species.RemoveAt(i);
 					speciesKilled++;
 				}
@@ -49,7 +49,7 @@ namespace gSeer.TribeThreading {
 			} while (Species.Count < MAX_POPULATION);
 		}
 		public override void Mutate() {
-			Parallel.ForEach(Species, new ParallelOptions() { MaxDegreeOfParallelism = Util.Cores }, (seer) => {
+			Parallel.ForEach(Species, new ParallelOptions() { MaxDegreeOfParallelism = Rng.Cores }, (seer) => {
 				//if (seer.AGE_THRESHOLD >= seer.Year) {
 					seer.Mutate();
 				//}
@@ -72,7 +72,7 @@ namespace gSeer.TribeThreading {
 			// I just realized I need the BP error function here
 			// TODO: use proper cost function
 
-			Parallel.ForEach(Species, new ParallelOptions() { MaxDegreeOfParallelism = Util.Cores }, (Specie) => {
+			Parallel.ForEach(Species, new ParallelOptions() { MaxDegreeOfParallelism = Rng.Cores }, (Specie) => {
 				// Loop through species
 
 				Specie.Fitness = 0;
@@ -84,7 +84,7 @@ namespace gSeer.TribeThreading {
 						// Loop througo output neurons
 
 						//float _cost = pred[i] && td[iTd].Target[i];
-						float _cost = Util.FloatingAnd(pred[i], td[iTd].Target[i]);
+						float _cost = Rng.FloatingAnd(pred[i], td[iTd].Target[i]);
 						Specie.Fitness += _cost;
 					}
 				}
@@ -97,7 +97,7 @@ namespace gSeer.TribeThreading {
 			// I just realized I need the BP error function here
 			// TODO: use proper cost function
 
-			Parallel.ForEach(Species, new ParallelOptions() { MaxDegreeOfParallelism = Util.Cores }, (Specie) => {
+			Parallel.ForEach(Species, new ParallelOptions() { MaxDegreeOfParallelism = Rng.Cores }, (Specie) => {
 				// Loop through species
 
 				Specie.Fitness = 0;
@@ -109,7 +109,7 @@ namespace gSeer.TribeThreading {
 						// Loop througo output neurons
 
 						//float _cost = pred[i] && td[iTd].Target[i];
-						float _cost = Util.FloatingAnd(pred[i], td[iTd].Target[i]);
+						float _cost = Rng.FloatingAnd(pred[i], td[iTd].Target[i]);
 						Specie.Fitness += _cost;
 					}
 				}
