@@ -15,7 +15,6 @@
 //  License along with this library. If not,
 //  see<https://www.gnu.org/licenses/>.
 
-using gSeer.Genetic_Algorithm;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,14 +22,10 @@ using System.Text;
 using System.Threading.Tasks;
 using gSeer.Util;
 
-namespace gSeer.TribeThreading {
-	public class TribeST : Tribe {
-		public TribeST(int inputSize, int outputSize, int maxPopulation, int maxNodes = 10)
+namespace gSeer.Batch {
+	public class TribeMT : Tribe {
+		public TribeMT(int inputSize, int outputSize, int maxPopulation, int maxNodes = 10)
 			: base(inputSize, outputSize, maxPopulation, maxNodes) {
-		}
-		public TribeST(NeatCNS neat, int maxPopulation)
-			: base(neat, maxPopulation) {
-
 		}
 		#region EVOLUTION
 		public override void Purge() {
@@ -72,14 +67,14 @@ namespace gSeer.TribeThreading {
 			} while (Species.Count < MAX_POPULATION);
 		}
 		public override void Mutate() {
-			foreach (ChaoticSeer seer in Species) {
-				//if(seer.AGE_THRESHOLD >= seer.Year) {
+			Parallel.ForEach(Species, new ParallelOptions() { MaxDegreeOfParallelism = Rng.Cores }, (seer) => {
+				//if (seer.AGE_THRESHOLD >= seer.Year) {
 					seer.Mutate();
 				//}
 				//else {
 				//	Species.Remove(seer);
 				//}
-			}
+			});
 		}
 		#endregion
 
@@ -95,45 +90,50 @@ namespace gSeer.TribeThreading {
 			// I just realized I need the BP error function here
 			// TODO: use proper cost function
 
-			for (int iSpecie = 0; iSpecie < Species.Count; iSpecie++) {
+			Parallel.ForEach(Species, new ParallelOptions() { MaxDegreeOfParallelism = Rng.Cores }, (Specie) => {
 				// Loop through species
 
-				Species[iSpecie].Fitness = 0;
+				Specie.Fitness = 0;
 				for (int iTd = 0; iTd < td.Length; iTd++) {
 					// Loop through training datas
 
-					float[] pred = Species[iSpecie].GetPrediction(td[iTd].Input);
+					float[] pred = Specie.GetPrediction(td[iTd].Input);
 					for (int i = 0; i < pred.Length; i++) {
 						// Loop througo output neurons
 
 						//float _cost = pred[i] && td[iTd].Target[i];
 						float _cost = Rng.FloatingAnd(pred[i], td[iTd].Target[i]);
-						Species[iSpecie].Fitness += _cost;
+						Specie.Fitness += _cost;
 					}
 				}
-			}
+			});
 
 			//throw new NotImplementedException();
 		}
+
 		public override void Evaluate(TrainingDatas td) {
-			for (int iSpecie = 0; iSpecie < Species.Count; iSpecie++) {
+			// I just realized I need the BP error function here
+			// TODO: use proper cost function
+
+			Parallel.ForEach(Species, new ParallelOptions() { MaxDegreeOfParallelism = Rng.Cores }, (Specie) => {
 				// Loop through species
 
-				Species[iSpecie].Fitness = 0;
+				Specie.Fitness = 0;
 				for (int iTd = 0; iTd < td.Count; iTd++) {
 					// Loop through training datas
 
-					float[] pred = Species[iSpecie].GetPrediction(td[iTd].Input);
+					float[] pred = Specie.GetPrediction(td[iTd].Input);
 					for (int i = 0; i < pred.Length; i++) {
 						// Loop througo output neurons
 
 						//float _cost = pred[i] && td[iTd].Target[i];
 						float _cost = Rng.FloatingAnd(pred[i], td[iTd].Target[i]);
-						Species[iSpecie].Fitness += _cost;
+						Specie.Fitness += _cost;
 					}
 				}
-			}
+			});
 		}
+
 		public override float[][] Decisions() {
 			throw new NotImplementedException();
 		}

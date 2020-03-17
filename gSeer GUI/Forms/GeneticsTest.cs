@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using gSeer;
-using gSeer.TribeThreading;
+using gSeer.Batch;
 using gSeer.Genetic_Algorithm;
 using System.Diagnostics;
 using gSeer.Util;

@@ -24,10 +24,7 @@ using System.Text;
 using System.Threading.Tasks;
 using gSeer.Util;
 
-namespace gSeer {
-	/// <summary>
-	/// Might rename this to Tribe
-	/// </summary>
+namespace gSeer.Batch {
 	public abstract class Tribe {
 		public GeneHashSet<ChaoticSeer> Species { get; private set; }
 		public NeatCNS Neat { get; }
@@ -60,7 +57,6 @@ namespace gSeer {
 				});
 			}
 		}
-		/// Will use polymorph soon
 		#region EVOLUTION
 		/// <summary>
 		/// Natural Selection

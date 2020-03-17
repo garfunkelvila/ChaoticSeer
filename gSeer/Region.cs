@@ -16,7 +16,7 @@
 //  see<https://www.gnu.org/licenses/>.
 
 using gSeer.Genetic_Algorithm;
-using gSeer.TribeThreading;
+using gSeer.Batch;
 using System;
 using System.Collections.Generic;
 using System.Linq;
