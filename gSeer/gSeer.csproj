@@ -63,6 +63,7 @@
     <Compile Include="Back Propagation\BpSingleThread.cs" />
     <Compile Include="Back Propagation\BackPropagation.cs" />
     <Compile Include="Batch\RegionMT.cs" />
+    <Compile Include="Batch\RegionST.cs" />
     <Compile Include="ChaoticSeer.cs" />
     <Compile Include="Forward Propagation\ForwardPropagation.cs" />
     <Compile Include="Forward Propagation\FPropagateST.cs" />

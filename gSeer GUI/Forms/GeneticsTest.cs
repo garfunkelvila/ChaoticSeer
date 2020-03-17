@@ -26,7 +26,7 @@ namespace Nice_Seer.Forms {
 
         private void GeneticsTest_Load(object sender, EventArgs e) {
 			tribe = new TribeMT(2, 1, 10);
-			region = new RegionMT(3,2,1,10);
+			region = new RegionST(3,2,1,10);
 			genomeRepresentative = tribe.Species[0];
 			pictureBoxes = new PictureBox[tribe.Species.Count];
 
