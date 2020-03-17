@@ -12,10 +12,13 @@ using gSeer.Batch;
 using gSeer.Genetic_Algorithm;
 using System.Diagnostics;
 using gSeer.Util;
+using gSeer.Batch;
+using SeerRegion = gSeer.Batch.Region;
 
 namespace Nice_Seer.Forms {
     public partial class GeneticsTest : Form {
 		Tribe tribe;
+		SeerRegion region;
 		ChaoticSeer genomeRepresentative;
 		PictureBox[] pictureBoxes;
 		public GeneticsTest() {
@@ -24,6 +27,7 @@ namespace Nice_Seer.Forms {
 
         private void GeneticsTest_Load(object sender, EventArgs e) {
 			tribe = new TribeMT(2, 1, 10);
+			region = new RegionMT(3,2,1,10);
 			genomeRepresentative = tribe.Species[0];
 			pictureBoxes = new PictureBox[tribe.Species.Count];
 
@@ -196,6 +200,10 @@ namespace Nice_Seer.Forms {
 			}
 			sw.Stop();
 			Console.WriteLine("Multi Threading: " + sw.Elapsed);
+		}
+
+		private void button7_Click(object sender, EventArgs e) {
+			region.StartChaos(_and);
 		}
 	}
 }
