@@ -24,7 +24,7 @@ using System.Text;
 using System.Threading.Tasks;
 using gSeer.Util;
 
-namespace gSeer {
+namespace gSeer.Batch {
     /// <summary>
     /// Basically minibatch I think
     /// </summary>
