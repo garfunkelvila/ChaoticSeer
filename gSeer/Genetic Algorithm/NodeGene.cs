@@ -22,7 +22,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace gSeer.Genetic_Algorithm {
+namespace gSeer.GeneticAlgorithm {
     /// <summary>
     /// X,Y handles recursion
     /// </summary>

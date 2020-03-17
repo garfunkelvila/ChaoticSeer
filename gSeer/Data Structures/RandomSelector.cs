@@ -22,7 +22,7 @@ using System.Text;
 using System.Threading.Tasks;
 using gSeer.Util;
 
-namespace gSeer.Genetic_Algorithm {
+namespace gSeer.GeneticAlgorithm {
     /// <summary>
     /// I just learned that you can do custom list implementations
     /// </summary>

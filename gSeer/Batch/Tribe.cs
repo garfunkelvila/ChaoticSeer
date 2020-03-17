@@ -16,7 +16,7 @@
 //  see<https://www.gnu.org/licenses/>.
 
 using gSeer.Data_Structures;
-using gSeer.Genetic_Algorithm;
+using gSeer.GeneticAlgorithm;
 using System;
 using System.Collections.Generic;
 using System.Linq;

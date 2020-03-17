@@ -22,7 +22,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace gSeer.Genetic_Algorithm {
+namespace gSeer.GeneticAlgorithm {
 	/// <summary>
 	/// Equivalent to NEAT on PDF and works of others
 	/// Mostly from https://github.com/Luecx/NEAT,  MarIO and stanley.phd04

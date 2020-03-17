@@ -21,7 +21,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using gSeer.Data_Structures;
-using gSeer.Genetic_Algorithm;
+using gSeer.GeneticAlgorithm;
 
 namespace gSeer.Forward_Propagation {
 	public abstract class ForwardPropagation {

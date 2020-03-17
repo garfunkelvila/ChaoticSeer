@@ -9,10 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using gSeer;
 using gSeer.Batch;
-using gSeer.Genetic_Algorithm;
+using gSeer.GeneticAlgorithm;
 using System.Diagnostics;
 using gSeer.Util;
-using gSeer.Batch;
 using SeerRegion = gSeer.Batch.Region;
 
 namespace Nice_Seer.Forms {

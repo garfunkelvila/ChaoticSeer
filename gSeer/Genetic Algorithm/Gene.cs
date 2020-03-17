@@ -21,7 +21,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace gSeer.Genetic_Algorithm {
+namespace gSeer.GeneticAlgorithm {
     public abstract class Gene {
         /// <summary>
         /// Whenever a new gene appears (through structural mutation), a global

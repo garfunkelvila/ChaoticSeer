@@ -21,7 +21,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
-using gSeer.Genetic_Algorithm;
+using gSeer.GeneticAlgorithm;
 
 namespace gSeer.Util {
 	///http://csharphelper.com/blog/2015/07/zoom-and-scroll-a-picture-drawn-in-c/

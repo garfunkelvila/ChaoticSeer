@@ -15,7 +15,7 @@
 //  License along with this library. If not,
 //  see<https://www.gnu.org/licenses/>.
 
-using gSeer.Genetic_Algorithm;
+using gSeer.GeneticAlgorithm;
 using System;
 using System.Collections.Generic;
 using System.Linq;

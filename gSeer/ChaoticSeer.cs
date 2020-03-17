@@ -20,7 +20,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using gSeer.Genetic_Algorithm;
+using gSeer.GeneticAlgorithm;
 using gSeer.Data_Structures;
 using System.Drawing;
 using gSeer.Util;

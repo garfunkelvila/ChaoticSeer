@@ -22,7 +22,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace gSeer.Genetic_Algorithm {
+namespace gSeer.GeneticAlgorithm {
     public class ConnectionGene : Gene {
         public NodeGene From { get; set; }
         public NodeGene To { get; set; }
