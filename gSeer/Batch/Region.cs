@@ -46,5 +46,6 @@ namespace gSeer.Batch {
 
         public abstract void Purge();
         public abstract void StartChaos(TrainingDatas tds, int mutationIteration = 3600);
+        public abstract void StartChaos(TrainingData[] tds, int mutationIteration = 3600);
     }
 }
