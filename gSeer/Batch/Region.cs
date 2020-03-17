@@ -23,6 +23,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using gSeer.Util;
+using Sg = gSeer.StaticGlobals;
 
 namespace gSeer.Batch {
     /// <summary>
@@ -30,17 +31,17 @@ namespace gSeer.Batch {
     /// </summary>
     public abstract class Region {
         protected Tribe[] tribes;
-        public NeatCNS Neat;
+        //public NeatCNS Neat;
 
         // public delegate void EventHandler();
         // public event EventHandler BeforePurge;
         // public event EventHandler AfterPurge;
 
         public Region(int tribeSize, int inputSize, int outputSize, int maxPopulation, int maxNodes = 10) {
-            Neat = new NeatCNS(inputSize, outputSize, maxNodes);
+            Sg.Neat = new NeatCNS(inputSize, outputSize, maxNodes);
             tribes = new Tribe[tribeSize];
             for (int i = 0; i < tribes.Length; i++) {
-                tribes[i] = new TribeST(Neat, maxPopulation);
+                tribes[i] = new TribeST(Sg.Neat, maxPopulation);
             }
         }
 

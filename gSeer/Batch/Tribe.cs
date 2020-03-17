@@ -23,11 +23,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using gSeer.Util;
-
+using Sg = gSeer.StaticGlobals;
 namespace gSeer.Batch {
 	public abstract class Tribe {
 		public GeneHashSet<ChaoticSeer> Species { get; private set; }
-		public NeatCNS Neat { get; }
+		//public NeatCNS Neat { get; }
 		public int MAX_POPULATION { get; }
 		/// <summary>
 		/// Create a batch of species filled with Genomes
@@ -38,10 +38,10 @@ namespace gSeer.Batch {
 		/// <param name="maxNodes">Target nodes</param>
 		public Tribe(int inputSize, int outputSize, int maxPopulation, int maxNodes = 10) {
 			MAX_POPULATION = maxPopulation;
-			Neat = new NeatCNS(inputSize, outputSize, maxNodes);
+			Sg.Neat = new NeatCNS(inputSize, outputSize, maxNodes);
 			Species = new GeneHashSet<ChaoticSeer>();
 			for (int i = 0; i < maxPopulation; i++) {
-				Species.Add(new ChaoticSeer(Neat) {
+				Species.Add(new ChaoticSeer(Sg.Neat) {
 					Identity = i
 				});
 			}
@@ -49,10 +49,10 @@ namespace gSeer.Batch {
 		[Obsolete("Not tested yet")]
 		public Tribe(NeatCNS neat, int maxPopulation) {
 			MAX_POPULATION = maxPopulation;
-			Neat = neat;
+			Sg.Neat = neat;	// Find a way sooner that prevetns this thing to be set with itself
 			Species = new GeneHashSet<ChaoticSeer>();
 			for (int i = 0; i < maxPopulation; i++) {
-				Species.Add(new ChaoticSeer(Neat) {
+				Species.Add(new ChaoticSeer(Sg.Neat) {
 					Identity = i
 				});
 			}
