@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using gSeer;
+using gSeer.Util;
 namespace Nice_Seer.Forms {
     public partial class SimpleTest : Form {
         Seer _seer = new Seer(2, 1, 2);

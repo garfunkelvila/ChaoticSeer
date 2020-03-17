@@ -22,6 +22,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using gSeer;
+using gSeer.Util;
 namespace Nice_Seer {
     public partial class frmMain : Form {
         System.Diagnostics.Stopwatch watch;
