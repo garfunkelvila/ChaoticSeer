@@ -35,7 +35,6 @@ namespace gSeer.Batch {
 		#region EVOLUTION
 		public override void Purge() {
 			if (Species.Count == 2) return;
-			//TODO: add somehting to make the highest score survive
 			int speciesKilled = 0;
 			float avgFitness = 0f;
 			for (int i = 0; i < Species.Count; i++) {

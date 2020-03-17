@@ -59,7 +59,7 @@ namespace gSeer.Batch {
 		}
 		#region EVOLUTION
 		/// <summary>
-		/// Natural Selection
+		/// Ensure fitness is populated before calling this
 		/// </summary>
 		public abstract void Purge();
 		/// <summary>
@@ -71,6 +71,10 @@ namespace gSeer.Batch {
 		/// </summary>
 		public abstract void Mutate();
 		#endregion
+		/// <summary>
+		/// Start Chaos
+		/// </summary>
+		/// <param name="td"></param>
 		public abstract void Train(TrainingData td);
 		#region DECISIONS
 		/// <summary>
