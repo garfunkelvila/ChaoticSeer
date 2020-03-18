@@ -5,7 +5,7 @@ My attemp on ANN Library. My objective for this one is to learn more in C#. This
 
 When satisfied, I will also make a PHP (Class/Functions set), MSSQL (Functions set) and MySQL (Functions set) versions of it.
 
-Currently it can't train to solve AND, NOT and XOR operators.
+Currently it can't train to solve XOR operator.
 
 ## Current classes
   * **Tribe** - Contains the population
