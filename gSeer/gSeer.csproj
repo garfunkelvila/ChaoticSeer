@@ -72,8 +72,8 @@
     <Compile Include="Genetic Algorithm\Neat.cs" />
     <Compile Include="Genetic Algorithm\NodeGene.cs" />
     <Compile Include="Data Structures\RandomSelector.cs" />
-    <Compile Include="Mutation\MutateConnection.cs" />
-    <Compile Include="Mutation\MutateConnectionST.cs" />
+    <Compile Include="Mutation\Mutation.cs" />
+    <Compile Include="Mutation\MutationST.cs" />
     <Compile Include="ActivationFunctions\Activation.cs" />
     <Compile Include="ActivationFunctions\Logistic.cs" />
     <Compile Include="ActivationFunctions\ReLU.cs" />
