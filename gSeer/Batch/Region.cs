@@ -41,7 +41,7 @@ namespace gSeer.Batch {
             Sg.Neat = new NeatCNS(inputSize, outputSize, maxNodes);
             tribes = new Tribe[tribeSize];
             for (int i = 0; i < tribes.Length; i++) {
-                tribes[i] = new TribeST(Sg.Neat, maxPopulation);
+                tribes[i] = new TribeST(maxPopulation);
             }
         }
 

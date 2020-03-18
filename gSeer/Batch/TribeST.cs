@@ -28,8 +28,8 @@ namespace gSeer.Batch {
 		public TribeST(int inputSize, int outputSize, int maxPopulation, int maxNodes = 10)
 			: base(inputSize, outputSize, maxPopulation, maxNodes) {
 		}
-		public TribeST(NeatCNS neat, int maxPopulation)
-			: base(neat, maxPopulation) {
+		public TribeST(int maxPopulation)
+			: base(maxPopulation) {
 
 		}
 		#region EVOLUTION

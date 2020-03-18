@@ -29,8 +29,8 @@ namespace gSeer.Batch {
 		public TribeMT(int inputSize, int outputSize, int maxPopulation, int maxNodes = 10)
 			: base(inputSize, outputSize, maxPopulation, maxNodes) {
 		}
-		public TribeMT(NeatCNS neat, int maxPopulation)
-			: base(neat, maxPopulation) {
+		public TribeMT(int maxPopulation)
+			: base(maxPopulation) {
 		}
 		#region EVOLUTION
 		public override void Purge() {

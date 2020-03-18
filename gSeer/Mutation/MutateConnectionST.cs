@@ -22,6 +22,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using gSeer.Util;
+using Sg = gSeer.StaticGlobals;
 
 namespace gSeer.Mutation {
 	class MutationST : Mutation {
@@ -45,7 +46,7 @@ namespace gSeer.Mutation {
 					continue;
 				}
 
-				con = seer.Cns.AddConnection(con.From, con.To);
+				con = Sg.Neat.AddConnection(con.From, con.To);
 				con.Weight = ((Rng.GetRngF() * 2) - 1) * NeatCNS.WEIGHT_RANDOM_STRENGTH;
 
 				//Attempt to ensure that the data is sorted by its InnovaitonNumber
@@ -71,24 +72,24 @@ namespace gSeer.Mutation {
 			NodeGene middle;
 			NodeGene to = con.To;
 
-			int replaceIndex = seer.Cns.GetReplaceIndex(from, to);
+			int replaceIndex = Sg.Neat.GetReplaceIndex(from, to);
 
 			if (replaceIndex == 0) {
-				middle = seer.Cns.AddNode();
+				middle = Sg.Neat.AddNode();
 				middle.X = (from.X + to.X) / 2;
 				middle.Y = (from.Y + to.Y) / 2 + (float)((Rng.GetRngF() * 0.1) - 0.05);
-				seer.Cns.SetReplaceIndex(from, to, middle.InnovationNumber);
+				Sg.Neat.SetReplaceIndex(from, to, middle.InnovationNumber);
 			}
 			else {
-				middle = seer.Cns.AddNode(replaceIndex);
+				middle = Sg.Neat.AddNode(replaceIndex);
 			}
 
 			//NodeGene middle = Neat.AddNode();
 			//middle.X = (from.X + to.X) / 2; //Divide by to to get the center
 			//middle.Y = (from.Y + to.Y) / 2; //Divide by to to get the center
 
-			ConnectionGene con1 = seer.Cns.AddConnection(from, middle);
-			ConnectionGene con2 = seer.Cns.AddConnection(middle, to);
+			ConnectionGene con1 = Sg.Neat.AddConnection(from, middle);
+			ConnectionGene con2 = Sg.Neat.AddConnection(middle, to);
 
 
 			con1.Weight = 1;
@@ -125,9 +126,10 @@ namespace gSeer.Mutation {
 			/// if there is a genome in g1 that is also in g2, choose randomly
 			/// do not take disjoint genes of g2
 			/// take excess genes of g1 if they exist
-			NeatCNS neat = g1.Cns;
+			
+			// NeatCNS neat = g1.Cns;
 			//Genome _genomeBuffer = neat.NewEmptyGenome();
-			ChaoticSeer _genomeBuffer = new ChaoticSeer(neat);
+			ChaoticSeer _genomeBuffer = new ChaoticSeer();
 			int indexG1 = 0;
 			int indexG2 = 0;
 
@@ -144,9 +146,9 @@ namespace gSeer.Mutation {
 				if (in1 == in2) {
 					// basically if they are thesame, just select either of them randomly
 					if (Rng.GetRngF() > 0.5f)
-						_genomeBuffer.Connections.Add(neat.Connections[gene1]);
+						_genomeBuffer.Connections.Add(Sg.Neat.Connections[gene1]);
 					else
-						_genomeBuffer.Connections.Add(neat.Connections[gene2]);
+						_genomeBuffer.Connections.Add(Sg.Neat.Connections[gene2]);
 
 					indexG1++;
 					indexG2++;
@@ -158,14 +160,14 @@ namespace gSeer.Mutation {
 				}
 				else {
 					//disjoint/skip gene of a
-					_genomeBuffer.Connections.Add(neat.Connections[gene1]);
+					_genomeBuffer.Connections.Add(Sg.Neat.Connections[gene1]);
 					indexG1++;
 				}
 			}
 			// Add the connections
 			while (indexG1 < g1.Connections.Count) {
 				ConnectionGene gene1 = g1.Connections[indexG1];
-				_genomeBuffer.Connections.Add(neat.Connections[gene1]);
+				_genomeBuffer.Connections.Add(Sg.Neat.Connections[gene1]);
 				indexG1++;
 			}
 			// Add the nodes

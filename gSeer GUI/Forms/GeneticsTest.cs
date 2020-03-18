@@ -164,8 +164,8 @@ namespace Nice_Seer.Forms {
 			Stopwatch sw = new Stopwatch();
 			tribe = new TribeST(2, 1, 128);
 			sw.Start();
-			for (int st = 0; st < 10000; st++) {
-				for (int i = 0; i < 1000; i++) {
+			for (int st = 0; st < 1000; st++) {
+				for (int i = 0; i < 100; i++) {
 					tribe.Mutate();
 				}
 				tribe.Evaluate(_and);
@@ -185,8 +185,8 @@ namespace Nice_Seer.Forms {
 			//tribe = new TribeMT(2, 1, 128);
 			sw.Reset();
 			sw.Start();
-			for (int st = 0; st < 10000; st++) {
-				for (int i = 0; i < 1000; i++) {
+			for (int st = 0; st < 1000; st++) {
+				for (int i = 0; i < 100; i++) {
 					tribe.Mutate();
 				}
 				tribe.Evaluate(_and);

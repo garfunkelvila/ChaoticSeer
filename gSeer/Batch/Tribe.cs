@@ -30,7 +30,7 @@ namespace gSeer.Batch {
 		//public NeatCNS Neat { get; }
 		public int MAX_POPULATION { get; }
 		/// <summary>
-		/// Create a batch of species filled with Genomes
+		/// Create a batch of species filled with Genomes initializing the intergalactic neat
 		/// </summary>
 		/// <param name="inputSize"></param>
 		/// <param name="outputSize"></param>
@@ -41,21 +41,27 @@ namespace gSeer.Batch {
 			Sg.Neat = new NeatCNS(inputSize, outputSize, maxNodes);
 			Species = new GeneHashSet<ChaoticSeer>();
 			for (int i = 0; i < maxPopulation; i++) {
-				Species.Add(new ChaoticSeer(Sg.Neat) {
+				Species.Add(new ChaoticSeer() {
 					Identity = i
 				});
 			}
 		}
-		[Obsolete("Not tested yet")]
-		public Tribe(NeatCNS neat, int maxPopulation) {
+		/// <summary>
+		/// Create a batch of species filled with Genomes using the intergalactic neat
+		/// </summary>
+		/// <param name="maxPopulation"></param>
+		public Tribe(int maxPopulation) {
 			MAX_POPULATION = maxPopulation;
-			Sg.Neat = neat;	// Find a way sooner that prevetns this thing to be set with itself
 			Species = new GeneHashSet<ChaoticSeer>();
 			for (int i = 0; i < maxPopulation; i++) {
-				Species.Add(new ChaoticSeer(Sg.Neat) {
+				Species.Add(new ChaoticSeer() {
 					Identity = i
 				});
 			}
+		}
+		[Obsolete]
+		public Tribe(NeatCNS neat, int maxPopulation) {
+
 		}
 		#region EVOLUTION
 		/// <summary>

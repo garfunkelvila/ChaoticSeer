@@ -23,6 +23,9 @@ using System.Threading.Tasks;
 
 namespace gSeer {
     internal static class StaticGlobals {
+        /// <summary>
+        /// Intergalactic Neat
+        /// </summary>
         internal static GeneticAlgorithm.NeatCNS Neat;
     }
 }

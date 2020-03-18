@@ -24,7 +24,7 @@ using gSeer.GeneticAlgorithm;
 using gSeer.Data_Structures;
 using System.Drawing;
 using gSeer.Util;
-
+using Sg = gSeer.StaticGlobals;
 namespace gSeer {
     /// <summary>
     /// THis seer has neat
@@ -38,7 +38,7 @@ namespace gSeer {
         public int Day = 0;
         public bool isAlive = true;
 
-		public NeatCNS Cns { get; private set; }
+		// public NeatCNS Cns { get; private set; } // Use the intergalactic Neat   // Until I a paper that can crossover different neat appears
 		/// Percentage of this genome to survive
 		public readonly float SURVIVAL_THRESHOLD;// Narual selection dying
 		public readonly int AGE_THRESHOLD;         // Natural dying
@@ -52,10 +52,9 @@ namespace gSeer {
 		private static Forward_Propagation.ForwardPropagation _FPropagation;
 
 		/// <summary>
-		/// Create a Genome without neat template.
-		/// 
+		/// Create a Genome using the intergalactic neat
 		/// </summary>
-		private ChaoticSeer() {
+		public ChaoticSeer() {
 			SURVIVAL_THRESHOLD = 0.02f;
 			AGE_THRESHOLD = 60; //Replace with random that averages to 60
 			REPRODUCE_START_THRESHOLD = 12; // Replace with random that averages to 15
@@ -63,25 +62,26 @@ namespace gSeer {
 			EVOLVE_START_THRESHOLD = 0;
 			EVOLVE_END_THRESHOLD = 40;	// replace with random that averages to 45
 
-
 			Connections = new GeneHashSet<ConnectionGene>();
             Nodes = new GeneHashSet<NodeGene>();
 			_mutation = new Mutation.MutationST();
 			Fitness = 0;
 			Year = 0;
             Day = 0;
-		}
+
+            int _InOut = Sg.Neat.InputSize + Sg.Neat.OutputSize;
+            if (_InOut > NeatCNS.MAX_NODES) throw new NotSupportedException("nodes reached its theoretical max limit");
+            for (int i = 0; i < _InOut; i++) {
+                Nodes.Add(Sg.Neat.AddNode(i + 1));
+            }
+        }
         /// <summary>
         /// Create an emptygenome with only nodes wihtout connections based on a Neat
         /// </summary>
         /// <param name="Cns"></param>
+        [Obsolete()]
         public ChaoticSeer(NeatCNS neat) : this() {
-            Cns = neat;
-            int _InOut = Cns.InputSize + Cns.OutputSize;
-            if (_InOut > NeatCNS.MAX_NODES) throw new NotSupportedException("nodes reached its theoretical max limit");
-            for (int i = 0; i < _InOut; i++) {
-                Nodes.Add(Cns.AddNode(i + 1));
-            }
+            
         }
 		public float[] GetPrediction(params float[] input) {
             if (input.Length <= 1) throw new NotSupportedException("Please enter at least 2 inputs");
@@ -156,7 +156,7 @@ namespace gSeer {
                 N = 1;  //Clamp to 1
             }
             // Protecting Innovation through Speciation phd04.38
-            return (Cns.C1 * disjoint / N) + (Cns.C2 * excess / N) + (Cns.C3 * weightDiff);
+            return (Sg.Neat.C1 * disjoint / N) + (Sg.Neat.C2 * excess / N) + (Sg.Neat.C3 * weightDiff);
         }
         public void Mutate() {
             if (NeatCNS.PROBABILITY_MUTATE_CONNECTION > Rng.GetRngF())
