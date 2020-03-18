@@ -59,10 +59,6 @@ namespace gSeer.Batch {
 				});
 			}
 		}
-		[Obsolete]
-		public Tribe(NeatCNS neat, int maxPopulation) {
-
-		}
 		#region EVOLUTION
 		/// <summary>
 		/// Ensure fitness is populated before calling this

@@ -75,14 +75,6 @@ namespace gSeer {
                 Nodes.Add(Sg.Neat.AddNode(i + 1));
             }
         }
-        /// <summary>
-        /// Create an emptygenome with only nodes wihtout connections based on a Neat
-        /// </summary>
-        /// <param name="Cns"></param>
-        [Obsolete()]
-        public ChaoticSeer(NeatCNS neat) : this() {
-            
-        }
 		public float[] GetPrediction(params float[] input) {
             if (input.Length <= 1) throw new NotSupportedException("Please enter at least 2 inputs");
 			_FPropagation = new Forward_Propagation.FPropagateST(this);
