@@ -20,12 +20,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using gSeer.GeneticAlgorithm;
 using gSeer.Util;
 
 namespace gSeer.Batch {
 	public class TribeMT : Tribe {
+		internal TribeMT() { }
 		public TribeMT(int inputSize, int outputSize, int maxPopulation, int maxNodes = 10)
 			: base(inputSize, outputSize, maxPopulation, maxNodes) {
+		}
+		public TribeMT(NeatCNS neat, int maxPopulation)
+			: base(neat, maxPopulation) {
 		}
 		#region EVOLUTION
 		public override void Purge() {
