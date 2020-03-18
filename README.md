@@ -23,7 +23,7 @@ Currently it can't train to solve AND, NOT and XOR operators.
 	- [x] Connection
 ## Todo
   * Test the node limit
-  * Export/Import Tribe
+  * Export/Import Neat, Tribe and Region (Minibatch related)
 ### Classes (Batch related)
   - **Country** - Contains tribe batch.
   * **Planet** - Contains Countries batch.
