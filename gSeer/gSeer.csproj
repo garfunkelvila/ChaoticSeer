@@ -80,6 +80,7 @@
     <Compile Include="ActivationFunctions\Step.cs" />
     <Compile Include="ActivationFunctions\TanH.cs" />
     <Compile Include="StaticGlobals.cs" />
+    <Compile Include="Util\IO.cs" />
     <Compile Include="Util\Paint.cs" />
     <Compile Include="Parsers\SeerParser.cs" />
     <Compile Include="Data Structures\GeneHashSet.cs" />
@@ -108,6 +109,5 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
