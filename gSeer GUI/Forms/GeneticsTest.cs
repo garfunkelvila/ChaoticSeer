@@ -144,7 +144,7 @@ namespace Nice_Seer.Forms {
 			ClearPictureBoxes();
 			InitializePictureBoxes();
 
-			LogAge();
+			// LogAge();
 
 			tribe.Species[0].GetPrediction(_and[0].Input);
 		}
