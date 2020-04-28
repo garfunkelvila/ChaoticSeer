@@ -27,6 +27,9 @@ namespace gSeer.Util {
 		internal static double GetRng() {
 			return random.NextDouble();
 		}
+		internal static bool GetRngB() {
+			return random.NextDouble() > 0.5d ? true : false;
+		}
 		internal static int GetRng(int max) {
 			return random.Next(max);
 		}
