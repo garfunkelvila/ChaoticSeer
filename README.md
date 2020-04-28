@@ -8,7 +8,7 @@ When satisfied, I will also make a PHP (Class/Functions set), MSSQL (Functions s
 Currently it can't train to solve XOR operator.
 
 ## Current classes
-  * **Tribe** - Contains the population
+  * **~~Tribe~~ Species** - Contains the population
   * **Neat** - Contains the NEAT functions and variables
   * **Activations** - Contains Activation functions
   * ~~**BackPropagation**~~ - Need to be converted to work with neat
@@ -24,11 +24,8 @@ Currently it can't train to solve XOR operator.
 ## Todo
   * Test the node limit
   * Export/Import Neat, Tribe and Region (Minibatch related)
-### Classes (Batch related)
-  - **Country** - Contains tribe batch.
-  * **Planet** - Contains Countries batch.
 ### Others
   * **Parser** - A kind of translator for network (numbers into binary, bitmap into RGB, and others)
   * **Population** - Start population, reproduction and aging related.
-  * **Aging** - Able to make a specie naturally die
+  * **~~Aging~~ Stagnation** - Able to make a specie naturally die
   * **LearningRateDecay** - Make learning rate slowly go down based on back propagation changes/variables, I still need to make a formula/flow for this one.
