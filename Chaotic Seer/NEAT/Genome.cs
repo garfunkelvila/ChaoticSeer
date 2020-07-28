@@ -9,5 +9,14 @@ namespace Chaotic_Seer.NEAT {
 
 		public Genome(bool preMutate) {
 		}
-	}
+
+		/// <summary>
+		/// Use speciation to compare
+		/// </summary>
+		/// <param name="obj"></param>
+		/// <returns></returns>
+        public override bool Equals(object obj) {
+            return base.Equals(obj);
+        }
+    }
 }
