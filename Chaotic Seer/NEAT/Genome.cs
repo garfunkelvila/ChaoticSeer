@@ -32,6 +32,7 @@ namespace Chaotic_Seer.NEAT {
 			AddNode();
 			// Select a random node from this genome, request a connection from neat and add it on this genome
 			AddLink();
+			// Select a randome node then change its weight based on the pdf code copied from Marl.IO
 			ShiftWeight();
 			FillNeurons();
 						
@@ -97,6 +98,21 @@ namespace Chaotic_Seer.NEAT {
 				};
 
 				this.Connections.Add(newConnection);
+			}
+			void ShiftWeight() {
+				float MaxRange = Parameters.WeightMutationRange;
+				float PerturbChange = Parameters.WeightMutationProbability;
+				for (int i = 0; i < this.Connections.Count; i++) {
+					int connectionIndex = Rng.GetInt(Connections.Count);
+					if (Rng.GetFloat() < PerturbChange) {
+						Connections[connectionIndex].Weight +=
+							(Rng.GetFloat() * MaxRange * 2) - MaxRange;
+					}
+					else {
+						Connections[connectionIndex].Weight =
+							(Rng.GetFloat() * 4) - 2;
+					}
+				}
 			}
 		}
 
