@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace Chaotic_Seer.NEAT {
-    public class Genome {
+	public class Genome {
 		public float Fitness { get; set; }
 
 		internal DataHashSet<ConnectionNeuron> Genes = new DataHashSet<ConnectionNeuron>();
@@ -26,7 +26,7 @@ namespace Chaotic_Seer.NEAT {
 
 		public void Mutate() {
 
-        }
+		}
 
 		/// <summary>
 		/// Use speciation to compare
@@ -105,8 +105,8 @@ namespace Chaotic_Seer.NEAT {
 			}
 		}
 
-        public override int GetHashCode() {
-            return base.GetHashCode();
-        }
-    }
+		public override int GetHashCode() {
+			return base.GetHashCode();
+		}
+	}
 }
