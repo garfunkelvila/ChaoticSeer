@@ -6,7 +6,7 @@ using System.Diagnostics;
 using System.Text;
 
 namespace Chaotic_Seer.NEAT {
-	class Neat {
+	public static class Neat {
 		public static int Inputs = 2;
 		public static int Outputs = 1;
 
