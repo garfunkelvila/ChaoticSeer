@@ -13,15 +13,15 @@ namespace Chaotic_Seer.NEAT {
 		public static DataHashSet<Genome> Genomes { get; private set; } = new DataHashSet<Genome>();  // Entire Population
 		public static RandomList<Specie> Species { get; private set; } = new RandomList<Specie>();
 		internal static DataHashSet<ConnectionGene> Genes { get; private set; } = new DataHashSet<ConnectionGene>();
-		internal static List<NodeGene> Neurons { get; private set; } = new List<NodeGene>();
+		internal static List<NodeGene> Nodes { get; private set; } = new List<NodeGene>();
 
 		internal static int AddNodeGene() {
 			NodeGene neuron = new NodeGene {
-				Innovation = Neurons.Count
+				Innovation = Nodes.Count
 			};
 
-			Neurons.Add(neuron);
-			return Neurons.Count - 1;
+			Nodes.Add(neuron);
+			return Nodes.Count - 1;
 		}
 
 		internal static void AddGenomeToPopulation(Genome genome) {
@@ -49,11 +49,11 @@ namespace Chaotic_Seer.NEAT {
 			// ================================================================
 			for (int i = 0; i < Inputs; i++) {
 				int index = AddNodeGene();
-				Neurons[index].Type = NeuronTypes.Sensor;
+				Nodes[index].Type = NeuronTypes.Sensor;
 			}
 			for (int i = 0; i < Outputs; i++) {
 				int index = AddNodeGene();
-				Neurons[index].Type = NeuronTypes.Motor;
+				Nodes[index].Type = NeuronTypes.Motor;
 			}
 			Debug.WriteLine("NEAT IO Neurons Initialized");
 
