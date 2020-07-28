@@ -1,26 +1,24 @@
-﻿using System;
+﻿using Chaotic_Seer.NEAT;
+using System;
 
 namespace Main {
 	class Program {
-		static Test test = new Test();
 		static void Main(string[] args) {
-			Console.WriteLine("Hello World!");
-			test.calc();
-		}
+            Neat.Initialize();
+
+
+            Console.WriteLine("Population: " + Neat.Genomes.Count);
+            Console.WriteLine("Species: " + Neat.Species.Count);
+            for (int i = 0; i < 400; i++) {
+                Neat.Mutate();
+                Console.WriteLine("Gen: " + i);
+                Console.WriteLine("Population: " + Neat.Genomes.Count);
+                Console.WriteLine("Species: " + Neat.Species.Count);
+            }
+
+            Console.ReadLine();
+        }
 
 	}
 
-	class Test {
-		int test = 10;
-
-		public void calc() {
-			int i = REFINT();
-			i = 100;
-        }
-
-
-		public ref int REFINT() {
-			return ref test;
-        }
-    }
 }
