@@ -3,6 +3,7 @@ using Chaotic_Seer.NN;
 using Chaotic_Seer.Util;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace Chaotic_Seer.NEAT {
@@ -27,10 +28,47 @@ namespace Chaotic_Seer.NEAT {
 		}
 
 		public void Mutate() {
+			// Select a random connection to split from this Genome and request from neat for the new connection and
 			AddNode();
 			AddLink();
 			ShiftWeight();
 			FillNeurons();
+						
+			void AddNode() {
+				// Check if genome has connections
+				if (this.Connections.Count == 0) return;
+
+				// Select a random connection to split from Genome
+				ConnectionNeuron connection = this.Connections.Random;
+
+				INode nodeIn = connection.In;
+				INode nodeOut = connection.Out;
+
+				int NewNodeInnovation = Neat.AddNodeGene();
+				NodeGene nodeMid = Neat.Nodes[NewNodeInnovation];
+				nodeMid.Type = NeuronTypes.Inter;
+
+
+				int NewInnovation1 = Neat.NewConnectionGene(nodeIn, nodeMid);
+				ConnectionNeuron conIn = new ConnectionNeuron {
+					In = nodeIn,
+					Out = nodeMid,
+					Weight = 1,
+					Innovation = NewInnovation1
+				};
+				this.Connections.Add(conIn);
+
+				int NewInnovation2 = Neat.NewConnectionGene(nodeMid, nodeOut);
+				ConnectionNeuron conOut = new ConnectionNeuron {
+					In = nodeMid,
+					Out = nodeOut,
+					Weight = connection.Weight,
+					Innovation = NewInnovation2
+				};
+
+				this.Connections.Add(conOut);
+				this.Connections.Remove(connection);  // Equivalent to disabling the connection
+			}
 
 		}
 
