@@ -15,6 +15,7 @@
 //  License along with this library. If not,
 //  see<https://www.gnu.org/licenses/>.
 
+using Chaotic_Seer.Util;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -85,7 +86,7 @@ namespace Chaotic_Seer.DataStructures {
 		public T Random {
 			get {
 				if (Data.Count > 0)
-					return Data[Rng.GetRng(Count)];
+					return Data[Rng.GetInt(Count)];
 				throw new Exception("Data is empty");
 			}
 		}
