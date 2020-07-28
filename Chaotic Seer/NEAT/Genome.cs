@@ -16,6 +16,9 @@ namespace Chaotic_Seer.NEAT {
 		//int[] outputIndexes = new int[NEAT.Outputs];
 
 		public Genome() {
+			for (int i = 0; i < Neat.Neurons.Count; i++) {
+				Nodes.Add(new NodeGene(Neat.Neurons[i]));
+			}
 		}
 
 		public Genome(bool preMutate) {
