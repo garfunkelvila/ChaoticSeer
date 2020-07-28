@@ -70,7 +70,7 @@ namespace Chaotic_Seer.NEAT {
 
 		}
 
-		internal static int NewConnectionGene(NodeGene In, NodeGene Out) {
+		internal static int NewConnectionGene(INode In, INode Out) {
 			ConnectionGene gene = new ConnectionGene {
 				In = In,
 				Out = Out
