@@ -11,6 +11,13 @@ namespace Chaotic_Seer.NN {
 		public float Weight { get; set; }
 		public int Innovation { get; set; }
 
+		public ConnectionNeuron(ConnectionNeuron gene) {
+			In = gene.In;
+			Out = gene.Out;
+			Innovation = gene.Innovation;
+			Weight = gene.Weight;
+		}
+
 		public override bool Equals(object obj) {
 			if (!GetType().Equals(obj.GetType())) return false;
 
