@@ -67,7 +67,6 @@ namespace Chaotic_Seer.NEAT {
 			// ================================================================
 			Debug.WriteLine(Genomes.Count + " Genomes initialized");
 			Debug.WriteLine(Species.Count + " Species detected");
-
 		}
 
 		internal static int NewConnectionGene(INode In, INode Out) {
