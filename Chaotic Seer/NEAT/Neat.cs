@@ -82,6 +82,37 @@ namespace Chaotic_Seer.NEAT {
 		public static void Mutate() {
 			List<Genome> childrens = new List<Genome>();
 
+			foreach (Specie specie in Species) {
+				foreach (Genome genome in specie.genomes) {
+					// Give rng for matinge
+
+					genome.Mutate();
+
+					//if (Genomes.Count + childrens.Count < Parameters.PopulationSize) {
+					//	#region Reproduce Genomes
+					//	Genome child;
+
+					//	if (Species.Count > 1 && Parameters.InterspeciesMatingRate < Rng.GetFloat()) {
+					//		RandomList<Specie> othersSpecies = new RandomList<Specie>();
+					//		foreach (var _specie in Species) {
+					//			if (specie != _specie)
+					//				othersSpecies.Add(_specie);
+					//		}
+					//		child = genome.MateWith(othersSpecies.Random.genomes.Random);
+					//	}
+					//	else {
+					//		child = genome.MateWith(specie.genomes.Random);
+					//	}
+					//	// THis genome is not initialized
+					//	//childrens.Add(child);
+					//	#endregion
+					//}
+				}
+			}
+
+			foreach (Genome child in childrens) {
+				// AddToPopulation(child);
+			}
 		}
 	}
 }
