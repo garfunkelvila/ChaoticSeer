@@ -8,5 +8,6 @@ namespace Chaotic_Seer.NN {
 		public INode In { get; set; }
 		public INode Out { get; set; }
 		public float Weight { get; set; }
+		public int Innovation { get; set; }
 	}
 }
