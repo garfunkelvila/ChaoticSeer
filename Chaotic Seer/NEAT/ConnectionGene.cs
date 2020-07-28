@@ -9,7 +9,7 @@ namespace Chaotic_Seer.NEAT {
 		public INode In { get; set; }
 		public INode Out { get; set; }
 		
-		ConnectionGene() {
+		public ConnectionGene() {
 
 		}
 
