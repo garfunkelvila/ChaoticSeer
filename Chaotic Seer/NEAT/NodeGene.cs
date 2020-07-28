@@ -8,6 +8,8 @@ namespace Chaotic_Seer.NEAT {
 		public int Innovation { get; set; } // Even this thing is in list, it is used for hashing
 		public NeuronTypes Type { get; set; }
 
+		public NodeGene() { }
+
 		public NodeGene(NodeGene neuron) {
 			Innovation = neuron.Innovation;
 			Type = neuron.Type;
