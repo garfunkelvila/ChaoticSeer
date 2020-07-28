@@ -14,7 +14,7 @@ namespace Chaotic_Seer.NN {
 		public override bool Equals(object obj) {
 			if (!GetType().Equals(obj.GetType())) return false;
 
-			ConnectionGene other = obj as ConnectionGene;
+			ConnectionNeuron other = obj as ConnectionNeuron;
 			return
 				In.Equals(other.In) &&
 				Out.Equals(other.Out);
