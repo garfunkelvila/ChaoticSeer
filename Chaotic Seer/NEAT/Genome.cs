@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace Chaotic_Seer.NEAT {
-	class Genome {
+    internal class Genome {
 		public float Fitness { get; set; }
 
 		internal DataHashSet<ConnectionNeuron> Genes = new DataHashSet<ConnectionNeuron>();
@@ -97,5 +97,9 @@ namespace Chaotic_Seer.NEAT {
 				return Parameters.c3 * (gaw / counter);
 			}
 		}
-	}
+
+        public override int GetHashCode() {
+            return base.GetHashCode();
+        }
+    }
 }
