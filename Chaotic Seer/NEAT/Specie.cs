@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace Chaotic_Seer.NEAT {
-	class Specie {
+	public class Specie {
 		public int TopFitness;
 		public float AverageFitness;
 

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace Chaotic_Seer.DataStructures {
-	class RandomList<T> : IList<T>{
+	public class RandomList<T> : IList<T>{
 		readonly List<T> Data = new List<T>();
 
 		public T Random {
