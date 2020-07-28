@@ -1,5 +1,6 @@
 ﻿using Chaotic_Seer.DataStructures;
 using Chaotic_Seer.NN;
+using Chaotic_Seer.Util;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -17,7 +18,7 @@ namespace Chaotic_Seer.NEAT {
 
 		public Genome(bool preMutate = false) {
 			for (int i = 0; i < Neat.Neurons.Count; i++) {
-				Nodes.Add(new NodeGene(Neat.Neurons[i]));
+				this.Nodes.Add(new NodeGene(Neat.Neurons[i]));
 			}
 
 			if (preMutate)
