@@ -9,16 +9,17 @@ namespace Chaotic_Seer.NEAT {
 	public class Genome {
 		public float Fitness { get; set; }
 
-		internal DataHashSet<ConnectionNeuron> Genes = new DataHashSet<ConnectionNeuron>();
-		internal DataHashSet<NodeGene> Nodes = new DataHashSet<NodeGene>();   // Should be a collections of neurons copied from neat
+		internal DataHashSet<ConnectionNeuron> Connections = new DataHashSet<ConnectionNeuron>();
+		internal DataHashSet<NodeNeuron> Nodes = new DataHashSet<NodeNeuron>();
 
 		//INeuron[] neurons;
 		//int[] inputIndexes = new int[NEAT.Inputs];
 		//int[] outputIndexes = new int[NEAT.Outputs];
 
 		public Genome(bool preMutate = false) {
-			for (int i = 0; i < Neat.Neurons.Count; i++) {
-				this.Nodes.Add(new NodeGene(Neat.Neurons[i]));
+			// Copy the nodes from Neat
+			for (int i = 0; i < Neat.Nodes.Count; i++) {
+				this.Nodes.Add(new NodeNeuron(Neat.Nodes[i]));
 			}
 
 			if (preMutate)
@@ -46,11 +47,11 @@ namespace Chaotic_Seer.NEAT {
 			DataHashSet<ConnectionGene> g1Connections = new DataHashSet<ConnectionGene>();
 			DataHashSet<ConnectionGene> g2Connections = new DataHashSet<ConnectionGene>();
 			// Make a local copy
-			foreach (ConnectionNeuron connection in g1.Genes) {
+			foreach (ConnectionNeuron connection in g1.Connections) {
 				g1Connections.Add(new ConnectionGene(connection));
 			}
 
-			foreach (ConnectionNeuron connection in g2.Genes) {
+			foreach (ConnectionNeuron connection in g2.Connections) {
 				g2Connections.Add(new ConnectionGene(connection));
 			}
 
@@ -61,20 +62,20 @@ namespace Chaotic_Seer.NEAT {
 			return (de + dd + dw) < Parameters.ct;
 
 			float excess() {
-				int counter = Math.Abs(g1.Genes.Count - g2.Genes.Count);
+				int counter = Math.Abs(g1.Connections.Count - g2.Connections.Count);
 				return (Parameters.c1 * counter) / 1;
 			}
 			float disjoint() {
 				int disjoints = 0;
 
 				// Match
-				for (int i = 0; i < g1.Genes.Count; i++) {
+				for (int i = 0; i < g1.Connections.Count; i++) {
 					if (g2Connections.Contains(g1Connections[i])) {
 						disjoints++;
 					}
 				}
 
-				for (int i = 0; i < g2.Genes.Count; i++) {
+				for (int i = 0; i < g2.Connections.Count; i++) {
 					if (g1Connections.Contains(g2Connections[i])) {
 						disjoints++;
 					}
@@ -93,8 +94,8 @@ namespace Chaotic_Seer.NEAT {
 						int g1i = g1Connections.IndexOf(g2Connections[g2i]);
 						counter++;
 
-						float g1W = g1.Genes[g1i].Weight;
-						float g2W = g2.Genes[g2i].Weight;
+						float g1W = g1.Connections[g1i].Weight;
+						float g2W = g2.Connections[g2i].Weight;
 						gaw += Math.Abs(g1W + g2W);
 					}
 				}
