@@ -4,6 +4,7 @@ using System.Text;
 
 namespace Chaotic_Seer.Util {
 	interface INode {
+		public int Innovation { get; set; }
 		NeuronTypes Type { get; set; }
 	}
 	public enum NeuronTypes {
