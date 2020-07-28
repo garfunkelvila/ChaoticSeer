@@ -82,5 +82,13 @@ namespace Chaotic_Seer.DataStructures {
 		IEnumerator IEnumerable.GetEnumerator() {
 			throw new NotImplementedException();
 		}
+
+		public T Random {
+			get {
+				if (Data.Count > 0)
+					return Data[Rng.GetInt(Count)];
+				throw new Exception("Data is empty");
+			}
+		}
 	}
 }
