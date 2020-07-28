@@ -10,9 +10,9 @@ namespace Chaotic_Seer.NEAT {
 
 		public NodeGene() { }
 
-		public NodeGene(NodeGene neuron) {
-			Innovation = neuron.Innovation;
-			Type = neuron.Type;
+		public NodeGene(NodeGene node) {
+			Innovation = node.Innovation;
+			Type = node.Type;
 		}
 		public override bool Equals(object obj) {
 			if (!GetType().Equals(obj.GetType())) return false;
