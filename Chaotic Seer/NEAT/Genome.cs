@@ -27,6 +27,10 @@ namespace Chaotic_Seer.NEAT {
 		}
 
 		public void Mutate() {
+			AddNode();
+			AddLink();
+			ShiftWeight();
+			FillNeurons();
 
 		}
 
