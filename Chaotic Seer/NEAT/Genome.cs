@@ -34,7 +34,6 @@ namespace Chaotic_Seer.NEAT {
 			AddLink();
 			// Select a randome node then change its weight based on the pdf code copied from Marl.IO
 			ShiftWeight();
-			FillNeurons();
 						
 			void AddNode() {
 				// Check if genome has connections
