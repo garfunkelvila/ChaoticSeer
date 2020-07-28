@@ -30,6 +30,7 @@ namespace Chaotic_Seer.NEAT {
 		public void Mutate() {
 			// Select a random connection to split from this Genome and request from neat for the new connection and
 			AddNode();
+			// Select a random node from this genome, request a connection from neat and add it on this genome
 			AddLink();
 			ShiftWeight();
 			FillNeurons();
@@ -69,7 +70,34 @@ namespace Chaotic_Seer.NEAT {
 				this.Connections.Add(conOut);
 				this.Connections.Remove(connection);  // Equivalent to disabling the connection
 			}
+			void AddLink() {
+				INode Neuron1 = this.Nodes.Random;
+				INode Neuron2 = this.Nodes.Random;
 
+				// Check if both neurons are input
+				if ((Neuron1.Type == NeuronTypes.Sensor &&
+					Neuron2.Type == NeuronTypes.Sensor) ||
+					(Neuron1.Type == NeuronTypes.Motor &&
+					Neuron2.Type == NeuronTypes.Motor)) {
+					return;
+				}
+				// Swap positions if output neuron is a sensor
+				if (Neuron2.Type == NeuronTypes.Sensor) {
+					INode temp = Neuron1;
+					Neuron1 = Neuron2;
+					Neuron2 = temp;
+				}
+
+				int NewInnovation = Neat.NewConnectionGene(Neuron1, Neuron2);
+
+				ConnectionNeuron newConnection = new ConnectionNeuron {
+					In = Neuron1,
+					Out = Neuron2,
+					Innovation = NewInnovation
+				};
+
+				this.Connections.Add(newConnection);
+			}
 		}
 
 		/// <summary>
