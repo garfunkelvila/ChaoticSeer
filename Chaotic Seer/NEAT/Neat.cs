@@ -88,21 +88,25 @@ namespace Chaotic_Seer.NEAT {
 
 					genome.Mutate();
 
-					//	if (Species.Count > 1 && Parameters.InterspeciesMatingRate < Rng.GetFloat()) {
-					//		RandomList<Specie> othersSpecies = new RandomList<Specie>();
-					//		foreach (var _specie in Species) {
-					//			if (specie != _specie)
-					//				othersSpecies.Add(_specie);
-					//		}
-					//		child = genome.MateWith(othersSpecies.Random.genomes.Random);
-					//	}
-					//	else {
-					//		child = genome.MateWith(specie.genomes.Random);
-					//	}
-					//	// THis genome is not initialized
-					//	//childrens.Add(child);
-					//	#endregion
-					//}
+					if (Genomes.Count + childrens.Count < Parameters.PopulationSize) {
+						#region Reproduce Genomes
+						Genome child;
+
+						if (Species.Count > 1 && Parameters.InterspeciesMatingRate < Rng.GetFloat()) {
+							RandomList<Specie> othersSpecies = new RandomList<Specie>();
+							foreach (var _specie in Species) {
+								if (specie != _specie)
+									othersSpecies.Add(_specie);
+							}
+							child = genome.MateWith(othersSpecies.Random.genomes.Random);
+						}
+						else {
+							child = genome.MateWith(specie.genomes.Random);
+						}
+						// THis genome is not initialized
+						childrens.Add(child);
+						#endregion
+					}
 				}
 			}
 
@@ -110,5 +114,7 @@ namespace Chaotic_Seer.NEAT {
 				// AddToPopulation(child);
 			}
 		}
+
+		
 	}
 }
