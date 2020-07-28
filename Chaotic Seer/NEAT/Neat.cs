@@ -88,10 +88,6 @@ namespace Chaotic_Seer.NEAT {
 
 					genome.Mutate();
 
-					//if (Genomes.Count + childrens.Count < Parameters.PopulationSize) {
-					//	#region Reproduce Genomes
-					//	Genome child;
-
 					//	if (Species.Count > 1 && Parameters.InterspeciesMatingRate < Rng.GetFloat()) {
 					//		RandomList<Specie> othersSpecies = new RandomList<Specie>();
 					//		foreach (var _specie in Species) {
