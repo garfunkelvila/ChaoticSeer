@@ -78,5 +78,10 @@ namespace Chaotic_Seer.NEAT {
 			Genes.Add(gene);
 			return Genes.IndexOf(gene);
 		}
+
+		public static void Mutate() {
+			List<Genome> childrens = new List<Genome>();
+
+		}
 	}
 }
