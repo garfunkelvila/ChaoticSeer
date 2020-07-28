@@ -3,9 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30320.27
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Main", "Main\Main.csproj", "{370C0776-DFF3-4EC1-9889-29E5770FEEB9}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chaotic Seer", "Chaotic Seer\Chaotic Seer.csproj", "{21CDAEC5-7B2F-459B-912E-1B58109DCF98}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chaotic Seer", "Chaotic Seer\Chaotic Seer.csproj", "{21CDAEC5-7B2F-459B-912E-1B58109DCF98}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,10 +11,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{370C0776-DFF3-4EC1-9889-29E5770FEEB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{370C0776-DFF3-4EC1-9889-29E5770FEEB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{370C0776-DFF3-4EC1-9889-29E5770FEEB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{370C0776-DFF3-4EC1-9889-29E5770FEEB9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{21CDAEC5-7B2F-459B-912E-1B58109DCF98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{21CDAEC5-7B2F-459B-912E-1B58109DCF98}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21CDAEC5-7B2F-459B-912E-1B58109DCF98}.Release|Any CPU.ActiveCfg = Release|Any CPU
