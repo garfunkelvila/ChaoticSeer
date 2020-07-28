@@ -15,14 +15,18 @@ namespace Chaotic_Seer.NEAT {
 		//int[] inputIndexes = new int[NEAT.Inputs];
 		//int[] outputIndexes = new int[NEAT.Outputs];
 
-		public Genome() {
+		public Genome(bool preMutate = false) {
 			for (int i = 0; i < Neat.Neurons.Count; i++) {
 				Nodes.Add(new NodeGene(Neat.Neurons[i]));
 			}
+
+			if (preMutate)
+				Mutate();
 		}
 
-		public Genome(bool preMutate) {
-		}
+		public void Mutate() {
+
+        }
 
 		/// <summary>
 		/// Use speciation to compare
