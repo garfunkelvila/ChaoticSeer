@@ -22,22 +22,22 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Seer.ActivationFunctions {
-    class Logistic : ActivationFunction {
-        protected override float CalcAxon(float x) {
-            return (float)(1 / (1 + Math.Exp(-x)));
-        }
+	class Logistic : ActivationFunction {
+		protected override float CalcAxon(float x) {
+			return (float)(1 / (1 + Math.Exp(-x)));
+		}
 
-        protected override float CalcAxon(float x, float y) {
-            throw new NotImplementedException();
-        }
+		protected override float CalcAxon(float x, float y) {
+			throw new NotImplementedException();
+		}
 
-        protected override float CalcDerv(float x) {
-            float _logistic = new Logistic().CalcAxon(x);
-            return _logistic * (1 - _logistic);
-        }
+		protected override float CalcDerv(float x) {
+			float _logistic = new Logistic().CalcAxon(x);
+			return _logistic * (1 - _logistic);
+		}
 
-        protected override float CalcDerv(float x, float y) {
-            throw new NotImplementedException();
-        }
-    }
+		protected override float CalcDerv(float x, float y) {
+			throw new NotImplementedException();
+		}
+	}
 }

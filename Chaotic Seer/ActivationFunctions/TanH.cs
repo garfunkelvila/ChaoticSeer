@@ -22,21 +22,21 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Seer.ActivationFunctions {
-    class TanH : ActivationFunction {
-        protected override float CalcAxon(float x) {
-            return (float)Math.Tanh(x);
-        }
+	class TanH : ActivationFunction {
+		protected override float CalcAxon(float x) {
+			return (float)Math.Tanh(x);
+		}
 
-        protected override float CalcAxon(float x, float y) {
-            throw new NotImplementedException();
-        }
+		protected override float CalcAxon(float x, float y) {
+			throw new NotImplementedException();
+		}
 
-        protected override float CalcDerv(float x) {
-            return (float)(1 / (Math.Cosh(x) * Math.Cosh(x)));
-        }
+		protected override float CalcDerv(float x) {
+			return (float)(1 / (Math.Cosh(x) * Math.Cosh(x)));
+		}
 
-        protected override float CalcDerv(float x, float y) {
-            throw new NotImplementedException();
-        }
-    }
+		protected override float CalcDerv(float x, float y) {
+			throw new NotImplementedException();
+		}
+	}
 }
