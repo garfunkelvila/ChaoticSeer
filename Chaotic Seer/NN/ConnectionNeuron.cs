@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace Chaotic_Seer.NN {
-    class ConnectionNeuron : IConnection {
-        public INode In { get; set; }
-        public INode Out { get; set; }
-    }
+	class ConnectionNeuron : IConnection {
+		public INode In { get; set; }
+		public INode Out { get; set; }
+	}
 }

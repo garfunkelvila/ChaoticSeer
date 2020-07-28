@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace Chaotic_Seer.NEAT {
-    class Parameters {
+	class Parameters {
 		public static readonly int MaxNodes = 2000000;
 
 		public static readonly float c1 = 1.0f;
