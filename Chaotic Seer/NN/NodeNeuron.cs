@@ -21,7 +21,7 @@ namespace Chaotic_Seer.NN {
 
 		public override bool Equals(object obj) {
 			if (!GetType().Equals(obj.GetType())) return false;
-			NodeGene other = obj as NodeGene;
+			NodeNeuron other = obj as NodeNeuron;
 			return
 				Innovation == other.Innovation &&
 				Type == other.Type;
