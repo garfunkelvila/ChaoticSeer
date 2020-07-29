@@ -48,6 +48,7 @@ namespace Chaotic_Seer.NEAT {
 				int NewNodeInnovation = Neat.AddNodeGene();
 				NodeGene nodeMid = Neat.Nodes[NewNodeInnovation];
 				nodeMid.Type = NeuronTypes.Inter;
+				Nodes.Add(new NodeNeuron(nodeMid));
 
 				int NewInnovation1 = Neat.NewConnectionGene(nodeIn, nodeMid);
 				ConnectionNeuron conIn = new ConnectionNeuron {
