@@ -81,6 +81,7 @@ namespace Chaotic_Seer.NEAT {
 		}
 
 		public static void Mutate() {
+			Debug.WriteLine("Mutating...");
 			List<Genome> childrens = new List<Genome>();
 
 			foreach (Specie specie in Species) {
@@ -116,6 +117,7 @@ namespace Chaotic_Seer.NEAT {
 		}
 
 		public static void Evaluate() {
+			Debug.WriteLine("Evaluating...");
 			foreach (Genome genome in Genomes) {
 				NeuralNetwork.Evaluate(genome);
 			}
