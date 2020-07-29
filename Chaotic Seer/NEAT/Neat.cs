@@ -1,8 +1,10 @@
 ﻿using Chaotic_Seer.DataStructures;
+using Chaotic_Seer.NN;
 using Chaotic_Seer.Util;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace Chaotic_Seer.NEAT {
@@ -114,8 +116,10 @@ namespace Chaotic_Seer.NEAT {
 		}
 
 		public static void Evaluate() {
-
-        }
+			foreach (Genome genome in Genomes) {
+				NeuralNetwork.Evaluate(genome);
+			}
+		}
 
 		internal static void AddToPopulation(Genome genome) {
 			Genomes.Add(genome);
