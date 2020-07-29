@@ -83,14 +83,13 @@ namespace Chaotic_Seer.NEAT {
 
 			foreach (Specie specie in Species) {
 				foreach (Genome genome in specie.genomes) {
-					// Give rng for matinge
-
 					genome.Mutate();
 
 					if (Genomes.Count + childrens.Count < Parameters.PopulationSize) {
 						#region Reproduce Genomes
 						Genome child;
 
+						// Interspecies Mating
 						if (Species.Count > 1 && Parameters.InterspeciesMatingRate < Rng.GetFloat()) {
 							RandomList<Specie> othersSpecies = new RandomList<Specie>();
 							foreach (var _specie in Species) {
@@ -113,6 +112,10 @@ namespace Chaotic_Seer.NEAT {
 				AddToPopulation(child);
 			}
 		}
+
+		public static void Evaluate() {
+
+        }
 
 		internal static void AddToPopulation(Genome genome) {
 			Genomes.Add(genome);
