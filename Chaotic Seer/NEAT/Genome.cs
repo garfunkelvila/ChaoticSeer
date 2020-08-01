@@ -11,7 +11,7 @@ namespace Chaotic_Seer.NEAT {
 		public float Fitness { get; set; }
 
 		internal DataHashSet<ConnectionNeuron> Connections = new DataHashSet<ConnectionNeuron>();
-		internal DataHashSet<NodeNeuron> Nodes = new DataHashSet<NodeNeuron>();
+		internal DataHashSet<NodeNeuron> Nodes = new DataHashSet<NodeNeuron>(); // I just realized that connection do also have a copy of nodes from neat in nodeneuron format
 
 		//INeuron[] neurons;
 		//int[] inputIndexes = new int[NEAT.Inputs];
@@ -67,6 +67,7 @@ namespace Chaotic_Seer.NEAT {
 					Innovation = NewInnovation2
 				};
 
+				// this.Nodes.Add(nodeMid);
 				this.Connections.Add(conOut);
 				this.Connections.Remove(connection);  // Equivalent to disabling the connection
 			}
