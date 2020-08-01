@@ -12,8 +12,8 @@ namespace Chaotic_Seer.NN {
 		public int Innovation { get; set; }
 
 		public ConnectionNeuron() {
-
-        }
+			Weight = Rng.GetFloat();
+		}
 
 		public ConnectionNeuron(ConnectionNeuron gene) {
 			In = gene.In;
