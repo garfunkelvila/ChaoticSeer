@@ -1,6 +1,7 @@
 ﻿using Chaotic_Seer.DataStructures;
 using Chaotic_Seer.NEAT;
 using Chaotic_Seer.Util;
+using Seer.ActivationFunctions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
