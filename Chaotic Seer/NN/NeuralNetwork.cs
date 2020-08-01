@@ -26,6 +26,30 @@ namespace Chaotic_Seer.NN {
 		/// </summary>
 		/// <param name="genome"></param>
 		public static void Evaluate(Genome genome, TrainingData td) {
+			ConnectionNeuron[] connections = genome.Connections.ToArray();
+			NodeNeuron[] neurons = genome.Nodes.ToArray();
+
+			List<NodeNeuron> calculatedNeurons = new List<NodeNeuron>();
+			List<ConnectionNeuron> calculatedConnections = new List<ConnectionNeuron>();
+			
+			DataHashSet<ConnectionNeuron> nextConnection = new DataHashSet<ConnectionNeuron>();
+			DataHashSet<NodeNeuron> nextNeurons = new DataHashSet<NodeNeuron>();
+
+			// Load the input neurons and prepare the next neurons
+			for (int i = 0; i < Neat.Inputs; i++) {
+				neurons[i].Axon = td.Input[i];
+				calculatedNeurons.Add(neurons[i]);
+
+				// This could possibly the slowest process, Loop through all connections and then select it
+				foreach (ConnectionNeuron connection in connections) {
+					if (connection.In.Equals(neurons[i])) { // This could possibly the slowest process
+						nextConnection.Add(connection);
+						nextNeurons.Add((NodeNeuron)connection.Out);
+					}
+				}
+			}
+
+			genome.Fitness = Rng.GetInt(100);
 		}
 	}
 }
