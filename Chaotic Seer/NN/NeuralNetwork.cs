@@ -13,7 +13,8 @@ namespace Chaotic_Seer.NN {
 	static class NeuralNetwork {
 		//static internal DataHashSet<ConnectionNeuron> Connections = new DataHashSet<ConnectionNeuron>();
 		//static internal DataHashSet<NodeNeuron> Nodes = new DataHashSet<NodeNeuron>();
-		
+		static ActivationFunction af = new Logistic();
+
 		/// <summary>
 		/// Calculate output and return output
 		/// </summary>
@@ -49,6 +50,56 @@ namespace Chaotic_Seer.NN {
 				}
 			}
 
+			// Calculate next neurons output
+			// reload next neurons
+			do {
+                for (int i = 0; i < nextNeurons.Count; i++) {
+					// Skip the output for now
+					if(nextNeurons[i].Type == NeuronTypes.Motor) {
+						nextNeurons.Remove(nextNeurons[i]);
+						continue;
+					}
+
+					if (calculatedNeurons.Contains(nextNeurons[i])) {
+						nextNeurons.Remove(nextNeurons[i]);
+						continue;
+					}
+
+					float netAxon = 0;
+
+					foreach (ConnectionNeuron connection in nextConnection) {
+						if (connection.Out.Equals(nextNeurons[i])) {
+							NodeNeuron temp = (NodeNeuron)connection.In;
+							netAxon += temp.Axon * connection.Weight;
+						}
+					}
+
+					//TODO: Add the next connections and neurons
+					nextNeurons[i].Axon = af.GetAxon(netAxon);
+					calculatedNeurons.Add(nextNeurons[i]);
+				}
+			} while (nextNeurons.Count() > 0);
+
+			// Load the output neurons
+			for (int i = Neat.Inputs; i < Neat.Outputs + Neat.Inputs; i++) {
+				float netAxon = 0;
+
+
+
+				// This could possibly the slowest process, Loop through all connections and then select it
+				foreach (ConnectionNeuron connection in connections) {
+					if (connection.Out.Equals(neurons[i])) {
+						NodeNeuron temp = (NodeNeuron)connection.In;
+						netAxon += temp.Axon * connection.Weight;
+					}
+				}
+
+				neurons[i].Axon = af.GetAxon(netAxon);
+				calculatedNeurons.Add(neurons[i]);
+			}
+
+
+			Console.WriteLine("PRED: " + neurons[2].Axon);
 			genome.Fitness = Rng.GetInt(100);
 		}
 	}
