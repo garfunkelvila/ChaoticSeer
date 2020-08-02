@@ -27,69 +27,76 @@ namespace Chaotic_Seer.NN {
 			NodeNeuron[] neurons = genome.Nodes.ToArray();
 
 			List<NodeNeuron> calculatedNeurons = new List<NodeNeuron>();
-			List<ConnectionNeuron> calculatedConnections = new List<ConnectionNeuron>();
 
 			DataHashSet<ConnectionNeuron> nextConnection = new DataHashSet<ConnectionNeuron>();
 			DataHashSet<NodeNeuron> nextNeurons = new DataHashSet<NodeNeuron>();
 
 			// Load the input neurons and prepare the next neurons
-			for (int i = 0; i < Neat.Inputs; i++) {
-				neurons[i].Axon = td.Input[i];
-				calculatedNeurons.Add(neurons[i]);
+			LoadInput();
+			// Calculate hidden neurons and load next neurons
+			CalculateHidden();
+			// Calculate the output neurons
+			CalculateOutput();
 
-				// This could possibly the slowest process, Loop through all connections and then select it
-				foreach (ConnectionNeuron connection in connections) {
-					if (connection.In.Equals(neurons[i])) { // This could possibly the slowest process
-						nextConnection.Add(connection);
-						nextNeurons.Add((NodeNeuron)connection.Out);
+			void LoadInput() {
+				for (int i = 0; i < Neat.Inputs; i++) {
+					neurons[i].Axon = td.Input[i];
+					calculatedNeurons.Add(neurons[i]);
+
+					// This could possibly the slowest process, Loop through all connections and then select it
+					foreach (ConnectionNeuron connection in connections) {
+						if (connection.In.Equals(neurons[i])) { // This could possibly the slowest process
+							nextConnection.Add(connection);
+							nextNeurons.Add((NodeNeuron)connection.Out);
+						}
 					}
 				}
 			}
+			void CalculateHidden() {
+				do {
+					for (int i = 0; i < nextNeurons.Count; i++) {
+						// Skip the output for now
+						if (nextNeurons[i].Type == NeuronTypes.Motor) {
+							nextNeurons.Remove(nextNeurons[i]);
+							continue;
+						}
 
-			// Calculate next neurons output
-			// reload next neurons
-			do {
-				for (int i = 0; i < nextNeurons.Count; i++) {
-					// Skip the output for now
-					if (nextNeurons[i].Type == NeuronTypes.Motor) {
-						nextNeurons.Remove(nextNeurons[i]);
-						continue;
+						if (calculatedNeurons.Contains(nextNeurons[i])) {
+							nextNeurons.Remove(nextNeurons[i]);
+							continue;
+						}
+
+						float netAxon = 0;
+
+						foreach (ConnectionNeuron connection in nextConnection) {
+							if (connection.Out.Equals(nextNeurons[i])) {
+								NodeNeuron temp = (NodeNeuron)connection.In;
+								netAxon += temp.Axon * connection.Weight;
+							}
+						}
+
+						//TODO: Add the next connections and neurons
+						nextNeurons[i].Axon = af.GetAxon(netAxon);
+						calculatedNeurons.Add(nextNeurons[i]);
 					}
-
-					if (calculatedNeurons.Contains(nextNeurons[i])) {
-						nextNeurons.Remove(nextNeurons[i]);
-						continue;
-					}
-
+				} while (nextNeurons.Count() > 0);
+			}
+			void CalculateOutput() {
+				for (int i = Neat.Inputs; i < Neat.Outputs + Neat.Inputs; i++) {
 					float netAxon = 0;
-
-					foreach (ConnectionNeuron connection in nextConnection) {
-						if (connection.Out.Equals(nextNeurons[i])) {
+					// This could possibly the slowest process, Loop through all connections and then select it
+					foreach (ConnectionNeuron connection in connections) {
+						if (connection.Out.Equals(neurons[i])) {
 							NodeNeuron temp = (NodeNeuron)connection.In;
 							netAxon += temp.Axon * connection.Weight;
 						}
 					}
-
-					//TODO: Add the next connections and neurons
-					nextNeurons[i].Axon = af.GetAxon(netAxon);
-					calculatedNeurons.Add(nextNeurons[i]);
+					neurons[i].Axon = af.GetAxon(netAxon);
+					pred[i - Neat.Inputs] = neurons[i].Axon;
+					calculatedNeurons.Add(neurons[i]);
 				}
-			} while (nextNeurons.Count() > 0);
-
-			// Calculate the output neurons
-			for (int i = Neat.Inputs; i < Neat.Outputs + Neat.Inputs; i++) {
-				float netAxon = 0;
-				// This could possibly the slowest process, Loop through all connections and then select it
-				foreach (ConnectionNeuron connection in connections) {
-					if (connection.Out.Equals(neurons[i])) {
-						NodeNeuron temp = (NodeNeuron)connection.In;
-						netAxon += temp.Axon * connection.Weight;
-					}
-				}
-				neurons[i].Axon = af.GetAxon(netAxon);
-				pred[i - Neat.Inputs] = neurons[i].Axon;
-				calculatedNeurons.Add(neurons[i]);
 			}
+			
 			// Debug.WriteLine("PRED: " + neurons[2].Axon);
 			return pred;
 		}
