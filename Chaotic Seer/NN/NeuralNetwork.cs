@@ -20,20 +20,13 @@ namespace Chaotic_Seer.NN {
 		/// Calculate output and return output
 		/// </summary>
 		/// <param name="genome"></param>
-		public static void GetOutput(Genome genome) {
-		}
-
-		/// <summary>
-		/// Calculate output and evaluate fitness
-		/// </summary>
-		/// <param name="genome"></param>
-		public static void Evaluate(Genome genome, TrainingData td) {
+		public static float[] GetOutput(Genome genome, TrainingData td) {
 			ConnectionNeuron[] connections = genome.Connections.ToArray();
 			NodeNeuron[] neurons = genome.Nodes.ToArray();
 
 			List<NodeNeuron> calculatedNeurons = new List<NodeNeuron>();
 			List<ConnectionNeuron> calculatedConnections = new List<ConnectionNeuron>();
-			
+
 			DataHashSet<ConnectionNeuron> nextConnection = new DataHashSet<ConnectionNeuron>();
 			DataHashSet<NodeNeuron> nextNeurons = new DataHashSet<NodeNeuron>();
 
@@ -54,9 +47,9 @@ namespace Chaotic_Seer.NN {
 			// Calculate next neurons output
 			// reload next neurons
 			do {
-                for (int i = 0; i < nextNeurons.Count; i++) {
+				for (int i = 0; i < nextNeurons.Count; i++) {
 					// Skip the output for now
-					if(nextNeurons[i].Type == NeuronTypes.Motor) {
+					if (nextNeurons[i].Type == NeuronTypes.Motor) {
 						nextNeurons.Remove(nextNeurons[i]);
 						continue;
 					}
@@ -81,12 +74,9 @@ namespace Chaotic_Seer.NN {
 				}
 			} while (nextNeurons.Count() > 0);
 
-			// Load the output neurons
+			// Calculate the output neurons
 			for (int i = Neat.Inputs; i < Neat.Outputs + Neat.Inputs; i++) {
 				float netAxon = 0;
-
-
-
 				// This could possibly the slowest process, Loop through all connections and then select it
 				foreach (ConnectionNeuron connection in connections) {
 					if (connection.Out.Equals(neurons[i])) {
@@ -94,13 +84,23 @@ namespace Chaotic_Seer.NN {
 						netAxon += temp.Axon * connection.Weight;
 					}
 				}
-
 				neurons[i].Axon = af.GetAxon(netAxon);
 				calculatedNeurons.Add(neurons[i]);
 			}
-
-
 			Console.WriteLine("PRED: " + neurons[2].Axon);
+
+			float[] pred = new float[Neat.Outputs];
+
+			return pred;
+		}
+
+		/// <summary>
+		/// Calculate output and evaluate fitness
+		/// </summary>
+		/// <param name="genome"></param>
+		public static void Evaluate(Genome genome, TrainingData td) {
+			float[] test;
+			test = GetOutput(genome, td);
 			genome.Fitness = Rng.GetInt(100);
 		}
 	}
