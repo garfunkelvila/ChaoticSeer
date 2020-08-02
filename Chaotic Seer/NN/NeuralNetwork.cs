@@ -4,6 +4,7 @@ using Chaotic_Seer.Util;
 using Seer.ActivationFunctions;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
@@ -21,6 +22,7 @@ namespace Chaotic_Seer.NN {
 		/// </summary>
 		/// <param name="genome"></param>
 		public static float[] GetOutput(Genome genome, TrainingData td) {
+			float[] pred = new float[Neat.Outputs];
 			ConnectionNeuron[] connections = genome.Connections.ToArray();
 			NodeNeuron[] neurons = genome.Nodes.ToArray();
 
@@ -85,12 +87,10 @@ namespace Chaotic_Seer.NN {
 					}
 				}
 				neurons[i].Axon = af.GetAxon(netAxon);
+				pred[i - Neat.Inputs] = neurons[i].Axon;
 				calculatedNeurons.Add(neurons[i]);
 			}
-			Console.WriteLine("PRED: " + neurons[2].Axon);
-
-			float[] pred = new float[Neat.Outputs];
-
+			// Debug.WriteLine("PRED: " + neurons[2].Axon);
 			return pred;
 		}
 
