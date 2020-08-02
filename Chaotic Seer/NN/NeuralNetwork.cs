@@ -99,9 +99,14 @@ namespace Chaotic_Seer.NN {
 		/// </summary>
 		/// <param name="genome"></param>
 		public static void Evaluate(Genome genome, TrainingData td) {
-			float[] test;
-			test = GetOutput(genome, td);
-			genome.Fitness = Rng.GetInt(100);
+			float[] answer;
+			float _fitness = 0;
+			answer = GetOutput(genome, td);
+            for (int i = 0; i < td.Output.Length; i++) {
+				_fitness += Rng.FloatingAnd(answer[i], td.Output[i]);
+			}
+			genome.Fitness = _fitness;
+			Debug.WriteLine("Fit: " + _fitness);
 		}
 	}
 }
