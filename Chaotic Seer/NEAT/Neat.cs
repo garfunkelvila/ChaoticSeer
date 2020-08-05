@@ -132,6 +132,8 @@ namespace Chaotic_Seer.NEAT {
 
 			// Loop[ through genomes, check if it is qualified to be deleted
 			Thanos();
+			ClearBodies();
+
 			static void Thanos() {
 				// Sorted genomes fittest on top
 				Genome[] _genomes = Genomes.OrderBy(x => x.Fitness).Reverse().ToArray();
@@ -141,6 +143,47 @@ namespace Chaotic_Seer.NEAT {
 				for (int i = half; i < _genomes.Length; i++) {
 					_genomes[i].IsAlive = false;
 				}
+			}
+
+			static void ClearBodies() {
+				// It is possible that the representative is selected and it will return null to next iteration
+
+				int i,ii;
+				// Remove from population
+				i = Genomes.Count();
+				do {
+					i--;
+					if (!Genomes[i].IsAlive)
+						Genomes.RemoveAt(i);
+				} while (i != 0);
+
+				// Remove genome from Species
+				i = Species.Count();
+				do {
+					i--;
+					ii = Species[i].genomes.Count;
+
+					do {
+						ii--;
+
+						if (!Species[i].genomes[ii].IsAlive) {
+							int identity = Species[i].genomes[ii].Identity;
+							Species[i].genomes.RemoveAt(ii);
+							
+							// If specie has empty genome, delete it and proceed to next specie
+							if(Species[i].genomes.Count == 0) {
+								Species.RemoveAt(i);
+								goto Specie;
+							}
+
+							// If representative is dead, select a new one from current specie
+							if(Species[i].Representative.Identity == identity) {
+								Species[i].Representative = Species[i].genomes.Random;
+							}
+						}
+					} while (ii != 0);
+					Specie:;
+				} while (i != 0);
 			}
 		}
 
