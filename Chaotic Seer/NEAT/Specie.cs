@@ -11,9 +11,6 @@ namespace Chaotic_Seer.NEAT {
 		public int Staleness;
 		public RandomList<Genome> genomes = new RandomList<Genome>();
 		public Genome Representative;
-
-		public void AddGenome(Genome child) {
-			genomes.Add(child);
 		public void AddGenome(Genome genome) {
 			genomes.Add(genome);
 		}
