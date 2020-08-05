@@ -122,9 +122,7 @@ namespace Chaotic_Seer.NEAT {
 
 		public static void Evaluate(TrainingData[] tds) {
 			foreach (Genome genome in Genomes) {
-				foreach (TrainingData td in tds) {
-					NeuralNetwork.Evaluate(genome, td);
-				}
+				NeuralNetwork.Evaluate(genome, tds);
 			}
 		}
 

@@ -105,13 +105,18 @@ namespace Chaotic_Seer.NN {
 		/// Calculate output and evaluate fitness
 		/// </summary>
 		/// <param name="genome"></param>
-		public static void Evaluate(Genome genome, TrainingData td) {
+		public static void Evaluate(Genome genome, TrainingData[] tds) {
 			float[] answer;
 			float _fitness = 0;
-			answer = GetOutput(genome, td.Input);
-            for (int i = 0; i < td.Output.Length; i++) {
-				_fitness += Rng.FloatingAnd(answer[i], td.Output[i]);
+
+            foreach (TrainingData td in tds) {
+				answer = GetOutput(genome, td.Input);
+				for (int i = 0; i < td.Output.Length; i++) {
+					_fitness += Rng.FloatingAnd(answer[i], td.Output[i]);
+				}
 			}
+
+			
 			genome.Fitness = _fitness;
 			//Debug.WriteLine("Fit: " + _fitness);
 		}
