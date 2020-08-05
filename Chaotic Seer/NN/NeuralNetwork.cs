@@ -21,7 +21,7 @@ namespace Chaotic_Seer.NN {
 		/// Calculate output and return output
 		/// </summary>
 		/// <param name="genome"></param>
-		public static float[] GetOutput(Genome genome, TrainingData td) {
+		public static float[] GetOutput(Genome genome, float[] inputs) {
 			float[] pred = new float[Neat.Outputs];
 			ConnectionNeuron[] connections = genome.Connections.ToArray();
 			NodeNeuron[] neurons = genome.Nodes.ToArray();
@@ -40,7 +40,7 @@ namespace Chaotic_Seer.NN {
 
 			void LoadInput() {
 				for (int i = 0; i < Neat.Inputs; i++) {
-					neurons[i].Axon = td.Input[i];
+					neurons[i].Axon = inputs[i];
 					calculatedNeurons.Add(neurons[i]);
 
 					// This could possibly the slowest process, Loop through all connections and then select it
@@ -108,7 +108,7 @@ namespace Chaotic_Seer.NN {
 		public static void Evaluate(Genome genome, TrainingData td) {
 			float[] answer;
 			float _fitness = 0;
-			answer = GetOutput(genome, td);
+			answer = GetOutput(genome, td.Input);
             for (int i = 0; i < td.Output.Length; i++) {
 				_fitness += Rng.FloatingAnd(answer[i], td.Output[i]);
 			}
