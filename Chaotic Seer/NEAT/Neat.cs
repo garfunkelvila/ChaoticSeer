@@ -124,7 +124,7 @@ namespace Chaotic_Seer.NEAT {
 
 		public static float[] GetOutput(float[] input) {
 #if DEBUG
-			if (input.Length != Inputs - 1)
+			if (input.Length != Inputs)
 				throw new Exception("Input size is not same with neat input size");
 #endif
 			return NeuralNetwork.GetOutput(Genomes.Random, input);
