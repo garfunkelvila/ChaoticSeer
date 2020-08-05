@@ -131,6 +131,17 @@ namespace Chaotic_Seer.NEAT {
 			// Genomes should be prioritized and species should only have reference or pointer
 
 			// Loop[ through genomes, check if it is qualified to be deleted
+			Thanos();
+			static void Thanos() {
+				// Sorted genomes fittest on top
+				Genome[] _genomes = Genomes.OrderBy(x => x.Fitness).Reverse().ToArray();
+				int half = _genomes.Length / 2;
+
+				// Wipe half
+				for (int i = half; i < _genomes.Length; i++) {
+					_genomes[i].IsAlive = false;
+				}
+			}
 		}
 
 		internal static void AddToPopulation(Genome genome) {
