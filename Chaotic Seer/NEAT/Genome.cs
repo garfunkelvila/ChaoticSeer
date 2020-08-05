@@ -9,6 +9,7 @@ using System.Text;
 namespace Chaotic_Seer.NEAT {
 	public class Genome {
 		public float Fitness { get; set; }
+		public int Age { get; private set; } = 0;
 		public int Identity { get; set; } = Rng.GetInt(2147483647); // Now it seems it needs to be unique per specie
 		public bool IsAlive { get; set; } = true; // Used for purging
 
@@ -30,6 +31,10 @@ namespace Chaotic_Seer.NEAT {
 		}
 
 		public void Mutate() {
+			if(++Age >= Parameters.MaximumStagnation) {
+				IsAlive = false;
+				return;
+            }
 			// Select a random connection to split from this Genome and request from neat for the new connection and
 			AddNode();
 			// Select a random node from this genome, request a connection from neat and add it on this genome
@@ -40,6 +45,7 @@ namespace Chaotic_Seer.NEAT {
 			void AddNode() {
 				// Check if genome has connections
 				if (this.Connections.Count == 0) return;
+				if (this.Nodes.Count >= Parameters.MaxNodes) return;
 
 				// Select a random connection to split from Genome
 				ConnectionNeuron connection = this.Connections.Random;
