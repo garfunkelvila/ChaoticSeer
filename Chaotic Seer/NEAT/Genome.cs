@@ -9,7 +9,7 @@ using System.Text;
 namespace Chaotic_Seer.NEAT {
 	public class Genome {
 		public float Fitness { get; set; }
-		public int Identity { get; set; } = Rng.GetInt(2147483647); //Used only for testing, Can be not unique
+		public int Identity { get; set; } = Rng.GetInt(2147483647); // Now it seems it needs to be unique per specie
 		public bool IsAlive { get; set; } = true; // Used for purging
 
 		internal DataHashSet<ConnectionNeuron> Connections = new DataHashSet<ConnectionNeuron>();
