@@ -148,17 +148,17 @@ namespace Chaotic_Seer.NEAT {
 			// Genomes should be prioritized and species should only have reference or pointer
 
 			// Loop[ through genomes, check if it is qualified to be deleted
-			Thanos();
+			NaturalSelection();
 			ClearBodies();
 
-			static void Thanos() {
-				// Use survival threshold with thanos
+			static void NaturalSelection() {
                 foreach (Specie specie in Species) {
-					Genome[] _genomes = specie.genomes.OrderBy(x => x.Fitness).Reverse().ToArray();
-					int half = _genomes.Length / 2; //0
+					if (specie.genomes.Count == 1 && Parameters.SurvivalThreshold > Rng.GetFloat())
+						return;
 
-					// Wipe half
-					for (int i = half; i < _genomes.Length; i++) {
+					Genome[] _genomes = specie.genomes.OrderBy(x => x.Fitness).Reverse().ToArray();
+
+					for (int i = 1; i < _genomes.Length; i++) {
 						_genomes[i].IsAlive = Parameters.SurvivalThreshold > Rng.GetFloat() ? true : false;
 					}
 				}
