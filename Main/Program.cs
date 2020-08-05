@@ -10,7 +10,7 @@ namespace Main {
 
 			Console.WriteLine("Population: " + Neat.Genomes.Count);
 			Console.WriteLine("Species: " + Neat.Species.Count);
-
+			Console.WriteLine();
 			TrainingData td = new TrainingData(
 					new float[2] { 1f, 0f},
 					new float[1] { 1f }
@@ -20,11 +20,13 @@ namespace Main {
 				Genome[] genome = Neat.Genomes.ToArray();
 
 				Neat.Mutate();
+				Console.WriteLine("Mutation:\t" + Neat.Genomes.Count);
 				Neat.Evaluate(td);
 				Neat.Purge();
-				Console.WriteLine("Gen: " + i);
-				Console.WriteLine("Population: " + Neat.Genomes.Count);
-				Console.WriteLine("Species: " + Neat.Species.Count);
+				Console.WriteLine("Purge:\t\t" + Neat.Genomes.Count);
+				Console.WriteLine("Species:\t" + Neat.Species.Count);
+				Console.WriteLine("Gen:\t\t" + i);
+				Console.WriteLine("=================");
 			}
 
 			Console.ReadLine();
