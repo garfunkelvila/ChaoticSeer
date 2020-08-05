@@ -116,80 +116,95 @@ namespace Chaotic_Seer.NEAT {
 			}
 		}
 
+		[Obsolete("Mating is incomplete")]
 		public Genome MateWith(Genome genome) {
 			Genome g1 = this;
 			Genome g2 = genome;
 			// TODO: Averaging of weights
 			// TODO: Same Fitness
-			// Inherit genes from mor fit parent g1
-			if (g2.Fitness > g1.Fitness) {
-				Genome temp = g1;
-				g1 = g2;
-				g2 = temp;
-			}
-
+			
 			Genome child = new Genome();
-
 			DataHashSet<ConnectionGene> g2Connections = new DataHashSet<ConnectionGene>();
 
-			foreach (ConnectionNeuron item in g2.Connections) {
-				g2Connections.Add(new ConnectionGene(item));
-			}
-
-			#region SAME FITNESS
-			//if (g1.Fitness == g2.Fitness) {
-			//	// Basically this part is crossover for same fitness
-			//	// This might kill the child because there is a 50/50 chance that a link wont be inherited
-			//	// This thing also has too much rng
-			//	foreach (ConnectionGeneW item in g1.Genes) {
-			//		newConnections.Add(new ConnectionGeneW(item));
-			//	}
-			//	foreach (ConnectionGeneW item in newConnections) {
-			//		ConnectionGeneW con1 = new ConnectionGeneW(item);
-			//		ConnectionGeneW con2 = null;
-			//		if (newConnections.Contains(con1)) {
-			//			con2 = newConnections[newConnections.IndexOf(con1)];
-			//		}
-
-			//		// If match, disjoint and excess is inherit randomly
-			//		// else inherit from more fit
-
-			//		if (con2 != null && Rng.GetRngB()) {
-			//			if(Rng.GetRngB())
-			//				child.Genes.Add(con2);
-			//		}
-			//		else {
-			//			if (Rng.GetRngB())
-			//				child.Genes.Add(con1);
-			//		}
-			//	}
-			//}
-			#endregion
-
-			for (int i = 0; i < g1.Connections.Count; i++) {
-				int g1i = i;
-				int g2i = -1;   // -1 Represents null
-				ConnectionGene g1Con = new ConnectionGene(g1.Connections[i]);
-
-				// If g2 has same connection on g1
-				// Assign the same connection on g2
-				if (g2Connections.Contains(g1Con)) {
-					g2i = g2Connections.IndexOf(g1Con);
-					child.Connections.Add(new ConnectionNeuron(g2.Connections[g2i]));
-				}
-				else {
-					child.Connections.Add(new ConnectionNeuron(g1.Connections[g1i]));
-				}
-
-				//if (g2i >= 0 && Rng.GetRngB()) {
-				//	child.Genes.Add(new ConnectionGeneW(g1.Genes[g1i]));
-				//}
-				//else {
-				//	child.Genes.Add(new ConnectionGeneW(g2.Genes[g2i]));
-				//}
-			}
+			SwapCheck();
+			LoadG2Connections();
+			SameFitness();
+			Crossover();
 
 			return child;
+
+			void SwapCheck() {
+				// Make sure g1 is the higher fitness genome
+				if (g2.Fitness > g1.Fitness) {
+					Genome temp = g1;
+					g1 = g2;
+					g2 = temp;
+				}
+			}
+
+			void LoadG2Connections() {
+				foreach (ConnectionNeuron item in g2.Connections) {
+					g2Connections.Add(new ConnectionGene(item));
+				}
+			}
+
+			void SameFitness() {
+				// UNTESTED
+				if (g1.Fitness != g2.Fitness)
+					return;
+				// Basically this part is crossover for same fitness
+				// This might kill the child because there is a 50/50 chance that a link wont be inherited
+				// This thing also has too much rng
+				DataHashSet<ConnectionNeuron> newConnections = new DataHashSet<ConnectionNeuron>();
+
+				foreach (ConnectionNeuron item in g1.Connections) {
+					newConnections.Add(new ConnectionNeuron(item));
+				}
+
+				foreach (ConnectionNeuron item in newConnections) {
+					ConnectionNeuron con1 = new ConnectionNeuron(item);
+					ConnectionNeuron con2 = null;
+					if (newConnections.Contains(con1)) {
+						con2 = newConnections[newConnections.IndexOf(con1)];
+					}
+
+					// If match, disjoint and excess is inherit randomly
+					// else inherit from more fit
+					if (con2 != null && Rng.GetBool()) {
+						if (Rng.GetBool())
+							child.Connections.Add(con2);
+					}
+					else {
+						if (Rng.GetBool())
+							child.Connections.Add(con1);
+					}
+				}
+			}
+
+			void Crossover() {
+				for (int i = 0; i < g1.Connections.Count; i++) {
+					int g1i = i;
+					//int g2i = -1;   // -1 Represents null
+					ConnectionGene g1Con = new ConnectionGene(g1.Connections[i]);
+
+					// If g2 has same connection on g1
+					// Assign the same connection on g2
+					if (g2Connections.Contains(g1Con)) {
+						int g2i = g2Connections.IndexOf(g1Con);
+						child.Connections.Add(new ConnectionNeuron(g2.Connections[g2i]));
+					}
+					else {
+						child.Connections.Add(new ConnectionNeuron(g1.Connections[g1i]));
+					}
+
+					//if (g2i >= 0 && Rng.GetRngB()) {
+					//	child.Genes.Add(new ConnectionGeneW(g1.Genes[g1i]));
+					//}
+					//else {
+					//	child.Genes.Add(new ConnectionGeneW(g2.Genes[g2i]));
+					//}
+				}
+			}
 		}
 
 		/// <summary>
