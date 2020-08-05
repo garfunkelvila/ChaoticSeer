@@ -9,6 +9,8 @@ using System.Text;
 namespace Chaotic_Seer.NEAT {
 	public class Genome {
 		public float Fitness { get; set; }
+		public int Identity { get; set; } = Rng.GetInt(2147483647); //Used only for testing, Can be not unique
+		public bool IsAlive { get; set; } = true; // Used for purging
 
 		internal DataHashSet<ConnectionNeuron> Connections = new DataHashSet<ConnectionNeuron>();
 		internal DataHashSet<NodeNeuron> Nodes = new DataHashSet<NodeNeuron>();
@@ -285,7 +287,8 @@ namespace Chaotic_Seer.NEAT {
 		}
 
 		public override int GetHashCode() {
-			return base.GetHashCode();
+			// I think it should return its identity
+			return Identity;
 		}
 	}
 }
