@@ -123,6 +123,10 @@ namespace Chaotic_Seer.NEAT {
 			}
 		}
 
+		public static void Purge() {
+			// Thanos
+        }
+
 		internal static void AddToPopulation(Genome genome) {
 			Genomes.Add(genome);
 
