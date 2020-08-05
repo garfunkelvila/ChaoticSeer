@@ -14,6 +14,8 @@ namespace Chaotic_Seer.NEAT {
 
 		public void AddGenome(Genome child) {
 			genomes.Add(child);
+		public void AddGenome(Genome genome) {
+			genomes.Add(genome);
 		}
 	}
 }
