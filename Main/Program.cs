@@ -16,15 +16,15 @@ namespace Main {
 			TrainingData[] td = {
 				new TrainingData(
 					new float[2] { 1f, 1f},
-					new float[1] { 0f }
+					new float[1] { 1f }
 				),
 				new TrainingData(
 					new float[2] { 1f, 0f},
-					new float[1] { 1f }
+					new float[1] { 0f }
 				),
 				new TrainingData(
 					new float[2] { 0f, 1f},
-					new float[1] { 1f }
+					new float[1] { 0f }
 				),
 				new TrainingData(
 					new float[2] { 0f, 0f},
