@@ -111,7 +111,7 @@ namespace Chaotic_Seer.NEAT {
 			}
 
 			foreach (Genome child in childrens) {
-				AddToPopulation(child);
+				AddGenomeToPopulation(child);
 			}
 		}
 
@@ -184,26 +184,6 @@ namespace Chaotic_Seer.NEAT {
 					} while (ii != 0);
 					Specie:;
 				} while (i != 0);
-			}
-		}
-
-		internal static void AddToPopulation(Genome genome) {
-			Genomes.Add(genome);
-
-			// Double check the connections
-			bool foundSpecies = false;
-			foreach (Specie specie in Species) {
-				if (!foundSpecies && genome.Equals(specie.Representative)) {
-					specie.AddGenome(genome);
-					foundSpecies = true;
-				}
-			}
-
-			if (!foundSpecies) {
-				Specie newSpecie = new Specie();
-				newSpecie.AddGenome(genome);
-				newSpecie.Representative = genome;
-				Species.Add(newSpecie);
 			}
 		}
 	}
