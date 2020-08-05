@@ -29,6 +29,7 @@ namespace Main {
 				Console.WriteLine("=================");
 			}
 
+			Neat.GetOutput();
 			Console.ReadLine();
 		}
 
