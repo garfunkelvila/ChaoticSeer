@@ -4,6 +4,7 @@ using Chaotic_Seer.Util;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 
@@ -122,8 +123,15 @@ namespace Chaotic_Seer.NEAT {
 		}
 
 		public static void Purge() {
-			// Thanos
-        }
+			// Thanos - I just realized that i cannot sort genomes
+
+			// Create a function to safely remove a genome
+			// Currently removing a genome will not remove it from species
+			// This means that species and genomes has seperate copies
+			// Genomes should be prioritized and species should only have reference or pointer
+
+			// Loop[ through genomes, check if it is qualified to be deleted
+		}
 
 		internal static void AddToPopulation(Genome genome) {
 			Genomes.Add(genome);
