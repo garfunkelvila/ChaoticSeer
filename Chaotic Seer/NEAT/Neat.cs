@@ -38,9 +38,7 @@ namespace Chaotic_Seer.NEAT {
 			}
 
 			if (!foundSpecies) {
-				Specie newSpecie = new Specie();
-				newSpecie.AddGenome(genome);
-				newSpecie.Representative = genome;
+				Specie newSpecie = new Specie(genome);
 				Species.Add(newSpecie);
 			}
 		}
