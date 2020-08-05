@@ -80,54 +80,52 @@ namespace Chaotic_Seer.NEAT {
 		}
 
 		public static void Mutate() {
-			Stopwatch stopWatch = new Stopwatch();
-			stopWatch.Start();
-			List<Genome> childrens = new List<Genome>();
-
 			foreach (Specie specie in Species) {
 				foreach (Genome genome in specie.genomes) {
 					genome.Mutate();
-
-					if (Genomes.Count + childrens.Count < Parameters.PopulationSize) {
-						#region Reproduce Genomes
-						Genome child;
-
-						// Interspecies Mating
-						if (Species.Count > 1 && Parameters.InterspeciesMatingRate < Rng.GetFloat()) {
-							RandomList<Specie> othersSpecies = new RandomList<Specie>();
-							foreach (var _specie in Species) {
-								if (specie != _specie)
-									othersSpecies.Add(_specie);
-							}
-							child = genome.MateWith(othersSpecies.Random.genomes.Random);
-						}
-						else {
-							child = genome.MateWith(specie.genomes.Random);
-						}
-						// THis genome is not initialized
-						childrens.Add(child);
-						#endregion
-					}
 				}
 			}
+		}
 
-			foreach (Genome child in childrens) {
-				AddGenomeToPopulation(child);
+		public static void Reproduce() {
+			List<Genome> childrens = new List<Genome>();
+			Genome child;
+
+            do {
+				if (Species.Count > 1 && Parameters.InterspeciesMatingRate < Rng.GetFloat())
+					IntespecieMating();
+				else
+					LocalMating();
+				childrens.Add(child);
+			} while (Genomes.Count + childrens.Count < Parameters.PopulationSize);
+
+			foreach (Genome genome in childrens) {
+				AddGenomeToPopulation(genome);
 			}
-			stopWatch.Stop();
-			Debug.WriteLine("Mutation: " + stopWatch.ElapsedMilliseconds);
+
+            void IntespecieMating() {
+				Stopwatch stopWatch = new Stopwatch();
+				stopWatch.Start();
+				child = Species.Random.genomes.Random.MateWith(Species.Random.genomes.Random);
+				stopWatch.Stop();
+				Debug.WriteLine("IntespecieMating: " + stopWatch.ElapsedMilliseconds + "ms");
+			}
+			void LocalMating() {
+				Stopwatch stopWatch = new Stopwatch();
+				stopWatch.Start();
+				int rnds = Rng.GetInt(Species.Count);
+				child = Species[rnds].genomes.Random.MateWith(Species[rnds].genomes.Random);
+				stopWatch.Stop();
+				Debug.WriteLine("LocalMating: " + stopWatch.ElapsedMilliseconds + "ms");
+			}
 		}
 
 		public static void Evaluate(TrainingData[] tds) {
-			Stopwatch stopWatch = new Stopwatch();
-			stopWatch.Start();
 			foreach (Genome genome in Genomes) {
 				foreach (TrainingData td in tds) {
 					NeuralNetwork.Evaluate(genome, td);
 				}
 			}
-			stopWatch.Stop();
-			Debug.WriteLine("Evaluation: " + stopWatch.ElapsedMilliseconds);
 		}
 
 		public static float[] GetOutput(float[] input) {
@@ -147,8 +145,6 @@ namespace Chaotic_Seer.NEAT {
 			// Genomes should be prioritized and species should only have reference or pointer
 
 			// Loop[ through genomes, check if it is qualified to be deleted
-			Stopwatch stopWatch = new Stopwatch();
-			stopWatch.Start();
 			Thanos();
 			ClearBodies();
 
@@ -203,8 +199,6 @@ namespace Chaotic_Seer.NEAT {
 					Specie:;
 				} while (i != 0);
 			}
-			stopWatch.Stop();
-			Debug.WriteLine("Purge: " + stopWatch.ElapsedMilliseconds);
 		}
 	}
 }
