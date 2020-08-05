@@ -152,13 +152,15 @@ namespace Chaotic_Seer.NEAT {
 			ClearBodies();
 
 			static void Thanos() {
-				// Sorted genomes fittest on top
-				Genome[] _genomes = Genomes.OrderBy(x => x.Fitness).Reverse().ToArray();
-				int half = _genomes.Length / 2;
+				// Use survival threshold with thanos
+                foreach (Specie specie in Species) {
+					Genome[] _genomes = specie.genomes.OrderBy(x => x.Fitness).Reverse().ToArray();
+					int half = _genomes.Length / 2; //0
 
-				// Wipe half
-				for (int i = half; i < _genomes.Length; i++) {
-					_genomes[i].IsAlive = false;
+					// Wipe half
+					for (int i = half; i < _genomes.Length; i++) {
+						_genomes[i].IsAlive = Parameters.SurvivalThreshold > Rng.GetFloat() ? true : false;
+					}
 				}
 			}
 
