@@ -20,8 +20,8 @@ namespace Chaotic_Seer.NEAT {
 		//int[] outputIndexes = new int[NEAT.Outputs];
 
 		public Genome(bool preMutate = false) {
-			// Copy the nodes from Neat
-			for (int i = 0; i < Neat.Nodes.Count; i++) {
+			// Copy the input and output nodes from neat
+			for (int i = 0; i < Neat.Inputs + Neat.Outputs; i++) {
 				this.Nodes.Add(new NodeNeuron(Neat.Nodes[i]));
 			}
 
