@@ -40,6 +40,7 @@ namespace Main {
 				Neat.Evaluate(td);
 				Neat.Purge();
 				Console.WriteLine("Purge:\t\t" + Neat.Genomes.Count);
+				Neat.Reproduce();
 				Console.WriteLine("Species:\t" + Neat.Species.Count);
 				Console.WriteLine("Gen:\t\t" + i);
 				Console.WriteLine("=================");
