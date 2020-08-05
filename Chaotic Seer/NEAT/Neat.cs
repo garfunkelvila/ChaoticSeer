@@ -80,7 +80,8 @@ namespace Chaotic_Seer.NEAT {
 		}
 
 		public static void Mutate() {
-			Debug.WriteLine("Mutating...");
+			Stopwatch stopWatch = new Stopwatch();
+			stopWatch.Start();
 			List<Genome> childrens = new List<Genome>();
 
 			foreach (Specie specie in Species) {
@@ -113,16 +114,20 @@ namespace Chaotic_Seer.NEAT {
 			foreach (Genome child in childrens) {
 				AddGenomeToPopulation(child);
 			}
+			stopWatch.Stop();
+			Debug.WriteLine("Mutation: " + stopWatch.ElapsedMilliseconds);
 		}
 
 		public static void Evaluate(TrainingData[] tds) {
-			Debug.WriteLine("Evaluating...");
+			Stopwatch stopWatch = new Stopwatch();
+			stopWatch.Start();
 			foreach (Genome genome in Genomes) {
 				foreach (TrainingData td in tds) {
 					NeuralNetwork.Evaluate(genome, td);
 				}
 			}
-			Debug.WriteLine("Evaluating... Done");
+			stopWatch.Stop();
+			Debug.WriteLine("Evaluation: " + stopWatch.ElapsedMilliseconds);
 		}
 
 		public static float[] GetOutput(float[] input) {
@@ -142,6 +147,8 @@ namespace Chaotic_Seer.NEAT {
 			// Genomes should be prioritized and species should only have reference or pointer
 
 			// Loop[ through genomes, check if it is qualified to be deleted
+			Stopwatch stopWatch = new Stopwatch();
+			stopWatch.Start();
 			Thanos();
 			ClearBodies();
 
@@ -196,6 +203,8 @@ namespace Chaotic_Seer.NEAT {
 					Specie:;
 				} while (i != 0);
 			}
+			stopWatch.Stop();
+			Debug.WriteLine("Purge: " + stopWatch.ElapsedMilliseconds);
 		}
 	}
 }
