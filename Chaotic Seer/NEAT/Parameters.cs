@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Chaotic_Seer.NEAT {
 	class Parameters {
-		public static readonly int MaxNodes = 2000000;
+		public static readonly int MaxNodes = 200;
 
 		public static readonly float c1 = 1.0f;
 		public static readonly float c2 = 1.0f;
@@ -37,7 +37,7 @@ namespace Chaotic_Seer.NEAT {
 		public static readonly float RecurrentConnectionProbability = 0.2f;
 
 		// Number of networks in the population.
-		public static int PopulationSize = 5;
+		public static int PopulationSize = 19;
 		// Maximum number of generations a species is allowed to stay the 
 		// same fitness before it is removed.In competitive coevolution, the worst species is removed if
 		// it has been around this many generations(Section 3.3).
