@@ -133,7 +133,10 @@ namespace Chaotic_Seer.NEAT {
 			if (input.Length != Inputs)
 				throw new Exception("Input size is not same with neat input size");
 #endif
-			return NeuralNetwork.GetOutput(Genomes.Random, input);
+			Genome g = Genomes[0];
+			Debug.WriteLine("Fit: " + g.Fitness);
+			return NeuralNetwork.GetOutput(g, input);
+			
 		}
 
 		public static void Purge() {
