@@ -115,11 +115,14 @@ namespace Chaotic_Seer.NEAT {
 			}
 		}
 
-		public static void Evaluate(TrainingData td) {
+		public static void Evaluate(TrainingData[] tds) {
 			Debug.WriteLine("Evaluating...");
 			foreach (Genome genome in Genomes) {
-				NeuralNetwork.Evaluate(genome, td);
+				foreach (TrainingData td in tds) {
+					NeuralNetwork.Evaluate(genome, td);
+				}
 			}
+			Debug.WriteLine("Evaluating... Done");
 		}
 
 		public static float[] GetOutput(float[] input) {
