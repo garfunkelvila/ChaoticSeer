@@ -16,15 +16,15 @@ namespace Main {
 			TrainingData[] td = {
 				new TrainingData(
 					new float[2] { 1f, 1f},
-					new float[1] { 1f }
+					new float[1] { 0f }
 				),
 				new TrainingData(
 					new float[2] { 1f, 0f},
-					new float[1] { 0f }
+					new float[1] { 1f }
 				),
 				new TrainingData(
 					new float[2] { 0f, 1f},
-					new float[1] { 0f }
+					new float[1] { 1f }
 				),
 				new TrainingData(
 					new float[2] { 0f, 0f},
@@ -44,20 +44,25 @@ namespace Main {
 				Console.WriteLine("Species:\t" + Neat.Species.Count);
 				Console.WriteLine("Gen:\t\t" + i);
 				Console.WriteLine("=================");
-				Console.WriteLine("Pred:\t" + Neat.GetOutput(td[0].Input)[0]);
-				Console.WriteLine("Pred:\t" + Neat.GetOutput(td[1].Input)[0]);
-				Console.WriteLine("Pred:\t" + Neat.GetOutput(td[2].Input)[0]);
-				Console.WriteLine("Pred:\t" + Neat.GetOutput(td[3].Input)[0]);
+				Console.WriteLine("Pred:\t" + r(Neat.GetOutput(td[0].Input)[0]) + " " +
+				r(Neat.GetOutput(td[1].Input)[0]) + " " +
+				r(Neat.GetOutput(td[2].Input)[0]) + " " +
+				r(Neat.GetOutput(td[3].Input)[0]));
 				Console.WriteLine("=================");
 			}
 			Console.WriteLine();
 			Console.WriteLine();
 			Console.WriteLine("DONE");
-			Console.WriteLine("Pred:\t" + Neat.GetOutput(td[0].Input)[0]);
-			Console.WriteLine("Pred:\t" + Neat.GetOutput(td[1].Input)[0]);
-			Console.WriteLine("Pred:\t" + Neat.GetOutput(td[2].Input)[0]);
-			Console.WriteLine("Pred:\t" + Neat.GetOutput(td[3].Input)[0]);
+			Console.WriteLine("Pred:\t" + r(Neat.GetOutput(td[0].Input)[0]) + " " +
+				r(Neat.GetOutput(td[1].Input)[0]) + "  " +
+				r(Neat.GetOutput(td[2].Input)[0]) + " " +
+				r(Neat.GetOutput(td[3].Input)[0]));
 			Console.ReadLine();
+
+
+			int r(float a) {
+				return a > 0.5 ? 1 : 0;
+            }
 		}
 
 	}
