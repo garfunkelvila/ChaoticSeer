@@ -113,7 +113,7 @@ namespace Chaotic_Seer.NN {
 				_fitness += Rng.FloatingAnd(answer[i], td.Output[i]);
 			}
 			genome.Fitness = _fitness;
-			Debug.WriteLine("Fit: " + _fitness);
+			//Debug.WriteLine("Fit: " + _fitness);
 		}
 	}
 }
