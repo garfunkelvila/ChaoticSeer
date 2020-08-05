@@ -11,12 +11,28 @@ namespace Main {
 			Console.WriteLine("Population: " + Neat.Genomes.Count);
 			Console.WriteLine("Species: " + Neat.Species.Count);
 			Console.WriteLine();
-			TrainingData td = new TrainingData(
+
+			// XOR
+			TrainingData[] td = {
+				new TrainingData(
+					new float[2] { 1f, 1f},
+					new float[1] { 0f }
+				),
+				new TrainingData(
 					new float[2] { 1f, 0f},
 					new float[1] { 1f }
-				);
+				),
+				new TrainingData(
+					new float[2] { 0f, 1f},
+					new float[1] { 1f }
+				),
+				new TrainingData(
+					new float[2] { 0f, 0f},
+					new float[1] { 0f }
+				)
+			};
 
-			for (int i = 1; i < 400; i++) {
+			for (int i = 1; i < 800; i++) {
 				Genome[] genome = Neat.Genomes.ToArray();
 
 				Neat.Mutate();
@@ -27,9 +43,19 @@ namespace Main {
 				Console.WriteLine("Species:\t" + Neat.Species.Count);
 				Console.WriteLine("Gen:\t\t" + i);
 				Console.WriteLine("=================");
+				Console.WriteLine("Pred:\t" + Neat.GetOutput(td[0].Input)[0]);
+				Console.WriteLine("Pred:\t" + Neat.GetOutput(td[1].Input)[0]);
+				Console.WriteLine("Pred:\t" + Neat.GetOutput(td[2].Input)[0]);
+				Console.WriteLine("Pred:\t" + Neat.GetOutput(td[3].Input)[0]);
+				Console.WriteLine("=================");
 			}
-
-			Neat.GetOutput();
+			Console.WriteLine();
+			Console.WriteLine();
+			Console.WriteLine("DONE");
+			Console.WriteLine("Pred:\t" + Neat.GetOutput(td[0].Input)[0]);
+			Console.WriteLine("Pred:\t" + Neat.GetOutput(td[1].Input)[0]);
+			Console.WriteLine("Pred:\t" + Neat.GetOutput(td[2].Input)[0]);
+			Console.WriteLine("Pred:\t" + Neat.GetOutput(td[3].Input)[0]);
 			Console.ReadLine();
 		}
 
