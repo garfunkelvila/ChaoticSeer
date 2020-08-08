@@ -22,6 +22,7 @@ using Seer.ActivationFunctions;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Dynamic;
 using System.Linq;
 using System.Text;
 
@@ -32,7 +33,7 @@ namespace Chaotic_Seer.NN {
 	static class NeuralNetwork {
 		//static internal DataHashSet<ConnectionNeuron> Connections = new DataHashSet<ConnectionNeuron>();
 		//static internal DataHashSet<NodeNeuron> Nodes = new DataHashSet<NodeNeuron>();
-		static ActivationFunction af = new Logistic();
+		static readonly ActivationFunction af = new Logistic();
 
 		/// <summary>
 		/// Calculate output and return output
@@ -126,7 +127,7 @@ namespace Chaotic_Seer.NN {
 			float[] answer;
 			float _fitness = 0;
 
-            foreach (TrainingData td in tds) {
+			foreach (TrainingData td in tds) {
 				answer = GetOutput(genome, td.Input);
 				for (int i = 0; i < td.Output.Length; i++) {
 					_fitness += Rng.FloatingAnd(answer[i], td.Output[i]);
