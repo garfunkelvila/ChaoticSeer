@@ -20,7 +20,7 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace Chaotic_Seer.Util {
-	interface IConnection {
+	internal interface IConnection {
 		INode In { get; set; }
 		INode Out { get; set; }
 	}

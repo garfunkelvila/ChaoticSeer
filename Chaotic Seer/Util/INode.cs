@@ -20,7 +20,7 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace Chaotic_Seer.Util {
-	interface INode {
+	internal interface INode {
 		int Innovation { get; set; }
 		NeuronTypes Type { get; set; }
 	}
