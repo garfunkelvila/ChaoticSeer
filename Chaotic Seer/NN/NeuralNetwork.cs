@@ -33,7 +33,6 @@ namespace Chaotic_Seer.NN {
 	static class NeuralNetwork {
 		//static internal DataHashSet<ConnectionNeuron> Connections = new DataHashSet<ConnectionNeuron>();
 		//static internal DataHashSet<NodeNeuron> Nodes = new DataHashSet<NodeNeuron>();
-		static readonly ActivationFunction af = new Logistic();
 
 		/// <summary>
 		/// Calculate output and return output
@@ -94,7 +93,7 @@ namespace Chaotic_Seer.NN {
 						}
 
 						//TODO: Add the next connections and neurons
-						nextNeurons[i].Axon = af.GetAxon(netAxon);
+						nextNeurons[i].Axon = Parameters.af.GetAxon(netAxon);
 						calculatedNeurons.Add(nextNeurons[i]);
 					}
 				} while (nextNeurons.Count() > 0);

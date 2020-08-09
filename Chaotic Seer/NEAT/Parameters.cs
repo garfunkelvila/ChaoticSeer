@@ -15,13 +15,14 @@
 //  License along with this library. If not,
 //  see<https://www.gnu.org/licenses/>.
 
+using Seer.ActivationFunctions;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Chaotic_Seer.NEAT {
 	class Parameters {
-		public static readonly int MaxNodes = 200;
+		public static readonly int MaxNodes = 10;
 
 		public static readonly float c1 = 1.0f;
 		public static readonly float c2 = 1.0f;
@@ -62,5 +63,9 @@ namespace Chaotic_Seer.NEAT {
 		// Desired number of species in the population; used only in dynamic
 		// compatibility thresholding(Section 3.3).
 		public static int TargetNumberOfSpecies = 20;
+
+		// Back Propagation
+		public static float LearningRate = 0.02f;
+		public static readonly ActivationFunction af = new Logistic();
 	}
 }
