@@ -127,9 +127,9 @@ namespace Chaotic_Seer.NN {
 			float _fitness = 0;
 
 			foreach (TrainingData td in tds) {
-				answer = GetOutput(genome, td.Input);
-				for (int i = 0; i < td.Output.Length; i++) {
-					_fitness += Rng.FloatingAnd(answer[i], td.Output[i]);
+				answer = GetOutput(genome, td.Inputs);
+				for (int i = 0; i < td.Outputs.Length; i++) {
+					_fitness += Rng.FloatingAnd(answer[i], td.Outputs[i]);
 				}
 			}
 			genome.Fitness = _fitness;
