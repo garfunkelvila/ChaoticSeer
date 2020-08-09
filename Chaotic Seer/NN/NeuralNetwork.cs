@@ -108,7 +108,7 @@ namespace Chaotic_Seer.NN {
 							netAxon += temp.Axon * connection.Weight;
 						}
 					}
-					neurons[i].Axon = af.GetAxon(netAxon);
+					neurons[i].Axon = Parameters.af.GetAxon(netAxon);
 					pred[i - Neat.Inputs] = neurons[i].Axon;
 					calculatedNeurons.Add(neurons[i]);
 				}
