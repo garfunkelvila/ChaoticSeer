@@ -93,7 +93,7 @@ namespace Chaotic_Seer.NN {
 						}
 
 						//TODO: Add the next connections and neurons
-						nextNeurons[i].Axon = Parameters.af.GetAxon(netAxon);
+						nextNeurons[i].Axon = Parameters.af.GetAxon(netAxon + nextNeurons[i].Bias);
 						calculatedNeurons.Add(nextNeurons[i]);
 					}
 				} while (nextNeurons.Count() > 0);
@@ -108,7 +108,7 @@ namespace Chaotic_Seer.NN {
 							netAxon += temp.Axon * connection.Weight;
 						}
 					}
-					neurons[i].Axon = Parameters.af.GetAxon(netAxon);
+					neurons[i].Axon = Parameters.af.GetAxon(netAxon + neurons[i].Bias);
 					pred[i - Neat.Inputs] = neurons[i].Axon;
 					calculatedNeurons.Add(neurons[i]);
 				}
