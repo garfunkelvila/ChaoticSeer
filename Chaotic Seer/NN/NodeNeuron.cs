@@ -22,9 +22,33 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace Chaotic_Seer.NN {
-	class NodeNeuron : INode {
+	class SensorNeuron : INode {
 		public int Innovation { get; set; }
-		public NeuronTypes Type { get; set; }
+		public NeuronTypes Type { get; set; } = NeuronTypes.Sensor;
+		public float Axon { get; set; }
+		public SensorNeuron() { }
+
+		public SensorNeuron(NodeGene node) {
+			Innovation = node.Innovation;
+			if (node.Type != NeuronTypes.Sensor)
+				throw new Exception("THis is an input neuron!!");
+		}
+
+		public override bool Equals(object obj) {
+			if (!GetType().Equals(obj.GetType())) return false;
+			SensorNeuron other = obj as SensorNeuron;
+			return
+				Innovation == other.Innovation &&
+				Type == other.Type;
+		}
+
+		public override int GetHashCode() {
+			return Innovation;
+		}
+	}
+	class InterNeuron : INode {
+		public int Innovation { get; set; }
+		public NeuronTypes Type { get; set; } = NeuronTypes.Inter;
 		public float Axon { get; private set; }
 		// Used on BP, might relocate this one
 		public float NetAxon {
@@ -35,18 +59,55 @@ namespace Chaotic_Seer.NN {
 			}
 		} 
 		public float Bias { get; set; }
-		public NodeNeuron() {
+		public InterNeuron() {
 			Bias = Rng.GetFloat();
 		}
 
-		public NodeNeuron(NodeGene node) {
+		public InterNeuron(NodeGene node) {
 			Innovation = node.Innovation;
-			Type = node.Type;
+			if (node.Type != NeuronTypes.Inter)
+				throw new Exception("This is a hidden neuron!!");
 		}
 
 		public override bool Equals(object obj) {
 			if (!GetType().Equals(obj.GetType())) return false;
-			NodeNeuron other = obj as NodeNeuron;
+			InterNeuron other = obj as InterNeuron;
+			return
+				Innovation == other.Innovation &&
+				Type == other.Type;
+		}
+
+		public override int GetHashCode() {
+			return Innovation;
+		}
+	}
+
+	class MotorNeuron : INode {
+		public int Innovation { get; set; }
+		public NeuronTypes Type { get; set; } = NeuronTypes.Motor;
+		public float Axon { get; private set; }
+		// Used on BP, might relocate this one
+		public float NetAxon {
+			get { return NetAxon; }
+			set {
+				NetAxon = value;
+				Axon = Parameters.af.GetAxon(NetAxon);
+			}
+		} 
+		public float Bias { get; set; }
+		public MotorNeuron() {
+			Bias = Rng.GetFloat();
+		}
+
+		public MotorNeuron(NodeGene node) {
+			Innovation = node.Innovation;
+			if (node.Type != NeuronTypes.Motor)
+				throw new Exception("This is a motor neuron!!");
+		}
+
+		public override bool Equals(object obj) {
+			if (!GetType().Equals(obj.GetType())) return false;
+			MotorNeuron other = obj as MotorNeuron;
 			return
 				Innovation == other.Innovation &&
 				Type == other.Type;
