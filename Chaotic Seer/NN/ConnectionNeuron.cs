@@ -38,6 +38,12 @@ namespace Chaotic_Seer.NN {
 			Innovation = gene.Innovation;
 			Weight = gene.Weight;
 		}
+		public ConnectionNeuron(ConnectionGene gene, int innovation) {
+			In = gene.In;
+			Out = gene.Out;
+			Innovation = innovation;
+			Weight = Rng.GetFloat();
+		}
 
 		public override bool Equals(object obj) {
 			if (!GetType().Equals(obj.GetType())) return false;
