@@ -31,49 +31,70 @@ namespace Chaotic_Seer.NEAT {
 		public bool IsAlive { get; set; } = true; // Used for purging
 
 		internal DataHashSet<ConnectionNeuron> Connections = new DataHashSet<ConnectionNeuron>();
-		internal DataHashSet<NodeNeuron> Nodes = new DataHashSet<NodeNeuron>();
+		
+		/// Crap, so i just mande two copies of this thing, what i want is those three are pointers to this one
+		internal DataHashSet<INode> AllNeurons = new DataHashSet<INode>();
+		internal DataHashSet<SensorNeuron> SensorNeurons = new DataHashSet<SensorNeuron>();
+		internal DataHashSet<InterNeuron> InterNeuron = new DataHashSet<InterNeuron>();
+		internal DataHashSet<MotorNeuron> MotorNeurons = new DataHashSet<MotorNeuron>();
 
 		//INeuron[] neurons;
 		//int[] inputIndexes = new int[NEAT.Inputs];
 		//int[] outputIndexes = new int[NEAT.Outputs];
 
-		public Genome(bool preMutate = false) {
-			// Copy the input and output nodes from neat
-			for (int i = 0; i < Neat.Inputs + Neat.Outputs; i++) {
-				this.Nodes.Add(new NodeNeuron(Neat.Nodes[i]));
+		internal Genome() {
+			/// Copy the input and output nodes from neat
+			for (int i = 0; i < Neat.Inputs; i++) {
+				SensorNeurons.Add(new SensorNeuron(Neat.Nodes[i]));
+			}
+			for (int i = Neat.Inputs; i < Neat.Inputs + Neat.Outputs; i++) {
+				MotorNeurons.Add(new MotorNeuron(Neat.Nodes[i]));
+			}
+		}
+		internal Genome(DataHashSet<ConnectionGene> Connections) {
+			/// Copy the input and output nodes from neat
+			for (int i = 0; i < Neat.Inputs; i++) {
+				SensorNeuron _new = new SensorNeuron(Neat.Nodes[i]);
+				SensorNeurons.Add(_new);
+				AllNeurons.Add(_new);
+			}
+			for (int i = Neat.Inputs; i < Neat.Inputs + Neat.Outputs; i++) {
+				MotorNeuron _new = new MotorNeuron(Neat.Nodes[i]);
+				MotorNeurons.Add(_new);
+				AllNeurons.Add(_new);
 			}
 
-			if (preMutate)
-				Mutate();
+			/// Grab the connectons from neat, its innovation is their neat index
+			for (int i = 0; i < Connections.Count; i++) {
+				this.Connections.Add(new ConnectionNeuron(Connections[i], i));
+			}
 		}
 
 		public void Mutate() {
 			if(++Age >= Parameters.MaximumStagnation) {
 				IsAlive = false;
 				return;
-            }
-			// Select a random connection to split from this Genome and request from neat for the new connection and
+			}
+			/// Select a random connection to split from this Genome and request from neat for the new connection and
 			AddNode();
-			// Select a random node from this genome, request a connection from neat and add it on this genome
+			/// Select a random node from this genome, request a connection from neat and add it on this genome
 			AddLink();
-			// Select a randome node then change its weight based on the pdf code copied from Marl.IO
+			/// Select a randome node then change its weight based on the pdf code copied from Marl.IO
 			ShiftWeight();
 						
 			void AddNode() {
 				// Check if genome has connections
 				if (this.Connections.Count == 0) return;
-				if (this.Nodes.Count >= Parameters.MaxNodes) return;
+				if (this.InterNeuron.Count >= Parameters.MaxNodes) return;
 
-				// Select a random connection to split from Genome
-				ConnectionNeuron connection = this.Connections.Random;
+				// Select a random connection to split from this Genome
+				ConnectionNeuron connection = Connections.Random;
 
 				INode nodeIn = connection.In;
 				INode nodeOut = connection.Out;
 
 				int NewNodeInnovation = Neat.AddNodeGene();
-				NodeNeuron nodeMid = new NodeNeuron(Neat.Nodes[NewNodeInnovation]) {
-					Type = NeuronTypes.Inter
-				};
+				InterNeuron nodeMid = new InterNeuron(Neat.Nodes[NewNodeInnovation]);
 
 				int NewInnovation1 = Neat.NewConnectionGene(nodeIn, nodeMid);
 				ConnectionNeuron conIn = new ConnectionNeuron {
@@ -82,7 +103,7 @@ namespace Chaotic_Seer.NEAT {
 					Weight = 1,
 					Innovation = NewInnovation1
 				};
-				this.Connections.Add(conIn);
+				
 
 				int NewInnovation2 = Neat.NewConnectionGene(nodeMid, nodeOut);
 				ConnectionNeuron conOut = new ConnectionNeuron {
@@ -92,22 +113,21 @@ namespace Chaotic_Seer.NEAT {
 					Innovation = NewInnovation2
 				};
 
-				this.Nodes.Add(nodeMid);
+				this.Connections.Add(conIn);
+				this.InterNeuron.Add(nodeMid);
 				this.Connections.Add(conOut);
-				this.Connections.Remove(connection);  // Equivalent to disabling the connection
+				this.Connections.Remove(connection);  /// Equivalent to disabling the connection
 			}
 			void AddLink() {
-				INode Neuron1 = this.Nodes.Random;
-				INode Neuron2 = this.Nodes.Random;
+				INode Neuron1 = AllNeurons.Random;
+				INode Neuron2 = AllNeurons.Random;
 
-				// Check if both neurons are input
-				if ((Neuron1.Type == NeuronTypes.Sensor &&
-					Neuron2.Type == NeuronTypes.Sensor) ||
-					(Neuron1.Type == NeuronTypes.Motor &&
-					Neuron2.Type == NeuronTypes.Motor)) {
+				/// Prevent output to output or input to input
+				if ((Neuron1.Type == NeuronTypes.Sensor && Neuron2.Type == NeuronTypes.Sensor) ||
+					(Neuron1.Type == NeuronTypes.Motor && Neuron2.Type == NeuronTypes.Motor)) {
 					return;
 				}
-				// Swap positions if output neuron is a sensor
+				/// Swap positions if output neuron is a sensor
 				if (Neuron2.Type == NeuronTypes.Sensor) {
 					INode temp = Neuron1;
 					Neuron1 = Neuron2;
