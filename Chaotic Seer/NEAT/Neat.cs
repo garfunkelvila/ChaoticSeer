@@ -32,12 +32,13 @@ namespace Chaotic_Seer.NEAT {
 
 		public static DataHashSet<Genome> Genomes { get; private set; } = new DataHashSet<Genome>();  // Entire Population
 		public static RandomList<Specie> Species { get; private set; } = new RandomList<Specie>();
-		internal static DataHashSet<ConnectionGene> Genes { get; private set; } = new DataHashSet<ConnectionGene>();
-		internal static List<NodeGene> Nodes { get; private set; } = new List<NodeGene>();
+		internal static DataHashSet<ConnectionGene> Connections { get; private set; } = new DataHashSet<ConnectionGene>();
+		internal static DataHashSet<NodeGene> Nodes { get; private set; } = new DataHashSet<NodeGene>();
 
 		internal static int AddNodeGene() {
 			NodeGene neuron = new NodeGene {
-				Innovation = Nodes.Count
+				Innovation = Nodes.Count,
+				Type = NeuronTypes.Inter
 			};
 
 			Nodes.Add(neuron);
@@ -74,11 +75,18 @@ namespace Chaotic_Seer.NEAT {
 				Nodes[index].Type = NeuronTypes.Motor;
 			}
 			Debug.WriteLine("NEAT IO Neurons Initialized");
-
+            // ================================================================
+            
+			for (int i = 0; i < Inputs; i++) {
+                for (int o = Inputs; o < Outputs + Inputs; o++) {
+					NewConnectionGene(Nodes[i], Nodes[o]);
+				}
+			}
+			Debug.WriteLine("NEAT IO Connections Initialized");
 			// ================================================================
 			int Population = (int)(Parameters.PopulationSize * 0.8f);
 			for (int i = 0; i < Population; i++) {
-				Genome g = new Genome(true);
+				Genome g = new Genome(Connections);
 				AddGenomeToPopulation(g);
 			}
 
@@ -92,8 +100,8 @@ namespace Chaotic_Seer.NEAT {
 				In = In,
 				Out = Out
 			};
-			Genes.Add(gene);
-			return Genes.IndexOf(gene);
+			Connections.Add(gene); /// TODO: confirm this if preventing duplicate
+			return Connections.IndexOf(gene);
 		}
 
 		public static void Mutate() {
@@ -149,7 +157,7 @@ namespace Chaotic_Seer.NEAT {
 				throw new Exception("Input size is not same with neat input size");
 #endif
 			Genome g = Genomes.OrderBy(x => x.Fitness).Reverse().ToArray()[0];
-			Debug.WriteLine("ID: " + g.Identity + "\tAge: " + g.Age + "\tNodes: " + g.Nodes.Count + "\tFit: " + g.Fitness);
+			Debug.WriteLine("ID: " + g.Identity + "\tAge: " + g.Age + "\tNodes: " + g.InterNeuron.Count + "\tFit: " + g.Fitness);
 			return NeuralNetwork.GetOutput(g, input);
 		}
 
