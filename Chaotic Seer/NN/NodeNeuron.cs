@@ -28,7 +28,7 @@ namespace Chaotic_Seer.NN {
 		public float Axon { get; set; }
 
 		public NodeNeuron() {
-
+			Bias = Rng.GetFloat();
 		}
 
 		public NodeNeuron(NodeGene node) {
