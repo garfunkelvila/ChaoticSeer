@@ -25,8 +25,16 @@ namespace Chaotic_Seer.NN {
 	class NodeNeuron : INode {
 		public int Innovation { get; set; }
 		public NeuronTypes Type { get; set; }
-		public float Axon { get; set; }
-
+		public float Axon { get; private set; }
+		// Used on BP, might relocate this one
+		public float NetAxon {
+			get { return NetAxon; }
+			set {
+				NetAxon = value;
+				Axon = Parameters.af.GetAxon(NetAxon);
+			}
+		} 
+		public float Bias { get; set; }
 		public NodeNeuron() {
 			Bias = Rng.GetFloat();
 		}
