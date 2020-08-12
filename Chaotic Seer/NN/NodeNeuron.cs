@@ -27,6 +27,9 @@ namespace Chaotic_Seer.NN {
 		public NeuronTypes Type { get; set; } = NeuronTypes.Sensor;
 		public float Axon { get; set; }
 		public SensorNeuron() { }
+		public SensorNeuron(INode node) {
+			Innovation = node.Innovation;
+		}
 
 		public SensorNeuron(NodeGene node) {
 			Innovation = node.Innovation;
@@ -51,11 +54,13 @@ namespace Chaotic_Seer.NN {
 		public NeuronTypes Type { get; set; } = NeuronTypes.Inter;
 		public float Axon { get; private set; }
 		// Used on BP, might relocate this one
+		float _netAxon;
 		public float NetAxon {
-			get { return NetAxon; }
+			get { return _netAxon; }
 			set {
-				NetAxon = value;
-				Axon = Parameters.af.GetAxon(NetAxon);
+				_netAxon = value;
+				Axon = Parameters.af.GetAxon(_netAxon);
+				// Axon = Parameters.af.GetAxon(NetAxon + bias);
 			}
 		} 
 		public float Bias { get; set; }
@@ -81,22 +86,25 @@ namespace Chaotic_Seer.NN {
 			return Innovation;
 		}
 	}
-
 	class MotorNeuron : INode {
 		public int Innovation { get; set; }
 		public NeuronTypes Type { get; set; } = NeuronTypes.Motor;
 		public float Axon { get; private set; }
 		// Used on BP, might relocate this one
+		private float _netAxon = 0;
 		public float NetAxon {
-			get { return NetAxon; }
+			get { return _netAxon; }
 			set {
-				NetAxon = value;
-				Axon = Parameters.af.GetAxon(NetAxon);
+				_netAxon = value;
+				Axon = Parameters.af.GetAxon(_netAxon);
 			}
-		} 
+		}
 		public float Bias { get; set; }
 		public MotorNeuron() {
 			Bias = Rng.GetFloat();
+		}
+		public MotorNeuron(INode node) {
+			Innovation = node.Innovation;
 		}
 
 		public MotorNeuron(NodeGene node) {
