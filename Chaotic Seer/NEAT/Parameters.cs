@@ -55,7 +55,7 @@ namespace Chaotic_Seer.NEAT {
 		public static readonly float RecurrentConnectionProbability = 0.2f;
 
 		// Number of networks in the population.
-		public static int PopulationSize = 19;
+		public static int PopulationSize = 5;
 		// Maximum number of generations a species is allowed to stay the 
 		// same fitness before it is removed.In competitive coevolution, the worst species is removed if
 		// it has been around this many generations(Section 3.3).
