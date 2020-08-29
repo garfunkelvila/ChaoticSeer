@@ -45,13 +45,17 @@ namespace Chaotic_Seer.NEAT {
 		internal Genome() {
 			/// Copy the input and output nodes from neat
 			for (int i = 0; i < Neat.Inputs; i++) {
-				SensorNeurons.Add(new SensorNeuron(Neat.Nodes[i]));
+				SensorNeuron _new = new SensorNeuron(Neat.Nodes[i]);
+				SensorNeurons.Add(_new);
+				AllNeurons.Add(_new);
 			}
 			for (int i = Neat.Inputs; i < Neat.Inputs + Neat.Outputs; i++) {
-				MotorNeurons.Add(new MotorNeuron(Neat.Nodes[i]));
+				MotorNeuron _new = new MotorNeuron(Neat.Nodes[i]);
+				MotorNeurons.Add(_new);
+				AllNeurons.Add(_new);
 			}
 		}
-		internal Genome(DataHashSet<ConnectionGene> Connections) {
+		internal Genome(DataHashSet<ConnectionGene> NeatConnections) {
 			/// Copy the input and output nodes from neat
 			for (int i = 0; i < Neat.Inputs; i++) {
 				SensorNeuron _new = new SensorNeuron(Neat.Nodes[i]);
@@ -65,8 +69,27 @@ namespace Chaotic_Seer.NEAT {
 			}
 
 			/// Grab the connectons from neat, its innovation is their neat index
-			for (int i = 0; i < Connections.Count; i++) {
-				this.Connections.Add(new ConnectionNeuron(Connections[i], i));
+			/// and create a local copy of that
+			for (int i = 0; i < NeatConnections.Count; i++) {
+				INode[] conNodes = new INode[2];
+
+				// Grab matching input
+                foreach (INode item in SensorNeurons) {
+					// Cant use equals because it cant be casted
+                    if (NeatConnections[i].In.Innovation ==  item.Innovation) {
+						conNodes[0] = item;
+					}
+				}
+				// Grab matching output
+				foreach (INode item in MotorNeurons) {
+					if (NeatConnections[i].Out.Innovation ==  item.Innovation) {
+						conNodes[1] = item;
+					}
+				}
+
+				ConnectionNeuron _new = new ConnectionNeuron(conNodes[0], conNodes[1], i);
+
+				this.Connections.Add(_new);
 			}
 		}
 
