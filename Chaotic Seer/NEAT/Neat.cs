@@ -75,10 +75,10 @@ namespace Chaotic_Seer.NEAT {
 				Nodes[index].Type = NeuronTypes.Motor;
 			}
 			Debug.WriteLine("NEAT IO Neurons Initialized");
-            // ================================================================
-            
+			// ================================================================
+			
 			for (int i = 0; i < Inputs; i++) {
-                for (int o = Inputs; o < Outputs + Inputs; o++) {
+				for (int o = Inputs; o < Outputs + Inputs; o++) {
 					NewConnectionGene(Nodes[i], Nodes[o]);
 				}
 			}
@@ -112,11 +112,19 @@ namespace Chaotic_Seer.NEAT {
 			}
 		}
 
+		public static void BackPropagate(TrainingData td) {
+			foreach (Specie specie in Species) {
+				foreach (Genome genome in specie.genomes) {
+					BackPropagation.BackPropagation.BackPropagate(genome, td);
+				}
+			}
+		}
+
 		public static void Reproduce() {
 			List<Genome> childrens = new List<Genome>();
 			Genome child;
 
-            do {
+			do {
 				if (Species.Count > 1 && Parameters.InterspeciesMatingRate < Rng.GetFloat())
 					IntespecieMating();
 				else
@@ -128,7 +136,7 @@ namespace Chaotic_Seer.NEAT {
 				AddGenomeToPopulation(genome);
 			}
 
-            void IntespecieMating() {
+			void IntespecieMating() {
 				Stopwatch stopWatch = new Stopwatch();
 				stopWatch.Start();
 				child = Species.Random.genomes.Random.MateWith(Species.Random.genomes.Random);
@@ -174,7 +182,7 @@ namespace Chaotic_Seer.NEAT {
 			ClearBodies();
 
 			static void NaturalSelection() {
-                foreach (Specie specie in Species) {
+				foreach (Specie specie in Species) {
 					if (specie.genomes.Count == 1 && Parameters.SurvivalThreshold > Rng.GetFloat())
 						return;
 
