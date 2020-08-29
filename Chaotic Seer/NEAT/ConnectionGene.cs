@@ -41,8 +41,8 @@ namespace Chaotic_Seer.NEAT {
 		}
 
 		public override bool Equals(object obj) {
-			if (!GetType().Equals(obj.GetType())) return false;
-
+			//if (!GetType().Equals(obj.GetType())) return false;
+			if (!(obj is IConnection)) return false;
 			ConnectionGene other = obj as ConnectionGene;
 			return
 				In.Equals(other.In) &&
