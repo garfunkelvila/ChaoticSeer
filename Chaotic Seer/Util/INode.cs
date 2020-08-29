@@ -26,9 +26,7 @@ namespace Chaotic_Seer.Util {
 	}
 	public enum NeuronTypes {
 		Sensor = 1,
-		Bias = 2,
-		Inter = 3,
-		Memory = 4,
-		Motor = 5
+		Inter = 2,
+		Motor = 3
 	}
 }
