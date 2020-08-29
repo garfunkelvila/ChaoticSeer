@@ -29,19 +29,19 @@ namespace Main {
 			Console.WriteLine("Species: " + Neat.Species.Count);
 			Console.WriteLine();
 
-			// XOR
+			// AND
 			TrainingData[] td = {
 				new TrainingData(
 					new float[2] { 1f, 1f},
-					new float[1] { 0f }
+					new float[1] { 1f }
 				),
 				new TrainingData(
 					new float[2] { 1f, 0f},
-					new float[1] { 1f }
+					new float[1] { 0f }
 				),
 				new TrainingData(
 					new float[2] { 0f, 1f},
-					new float[1] { 1f }
+					new float[1] { 0f }
 				),
 				new TrainingData(
 					new float[2] { 0f, 0f},
@@ -50,30 +50,30 @@ namespace Main {
 			};
 
 			for (int i = 1; i < 800; i++) {
-				Genome[] genome = Neat.Genomes.ToArray();
-
-				Neat.Mutate();
-				Console.WriteLine("Mutation:\t" + Neat.Genomes.Count);
-				Neat.Evaluate(td);
-				Neat.Purge();
-				Console.WriteLine("Purge:\t\t" + Neat.Genomes.Count);
-				Neat.Reproduce();
-				Console.WriteLine("Species:\t" + Neat.Species.Count);
+				Neat.BackPropagate(td[0]);
+				//Neat.Mutate();
+				//Console.WriteLine("Mutation:\t" + Neat.Genomes.Count);
+				//Neat.Evaluate(td);
+				//Neat.Purge();
+				//Console.WriteLine("Purge:\t\t" + Neat.Genomes.Count);
+				//Neat.Reproduce();
+				//Console.WriteLine("Species:\t" + Neat.Species.Count);
 				Console.WriteLine("Gen:\t\t" + i);
 				Console.WriteLine("=================");
-				Console.WriteLine("Pred:\t" + r(Neat.GetOutput(td[0].Input)[0]) + " " +
-				r(Neat.GetOutput(td[1].Input)[0]) + " " +
-				r(Neat.GetOutput(td[2].Input)[0]) + " " +
-				r(Neat.GetOutput(td[3].Input)[0]));
+				Console.WriteLine("Pred:\n" +
+					(Neat.GetOutput(td[0].Inputs)[0]) + "\n" +
+					(Neat.GetOutput(td[1].Inputs)[0]) + "\n" +
+					(Neat.GetOutput(td[2].Inputs)[0]) + "\n" +
+					(Neat.GetOutput(td[3].Inputs)[0]));
 				Console.WriteLine("=================");
 			}
 			Console.WriteLine();
 			Console.WriteLine();
 			Console.WriteLine("DONE");
-			Console.WriteLine("Pred:\t" + r(Neat.GetOutput(td[0].Input)[0]) + " " +
-				r(Neat.GetOutput(td[1].Input)[0]) + "  " +
-				r(Neat.GetOutput(td[2].Input)[0]) + " " +
-				r(Neat.GetOutput(td[3].Input)[0]));
+			Console.WriteLine("Pred:\t" + r(Neat.GetOutput(td[0].Inputs)[0]) + " " +
+				r(Neat.GetOutput(td[1].Inputs)[0]) + "  " +
+				r(Neat.GetOutput(td[2].Inputs)[0]) + " " +
+				r(Neat.GetOutput(td[3].Inputs)[0]));
 			Console.ReadLine();
 
 
