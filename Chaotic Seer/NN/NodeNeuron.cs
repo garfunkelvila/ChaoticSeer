@@ -52,17 +52,9 @@ namespace Chaotic_Seer.NN {
 	class InterNeuron : INode {
 		public int Innovation { get; set; }
 		public NeuronTypes Type { get; set; } = NeuronTypes.Inter;
-		public float Axon { get; private set; }
+		public float Axon { get => Parameters.af.GetAxon(NetAxon); }
 		// Used on BP, might relocate this one
-		float _netAxon;
-		public float NetAxon {
-			get { return _netAxon; }
-			set {
-				_netAxon = value;
-				Axon = Parameters.af.GetAxon(_netAxon);
-				// Axon = Parameters.af.GetAxon(NetAxon + bias);
-			}
-		} 
+		public float NetAxon { get; set; } 
 		public float Bias { get; set; }
 		public InterNeuron() {
 			Bias = Rng.GetFloat();
@@ -89,16 +81,9 @@ namespace Chaotic_Seer.NN {
 	class MotorNeuron : INode {
 		public int Innovation { get; set; }
 		public NeuronTypes Type { get; set; } = NeuronTypes.Motor;
-		public float Axon { get; private set; }
+		public float Axon { get => Parameters.af.GetAxon(NetAxon); }
 		// Used on BP, might relocate this one
-		private float _netAxon = 0;
-		public float NetAxon {
-			get { return _netAxon; }
-			set {
-				_netAxon = value;
-				Axon = Parameters.af.GetAxon(_netAxon);
-			}
-		}
+		public float NetAxon { get; set; }
 		public float Bias { get; set; }
 		public MotorNeuron() {
 			Bias = Rng.GetFloat();
