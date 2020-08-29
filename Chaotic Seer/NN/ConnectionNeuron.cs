@@ -38,9 +38,11 @@ namespace Chaotic_Seer.NN {
 			Innovation = gene.Innovation;
 			Weight = gene.Weight;
 		}
-		public ConnectionNeuron(ConnectionGene gene, int innovation) {
-			In = gene.In;
-			Out = gene.Out;
+		// Called by Neat initialization.
+		// That is whyy in and out are known
+		public ConnectionNeuron(INode _in, INode _out, int innovation) {
+			In = _in;
+			Out = _out;
 			Innovation = innovation;
 			Weight = Rng.GetFloat();
 		}
