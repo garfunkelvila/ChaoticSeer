@@ -40,77 +40,107 @@ namespace Chaotic_Seer.NN {
 		/// <param name="genome"></param>
 		public static float[] GetOutput(Genome genome, float[] inputs) {
 			float[] pred = new float[Neat.Outputs];
-			ConnectionNeuron[] connections = genome.Connections.ToArray();
-			NodeNeuron[] neurons = genome.Nodes.ToArray();
+			//ConnectionNeuron[] connections = genome.Connections.ToArray();
+			/// ==========
+			SensorNeuron[] sensorNeurons = new SensorNeuron[Neat.Inputs];
+			InterNeuron[] hiddenNeurons = genome.InterNeuron.ToArray();
+			/// ==========
 
-			List<NodeNeuron> calculatedNeurons = new List<NodeNeuron>();
+			List<INode> calculatedNeurons = new List<INode>();
 
 			DataHashSet<ConnectionNeuron> nextConnection = new DataHashSet<ConnectionNeuron>();
-			DataHashSet<NodeNeuron> nextNeurons = new DataHashSet<NodeNeuron>();
+			DataHashSet<INode> nextNeurons = new DataHashSet<INode>(); // Buffer for virtual layer
 
-			// Load the input neurons and prepare the next neurons
+			/// Load the input neurons and prepare the next neurons
 			LoadInput();
-			// Calculate hidden neurons and load next neurons
+			/// Calculate hidden neurons and load next neurons
 			CalculateHidden();
-			// Calculate the output neurons
+			/// Calculate the output neurons
 			CalculateOutput();
+
+			// TODO: make connections a list so loop can be shorter each iterations
+			// I think this will be faster even list is slower than array
 
 			void LoadInput() {
 				for (int i = 0; i < Neat.Inputs; i++) {
-					neurons[i].Axon = inputs[i];
-					calculatedNeurons.Add(neurons[i]);
+					genome.SensorNeurons[i].Axon = inputs[i];
+					calculatedNeurons.Add(genome.SensorNeurons[i]);
 
-					// This could possibly the slowest process, Loop through all connections and then select it
-					foreach (ConnectionNeuron connection in connections) {
-						if (connection.In.Equals(neurons[i])) { // This could possibly the slowest process
+					/// This could possibly the slowest process, Loop through all connections and then select it
+					foreach (ConnectionNeuron connection in genome.Connections) {
+						/// Find the connection with the current input neuron
+						if (connection.In.Innovation == genome.SensorNeurons[i].Innovation) {
 							nextConnection.Add(connection);
-							nextNeurons.Add((NodeNeuron)connection.Out);
+							nextNeurons.Add(connection.Out);
 						}
 					}
 				}
+
+				Debug.WriteLine(nextNeurons.Count());
 			}
 			void CalculateHidden() {
+				if (genome.InterNeuron.Count == 0)
+					return;
+				/// Loop though layers
 				do {
+					/// Loop through neurons
 					for (int i = 0; i < nextNeurons.Count; i++) {
-						// Skip the output for now
+						/// Skip the output
 						if (nextNeurons[i].Type == NeuronTypes.Motor) {
-							nextNeurons.Remove(nextNeurons[i]);
+							nextNeurons.RemoveAt(i);
 							continue;
 						}
 
+						/// Skip if neuron is already calculated
+						// I think i should also delete connection pointing to this one
 						if (calculatedNeurons.Contains(nextNeurons[i])) {
 							nextNeurons.Remove(nextNeurons[i]);
 							continue;
 						}
 
+						InterNeuron thisNeuron = (InterNeuron)nextNeurons[i];
 						float netAxon = 0;
 
 						foreach (ConnectionNeuron connection in nextConnection) {
 							if (connection.Out.Equals(nextNeurons[i])) {
-								NodeNeuron temp = (NodeNeuron)connection.In;
-								netAxon += temp.Axon * connection.Weight;
+								if (connection.In.GetType().Name == "InterNeuron") {
+									InterNeuron temp = (InterNeuron)connection.In;
+									netAxon += temp.Axon * connection.Weight;
+								}
+								else {
+									SensorNeuron temp = (SensorNeuron)connection.In;
+									netAxon += temp.Axon * connection.Weight;
+								}
 							}
 						}
-
 						//TODO: Add the next connections and neurons
-						nextNeurons[i].Axon = Parameters.af.GetAxon(netAxon + nextNeurons[i].Bias);
+						thisNeuron.NetAxon = netAxon;
 						calculatedNeurons.Add(nextNeurons[i]);
 					}
 				} while (nextNeurons.Count() > 0);
 			}
 			void CalculateOutput() {
-				for (int i = Neat.Inputs; i < Neat.Outputs + Neat.Inputs; i++) {
+				for (int i = 0; i < genome.MotorNeurons.Count; i++) {
 					float netAxon = 0;
 					// This could possibly the slowest process, Loop through all connections and then select it
-					foreach (ConnectionNeuron connection in connections) {
-						if (connection.Out.Equals(neurons[i])) {
-							NodeNeuron temp = (NodeNeuron)connection.In;
-							netAxon += temp.Axon * connection.Weight;
+					foreach (ConnectionNeuron connection in genome.Connections) {
+						if (connection.Out.Equals(genome.MotorNeurons[i])) {
+
+							// This may not always be InterNeuron,
+							// It can also be a sensor neuron
+							if (connection.In.GetType().Name == "InterNeuron") {
+								InterNeuron temp = (InterNeuron)connection.In;
+								netAxon += temp.Axon * connection.Weight;
+							}
+							else {
+								SensorNeuron temp = (SensorNeuron)connection.In;
+								netAxon += temp.Axon * connection.Weight;
+							}
 						}
 					}
-					neurons[i].Axon = Parameters.af.GetAxon(netAxon + neurons[i].Bias);
-					pred[i - Neat.Inputs] = neurons[i].Axon;
-					calculatedNeurons.Add(neurons[i]);
+					genome.MotorNeurons[i].NetAxon = netAxon;
+					pred[i] = genome.MotorNeurons[i].Axon;
+					calculatedNeurons.Add(genome.MotorNeurons[i]);
 				}
 			}
 			
