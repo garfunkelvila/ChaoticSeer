@@ -63,7 +63,7 @@ namespace Chaotic_Seer.NN {
 
 			void LoadInput() {
 				for (int i = 0; i < Neat.Inputs; i++) {
-					genome.SensorNeurons[i].Axon = inputs[i];
+					genome.SensorNeurons[i].NetAxon = inputs[i];
 					calculatedNeurons.Add(genome.SensorNeurons[i]);
 
 					/// This could possibly the slowest process, Loop through all connections and then select it
