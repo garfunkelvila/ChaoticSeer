@@ -34,7 +34,7 @@ namespace Chaotic_Seer.NEAT {
 		public override bool Equals(object obj) {
 			//if (!GetType().Equals(obj.GetType())) return false;
 
-			if (!(obj is INode)) return false;
+			if (!(obj is INode) || !GetType().Equals(obj.GetType())) return false;
 			NodeGene other = obj as NodeGene;
 			return
 				Innovation == other.Innovation &&
