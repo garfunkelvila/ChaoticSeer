@@ -76,7 +76,7 @@ namespace Chaotic_Seer.NN {
 					}
 				}
 
-				Debug.WriteLine(nextNeurons.Count());
+				//Debug.WriteLine(nextNeurons.Count());
 			}
 			void CalculateHidden() {
 				if (genome.InterNeuron.Count == 0)
@@ -158,8 +158,8 @@ namespace Chaotic_Seer.NN {
 
 			foreach (TrainingData td in tds) {
 				answer = GetOutput(genome, td.Inputs);
-				for (int i = 0; i < td.Outputs.Length; i++) {
-					_fitness += Rng.FloatingAnd(answer[i], td.Outputs[i]);
+				for (int i = 0; i < td.Target.Length; i++) {
+					_fitness += Rng.FloatingAnd(answer[i], td.Target[i]);
 				}
 			}
 			genome.Fitness = _fitness;
