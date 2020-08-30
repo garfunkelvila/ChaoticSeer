@@ -22,10 +22,10 @@ using System.Text;
 namespace Chaotic_Seer.Util {
     public class TrainingData {
         public float[] Inputs { get; }
-        public float[] Outputs { get; }
+        public float[] Target { get; }
         public TrainingData(float[] Input, float[] Output) {
             this.Inputs = Input;
-            this.Outputs = Output;
+            this.Target = Output;
         }
     }
 }
