@@ -25,7 +25,8 @@ namespace Chaotic_Seer.NN {
 	class SensorNeuron : INode {
 		public int Innovation { get; set; }
 		public NeuronTypes Type { get; set; } = NeuronTypes.Sensor;
-		public float Axon { get; set; }
+		public float Axon { get => NetAxon - 0.5f; } // -0.5 Compensate Sigmoid 0-1 range, because 0 input makes it not move at all
+		public float NetAxon { get; set; }
 		public SensorNeuron() { }
 		public SensorNeuron(INode node) {
 			Innovation = node.Innovation;
