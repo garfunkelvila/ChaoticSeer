@@ -25,6 +25,7 @@ namespace Seer.ActivationFunctions {
 	class Logistic : ActivationFunction {
 		protected override float CalcAxon(float x) {
 			return (float)(1 / (1 + Math.Exp(-x)));
+			//return (float)(1 / (1 + Math.Exp(-4.9 * x)));
 		}
 
 		protected override float CalcAxon(float x, float y) {
