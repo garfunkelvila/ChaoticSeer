@@ -85,6 +85,7 @@ namespace Chaotic_Seer.NEAT {
 			Debug.WriteLine("NEAT IO Connections Initialized");
 			// ================================================================
 			int Population = (int)(Parameters.PopulationSize * 0.8f);
+			Population = Population == 0 ? 1 : Population;
 			for (int i = 0; i < Population; i++) {
 				Genome g = new Genome(Connections);
 				AddGenomeToPopulation(g);
