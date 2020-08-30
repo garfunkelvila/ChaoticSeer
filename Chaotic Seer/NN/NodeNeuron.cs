@@ -31,13 +31,11 @@ namespace Chaotic_Seer.NN {
 		public SensorNeuron(INode node) {
 			Innovation = node.Innovation;
 		}
-
 		public SensorNeuron(NodeGene node) {
 			Innovation = node.Innovation;
 			if (node.Type != NeuronTypes.Sensor)
 				throw new Exception("THis is an input neuron!!");
 		}
-
 		public override bool Equals(object obj) {
 			if (!GetType().Equals(obj.GetType())) return false;
 			SensorNeuron other = obj as SensorNeuron;
@@ -45,7 +43,6 @@ namespace Chaotic_Seer.NN {
 				Innovation == other.Innovation &&
 				Type == other.Type;
 		}
-
 		public override int GetHashCode() {
 			return Innovation;
 		}
@@ -53,12 +50,12 @@ namespace Chaotic_Seer.NN {
 	class InterNeuron : INode {
 		public int Innovation { get; set; }
 		public NeuronTypes Type { get; set; } = NeuronTypes.Inter;
-		public float Axon { get => Parameters.af.GetAxon(NetAxon); }
+		public float Axon { get => Parameters.af.GetAxon(NetAxon + Bias); }
 		// Used on BP, might relocate this one
-		public float NetAxon { get; set; } 
-		public float Bias { get; set; }
+		public float NetAxon { get; set; }
+		public float Bias { get; set; } = 1; // Default to 1 to push sigmoid on start
 		public InterNeuron() {
-			Bias = Rng.GetFloat();
+			//Bias = Rng.GetFloat();
 		}
 
 		public InterNeuron(NodeGene node) {
@@ -82,12 +79,12 @@ namespace Chaotic_Seer.NN {
 	class MotorNeuron : INode {
 		public int Innovation { get; set; }
 		public NeuronTypes Type { get; set; } = NeuronTypes.Motor;
-		public float Axon { get => Parameters.af.GetAxon(NetAxon); }
+		public float Axon { get => Parameters.af.GetAxon(NetAxon + Bias); }
 		// Used on BP, might relocate this one
 		public float NetAxon { get; set; }
-		public float Bias { get; set; }
+		public float Bias { get; set; } = 1;
 		public MotorNeuron() {
-			Bias = Rng.GetFloat();
+			//Bias = Rng.GetFloat();
 		}
 		public MotorNeuron(INode node) {
 			Innovation = node.Innovation;
