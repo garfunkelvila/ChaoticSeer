@@ -113,7 +113,7 @@ namespace Chaotic_Seer.NEAT {
 			}
 		}
 
-		public static void BackPropagate(TrainingData td) {
+		public static void BackPropagate(TrainingData[] td) {
 			foreach (Specie specie in Species) {
 				foreach (Genome genome in specie.genomes) {
 					BackPropagation.BackPropagation.BackPropagate(genome, td);
