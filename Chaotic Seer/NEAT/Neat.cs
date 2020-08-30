@@ -142,7 +142,7 @@ namespace Chaotic_Seer.NEAT {
 				stopWatch.Start();
 				child = Species.Random.genomes.Random.MateWith(Species.Random.genomes.Random);
 				stopWatch.Stop();
-				Debug.WriteLine("IntespecieMating: " + stopWatch.ElapsedMilliseconds + "ms");
+				//Debug.WriteLine("IntespecieMating: " + stopWatch.ElapsedMilliseconds + "ms");
 			}
 			void LocalMating() {
 				Stopwatch stopWatch = new Stopwatch();
@@ -150,7 +150,7 @@ namespace Chaotic_Seer.NEAT {
 				int rnds = Rng.GetInt(Species.Count);
 				child = Species[rnds].genomes.Random.MateWith(Species[rnds].genomes.Random);
 				stopWatch.Stop();
-				Debug.WriteLine("LocalMating: " + stopWatch.ElapsedMilliseconds + "ms");
+				//Debug.WriteLine("LocalMating: " + stopWatch.ElapsedMilliseconds + "ms");
 			}
 		}
 
@@ -166,7 +166,7 @@ namespace Chaotic_Seer.NEAT {
 				throw new Exception("Input size is not same with neat input size");
 #endif
 			Genome g = Genomes.OrderBy(x => x.Fitness).Reverse().ToArray()[0];
-			Debug.WriteLine("ID: " + g.Identity + "\tAge: " + g.Age + "\tNodes: " + g.InterNeuron.Count + "\tFit: " + g.Fitness);
+			//Debug.WriteLine("ID: " + g.Identity + "\tAge: " + g.Age + "\tNodes: " + g.InterNeuron.Count + "\tFit: " + g.Fitness);
 			return NeuralNetwork.GetOutput(g, input);
 		}
 
