@@ -49,9 +49,9 @@ namespace Main {
 				)
 			};
 
-			for (int i = 1; i < 800; i++) {
-				Neat.BackPropagate(td[0]);
-				//Neat.Mutate();
+			for (int i = 1; i < 1000; i++) {
+				Neat.BackPropagate(td);
+				
 				//Console.WriteLine("Mutation:\t" + Neat.Genomes.Count);
 				//Neat.Evaluate(td);
 				//Neat.Purge();
