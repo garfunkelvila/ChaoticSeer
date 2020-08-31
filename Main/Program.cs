@@ -33,23 +33,23 @@ namespace Main {
 			TrainingData[] td = {
 				new TrainingData(
 					new float[2] { 1f, 1f},
-					new float[1] { 1f }
+					new float[1] { 1f}
 				),
 				new TrainingData(
 					new float[2] { 1f, 0f},
-					new float[1] { 0f }
+					new float[1] { 0f}
 				),
 				new TrainingData(
 					new float[2] { 0f, 1f},
-					new float[1] { 0f }
+					new float[1] { 0f}
 				),
 				new TrainingData(
 					new float[2] { 0f, 0f},
-					new float[1] { 0f }
-				)
+					new float[1] { 0f}
+				),
 			};
 
-			for (int i = 1; i < 1000; i++) {
+			for (int i = 1; i < 10000; i++) {
 				Neat.BackPropagate(td);
 				
 				//Console.WriteLine("Mutation:\t" + Neat.Genomes.Count);
@@ -70,8 +70,9 @@ namespace Main {
 			Console.WriteLine();
 			Console.WriteLine();
 			Console.WriteLine("DONE");
-			Console.WriteLine("Pred:\t" + r(Neat.GetOutput(td[0].Inputs)[0]) + " " +
-				r(Neat.GetOutput(td[1].Inputs)[0]) + "  " +
+			Console.WriteLine("Pred:\t" +
+				r(Neat.GetOutput(td[0].Inputs)[0]) + " " +
+				r(Neat.GetOutput(td[1].Inputs)[0]) + " " +
 				r(Neat.GetOutput(td[2].Inputs)[0]) + " " +
 				r(Neat.GetOutput(td[3].Inputs)[0]));
 			Console.ReadLine();
