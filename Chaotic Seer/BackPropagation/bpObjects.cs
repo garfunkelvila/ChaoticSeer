@@ -33,7 +33,8 @@ internal class NeuronLayer {
 		public float Axon { get => Parameters.af.GetAxon(WeightedSum); }
 		public float AxonPrime { get => Parameters.af.GetDerv(WeightedSum); }
 		public float NetAxon { get; set; }
-		public float WeightedSum { get => NetAxon; }
+		public float WeightedSum { get => NetAxon; } // This exist because of bias
+		public float Error { get; set; }
 
         public BpNeuron(SensorNeuron nodeNeuron) {
 			Innovation = nodeNeuron.Innovation;
@@ -55,7 +56,7 @@ internal class NeuronLayer {
 		public INode In { get; set; }
 		public INode Out { get; set; }
 		public float Weight { get; set; }
-		// public float Error { get; set; }
+		//public float Error { get; set; }
 		public BpConnection(ConnectionNeuron connectionNeuron) {
 			In = connectionNeuron.In;
 			Out = connectionNeuron.Out;
