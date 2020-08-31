@@ -65,7 +65,7 @@ namespace Chaotic_Seer.NEAT {
 		public static int TargetNumberOfSpecies = 20;
 
 		// Back Propagation
-		public static float LearningRate = 1.02f;
+		public static float LearningRate = 0.02f;
 		public static readonly ActivationFunction af = new Logistic();
 	}
 }
