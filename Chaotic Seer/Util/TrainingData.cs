@@ -23,6 +23,8 @@ namespace Chaotic_Seer.Util {
     public class TrainingData {
         public float[] Inputs { get; }
         public float[] Target { get; }
+        public float Error { get; set; }
+        public float[] Errors { get; set; }
         public TrainingData(float[] Input, float[] Output) {
             this.Inputs = Input;
             this.Target = Output;
