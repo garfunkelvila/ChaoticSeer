@@ -46,7 +46,10 @@ namespace Chaotic_Seer.NN {
 		public override int GetHashCode() {
 			return Innovation;
 		}
-	}
+        public override string ToString() {
+            return Innovation.ToString();
+        }
+    }
 	class InterNeuron : INode {
 		public int Innovation { get; set; }
 		public NeuronTypes Type { get; set; } = NeuronTypes.Inter;
@@ -74,6 +77,9 @@ namespace Chaotic_Seer.NN {
 
 		public override int GetHashCode() {
 			return Innovation;
+		}
+		public override string ToString() {
+			return Innovation.ToString();
 		}
 	}
 	class MotorNeuron : INode {
@@ -106,6 +112,9 @@ namespace Chaotic_Seer.NN {
 
 		public override int GetHashCode() {
 			return Innovation;
+		}
+		public override string ToString() {
+			return Innovation.ToString();
 		}
 	}
 }

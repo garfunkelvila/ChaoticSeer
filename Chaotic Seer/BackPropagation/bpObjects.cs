@@ -25,7 +25,7 @@ using System.Text;
 namespace Chaotic_Seer.BackPropagation {
 internal class NeuronLayer {
 		public List<BpNeuron> neurons = new List<BpNeuron>();
-		public List<BpConnection> connections = new List<BpConnection>();
+		// public List<BpConnection> connections = new List<BpConnection>();
 	}
 	internal class BpNeuron : INode {
 		public int Innovation { get; set; }
@@ -51,7 +51,10 @@ internal class NeuronLayer {
 			Type = nodeNeuron.Type;
 			NetAxon = nodeNeuron.NetAxon;
 		}
-	}
+        public override string ToString() {
+            return Innovation.ToString();
+        }
+    }
 	internal class BpConnection : Util.IConnection {
 		public INode In { get; set; }
 		public INode Out { get; set; }

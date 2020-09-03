@@ -44,5 +44,9 @@ namespace Chaotic_Seer.NEAT {
 		public override int GetHashCode() {
 			return Innovation;
 		}
-	}
+
+        public override string ToString() {
+            return Innovation.ToString();
+        }
+    }
 }
