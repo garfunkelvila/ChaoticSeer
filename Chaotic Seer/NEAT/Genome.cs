@@ -138,6 +138,7 @@ namespace Chaotic_Seer.NEAT {
 
 				this.Connections.Add(conIn);
 				this.InterNeuron.Add(nodeMid);
+				this.AllNeurons.Add(nodeMid);
 				this.Connections.Add(conOut);
 				this.Connections.Remove(connection);  /// Equivalent to disabling the connection
 			}
