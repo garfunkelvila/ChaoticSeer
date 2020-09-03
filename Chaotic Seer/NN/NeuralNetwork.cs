@@ -28,7 +28,7 @@ using System.Text;
 
 namespace Chaotic_Seer.NN {
 	/// <summary>
-	/// Use this for calculator
+	/// Use this for calculator, TODO: Copy the one on BP
 	/// </summary>
 	static class NeuralNetwork {
 		//static internal DataHashSet<ConnectionNeuron> Connections = new DataHashSet<ConnectionNeuron>();

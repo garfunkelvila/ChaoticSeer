@@ -50,6 +50,7 @@ namespace Main {
 			};
 
 			for (int i = 1; i < 10000; i++) {
+				Neat.Mutate();
 				Neat.BackPropagate(td);
 				
 				//Console.WriteLine("Mutation:\t" + Neat.Genomes.Count);
